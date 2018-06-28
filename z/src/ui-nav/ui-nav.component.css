@@ -6,11 +6,11 @@ ul.cl-ul-NavigationTileContainer
     margin: 0;
     background-color: rgba(174, 175, 171, 0.623);
     border-right: 5px solid rgb(226, 241, 12);
-    float: left;
     max-width: 25%;
-    display: block;
+    display: inline-block;
     height: 100%;
     z-index:4;
+    vertical-align: auto;
 }
 
 a.cl-a-LinkTile
@@ -46,6 +46,7 @@ li.cl-li-LinkTileGroup
 */
     float: left;
     height: 100%;
+    min-height: 100%;
 }
 
 div.cl-text-LinkHeading
