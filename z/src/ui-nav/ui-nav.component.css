@@ -2,10 +2,15 @@ ul.cl-ul-NavigationTileContainer
 {
     list-style-type: none;
     overflow: hidden;
-    padding-left:5px;padding-right:5px;padding-top:10px;padding-bottom:10px;
+    padding-left:5px;padding-right:8px;padding-top:10px;padding-bottom:10px;
     margin: 0;
     background-color: rgba(174, 175, 171, 0.623);
     border-right: 5px solid rgb(226, 241, 12);
+    float: left;
+    max-width: 25%;
+    display: block;
+    height: 100%;
+    z-index:4;
 }
 
 a.cl-a-LinkTile
@@ -17,31 +22,35 @@ a.cl-a-LinkTile
     padding-left:10px;padding-right:7px;padding-top:10px;padding-bottom:10px;
     margin: 3px;
     background: rgba(85,88,88,0.9);
-    min-height: 125px;
-    width:30%;
+    min-height: 60px;
+    width:100%;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    display : inline-block;
+
     align-self:auto;
+    display: block;
 }
 
 li.cl-li-LinkTileGroup
 {
     width: 100%;
-    display: flex;
+    /*display: flex;*/
     justify-content: center;
     justify-content: space-around;
 
 /*    justify-content: space-between;
-    */
+    
 
     flex-wrap: wrap;
-    flex:40%;
+    flex:100%;
+*/
+    float: left;
+    height: 100%;
 }
 
 div.cl-text-LinkHeading
 {
     font-variant-caps: petite-caps;
-    font-size: 20px;
+    font-size: 16px;
     font-weight:400;
     border-bottom: 2px solid rgb(111,113,115);
     text-align: left;
@@ -51,8 +60,8 @@ div.cl-text-LinkHeading
 div.cl-text-LinkDesc
 {
     font-variant-caps: petite-caps;
-    font-size: 13px;
-    font-weight:300;
+    font-size: 12px;
+    font-weight:400;
     text-align: left;
     word-wrap: normal;
     width: 100%;
@@ -91,10 +100,14 @@ border-bottom: 2px solid rgba(44,44,44,0.6);
 
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px)
+@media screen and (max-width: 400px)
 {
-a.cl-a-LinkTile
-{
-    width: 100%;
-}
+    a.cl-a-LinkTile
+    {
+        width: 100%;
+    }
+    ul.cl-ul-NavigationTileContainer
+    {
+        max-width:  100%;
+    }
 }
