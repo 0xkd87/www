@@ -1,16 +1,40 @@
+/*Navigation container styles*/
+
+/* Covers active page transperantely and contains the navigation control*/
+.cl-div-ModalBackground
+{
+  display:none; /*none;  Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s;
+}
+
 ul.cl-ul-NavigationTileContainer
 {
     list-style-type: none;
     overflow: hidden;
     padding-left:5px;padding-right:8px;padding-top:10px;padding-bottom:10px;
     margin: 0;
+    margin-top: 50px;
     background-color: rgba(174, 175, 171, 0.623);
-    border-right: 5px solid rgb(226, 241, 12);
-    max-width: 25%;
+    border-right: 5px solid rgba(96, 97, 82, 0.699);
+    max-width: 50%;
     display: inline-block;
     height: 100%;
-    z-index:4;
+
     vertical-align: auto;
+
 }
 
 a.cl-a-LinkTile
@@ -39,7 +63,7 @@ li.cl-li-LinkTileGroup
     justify-content: space-around;
 
 /*    justify-content: space-between;
-    
+
 
     flex-wrap: wrap;
     flex:100%;
@@ -53,7 +77,7 @@ div.cl-text-LinkHeading
 {
     font-variant-caps: petite-caps;
     font-size: 16px;
-    font-weight:400;
+    font-weight:300;
     border-bottom: 2px solid rgb(111,113,115);
     text-align: left;
     width: 100%;
@@ -63,6 +87,7 @@ div.cl-text-LinkDesc
 {
     font-variant-caps: petite-caps;
     font-size: 12px;
+
     font-weight:400;
     text-align: left;
     word-wrap: normal;
@@ -113,4 +138,25 @@ border-bottom: 2px solid rgba(44,44,44,0.6);
     {
         max-width:  100%;
     }
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+  from {left: -300px; opacity: 0}
+  to {left: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+  from {left: -300px; opacity: 0}
+  to {left: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
 }

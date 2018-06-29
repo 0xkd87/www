@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-ui-nav',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UiNavComponent implements OnInit {
 
+  _isVisible: boolean;
   constructor() { }
 
   ngOnInit() {
+    this._isVisible = false;
+  }
+
+  OnClickToggleVisButton()  {
+    console.log('function called');
+    this._isVisible = !this._isVisible;
+    console.log('function end');
   }
 
 }
