@@ -6,7 +6,7 @@
   padding: 0%;
   display:none; /*none;  Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 3; /* Sit on top */
+  z-index: 2; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -27,6 +27,7 @@
     left: 0;
     top: 0;
     position: fixed;
+    z-index: 1; /* Sit on top */
     list-style-type: none;
     overflow: none;
     padding-left:10px;

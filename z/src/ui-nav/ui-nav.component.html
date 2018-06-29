@@ -8,7 +8,7 @@
 <!-- Trigger/Open The Modal -->
 <button (click)="OnClickToggleVisButton()">Open Modal + {{_isVisible}}</button>
 
-<div class= "cl-div-ModalBackground" [style.display]="_isVisible ? 'flex' : 'none'" (dblclick)="OnClickToggleVisButton()">
+<div class= "cl-div-ModalBackground" [style.display]="_isVisible ? 'flex' : 'none'" (click)="OnClickToggleVisButton()">
 
   <div class= "cl-ul-NavigationTileContainer">
  <!-- <button (click)="OnClickToggleVisButton()">Close Modal + {{_isVisible}}</button> -->
