@@ -3,38 +3,43 @@
 /* Covers active page transperantely and contains the navigation control*/
 .cl-div-ModalBackground
 {
+  padding: 0%;
   display:none; /*none;  Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 3; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
 
+  /*Animate Slide in*/
   -webkit-animation-name: slideIn;
-  -webkit-animation-duration: 0.4s;
+  -webkit-animation-duration: 0.5s;
   animation-name: slideIn;
-  animation-duration: 0.4s;
+  animation-duration: 0.5s;
 }
 
-ul.cl-ul-NavigationTileContainer
+.cl-ul-NavigationTileContainer
 {
+    left: 0;
+    top: 0;
+    position: fixed;
     list-style-type: none;
-    overflow: hidden;
-    padding-left:5px;padding-right:8px;padding-top:10px;padding-bottom:10px;
+    overflow: none;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:10px;
+    padding-bottom:10px;
     margin: 0;
-    margin-top: 50px;
-    background-color: rgba(174, 175, 171, 0.623);
-    border-right: 5px solid rgba(96, 97, 82, 0.699);
-    max-width: 50%;
-    display: inline-block;
+    margin-top: 0%;
+    background-color: rgba(174, 175, 171, 1);
+    border-right: 1px solid rgba(96, 97, 82, 0.699);
+    width: 40%;
     height: 100%;
-
-    vertical-align: auto;
-
+    display: block;
 }
 
 a.cl-a-LinkTile
@@ -43,34 +48,37 @@ a.cl-a-LinkTile
     color: yellow;
     text-decoration: none;
 
-    padding-left:10px;padding-right:7px;padding-top:10px;padding-bottom:10px;
-    margin: 3px;
+    padding-left:10px;padding-right:15px;padding-top:10px;padding-bottom:10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
     background: rgba(85,88,88,0.9);
    /* min-height: 60px;*/
-    width:100%;
+    min-width:95%;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 
-    align-self:auto;
-    display: block;
+    /*align-self:auto;*/
+    display: inline-block;
+    float: none;
 
 }
 
-li.cl-li-LinkTileGroup
+.cl-li-LinkTileGroup
 {
-    width: 100%;
-    /*display: flex;*/
-    justify-content: center;
-    justify-content: space-around;
+  left: 0;
+  top: 0;
+  min-height: 100%;
+  margin-top: 20%;
+  margin-right: 5px;
+  padding-right: 5px; padding-left: 5px;
+  border-top: 3px solid rgba(96, 97, 82, 0.699);
 
-/*    justify-content: space-between;
+  justify-content: space-around;
+ display:block;
 
+    width: auto;
 
-    flex-wrap: wrap;
-    flex:100%;
-*/
-    float: left;
-    height: 100%;
-    min-height: 100%;
 }
 
 div.cl-text-LinkHeading
@@ -78,7 +86,7 @@ div.cl-text-LinkHeading
     font-variant-caps: petite-caps;
     font-size: 16px;
     font-weight:300;
-    border-bottom: 2px solid rgb(111,113,115);
+
     text-align: left;
     width: 100%;
 }
@@ -104,7 +112,41 @@ div.cl-text-LinkDesc
     margin-right : 5px;
     border-left:   1px solid rgba(245, 245, 245,0.4);
 
-    display: none; /*display: flex;*/
+    display: none; /*initally hidden */ /*display: flex;*/
+
+
+    animation-name: slideIn;
+    animation-duration: 1.8s;
+}
+
+/* The Close Button */
+.cl-closingObj
+{
+  background-color: rgba(54, 54, 49, 0.112);
+  color: rgba(255, 251, 251, 0.952);
+
+  font-size: 16px;
+  font-weight: 300;
+  cursor: pointer;
+
+  float: right;
+  display: flex;
+  text-align: right;
+
+  animation-name: fadeIn;
+  animation-duration: 2.2s;
+  margin-left: 5px;
+  padding: 10px;
+
+  border:   1px solid rgba(59, 55, 55, 0.2);
+}
+
+.cl-closingObj:hover{
+  cursor:pointer;
+  color: rgba(22, 22, 25,0.8);
+  background-color: rgba(255, 228, 25,1);
+  text-align: right;
+  float: right;
 }
 
 a.cl-a-LinkTile:hover
@@ -112,6 +154,7 @@ a.cl-a-LinkTile:hover
 cursor:pointer;
 color: rgba(22, 22, 25,0.8);
 background-color: rgba(255, 228, 25,1);
+
 }
 
 a.cl-a-LinkTile:hover div.cl-text-LinkDesc
@@ -136,7 +179,7 @@ border-bottom: 2px solid rgba(44,44,44,0.6);
     }
     ul.cl-ul-NavigationTileContainer
     {
-        max-width:  100%;
+        width:  100%;
     }
 }
 

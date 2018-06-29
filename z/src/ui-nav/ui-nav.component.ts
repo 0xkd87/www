@@ -9,10 +9,12 @@ import { FormControl } from '@angular/forms';
 export class UiNavComponent implements OnInit {
 
   _isVisible: boolean;
-  constructor() { }
+  constructor() {
+    this._isVisible = false;
+   }
 
   ngOnInit() {
-    this._isVisible = false;
+   // this._isVisible = false;
   }
 
   OnClickToggleVisButton()  {
