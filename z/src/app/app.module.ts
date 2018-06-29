@@ -3,13 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { UiNavComponent } from '../ui-nav/ui-nav.component';
-import { UiPagecontentComponent } from '../ui-pagecontent/ui-pagecontent.component';
+import { UiUserinfo1Component } from '../ui-userinfo1/ui-userinfo1.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       UiNavComponent,
-      UiPagecontentComponent
+      UiUserinfo1Component
    ],
    imports: [
       BrowserModule

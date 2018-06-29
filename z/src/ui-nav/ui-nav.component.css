@@ -3,10 +3,12 @@
 /* Covers active page transperantely and contains the navigation control*/
 .cl-div-ModalBackground
 {
+
+  cursor:pointer;
   padding: 0%;
   display:none; /*none;  Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 2; /* Sit on top */
+  z-index: 1; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -17,9 +19,9 @@
 
   /*Animate Slide in*/
   -webkit-animation-name: slideIn;
-  -webkit-animation-duration: 0.5s;
+  -webkit-animation-duration: 1.5s;
   animation-name: slideIn;
-  animation-duration: 0.5s;
+  animation-duration: 1.5s;
 }
 
 .cl-ul-NavigationTileContainer
@@ -27,7 +29,6 @@
     left: 0;
     top: 0;
     position: fixed;
-    z-index: 1; /* Sit on top */
     list-style-type: none;
     overflow: none;
     padding-left:10px;
@@ -41,6 +42,12 @@
     width: 40%;
     height: 100%;
     display: block;
+
+      /*Animate Slide in*/
+  -webkit-animation-name: fadeIn;
+  -webkit-animation-duration: 1.0s;
+  animation-name: fadeIn;
+  animation-duration: 1.0s;
 }
 
 a.cl-a-LinkTile
@@ -174,9 +181,13 @@ border-bottom: 2px solid rgba(44,44,44,0.6);
 
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 400px)
+@media screen and (max-width: 300px)
 {
-    a.cl-a-LinkTile
+    a.cl-a-LinkTile .cl-li-LinkTileGroup
+    {
+        width: 100%;
+    }
+   .cl-li-LinkTileGroup
     {
         width: 100%;
     }
