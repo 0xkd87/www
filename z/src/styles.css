@@ -8,6 +8,10 @@
   font-weight: 300;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html, body
 {
   padding: 10px;

@@ -1,9 +1,13 @@
 
 .cl-FormSection
 {
-    display: inline-block;
+ 
+    display: block;
     height: 100%;
-    width: 100%;
+    width: auto;
+    margin: 1px;
+    padding: 5px;
+    border: 1px solid rgba(240, 15, 15, 0.705);
 }
 
 h2{
@@ -11,19 +15,23 @@ h2{
     border-bottom: 2px solid rgba(0,0,0,0.19);
     font-size: 32px;
     text-align: left;
+    margin: 1%;
 }
 
   .cl-ModalDialog
   {
-      margin: 10% 20%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-      padding: 30px;
+    width: 400px;
+
+      padding-left : 1%;padding-right : 1%;
+      padding-top : 1%;padding-bottom : 1%;
       background-color: white;
-      height: 40%;
-      width: 45%;
-
       box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-      z-index: 4;
+      z-index: 1;
 
   }
 
@@ -37,13 +45,28 @@ h2{
 }
 input[type=text]
 {
+    align-self: center;
+    margin: 1px;
     width: 100%;
-    margin-top: 4px;
     padding: 5px;
     font-size: 16px;
     font-weight: 450;
     font-variant: normal;
     min-height: 32px;
     display: block;
-    border: 1px solid rgba(98, 99, 98, 0.884);
+    border: 1px solid rgba(98, 99, 98, 0.705);
+}
+
+@media screen and (max-width: 400px)
+{
+    .cl-ModalDialog
+    {
+        width : auto;
+        height : auto;
+        margin: 1%;
+    }
+    .cl-FormSection
+    {
+        margin: 0%;
+    }
 }
