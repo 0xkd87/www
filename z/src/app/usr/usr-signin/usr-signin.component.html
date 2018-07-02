@@ -2,31 +2,39 @@
   [formGroup]="_formGrp" 
   class="cl-FormSection"
   novalidate>
-<h2>Sign-In</h2><br>
-  <div class="form-group">
-      <label 
-        class="cl-AnimatedLabel"
-        for="usrId">
-        User Id:
-      </label>
-      <input 
-        type="text"
-        name = "usrId"
-        class="form-control" 
-        formControlName="_usrId">
-<div><br><br></div>
+    <div class="form-group">
+      <div class="row">
+          <label 
+            class="cl-AnimatedLabel"
+            for="usrId">
+            User Id:
+          </label>
+          <input 
+            type="text"
+            name = "usrId"
+            class="form-control" 
+            formControlName="_usrId">
+        </div>
+        <div class="row">
+            <label 
+            class="cl-AnimatedLabel"
+            for="pwd">
+            Password:
+          </label>
+          <input 
+            type="password"
+            name = "pwd"
+            class="form-control" 
+            formControlName="_pwd">
+        </div>
 
-        <label 
-        class="cl-AnimatedLabel"
-        for="pwd">
-        Password:
-      </label>
-      <input 
-        type="password"
-        name = "pwd"
-        class="form-control" 
-        formControlName="_pwd">
-
+        <div class="row">
+          <input
+          type="submit"
+          value="Sign-In"
+          [disabled]="!_formGrp.valid"
+          >
+        </div>
   </div>
   <p>{{(usrId)}}</p>
   <p>{{(pwd)}}</p>

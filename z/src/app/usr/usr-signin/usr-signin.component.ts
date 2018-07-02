@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { _utils } from '../../../_shared/_utils';
 
 @Component({
-  selector: 'app-usr-signin',
+  selector: 'usr-signin',
   templateUrl: './usr-signin.component.html',
   styleUrls: [
     './usr-signin.component.css',
@@ -12,7 +12,7 @@ import { _utils } from '../../../_shared/_utils';
 export class UsrSigninComponent implements OnInit {
 
   
-  private _formGrp: FormGroup;
+  public _formGrp: FormGroup;
   constructor(
     private _fb: FormBuilder,
     private _utils : _utils
@@ -26,8 +26,8 @@ export class UsrSigninComponent implements OnInit {
   buildForm() {
     this._formGrp = this._fb.group(
       {
-        _usrId : [null, Validators.required],
-        _pwd : ''
+        _usrId : [null, Validators.compose([Validators.required,Validators.minLength(5),Validators.maxLength(10)])],
+        _pwd : ['',Validators.compose([Validators.required,Validators.minLength(5),Validators.maxLength(20)])]
       }
   );
   }

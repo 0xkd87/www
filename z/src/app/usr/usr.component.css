@@ -1,3 +1,79 @@
+* {
+    box-sizing: border-box;
+}
+
+a
+{
+    
+    font-size: 20px;
+    color: rgba(63, 63, 62, 0.685);
+    text-align: center;
+    text-decoration: none;
+
+    border-bottom:  1px solid rgb(111,111,111);
+
+    padding:10px;
+    margin: 0px;
+    background: rgba(88, 88, 88, 0.089);
+    width: 100%;
+    display: block;
+}
+
+a:hover
+{
+    cursor:pointer;
+    background-color: yellow;
+    color: black;
+	border-bottom:   1px solid darkgrey;
+}
+
+.leftcolumn {
+    float: left;
+    padding : 2px;
+      width: 100%;
+}
+/* Right column */
+.rightcolumn {
+    float: right;
+    padding : 2px;
+    border-left: 1px solid rgba(200,200,200,1);
+    width: 100%;
+}
+.row
+{
+    margin-bottom: 15px;
+    padding: 2px;
+}
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.clWidth25Perc
+{
+  width: 25%;
+}
+.clWidth50Perc
+{
+  width: 50%;
+}
+.clWidth33Perc
+{
+  width: 33%;
+}
+.clWidth75Perc
+{
+  width: 75%;
+}
+.clWidth66Perc
+{
+  width: 66%;
+}
+.clWidth100Perc
+{
+  width: 100%;
+}
 
 .cl-FormSection
 {
@@ -40,14 +116,15 @@ h2{
 {
     /*display: none;*/
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 550;
     pointer-events: none;
     padding: 5px;
-}
+    color: rgba(55, 55, 65, 0.904);
+ }
 input[type=text],input[type=password]
 {
     align-self: center;
-    margin: 1px;
+    margin: 2px;
     width: 100%;
     padding: 5px;
     font-size: 16px;
@@ -62,21 +139,32 @@ input[type=text],input[type=password]
 /*invalid input indication*/
 .form-control.ng-dirty.ng-touched.ng-invalid
 {
-    background-color: rgba(255, 217, 0, 0.048);
+    background-color: rgba(255, 217, 0, 0);
     border-bottom: 3px solid rgba(255, 94, 0, 0.959);
-
+}
+.form-control.ng-dirty.ng-touched.ng-valid
+{
+    border-bottom: 3px solid rgba(74, 252, 3, 0.986);
 }
 
-@media screen and (max-width: 380px)
+/*valid input indication*/
+
+@media screen and (max-width: 600px)
 {
     .cl-ModalDialog
     {
-        width : auto;
+        width : 100%;
         height : auto;
-        margin: 1%;
+        margin: 2px;
     }
-    .cl-FormSection
+    .cl-FormSection,row
     {
-        margin: 0%;
+        margin: 2px;
+    }
+    .leftcolumn, .rightcolumn,row,
+    .clWidth25Perc,.clWidth33Perc,.clWidth50Perc,.clWidth66Perc,.clWidth75Perc,.clWidth100Perc
+    {
+        width: 100%;
+        padding: 0;
     }
 }
