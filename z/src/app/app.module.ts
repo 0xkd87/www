@@ -4,20 +4,19 @@ import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
 
 import { AppComponent } from './app.component';
 import { UiNavComponent } from '../ui-nav/ui-nav.component';
-import { UiUserinfo1Component } from '../ui-userinfo1/ui-userinfo1.component';
-//import { PageLoginComponent } from '../_shared/page/page-Login/page-Login.component';
 import { PageLoginModule } from '../_shared/page/page-Login/page-Login.module';
+import { UsrModule } from './usr/usr.module';
+
 
 @NgModule({
    declarations: [
       AppComponent,
-      UiNavComponent,
-      UiUserinfo1Component
-     // PageLoginComponent
+      UiNavComponent
    ],
    imports: [
       BrowserModule,
-      ReactiveFormsModule, // <-- #2 add to @NgModule imports
+      ReactiveFormsModule,
+      UsrModule,
       PageLoginModule
    ],
    providers: [],

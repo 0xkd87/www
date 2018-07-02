@@ -6,7 +6,9 @@
 
 <form 
   [formGroup]="fgLogin" 
-  class="cl-FormSection">
+  class="cl-FormSection"
+  #_f = "ngForm"
+  novalidate>
 <h2>Login to Continue</h2>
   <div class="form-group">
       <label 
