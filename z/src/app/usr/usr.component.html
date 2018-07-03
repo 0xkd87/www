@@ -6,15 +6,17 @@
   <div class="cl-ModalDialog">
 <div class="row">
         <div class="clWidth50Perc leftcolumn">
-            <a href="#">Sign In</a>
+            <a routerLink="/signin" routerLinkActive="active">Sign In</a>
         </div>
         <div class="clWidth50Perc rightcolumn">
-            <a href="#">Sign Up</a>
+            <a routerLink="/signup" routerLinkActive="active">Sign Up</a>
         </div>
   </div>
-    <usr-signin>
+
+  <router-outlet></router-outlet>
+ <!--  <usr-signin>
 
     </usr-signin>
-    <!--Approute here-->
+ -->
   </div>
 </div>
