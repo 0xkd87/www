@@ -8,12 +8,6 @@ import { UsrSignupComponent } from './usr-signup/usr-signup.component';
 import { UsrComponent } from './usr.component';
 import { _utils } from '../../_shared/_utils';
 
-const appRoutes = [
-    { path : 'usrAth', component: UsrComponent},
-    { path : 'usrAth/signin', component: UsrSigninComponent},
-    { path : 'usrAth/signup', component: UsrSignupComponent}
- ];
-
  const usrAuthRoutes: Routes = [
     {
       path: '',
@@ -26,7 +20,7 @@ const appRoutes = [
           children: [
             { path: 'signin', component: UsrSigninComponent },
             { path: 'signup', component: UsrSignupComponent },
-            { path: '', component: UsrSigninComponent }
+            { path: '',  redirectTo: 'signin', pathMatch: 'full' }
           ]
         }
       ]

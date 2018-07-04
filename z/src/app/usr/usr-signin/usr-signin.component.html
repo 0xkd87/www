@@ -1,3 +1,4 @@
+
 <form 
   [formGroup]="_formGrp" 
   class="cl-FormSection"
@@ -27,7 +28,7 @@
             class="form-control" 
             formControlName="_pwd">
         </div>
-
+        <div class="row"></div>
         <div class="row">
           <input
           type="submit"
@@ -38,4 +39,6 @@
   </div>
   <p>{{(usrId)}}</p>
   <p>{{(pwd)}}</p>
+  <a routerLink="/signup" routerLinkActive="active">Sign Up</a>
+
     </form>

@@ -1,14 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
-import {RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { UiNavComponent } from '../ui-nav/ui-nav.component';
 import { PageNotfoundComponent } from '../_shared/page-Notfound/page-Notfound.component';
 import { UsrModule } from './usr/usr.module';
 
-const appRoutes = [
+const appRoutes: Routes = [
     {
         path: 'usrAuth',
         loadChildren: '../app/usr/usr.module#UsrModule'
