@@ -1,5 +1,5 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-import  { UsrSigninComponent } from './usr-signin/usr-signin.component';
+import { UsrSigninComponent } from './usr-signin/usr-signin.component';
 import { UsrSignupComponent } from './usr-signup/usr-signup.component';
 
 @Component({

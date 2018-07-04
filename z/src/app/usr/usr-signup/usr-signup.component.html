@@ -1,3 +1,66 @@
-<p>
-  usr-signup works!
-</p>
+<form
+  [formGroup]="_formGrp"
+  class="cl-FormSection"
+  novalidate>
+    <div class="form-group">
+      <div class="row">
+          <label
+            class="cl-AnimatedLabel"
+            for="usrId">
+            User Id:
+          </label>
+          <input
+            type="text"
+            name = "usrId"
+            class="form-control"
+            formControlName="_usrId">
+        </div>
+        <div class="row">
+            <label
+            class="cl-AnimatedLabel"
+            for="pwd">
+            Password:
+          </label>
+          <input
+            type="password"
+            name = "pwd"
+            class="form-control"
+            formControlName="_pwd">
+        </div>
+        <div class="row">
+          <div class="clWidth50Perc leftcolumn">
+            <label
+            class="cl-AnimatedLabel"
+            for="pwd">
+            Password:
+          </label>
+          <input
+            type="password"
+            name = "pwd"
+            class="form-control"
+            formControlName="_pwd">
+          </div>
+            <div class="clWidth50Perc rightcolumn">
+              <label
+              class="cl-AnimatedLabel"
+              for="pwd">
+              Password:
+            </label>
+            <input
+              type="password"
+              name = "pwd"
+              class="form-control"
+              formControlName="_pwd">
+            </div>
+        </div>
+
+
+        <div class="row">
+          <input
+          type="submit"
+          value="Submit"
+          [disabled]="!_formGrp.valid"
+          >
+        </div>
+  </div>
+</form>

@@ -1,0 +1,27 @@
+
+
+.body
+{
+  margin: 20px;
+  padding: 2%;
+  background-color: rgba(255, 255, 255, 0.918);
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-left: 5px solid  rgba(248, 56, 8, 0.87);
+}
+.h1
+{
+
+  color: rgba(121, 119, 116, 0.87);
+  font-weight: 300;
+  font-size: 12em;
+  border-bottom: 4px solid  rgba(179, 179, 179, 0.87);
+}
+.h2
+{
+  margin-top: 0%;
+  display: block;
+  font-size: 6em;
+  color: rgba(70, 68, 68, 0.87);
+}

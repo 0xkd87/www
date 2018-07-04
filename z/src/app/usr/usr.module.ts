@@ -38,9 +38,6 @@ const appRoutes = [
         CommonModule,
         ReactiveFormsModule,
         RouterModule.forChild(usrAuthRoutes)
-//        ,
- //       UsrSigninComponent,
-//        UsrSignupComponent
     ],
     declarations: [
         UsrComponent,

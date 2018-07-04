@@ -1,40 +1,40 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
-import {RouterModule} from '@angular/router'
+import {RouterModule} from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { UiNavComponent } from '../ui-nav/ui-nav.component';
-import { PageLoginModule } from '../_shared/page/page-Login/page-Login.module';
+import { PageNotfoundComponent } from '../_shared/page-Notfound/page-Notfound.component';
 import { UsrModule } from './usr/usr.module';
 
 const appRoutes = [
     {
-        path: 'usrAuth', 
+        path: 'usrAuth',
         loadChildren: '../app/usr/usr.module#UsrModule'
     },
-   { 
-       path : '', 
-       redirectTo: '/usrAth', 
+   {
+       path : '',
+       redirectTo: '/usrAth',
        pathMatch: 'full'
     },
-   { 
-       path : '**', 
-       component: UiNavComponent
+   {
+       path : '**',
+       component: PageNotfoundComponent
     }
 ];
 
 @NgModule({
    declarations: [
       AppComponent,
-      UiNavComponent
+      UiNavComponent,
+      PageNotfoundComponent
    ],
    imports: [
       BrowserModule,
       ReactiveFormsModule,
       RouterModule.forRoot(appRoutes),
-      UsrModule,
-      PageLoginModule
+      UsrModule
    ],
    providers: [],
    bootstrap: [
