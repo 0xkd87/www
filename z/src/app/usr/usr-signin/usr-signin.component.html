@@ -1,31 +1,31 @@
 
-<form 
-  [formGroup]="_formGrp" 
+<form
+  [formGroup]="_formGrp"
   class="cl-FormSection"
   novalidate>
     <div class="form-group">
       <div class="row">
-          <label 
+          <label
             class="cl-AnimatedLabel"
             for="usrId">
             User Id:
           </label>
-          <input 
+          <input
             type="text"
             name = "usrId"
-            class="form-control" 
+            class="form-control"
             formControlName="_usrId">
         </div>
         <div class="row">
-            <label 
+            <label
             class="cl-AnimatedLabel"
             for="pwd">
             Password:
           </label>
-          <input 
+          <input
             type="password"
             name = "pwd"
-            class="form-control" 
+            class="form-control"
             formControlName="_pwd">
         </div>
         <div class="row"></div>
@@ -39,6 +39,6 @@
   </div>
   <p>{{(usrId)}}</p>
   <p>{{(pwd)}}</p>
-  <a routerLink="/signup" routerLinkActive="active">Sign Up</a>
+  <a routerLink="/usrAuth/signup" routerLinkActive="active">Sign Up</a>
 
     </form>

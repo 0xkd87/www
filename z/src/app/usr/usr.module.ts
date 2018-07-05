@@ -1,37 +1,20 @@
+
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-import  { UsrSigninComponent } from './usr-signin/usr-signin.component';
+import { UsrSigninComponent } from './usr-signin/usr-signin.component';
 import { UsrSignupComponent } from './usr-signup/usr-signup.component';
 import { UsrComponent } from './usr.component';
 import { _utils } from '../../_shared/_utils';
-
- const usrAuthRoutes: Routes = [
-    {
-      path: '',
-      component: UsrComponent,
-      //canActivate: [AuthGuard],
-      children: [
-        {
-          path: '',
-          //canActivateChild: [AuthGuard],
-          children: [
-            { path: 'signin', component: UsrSigninComponent },
-            { path: 'signup', component: UsrSignupComponent },
-            { path: '',  redirectTo: 'signin', pathMatch: 'full' }
-          ]
-        }
-      ]
-    }
-  ];
+import { UsrRoutes } from './usr.routing';
 
 @NgModule({
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        RouterModule.forChild(usrAuthRoutes)
+        UsrRoutes
     ],
     declarations: [
         UsrComponent,
@@ -41,8 +24,7 @@ import { _utils } from '../../_shared/_utils';
     exports: [
         UsrComponent,
         UsrSigninComponent,
-        UsrSignupComponent,
-        RouterModule
+        UsrSignupComponent
     ],
     providers: [
         _utils

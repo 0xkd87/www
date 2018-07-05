@@ -20,8 +20,6 @@ html, body
 /* Covers active page transperantely and contains the navigation control*/
 .cl-glob-ModalBackground
 {
-
-  cursor:pointer;
   padding: 0%;
   display:none; /*none;  Hidden by default */
   position: fixed; /* Stay in place */
