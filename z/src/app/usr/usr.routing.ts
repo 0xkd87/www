@@ -30,13 +30,13 @@ const _usrAuthRoutes: Routes = [
     pathMatch: 'full'
   }
 ];
-/*  @NgModule({
+  @NgModule({
   imports: [
    RouterModule.forChild(_usrAuthRoutes)
   ],
   exports: [
     RouterModule
   ]
-}) */
- export const UsrRoutes = RouterModule.forChild(_usrAuthRoutes);
-// export class UsrRoutes {}
+})
+// export const UsrRoutes = RouterModule.forChild(_usrAuthRoutes);
+ export class UsrRoutes {}

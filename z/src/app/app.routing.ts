@@ -22,13 +22,13 @@ const _appRoutes: Routes = [
   }
 ];
 
-/* @NgModule({
+ @NgModule({
   imports: [
     RouterModule.forRoot(_appRoutes)
   ],
   exports: [
     RouterModule
   ]
-}) */
-// export class AppRoutes {}
-export const  AppRoutes = RouterModule.forRoot(_appRoutes);
+})
+ export class AppRoutes {}
+// export const  AppRoutes = RouterModule.forRoot(_appRoutes);
