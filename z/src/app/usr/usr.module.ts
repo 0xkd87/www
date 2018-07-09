@@ -1,3 +1,4 @@
+import { HttpTxRxService } from './../../_shared/services/http-TxRx.service';
 
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
@@ -27,7 +28,8 @@ import { UsrRoutes } from './usr.routing';
         UsrSignupComponent
     ],
     providers: [
-        _utils
+        _utils,
+        HttpTxRxService
     ]
   })
   export class UsrModule { }

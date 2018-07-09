@@ -1,7 +1,13 @@
 
  <div class="cl-glob-ModalBackground" [style.display]="'block'">
-  <div class="cl-ModalDialog">
 
+  <div class="cl-ModalDialog">
+      <button (click)="getData()">
+          get
+        </button>
+        <ul>
+            <li *ngFor="let d of data">{{ d.Idx }}: {{ d.Data}}</li>
+        </ul>
     <router-outlet></router-outlet>
 
   </div>
