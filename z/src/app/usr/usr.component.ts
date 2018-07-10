@@ -1,7 +1,7 @@
 import { ITmp } from './../../_shared/interface/tmp';
 
 import { HttpTxRxService} from './../../_shared/services/http-TxRx.service';
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 
 @Component({

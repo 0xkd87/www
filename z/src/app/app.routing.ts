@@ -5,11 +5,16 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { PageNotfoundComponent } from '../_shared/page-Notfound/page-Notfound.component';
 import { UsrModule } from './usr/usr.module';
+import { LibMngrComponent } from './libMngr/libMngr.component';
 
 const _appRoutes: Routes = [
   {
       path: 'usrAuth',
       loadChildren: './usr/usr.module#UsrModule'
+  },
+  {
+    path: 'libMngr',
+    component: LibMngrComponent
   },
  {
      path : '',

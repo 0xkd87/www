@@ -1,0 +1,15 @@
+
+<p>
+  libMngr works!
+</p>
+<div>
+<button (click)="GetAndUpdateData()">
+  get
+</button>
+</div>
+<div>
+  <div *ngFor="let d of data">
+    <h2>{{ d.Idx }}</h2>
+    <h5>{{ d.Data}}</h5>
+  </div>
+</div>

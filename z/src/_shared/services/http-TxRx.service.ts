@@ -7,7 +7,8 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
 
-const _url = 'http://localhost/_c/b/1.php';
+// const _url = 'http://localhost/_c/b/1.php';
+const _url = 'http://emis000695/_c/b/1.php';
 const httpOptions = {
   headers: new HttpHeaders({
    // 'Content-Type':  'application/json'

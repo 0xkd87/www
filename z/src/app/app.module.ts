@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { UiNavComponent } from '../ui-nav/ui-nav.component';
 import { PageNotfoundComponent } from '../_shared/page-Notfound/page-Notfound.component';
 import { UsrModule } from './usr/usr.module';
+import { LibMngrModule } from './libMngr/libMngr.module';
+import { LibMngrComponent } from './libMngr/libMngr.component';
 
 import {AppRoutes} from './app.routing';
 
@@ -15,11 +17,13 @@ import {AppRoutes} from './app.routing';
       AppComponent,
       UiNavComponent,
       PageNotfoundComponent
-   ],
+ //     LibMngrComponent
+    ],
    imports: [
       BrowserModule,
       HttpClientModule,
       ReactiveFormsModule,
+ //     LibMngrModule,
       UsrModule,
       AppRoutes
    ],
