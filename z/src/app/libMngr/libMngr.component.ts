@@ -3,8 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { ITmp } from './../../_shared/interface/tmp';
 
 import { HttpTxRxService} from './../../_shared/services/http-TxRx.service';
-import { stringify } from 'querystring';
-import { decode } from 'punycode';
+
 @Component({
   selector: 'app-libMngr',
   templateUrl: './libMngr.component.html',
@@ -30,7 +29,9 @@ export class LibMngrComponent implements OnInit {
     .subscribe(
       data => {
         this.data = data;
-        this.datastr = atob(atob(data)); //JSON.stringify(data);
+  //      this.datastr = atob(atob(data)); //JSON.stringify(data);
+        this.datastr = (data); //JSON.stringify(data);
+
         console.log(data);
       },
       error => this.error = error // error path;
