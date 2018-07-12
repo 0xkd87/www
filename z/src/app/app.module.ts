@@ -23,7 +23,7 @@ import {AppRoutes} from './app.routing';
       BrowserModule,
       HttpClientModule,
       ReactiveFormsModule,
- //     LibMngrModule,
+      LibMngrModule,
       UsrModule,
       AppRoutes
    ],
