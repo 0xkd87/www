@@ -3,6 +3,8 @@ import { Title } from '@angular/platform-browser';
 import { ITmp } from './../../_shared/interface/tmp';
 
 import { HttpTxRxService} from './../../_shared/services/http-TxRx.service';
+import { stringify } from 'querystring';
+import { decode } from 'punycode';
 @Component({
   selector: 'app-libMngr',
   templateUrl: './libMngr.component.html',
@@ -10,7 +12,8 @@ import { HttpTxRxService} from './../../_shared/services/http-TxRx.service';
   providers: [HttpTxRxService]
 })
 export class LibMngrComponent implements OnInit {
-  public data: ITmp;
+  public datastr: string;
+  public data; // : string; // ITmp;
   public error: string;
   constructor(
     private _title: Title, // Page Title Serive
@@ -23,11 +26,16 @@ export class LibMngrComponent implements OnInit {
   }
 
   GetAndUpdateData() {
-    this._httpServ.getData()
+    this._httpServ.getEncData()
     .subscribe(
-      data => this.data = data,
+      data => {
+        this.data = data;
+        this.datastr = atob(atob(data)); //JSON.stringify(data);
+        console.log(data);
+      },
       error => this.error = error // error path;
     );
+
   }
 
 }
