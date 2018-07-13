@@ -14,7 +14,7 @@ export class LibMngrComponent implements OnInit {
   public datastr: string;
   public d: any; // : string; // ITmp;
   public error: string;
-  public data: any;
+  public data: Irev;
   constructor(
     private _title: Title, // Page Title Serive
     private _httpServ: HttpTxRxService
@@ -29,11 +29,11 @@ export class LibMngrComponent implements OnInit {
     this._httpServ.getEncData()
     .subscribe(
       data => {
-        this.data = data;//this.mapRx(data);
+        this.data = <Irev>data;//this.mapRx(data);
   //      this.datastr = atob(atob(data)); //JSON.stringify(data);
         this.datastr = JSON.stringify(data);
 
-        //console.log(this.data);
+        console.log(this.data);
       },
       error => this.error = error // error path;
     );
