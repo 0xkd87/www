@@ -1,4 +1,4 @@
-import { ITmp } from './../interface/tmp';
+import { Irev } from './../interface/tmp';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -19,7 +19,7 @@ export class HttpTxRxService {
 
     headers: new HttpHeaders(
      {
-       Accept: 'text/plain;base64'
+       Accept: 'application/json;'
    }),
    params: new HttpParams().set('t',  new Date().getTime().toString() ),
    reportProgress: true
@@ -37,8 +37,9 @@ handleError() {
     console.log('Entered GetEncData...');
 
     return this._http.get(_url,
-      // this.httpOptions,
-      {responseType: 'text'})
+    //   this.httpOptions
+      {responseType: 'json'}
+    )
     .pipe(
       retry(3), // retry a failed request up to 3 times
       catchError(err => {throw err; } ) // then handle the error

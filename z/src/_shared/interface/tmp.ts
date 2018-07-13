@@ -1,4 +1,9 @@
-export interface ITmp {
-  Idx: number;
-  Data: string;
+export interface Irev {
+
+    major: number;
+    minor: number;
+    on: string;
+    by: string;
+
 }
+

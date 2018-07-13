@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ITmp } from './../../_shared/interface/tmp';
+import { Irev } from './../../_shared/interface/tmp';
 
 import { HttpTxRxService} from './../../_shared/services/http-TxRx.service';
 
@@ -12,8 +12,9 @@ import { HttpTxRxService} from './../../_shared/services/http-TxRx.service';
 })
 export class LibMngrComponent implements OnInit {
   public datastr: string;
-  public data; // : string; // ITmp;
+  public d: any; // : string; // ITmp;
   public error: string;
+  public data: any;
   constructor(
     private _title: Title, // Page Title Serive
     private _httpServ: HttpTxRxService
@@ -28,15 +29,21 @@ export class LibMngrComponent implements OnInit {
     this._httpServ.getEncData()
     .subscribe(
       data => {
-        this.data = data;
+        this.data = data;//this.mapRx(data);
   //      this.datastr = atob(atob(data)); //JSON.stringify(data);
-        this.datastr = (data); //JSON.stringify(data);
+        this.datastr = JSON.stringify(data);
 
-        console.log(data);
+        //console.log(this.data);
       },
       error => this.error = error // error path;
     );
 
+  }
+
+  mapRx(d) {
+    console.log(d);
+    console.log(atob(d));
+    return (atob(d));
   }
 
 }
