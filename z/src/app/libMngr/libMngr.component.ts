@@ -29,7 +29,7 @@ export class LibMngrComponent implements OnInit {
     this._httpServ.getEncData()
     .subscribe(
       data => {
-        this.data = <Irev>data;//this.mapRx(data);
+        this.data = <Irev>data; // this.mapRx(data);
   //      this.datastr = atob(atob(data)); //JSON.stringify(data);
         this.datastr = JSON.stringify(data);
 
