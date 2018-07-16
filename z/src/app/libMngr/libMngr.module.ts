@@ -1,4 +1,4 @@
-import { _utils } from './../../_shared/_utils';
+import { _utils } from '../../_shared/_utils';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module

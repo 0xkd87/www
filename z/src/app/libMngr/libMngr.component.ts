@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Irev } from './../../_shared/interface/tmp';
+import { Irev, IUdt } from '../../_shared/interface/schemaLib.interface';
 
-import { HttpTxRxService} from './../../_shared/services/http-TxRx.service';
+import { HttpTxRxService} from '../../_shared/services/http-TxRx.service';
+
+const _url = 'http://emis000695/_c/__api/main.php';
+
 
 @Component({
   selector: 'app-libMngr',
@@ -14,7 +17,9 @@ export class LibMngrComponent implements OnInit {
   public datastr: string;
   public d: any; // : string; // ITmp;
   public error: string;
-  public data: Irev;
+  public data: IUdt;
+  public newUDT: IUdt;
+
   constructor(
     private _title: Title, // Page Title Serive
     private _httpServ: HttpTxRxService
@@ -26,10 +31,12 @@ export class LibMngrComponent implements OnInit {
   }
 
   GetAndUpdateData() {
-    this._httpServ.getEncData()
+    this.error = ''; // initialize error at the call beginning
+    this.data = null;
+    this._httpServ.getEncData(_url)
     .subscribe(
       data => {
-        this.data = <Irev>data; // this.mapRx(data);
+        this.data = <IUdt>data; // this.mapRx(data);
   //      this.datastr = atob(atob(data)); //JSON.stringify(data);
         this.datastr = JSON.stringify(data);
 
@@ -40,10 +47,11 @@ export class LibMngrComponent implements OnInit {
 
   }
 
-  mapRx(d) {
-    console.log(d);
-    console.log(atob(d));
-    return (atob(d));
+  postReq_CreateUDT() {
+    // init
+    this.newUDT = null;
+
+
   }
 
 }

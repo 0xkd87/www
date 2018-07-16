@@ -1,20 +1,22 @@
 
-<p>
-  libMngr works!
-</p>
 <div>
 <button (click)="GetAndUpdateData()">
   get
+</button>
+
+<button (click)="GetAndUpdateData()">
+  post
 </button>
 </div>
 <div>
     <h5>{{ error}}</h5>
     <h5>{{ datastr}}</h5>
   <!-- <div *ngFor="let d of data"> -->
-      <h2>{{ data.major }}</h2>
-      <h2>{{ data.minor }}</h2>
-    <h2>{{ data.by }}</h2>
-    <h2>{{ data.on}}</h2>
-    <h2>{{ data.comment.en }}</h2>
+      <h2>{{ data.rev.major }}</h2>
+      <h2>{{ data.rev.minor }}</h2>
+    <h2>{{ data.rev.by }}</h2>
+    <h2>{{ data.rev.on}}</h2>
+    <h2>{{ data.rev.comment.en }}</h2>
+    <h2>{{ data.ident.objType }}</h2>
   <!-- </div> -->
 </div>

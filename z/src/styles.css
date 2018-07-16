@@ -1,10 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700');
 
+
+
 /*Default font behaviour*/
 *{
   font-family: 'Source Sans Pro', sans-serif;
-  font-variant-caps: small-caps;
+  font-variant-caps:small-caps;
   font-weight: 300;
 }
 
