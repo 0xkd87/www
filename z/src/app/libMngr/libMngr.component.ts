@@ -6,8 +6,11 @@ import { Irev, IUdt, CONST_OBJTYPE } from '../../_shared/interface/schemaLib.int
 
 import { HttpTxRxService} from '../../_shared/services/http-TxRx.service';
 
-const _url = 'http://emis000695/_c/__api/main.php';
 
+const url = {
+  addUDT: 'http://emis000695/_c/__api/post/post.udt.add.php',
+  getListUDT: 'http://emis000695/_c/__api/get/get.udt.list.php'
+};
 
 @Component({
   selector: 'app-libMngr',
@@ -21,11 +24,11 @@ export class LibMngrComponent implements OnInit {
 
 
   public datastr: string;
-  public d: any; // : string; // ITmp;
+  public dd: any; // : string; // ITmp;
   public error: string;
   public newUDT: IUdt;
 
-  public data: IUdt[];
+  data: IUdt[];
 
 
   constructor(
@@ -57,6 +60,7 @@ export class LibMngrComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.GetAndUpdateData();
   }
 
   buildForm(): FormGroup {
@@ -78,17 +82,16 @@ export class LibMngrComponent implements OnInit {
       return (Attr);
      }
   GetAndUpdateData() {
- //   console.log(this.data.length);
-
     this.error = ''; // initialize error at the call beginning
- //   this.data = null;
-    this._httpServ.getEncData(_url)
+    this.data = undefined;
+    this._httpServ.getEncData(url.getListUDT)
     .subscribe(
       data => {
-        // this.data.push(<IUdt>data);
-        this.datastr = JSON.stringify(data);
+//        this.data = <IUdt[]> data;
+        this.data = <IUdt[]> data;
+         this.datastr = JSON.stringify(data);
 
-        console.log(data);
+        console.log(this.data);
       },
       error => this.error = error // error path;
     );
@@ -111,11 +114,11 @@ export class LibMngrComponent implements OnInit {
       }
     } as IUdt;
 //    this.newUDT.Attr.plcTag.name = 'erwf';
-      console.log('Entered: postReq_CreateUDT');
-      console.log(<IUdt>(newUDT));
+//      console.log('Entered: postReq_CreateUDT');
+ //     console.log(<IUdt>(newUDT));
 
-      this._httpServ.postTx(_url, <IUdt>(newUDT))
-      .subscribe(newUDT => {
+      this._httpServ.postTx(url.addUDT, <IUdt>(newUDT))
+      .subscribe(udt => {
                 this.GetAndUpdateData();
         },
         error => this.error = <any>error);

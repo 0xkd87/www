@@ -36,8 +36,6 @@ handleError() {
 }
 
   getEncData(url: string) {
-    console.log('Entered GetEncData...');
-
     return this._http.get(url,
     //   this.httpOptions
       {responseType: 'json'}
@@ -49,9 +47,6 @@ handleError() {
   }
 
   postTx(url: string, jsonStr: any): any {
-    console.log('jsonStr');
-
-    console.log(jsonStr);
 
     return this._http.post(url, jsonStr, httpOptions)
     .pipe(
@@ -59,10 +54,6 @@ handleError() {
     );
   }
 
-  private extractData(res: Response) {
-    let body = res.json();
-          return body || {};
-      }
 
       private handleErrorObservable (error: Response | any) {
         console.error(error.message || error);
