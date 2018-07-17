@@ -1,22 +1,24 @@
+<pre>{{formGrp.value | json}}</pre>
+<pre>{{this.formGrp.get('ident._uid').value}}</pre>
 
 <div>
 <button (click)="GetAndUpdateData()">
   get
 </button>
 
-<button (click)="GetAndUpdateData()">
+<button (click)="postReq_CreateUDT()">
   post
 </button>
 </div>
 <div>
     <h5>{{ error}}</h5>
     <h5>{{ datastr}}</h5>
-  <!-- <div *ngFor="let d of data"> -->
-      <h2>{{ data.rev.major }}</h2>
-      <h2>{{ data.rev.minor }}</h2>
-    <h2>{{ data.rev.by }}</h2>
-    <h2>{{ data.rev.on}}</h2>
-    <h2>{{ data.rev.comment.en }}</h2>
-    <h2>{{ data.ident.objType }}</h2>
-  <!-- </div> -->
+<!--   <div *ngFor="let d of data">
+      <h2>{{ d.Attr.rev.major }}</h2>
+      <h2>{{ d.Attr.rev.minor }}</h2>
+    <h2>{{ d.Attr.rev.by }}</h2>
+    <h2>{{ d.Attr.rev.on}}</h2>
+    <h2>{{ d.Attr.rev.comment.en }}</h2>
+    <h2>{{ d.Attr.ident.objType }}</h2>
+  </div> -->
 </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Irev, IUdt } from '../../_shared/interface/schemaLib.interface';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+
+import { Irev, IUdt, CONST_OBJTYPE } from '../../_shared/interface/schemaLib.interface';
 
 import { HttpTxRxService} from '../../_shared/services/http-TxRx.service';
 
@@ -14,33 +16,79 @@ const _url = 'http://emis000695/_c/__api/main.php';
   providers: [HttpTxRxService]
 })
 export class LibMngrComponent implements OnInit {
+
+  public formGrp: FormGroup;
+
+
   public datastr: string;
   public d: any; // : string; // ITmp;
   public error: string;
-  public data: IUdt;
   public newUDT: IUdt;
 
+  public data: IUdt[];
+
+
   constructor(
+    private _fb: FormBuilder,
     private _title: Title, // Page Title Serive
     private _httpServ: HttpTxRxService
   ) {
       this._title.setTitle('Library Manager');
-  }
+
+      this.formGrp = this.buildForm(
+/*         this.newUDT.Attr.ident._uid: '',
+        this.newUDT.Attr.ident.hasChildern: true,
+        this.newUDT.Attr.ident.idx: -1,
+        this.newUDT.Attr.ident.lang: 'en',
+        this.newUDT.Attr.ident.objType: CONST_OBJTYPE.UDT,
+
+        this.newUDT.Attr.rev.major: 0,
+        this.newUDT.Attr.rev.minor: 0,
+        this.newUDT.Attr.rev.by: '',
+        this.newUDT.Attr.rev.on: '',
+        this.newUDT.Attr.rev.comment.en: '',
+
+        this.newUDT.Attr.plcTag.isF: false,
+        this.newUDT.Attr.plcTag.name: '',
+        this.newUDT.Attr.plcTag.datatype: 'UDT',
+        this.newUDT.Attr.plcTag.address: '',
+        this.newUDT.Attr.plcTag.comment.en: '' */
+      );
+    }
 
   ngOnInit() {
   }
 
+  buildForm(): FormGroup {
+    console.log('fg');
+
+    let Attr = new FormGroup (
+          {
+            ident: new FormGroup(
+              {
+                _uid: new FormControl('xx'),
+                hasChildern: new FormControl(true),
+                idx: new FormControl(-1),
+                lang: new FormControl('en'),
+                objType: new FormControl(CONST_OBJTYPE.UDT)
+              })
+          });
+
+
+      return (Attr);
+     }
   GetAndUpdateData() {
+ //   console.log(this.data.length);
+
     this.error = ''; // initialize error at the call beginning
-    this.data = null;
+ //   this.data = null;
     this._httpServ.getEncData(_url)
     .subscribe(
       data => {
-        this.data = <IUdt>data; // this.mapRx(data);
-  //      this.datastr = atob(atob(data)); //JSON.stringify(data);
+        // this.data.push(<IUdt>data);
         this.datastr = JSON.stringify(data);
 
-        console.log(this.data);
+        console.log(data);
       },
       error => this.error = error // error path;
     );
@@ -48,8 +96,29 @@ export class LibMngrComponent implements OnInit {
   }
 
   postReq_CreateUDT() {
-    // init
-    this.newUDT = null;
+    const newUDT: IUdt = {
+      plcTag:
+      {
+        isF: false,
+        name: 'huh',
+        datatype:  'BOOL',
+        address: 'mm',
+        comment:
+        {
+            en: 'kjhkj',
+            de: ''
+        }
+      }
+    } as IUdt;
+//    this.newUDT.Attr.plcTag.name = 'erwf';
+      console.log('Entered: postReq_CreateUDT');
+      console.log(<IUdt>(newUDT));
+
+      this._httpServ.postTx(_url, <IUdt>(newUDT))
+      .subscribe(newUDT => {
+                this.GetAndUpdateData();
+        },
+        error => this.error = <any>error);
 
 
   }

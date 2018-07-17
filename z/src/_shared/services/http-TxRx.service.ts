@@ -6,7 +6,19 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
 
+const httpOptions = ( {
 
+  headers: new HttpHeaders(
+    {
+      'Accept' : '*/*',
+     'Content-Type':  'text/plain'
+
+ //     'Content-Type':  'application/json'
+    }
+),
+ // params: new HttpParams().set('t',  new Date().getTime().toString() ),
+ reportProgress: true
+});
 
 
 // const _url = 'http://192.168.2.112/_c/__api/main.php';
@@ -14,16 +26,7 @@ import { catchError, retry } from 'rxjs/operators';
 @Injectable()
 export class HttpTxRxService {
 
-  private httpOptions = ( {
 
-    headers: new HttpHeaders(
-     {
-       Accept: 'application/json;'
-   }),
-   params: new HttpParams().set('t',  new Date().getTime().toString() ),
-   reportProgress: true
- //  responseType: 'json'
- });
 
 constructor(private _http: HttpClient) {
 
@@ -45,13 +48,24 @@ handleError() {
     );
   }
 
-  postTx(url: string, jsonStr: string) {
-    console.log('Entered GetEncData...');
+  postTx(url: string, jsonStr: any): any {
+    console.log('jsonStr');
 
-    return this._http.post(url, jsonStr, this.httpOptions)
+    console.log(jsonStr);
+
+    return this._http.post(url, jsonStr, httpOptions)
     .pipe(
-      retry(3), // retry a failed request up to 3 times
       catchError(err => {throw err; } ) // then handle the error
     );
   }
+
+  private extractData(res: Response) {
+    let body = res.json();
+          return body || {};
+      }
+
+      private handleErrorObservable (error: Response | any) {
+        console.error(error.message || error);
+        return Observable.throw(error.message || error);
+          }
 }
