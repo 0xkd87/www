@@ -24,7 +24,6 @@ export class LibMngrComponent implements OnInit {
 
 
   public datastr: string;
-  public dd: any; // : string; // ITmp;
   public error: string;
   public newUDT: IUdt;
 
@@ -81,22 +80,34 @@ export class LibMngrComponent implements OnInit {
 
       return (Attr);
      }
-  GetAndUpdateData() {
+
+
+  GetAndUpdateData()  {
     this.error = ''; // initialize error at the call beginning
-    this.data = undefined;
+    this.data = [];  // no null, no undefined..!
     this._httpServ.getEncData(url.getListUDT)
     .subscribe(
       data => {
-//        this.data = <IUdt[]> data;
-        this.data = <IUdt[]> data;
-         this.datastr = JSON.stringify(data);
+        let rxArr = <any[]>data;
 
-        console.log(this.data);
+        rxArr.forEach(rx => {
+          this.data.push(<IUdt>JSON.parse(rx));
+        });
+
+/*         for (let rx of rxArr) {
+          console.log(<IUdt>JSON.parse(rx));
+          this.data.push(<IUdt>JSON.parse(rx));
+
+        } */
+
+        //  this.data = <IUdt[]> data;
+         this.datastr = JSON.stringify(data);
       },
       error => this.error = error // error path;
     );
 
   }
+
 
   postReq_CreateUDT() {
     const newUDT: IUdt = {

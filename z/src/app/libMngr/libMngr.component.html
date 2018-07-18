@@ -1,5 +1,5 @@
-<pre>{{formGrp.value | json}}</pre>
-<pre>{{this.formGrp.get('ident._uid').value}}</pre>
+<!-- <pre>{{formGrp.value | json}}</pre>
+<pre>{{this.formGrp.get('ident._uid').value}}</pre> -->
 
 <div>
 <button (click)="GetAndUpdateData()">
@@ -10,10 +10,12 @@
   post
 </button>
 </div>
+
 <div>
-    <h5>{{ error}}</h5>
-    <h5>{{ datastr}}</h5>
-  <div name = "dd" *ngFor="let d of this.data; let i = index">
-         {{d}}
+<!--     <h5>{{ error}}</h5>
+    <h5>{{ datastr}}</h5> -->
+  <div  *ngFor="let d of data; let i = index">
+        <h2>[{{i+1}}] {{d.plcTag.name}}</h2>
+        <h3> {{d.ident._uid}}</h3>
   </div>
 </div>
