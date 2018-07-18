@@ -1,8 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700');
 /*
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400');
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:100,300,400,500,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 
 */
 
@@ -10,11 +12,17 @@
 *{
   font-family: 'Source Sans Pro', sans-serif;
 
- /* font-family: 'Josefin Sans', sans-serif;
+
+
+ /*
+  font-family: 'Josefin Sans', sans-serif;
   font-family: 'Fira Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
+
  */
 
-  font-variant-caps:small-caps;
+  font-variant-caps:all-small-caps;
   font-weight: 350;
 }
 
