@@ -16,6 +16,6 @@
     <h5>{{ datastr}}</h5> -->
   <div  *ngFor="let d of data; let i = index">
         <h2>[{{i+1}}] {{d.plcTag.name}}</h2>
-        <h3> {{d.ident._uid}}</h3>
+        <h3> {{d.ident.idx}} | {{d.ident._uid}} </h3>
   </div>
 </div>
