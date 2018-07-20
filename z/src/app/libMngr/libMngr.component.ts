@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 import { Irev, IUdt, CONST_OBJTYPE } from '../../_shared/interface/schemaLib.interface';
 
 import { HttpTxRxService} from '../../_shared/services/http-TxRx.service';
+import { isArray } from 'util';
 
-
+import { Subscription } from 'rxjs';
+import { MsgBoardComponent } from '../../_shared/msgBoard/msgBoard.component';
 const url = {
   addUDT: 'http://emis000695/_c/__api/post/post.udt.add.php',
   getListUDT: 'http://emis000695/_c/__api/get/get.udt.list.php'
@@ -18,7 +20,7 @@ const url = {
   styleUrls: ['./libMngr.component.css'],
   providers: [HttpTxRxService]
 })
-export class LibMngrComponent implements OnInit {
+export class LibMngrComponent implements OnInit, OnDestroy {
 
   public formGrp: FormGroup;
 
@@ -28,8 +30,8 @@ export class LibMngrComponent implements OnInit {
   public newUDT: IUdt;
 
   data: IUdt[];
-
-
+  _subscriptionPost: Subscription;
+  _subscriptionGet: Subscription;
   constructor(
     private _fb: FormBuilder,
     private _title: Title, // Page Title Serive
@@ -61,9 +63,19 @@ export class LibMngrComponent implements OnInit {
   ngOnInit() {
     this.GetAndUpdateData();
   }
-
+  ngOnDestroy() {
+    // prevent memory leak when component destroyed
+    if (this._subscriptionGet) {
+      this._subscriptionGet.unsubscribe();
+      console.log('get-distroyed');
+    }
+    if (this._subscriptionPost) {
+    this._subscriptionPost.unsubscribe();
+    console.log('post-distroyed');
+    }
+    console.log('distroyed');
+  }
   buildForm(): FormGroup {
-    console.log('fg');
 
     let Attr = new FormGroup (
           {
@@ -85,25 +97,24 @@ export class LibMngrComponent implements OnInit {
   GetAndUpdateData()  {
     this.error = ''; // initialize error at the call beginning
     this.data = [];  // no null, no undefined..!
-    this._httpServ.getEncData(url.getListUDT)
+    this._subscriptionGet = this._httpServ.getEncData(url.getListUDT)
     .subscribe(
       data => {
         let rxArr = <any[]>data;
 
-        rxArr.forEach(rx => {
-          this.data.push(<IUdt>JSON.parse(rx));
-        });
+        if (isArray(rxArr))  {
+          rxArr.forEach(rx => {
+            this.data.push(<IUdt>JSON.parse(rx)); }
+          );
 
-/*         for (let rx of rxArr) {
-          console.log(<IUdt>JSON.parse(rx));
-          this.data.push(<IUdt>JSON.parse(rx));
+           this.datastr = JSON.stringify(data);
+        }
 
-        } */
-
-        //  this.data = <IUdt[]> data;
-         this.datastr = JSON.stringify(data);
       },
-      error => this.error = error // error path;
+      error => {
+        this.error = error; // error path;
+        console.log('gg' + this.error);
+      }
     );
 
   }
@@ -124,15 +135,22 @@ export class LibMngrComponent implements OnInit {
         }
       }
     } as IUdt;
-//    this.newUDT.Attr.plcTag.name = 'erwf';
-//      console.log('Entered: postReq_CreateUDT');
- //     console.log(<IUdt>(newUDT));
 
-      this._httpServ.postTx(url.addUDT, <IUdt>(newUDT))
+
+    this._subscriptionPost = this._httpServ.postTx(url.addUDT, <IUdt>(newUDT))
+    .subscribe(
+      udt => { console.log(udt); },
+      err => this.error = err,
+      () => this.GetAndUpdateData()
+    );
+
+/*       this._httpServ.postTx(url.addUDT, <IUdt>(newUDT))
       .subscribe(udt => {
-                this.GetAndUpdateData();
-        },
-        error => this.error = <any>error);
+                this.GetAndUpdateData(),
+                error: err => this.error = <any>err,
+                complete: () => this.GetAndUpdateData(),
+        }); */
+
 
 
   }

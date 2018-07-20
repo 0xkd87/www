@@ -6,21 +6,26 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule, Title } from '@angular/platform-browser';
 
 import { LibMngrComponent } from './libMngr.component';
+import { MsgService } from '../../_shared/services/msg.service';
+import { MsgBoardComponent } from '../../_shared/msgBoard/msgBoard.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
-    LibMngrComponent
+    LibMngrComponent,
+    MsgBoardComponent
   ],
   exports: [
-    LibMngrComponent
+    LibMngrComponent,
+    MsgBoardComponent
 ],
 providers: [
   _utils,
-  Title
+  Title,
+  MsgService
 ]
 })
 export class LibMngrModule { }
