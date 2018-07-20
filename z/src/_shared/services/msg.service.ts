@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 
 
-interface msg{
-  idx: number;
-
-}
-
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class MsgService {
 
 constructor() { }

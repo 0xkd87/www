@@ -9,6 +9,7 @@ import { isArray } from 'util';
 
 import { Subscription } from 'rxjs';
 import { MsgBoardComponent } from '../../_shared/msgBoard/msgBoard.component';
+import { MsgService } from '../../_shared/services/msg.service';
 const url = {
   addUDT: 'http://emis000695/_c/__api/post/post.udt.add.php',
   getListUDT: 'http://emis000695/_c/__api/get/get.udt.list.php'
@@ -18,7 +19,9 @@ const url = {
   selector: 'app-libMngr',
   templateUrl: './libMngr.component.html',
   styleUrls: ['./libMngr.component.css'],
-  providers: [HttpTxRxService]
+  providers: [
+     HttpTxRxService,
+  ]
 })
 export class LibMngrComponent implements OnInit, OnDestroy {
 
@@ -35,28 +38,13 @@ export class LibMngrComponent implements OnInit, OnDestroy {
   constructor(
     private _fb: FormBuilder,
     private _title: Title, // Page Title Serive
+//    public _msg: MsgService,
     private _httpServ: HttpTxRxService
   ) {
       this._title.setTitle('Library Manager');
 
       this.formGrp = this.buildForm(
-/*         this.newUDT.Attr.ident._uid: '',
-        this.newUDT.Attr.ident.hasChildern: true,
-        this.newUDT.Attr.ident.idx: -1,
-        this.newUDT.Attr.ident.lang: 'en',
-        this.newUDT.Attr.ident.objType: CONST_OBJTYPE.UDT,
 
-        this.newUDT.Attr.rev.major: 0,
-        this.newUDT.Attr.rev.minor: 0,
-        this.newUDT.Attr.rev.by: '',
-        this.newUDT.Attr.rev.on: '',
-        this.newUDT.Attr.rev.comment.en: '',
-
-        this.newUDT.Attr.plcTag.isF: false,
-        this.newUDT.Attr.plcTag.name: '',
-        this.newUDT.Attr.plcTag.datatype: 'UDT',
-        this.newUDT.Attr.plcTag.address: '',
-        this.newUDT.Attr.plcTag.comment.en: '' */
       );
     }
 
@@ -113,6 +101,7 @@ export class LibMngrComponent implements OnInit, OnDestroy {
       },
       error => {
         this.error = error; // error path;
+       // this._msg.add(this.error);
         console.log('gg' + this.error);
       }
     );

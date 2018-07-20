@@ -22,9 +22,10 @@ const httpOptions = ( {
 });
 
 
-// const _url = 'http://192.168.2.112/_c/__api/main.php';
 
-@Injectable()
+@Injectable(
+  {    providedIn: 'root' , }
+)
 export class HttpTxRxService {
 
 
@@ -35,15 +36,13 @@ constructor(
 ) {
 
 }
-handleError() {
-  console.log('error');
-}
+
 
   getEncData(url: string) {
     return this._http.get(url, /*   this.httpOptions*/ {responseType: 'json'} )
     .pipe(
       retry(3), // retry a failed request up to 3 times
-      catchError(err => this.handleErrorObservable(err) ) // then handle the error
+      catchError(err => this.handleError(err) ) // then handle the error
     );
   }
 
@@ -59,10 +58,20 @@ handleError() {
       catchError(err => {throw err; } ) // then handle the error
     );
   } */
-      public handleErrorObservable (error: Response | any) {
-        console.error(error.message || error);
-        // return Observable.throw(error.message || error);
-        this._msg.add(error.message || error);
-        return (error.message || error);
+
+          private handleError (error: Response | any) {
+            // In a real world app, you might use a remote logging infrastructure
+            let errMsg: string;
+            if (error instanceof Response) {
+              const body = error.json() || '';
+              const err = body || JSON.stringify(body);
+              errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+            } else {
+              errMsg = error.message ? error.message : error.toString();
+            }
+            console.error(errMsg);
+            this._msg.add(errMsg);
+
+            return throwError(errMsg);
           }
 }

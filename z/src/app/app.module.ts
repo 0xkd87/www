@@ -11,12 +11,14 @@ import { LibMngrModule } from './libMngr/libMngr.module';
 import { LibMngrComponent } from './libMngr/libMngr.component';
 
 import {AppRoutes} from './app.routing';
+import { MsgBoardComponent } from '../_shared/msgBoard/msgBoard.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       UiNavComponent,
-      PageNotfoundComponent
+      PageNotfoundComponent,
+      //MsgBoardComponent
  //     LibMngrComponent
     ],
    imports: [

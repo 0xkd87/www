@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'msgBoard',
   templateUrl: './msgBoard.component.html',
   styleUrls: ['./msgBoard.component.css'],
-  providers: [MsgService]
+  providers: []
 })
 export class MsgBoardComponent
 // implements OnInit
@@ -13,7 +13,6 @@ export class MsgBoardComponent
 
   constructor(public messageService: MsgService) { }
 
-/*   ngOnInit() {
-  } */
+ //  ngOnInit() {  }
 
 }
