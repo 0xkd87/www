@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root', // for singleton instance of this in complete app lifetime
 })
 export class MsgService {
 

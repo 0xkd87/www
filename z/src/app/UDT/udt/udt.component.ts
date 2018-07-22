@@ -1,13 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { HttpTxRxService } from './../../../_shared/services/http-TxRx.service';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
-import { IUdt, CONST_OBJTYPE } from '../../_shared/interface/schemaLib.interface';
-
-import { HttpTxRxService} from '../../_shared/services/http-TxRx.service';
 import { isArray } from 'util';
 
 import { Subscription } from 'rxjs';
+import { IUdt, CONST_OBJTYPE} from '../../../_shared/interface/schemaLib.interface';
 
 const url = {
   addUDT: 'http://emis000695/_c/__api/post/post.udt.add.php',
@@ -15,12 +14,11 @@ const url = {
 };
 
 @Component({
-  selector: 'app-libMngr',
-  templateUrl: './libMngr.component.html',
-  styleUrls: ['./libMngr.component.css'],
-  providers: []
+  selector: 'app-udt',
+  templateUrl: './udt.component.html',
+  styleUrls: ['./udt.component.css']
 })
-export class LibMngrComponent implements OnInit, OnDestroy {
+export class UdtComponent implements OnInit, OnDestroy {
 
   public formGrp: FormGroup;
 
@@ -33,12 +31,10 @@ export class LibMngrComponent implements OnInit, OnDestroy {
   _subscriptionPost: Subscription;
   _subscriptionGet: Subscription;
   constructor(
-    private _fb: FormBuilder,
     private _title: Title, // Page Title Serive
-//    public _msg: MsgService,
     private _httpServ: HttpTxRxService
   ) {
-      this._title.setTitle('Library Manager');
+      this._title.setTitle('UDT');
 
       this.formGrp = this.buildForm(
 
@@ -47,7 +43,9 @@ export class LibMngrComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.GetAndUpdateData();
+
   }
+
   ngOnDestroy() {
     // prevent memory leak when component destroyed
     if (this._subscriptionGet) {
@@ -57,6 +55,7 @@ export class LibMngrComponent implements OnInit, OnDestroy {
     this._subscriptionPost.unsubscribe();
     }
   }
+
   buildForm(): FormGroup {
 
     let Attr = new FormGroup (
@@ -95,8 +94,6 @@ export class LibMngrComponent implements OnInit, OnDestroy {
       },
       error => {
         this.error = error; // error path;
-       // this._msg.add(this.error);
-        console.log('gg' + this.error);
       }
     );
 
@@ -127,6 +124,17 @@ export class LibMngrComponent implements OnInit, OnDestroy {
       () => this.GetAndUpdateData()
     );
 
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(): boolean {
+    const posY = window.scrollY ;
+    console.log(posY);
+    if (posY > 150) {
+      return  true;
+    } else if (posY < 149) {
+      return false;
+    }
   }
 
 }

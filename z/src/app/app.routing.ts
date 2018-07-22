@@ -14,7 +14,7 @@ const _appRoutes: Routes = [
   },
   {
     path: 'libMngr',
-    component: LibMngrComponent
+    loadChildren: './libMngr/libMngr.module#LibMngrModule'
   },
  {
      path : '',

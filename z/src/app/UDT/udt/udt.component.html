@@ -1,0 +1,34 @@
+
+
+<div class="row">
+    <div class="clWidth50Perc leftcolumn" >
+
+    search fiels here - keep it fixed
+
+    <button (click)="GetAndUpdateData()">
+      get
+    </button>
+
+  </div>
+</div>
+
+<div class="row">
+
+    <div class="clWidth50Perc leftcolumn" [class.cl-FixedContainer] = "onWindowScroll()">
+        <div class="cl-SearchBarContainer" >
+          kjhk
+        </div>
+    </div>
+</div>
+
+    <div class="row">
+        <div class="clWidth50Perc leftcolumn">
+                  <app-udt-list *ngFor="let d of data; let i = index"  [udtIn]="d"> </app-udt-list>
+        </div>
+
+        <div class="clWidth50Perc rightcolumn">
+            <button (click)="postReq_CreateUDT()">
+                post
+              </button>
+      </div>
+  </div>

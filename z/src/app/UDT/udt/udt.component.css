@@ -1,0 +1,49 @@
+
+* {
+  box-sizing: border-box;
+}
+
+.cl-FixedContainer
+{
+  margin: 0px;
+  padding: 0px;
+
+  z-index: 1; /* Sit on top */
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0px; /* Position the navbar at the top of the page */
+  left: 0;
+
+  display: block;
+  border-bottom: 3px solid rgba(94, 94, 94, 0.884);
+  background-color: rgb(238, 255, 0);
+
+}
+
+.cl-SearchBarContainer
+{
+  margin: 0px;
+
+  padding: 20px;
+  background-color: rgb(255, 255, 255);
+
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  min-height: 150px;
+
+}
+
+.cl-FixedContainerX
+{
+  z-index: 2; /* Sit on top */
+  position: fixed; /* Set the navbar to fixed position */
+
+
+  padding: 10px;
+  background-color: rgb(255, 255, 255);
+
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  /*top: 60px;*/ /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+
+}
+
+

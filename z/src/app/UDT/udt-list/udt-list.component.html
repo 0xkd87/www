@@ -1,0 +1,38 @@
+<div class="cl-ListNodeContainer" [class.cl-IsSelected] = "isControlVisible" [class.cl-IsF] = "udtNode.plcTag.isF" >
+
+        <div class="row" (click)="isControlVisible = !isControlVisible">
+                <div class="clWidth66Perc leftcolumn">
+                  <h2> {{udtNode.plcTag.name}}</h2>
+                  <p class="cl-Comment"> {{udtNode.plcTag.comment.en}} </p>
+                </div>
+
+              <div class="clWidth33Perc rightcolumn" [style.display]="isControlVisible ? 'block' : 'none'">
+                <div>
+                    <p class="cl-label">Revision: </p>
+                    <p class="cl-desc"> {{udtNode.rev.major}} . {{udtNode.rev.minor}} </p>
+                </div>
+              </div>
+            <!-- <h3> {{udtNode.ident.idx}} | {{udtNode.ident._uid}} </h3> -->
+      </div>
+
+
+      <div class= "cl-ControlContainer" [style.display]="isControlVisible ? 'block' : 'none'">
+          <div class="row">
+              <div class="clWidth50Perc leftcolumn">
+                <input class="cl-button-edit"
+                  name="edit"
+                  type="submit"
+                  value="EDIT" >
+              </div>
+
+              <div class="clWidth50Perc leftcolumn">
+                  <input class="cl-button-delete"
+                    name="delete"
+                    type="submit"
+                    value="DELETE" >
+                </div>
+            </div>
+      </div>
+</div>
+
+
