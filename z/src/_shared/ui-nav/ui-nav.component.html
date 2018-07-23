@@ -1,0 +1,32 @@
+
+<!-- Trigger/Open The Modal -->
+
+<div class="img-menu-emb cl-OpeningObj"
+[class.posFixed-TopRight] = "onWindowScroll(30)"
+[class.posRelative] = "!onWindowScroll(30)"
+(click)="OnClickToggleVisButton()"
+[style.display]="!_isVisible ? 'block' : 'none'">
+     &#9776;
+</div>
+
+<div class= "cl-div-ModalBackground" [style.display]="_isVisible ? 'flex' : 'none'">
+
+  <div class= "cl-ul-NavigationTileContainer">
+  <div class="img-menu-emb posRelative" (click)="OnClickToggleVisButton()" [style.display]="_isVisible ? 'inline-block' : 'none'">
+      &#8285;
+  </div>
+
+      <li class = "cl-li-LinkTileGroup">
+          <a *ngFor="let n of nav.navLinks; let i = index"
+          (click)="OnClickToggleVisButton()"
+          class = "cl-a-LinkTile"
+          routerLink={{n.navRoute}}
+          routerLinkActive="active">
+            <div class = "cl-text-LinkHeading">
+              {{n.navText}}
+            </div>
+          </a>
+        <!-- <a class = "cl-a-LinkTile" href = "ui.LibUDTDesigner.php"><div class = "cl-text-LinkHeading" >LibUDT Manager</div><div class = "cl-text-LinkDesc" >Manage Central Library of UDTs</div></a> -->
+        </li>
+  </div>
+</div>

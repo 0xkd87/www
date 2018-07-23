@@ -1,0 +1,255 @@
+/*Navigation container styles*/
+.posFixed-TopRight
+{
+  z-index: 1001; /* Sit on top */
+  position: fixed; /* Set  to fixed position */
+  top: 4px; /* Position the navbar at the top of the page */
+  right: 4px;
+}
+
+.posRelative
+{
+
+  position: relative; /* Set  to relative position */
+
+}
+/* Covers active page transperantely and contains the navigation control*/
+.cl-div-ModalBackground
+{
+
+  cursor:pointer;
+  padding: 0%;
+  display:none; /*none;  Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+
+  /*Animate Slide in*/
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.5s;
+  animation-name: slideIn;
+  animation-duration: 0.5s;
+}
+.x
+{
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+}
+.cl-ul-NavigationTileContainer
+{
+    vertical-align: middle;
+    z-index: 1001; /* Sit on top */
+    left: 0;
+    top: 0;
+    position: fixed;
+    list-style-type: none;
+    overflow: none;
+    padding-left:8px;
+    padding-right:8px;
+    padding-top:5px;
+    padding-bottom:5px;
+    margin: 0;
+    margin-top: 0%;
+    margin-bottom: 10px;
+    background-color: rgb(233, 233, 233);
+    width: 100%;
+    height: 60px;
+    display: inline-block;
+
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.604);
+
+      /*Animate Slide in*/
+  -webkit-animation-name: fadeIn;
+  -webkit-animation-duration: 1.0s;
+  animation-name: fadeIn;
+  animation-duration: 1.0s;
+}
+
+a.cl-a-LinkTile
+{
+
+    color: yellow;
+    text-decoration: none;
+
+    padding-left:10px;padding-right:15px;padding-top:10px;padding-bottom:10px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-right: 2px;
+    margin-left: 2px;
+    background: rgba(85,88,88,0.9);
+   /* min-height: 60px;*/
+    /* min-width:95%; */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+    /*align-self:auto;*/
+    display: inline-block;
+}
+
+.cl-li-LinkTileGroup
+{
+  left: 0;
+  top: 0;
+  min-height: 100%;
+  margin: 0px;
+  margin-left: 0px;
+  padding-right: 2px; padding-left: 2px;
+  padding-top: 2px;  padding-bottom: 2px;
+
+  justify-content: space-around;
+  display:inline-block;
+
+    width: auto;
+}
+
+div.cl-text-LinkHeading
+{
+    font-variant-caps: petite-caps;
+    font-size: 16px;
+    font-weight:300;
+
+    text-align: left;
+    width: 100%;
+}
+
+div.cl-text-LinkDesc
+{
+    font-variant-caps: petite-caps;
+    font-size: 12px;
+
+    font-weight:400;
+    text-align: left;
+    word-wrap: normal;
+    width: 100%;
+    /*min-height: 75%;*/
+    color: rgba(200, 200, 200,1);
+
+    padding-left:5px;
+    padding-right:5px;
+    padding-top:12px;
+    padding-bottom: 12px;
+    margin-top : 3px;
+    margin-left : 6px;
+    margin-right : 5px;
+    border-left:   1px solid rgba(245, 245, 245,0.4);
+
+    display: none; /*initally hidden */ /*display: flex;*/
+
+
+    animation-name: slideIn;
+    animation-duration: 1.8s;
+}
+
+
+
+a.cl-a-LinkTile:hover
+{
+cursor:pointer;
+color: rgba(22, 22, 25,0.8);
+background-color: rgba(255, 228, 25,1);
+
+}
+
+a.cl-a-LinkTile:hover div.cl-text-LinkDesc
+{
+    border-left:   1px solid rgba(24, 24, 24,0.4);
+    color: rgba(22, 22, 25,0.95);
+    font-weight:350;
+    display: flex;
+}
+a.cl-a-LinkTile:hover div.cl-text-LinkHeading
+{
+}
+
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 300px)
+{
+    a.cl-a-LinkTile .cl-li-LinkTileGroup
+    {
+        width: 100%;
+    }
+   .cl-li-LinkTileGroup
+    {
+        width: 100%;
+    }
+    ul.cl-ul-NavigationTileContainer
+    {
+        width:  100%;
+        height: 100%;
+    }
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+  from {left: -300px; opacity: 0}
+  to {left: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+  from {left: -300px; opacity: 0}
+  to {left: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+
+/* The open Button */
+.cl-OpeningObj
+{
+/*
+  animation-name: fadeIn;
+  animation-duration: 2.2s;
+  transform:translate(20px,-40px); */
+
+}
+
+.cl-OpeningObj:hover{
+
+}
+.img-menu-emb
+{
+  font-size: 24px;
+  font-weight: 900;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  z-index: 999;
+  top: 10;
+  float: right;
+  box-shadow: -3px 4px 8px 0 rgba(0, 0, 0, 0.604);
+  background: rgba(255, 255, 255, 0);
+
+  border-radius: 70%;
+  height: 52px;
+  line-height: 52px; /* same as height! */
+  width: 52px;
+  background-repeat: no-repeat;
+  /*
+  background-size: contain;
+  background-position: center;
+  background-image:url(data:image/png;base64,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);
+  */
+
+}
+.img-menu-emb:hover {
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+  animation: shake 0.2s;
+  /* When the animation is finished, start again */
+  animation-iteration-count: 2; /*infinite;*/
+}
+

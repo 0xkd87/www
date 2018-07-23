@@ -1,13 +1,7 @@
+import { NavigationService } from './../../_shared/services/navigation.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
-import { IUdt, CONST_OBJTYPE } from '../../_shared/interface/schemaLib.interface';
-
-import { HttpTxRxService} from '../../_shared/services/http-TxRx.service';
-import { isArray } from 'util';
-
-import { Subscription } from 'rxjs';
 
 const url = {
   addUDT: 'http://emis000695/_c/__api/post/post.udt.add.php',
@@ -22,111 +16,23 @@ const url = {
 })
 export class LibMngrComponent implements OnInit, OnDestroy {
 
-  public formGrp: FormGroup;
-
-
-  public datastr: string;
-  public error: string;
-  public newUDT: IUdt;
-
-  data: IUdt[];
-  _subscriptionPost: Subscription;
-  _subscriptionGet: Subscription;
   constructor(
-    private _fb: FormBuilder,
     private _title: Title, // Page Title Serive
-//    public _msg: MsgService,
-    private _httpServ: HttpTxRxService
-  ) {
+    private _nav: NavigationService) {
       this._title.setTitle('Library Manager');
-
-      this.formGrp = this.buildForm(
-
-      );
+      this._nav.clearLinks();
     }
 
   ngOnInit() {
-    this.GetAndUpdateData();
+    this._nav.clearLinks();
+    this._nav.addNavLink('UDT', 'udt');
+    this._nav.addNavLink('login', '/usrAuth/signin');
+
+    console.log(this._nav);
+
   }
   ngOnDestroy() {
-    // prevent memory leak when component destroyed
-    if (this._subscriptionGet) {
-      this._subscriptionGet.unsubscribe();
-    }
-    if (this._subscriptionPost) {
-    this._subscriptionPost.unsubscribe();
-    }
-  }
-  buildForm(): FormGroup {
-
-    let Attr = new FormGroup (
-          {
-            ident: new FormGroup(
-              {
-                _uid: new FormControl('xx'),
-                hasChildern: new FormControl(true),
-                idx: new FormControl(-1),
-                lang: new FormControl('en'),
-                objType: new FormControl(CONST_OBJTYPE.UDT)
-              })
-          });
-
-
-      return (Attr);
-     }
-
-
-  GetAndUpdateData()  {
-    this.error = ''; // initialize error at the call beginning
-    this.data = [];  // no null, no undefined..!
-    this._subscriptionGet = this._httpServ.getEncData(url.getListUDT)
-    .subscribe(
-      data => {
-        let rxArr = <any[]>data;
-
-        if (isArray(rxArr))  {
-          rxArr.forEach(rx => {
-            this.data.push(<IUdt>JSON.parse(rx)); }
-          );
-
-           this.datastr = JSON.stringify(data);
-        }
-
-      },
-      error => {
-        this.error = error; // error path;
-       // this._msg.add(this.error);
-        console.log('gg' + this.error);
-      }
-    );
-
-  }
-
-
-  postReq_CreateUDT() {
-    const newUDT: IUdt = {
-      plcTag:
-      {
-        isF: false,
-        name: 'huh',
-        datatype:  'BOOL',
-        address: 'mm',
-        comment:
-        {
-            en: 'kjhkj',
-            de: ''
-        }
-      }
-    } as IUdt;
-
-
-    this._subscriptionPost = this._httpServ.postTx(url.addUDT, <IUdt>(newUDT))
-    .subscribe(
-      udt => { console.log(udt); },
-      err => this.error = err,
-      () => this.GetAndUpdateData()
-    );
-
+    this._nav.clearLinks();
   }
 
 }

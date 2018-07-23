@@ -127,12 +127,12 @@ export class UdtComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('window:scroll', ['$event'])
-  onWindowScroll(): boolean {
+  onWindowScroll(scrolledY: number): boolean {
     const posY = window.scrollY ;
     console.log(posY);
-    if (posY > 150) {
+    if (posY > scrolledY) {
       return  true;
-    } else if (posY < 149) {
+    } else if (posY < (scrolledY - 1)) {
       return false;
     }
   }
