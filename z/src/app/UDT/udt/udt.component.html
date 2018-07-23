@@ -1,9 +1,7 @@
 
 
 <div class="row">
-    <div class="clWidth50Perc leftcolumn" [class.cl-FixedContainer] = "onWindowScroll(50)" >
-
-    search fiels here - keep it fixed
+    <div class="clWidth50Perc leftcolumn">
 
     <button (click)="GetAndUpdateData()">
       get
@@ -14,21 +12,21 @@
 
 <div class="row">
 
-    <div class="clWidth50Perc leftcolumn" [class.cl-FixedContainer] = "onWindowScroll(150)">
-        <div class="cl-SearchBarContainer" >
+        <div class="cl-SearchBarContainer" [class.cl-FixedContainer] = "onWindowScroll(150)">
           kjhk
         </div>
-    </div>
+
 </div>
 
     <div class="row">
-        <div class="clWidth50Perc leftcolumn">
-                  <app-udt-list *ngFor="let d of data; let i = index"  [udtIn]="d"> </app-udt-list>
-        </div>
 
-        <div class="clWidth50Perc rightcolumn">
+        <div class="clWidth50Perc leftcolumn">
             <button (click)="postReq_CreateUDT()">
                 post
               </button>
       </div>
+        <div class="clWidth50Perc rightcolumn">
+                  <app-udt-list *ngFor="let d of data; let i = index"  [udtIn]="d"> </app-udt-list>
+        </div>
+
   </div>

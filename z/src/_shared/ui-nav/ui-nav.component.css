@@ -231,10 +231,10 @@ a.cl-a-LinkTile:hover div.cl-text-LinkHeading
   z-index: 999;
   top: 10;
   float: right;
-  box-shadow: -3px 4px 8px 0 rgba(0, 0, 0, 0.604);
-  background: rgba(255, 255, 255, 0);
-
-  border-radius: 70%;
+  box-shadow: -1px 3px 8px 1px rgba(0, 0, 0, 0.404);
+  background: rgb(68, 67, 67);
+  color: rgb(255, 230, 4);
+  border-radius: 50%;
   height: 52px;
   line-height: 52px; /* same as height! */
   width: 52px;
