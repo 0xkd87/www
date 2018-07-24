@@ -1,3 +1,4 @@
+import { UdtCreateComponent } from './../UDT/udtCreate/udtCreate.component';
 import { UiNavComponent } from './../../_shared/ui-nav/ui-nav.component';
 import { UdtComponent } from './../UDT/udt/udt.component';
 import { LibMngrRoutes } from './libMngr.routing';
@@ -21,13 +22,15 @@ import { UdtListComponent } from '../UDT/udt-list/udt-list.component';
     LibMngrComponent,
     UdtComponent,
     UdtListComponent,
+    UdtCreateComponent,
     MsgBoardComponent,
     UiNavComponent
   ],
   exports: [
     LibMngrComponent,
     UdtListComponent,
-    UdtComponent
+    UdtComponent,
+    UdtCreateComponent
 
 ],
 providers: [

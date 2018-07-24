@@ -5,7 +5,11 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 @Component({
   selector: 'app-udt-list',
   templateUrl: './udt-list.component.html',
-  styleUrls: ['./udt-list.component.css'],
+  styleUrls:
+  [
+    './../../../css-glob/_glob.css',
+    './udt-list.component.css'
+  ],
   providers: []
 
 })

@@ -1,32 +1,40 @@
 
 
 <div class="row">
-    <div class="clWidth50Perc leftcolumn">
 
-    <button (click)="GetAndUpdateData()">
-      get
-    </button>
-
-  </div>
 </div>
 
 <div class="row">
 
-        <div class="cl-SearchBarContainer" [class.cl-FixedContainer] = "onWindowScroll(150)">
-          kjhk
+        <div class="cl-TopBarContainer" [class.cl-FixedContainer-Top] = "_hostListner.stickyOnWindowScroll(75)">
+          <div class="clWidth50Perc leftcolumn">
+
+            <button (click)="GetAndUpdateData()">
+              get
+            </button>
+
+              <a
+              routerLink='create'
+              routerLinkActive="active">
+              <button>ADD</button>
+              </a>
+
+
+          </div>
+          <div class="clWidth50Perc rightcolumn">
+            <button (click)="postReq_CreateUDT()">
+                post
+              </button>
+          </div>
         </div>
 
 </div>
 
     <div class="row">
 
+      <div class="clWidth25Perc leftcolumn"></div>
         <div class="clWidth50Perc leftcolumn">
-            <button (click)="postReq_CreateUDT()">
-                post
-              </button>
-      </div>
-        <div class="clWidth50Perc rightcolumn">
                   <app-udt-list *ngFor="let d of data; let i = index"  [udtIn]="d"> </app-udt-list>
         </div>
-
+        <div class="clWidth25Perc rightcolumn"></div>
   </div>

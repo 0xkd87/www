@@ -1,9 +1,7 @@
 
 <!-- Trigger/Open The Modal -->
 
-<div class="img-menu-emb cl-OpeningObj"
-[class.posFixed-TopRight] = "onWindowScroll(30)"
-[class.posRelative] = "!onWindowScroll(30)"
+<div class="img-menu-emb posFixed-TopRight cl-OpeningObj"
 (click)="OnClickToggleVisButton()"
 [style.display]="!_isVisible ? 'block' : 'none'">
      &#9776;
@@ -30,3 +28,12 @@
         </li>
   </div>
 </div>
+
+
+<!-- <div class="img-menu-emb posFixed-TopRight"
+[class.posFixed-TopRight] = "_hostListner.stickyOnWindowScroll(30)"
+[class.posRelative] = "!_hostListner.stickyOnWindowScroll(30)"
+(click)="OnClickToggleVisButton()"
+[style.display]="!_isVisible ? 'block' : 'none'">
+     &#9776;
+</div> -->

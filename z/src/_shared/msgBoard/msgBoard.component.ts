@@ -4,7 +4,11 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'msgBoard',
   templateUrl: './msgBoard.component.html',
-  styleUrls: ['./msgBoard.component.css'],
+  styleUrls: [
+    './../../css-glob/_glob.css',
+    './msgBoard.component.css',
+
+],
   providers: []
 })
 export class MsgBoardComponent

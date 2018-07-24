@@ -9,9 +9,7 @@
 
 .posRelative
 {
-
   position: relative; /* Set  to relative position */
-
 }
 /* Covers active page transperantely and contains the navigation control*/
 .cl-div-ModalBackground
@@ -186,41 +184,15 @@ a.cl-a-LinkTile:hover div.cl-text-LinkHeading
     }
 }
 
-/* Add Animation */
-@-webkit-keyframes slideIn {
-  from {left: -300px; opacity: 0}
-  to {left: 0; opacity: 1}
-}
 
-@keyframes slideIn {
-  from {left: -300px; opacity: 0}
-  to {left: 0; opacity: 1}
-}
-
-@-webkit-keyframes fadeIn {
-  from {opacity: 0}
-  to {opacity: 1}
-}
-
-@keyframes fadeIn {
-  from {opacity: 0}
-  to {opacity: 1}
-}
 
 
 /* The open Button */
 .cl-OpeningObj
 {
-/*
-  animation-name: fadeIn;
-  animation-duration: 2.2s;
-  transform:translate(20px,-40px); */
 
 }
 
-.cl-OpeningObj:hover{
-
-}
 .img-menu-emb
 {
   font-size: 24px;
@@ -232,9 +204,9 @@ a.cl-a-LinkTile:hover div.cl-text-LinkHeading
   top: 10;
   float: right;
   box-shadow: -1px 3px 8px 1px rgba(0, 0, 0, 0.404);
-  background: rgb(68, 67, 67);
-  color: rgb(255, 230, 4);
-  border-radius: 50%;
+  background: rgba(247, 231, 16, 0.904);
+  color: rgb(31, 30, 27);
+  border-radius: 80%;
   height: 52px;
   line-height: 52px; /* same as height! */
   width: 52px;

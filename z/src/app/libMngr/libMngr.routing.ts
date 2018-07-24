@@ -1,3 +1,4 @@
+import { UdtCreateComponent } from './../UDT/udtCreate/udtCreate.component';
 import { NgModule } from '@angular/core';
 
 import { LibMngrComponent } from './libMngr.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
         // canActivateChild: [AuthGuard],
         children: [
           { path: 'udt', component: UdtComponent },
+          { path: 'udt/create', component: UdtCreateComponent },
           { path: '**',  redirectTo: 'udt', pathMatch: 'full' }
         ]
       }

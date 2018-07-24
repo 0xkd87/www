@@ -1,5 +1,6 @@
+import { HostListenerService } from './../../../_shared/services/hostListener.service';
 import { HttpTxRxService } from './../../../_shared/services/http-TxRx.service';
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
@@ -16,10 +17,13 @@ const url = {
 @Component({
   selector: 'app-udt',
   templateUrl: './udt.component.html',
-  styleUrls: ['./udt.component.css']
+  styleUrls:
+  [
+    './../../../css-glob/_glob.css',
+    './udt.component.css',
+],
 })
 export class UdtComponent implements OnInit, OnDestroy {
-
   public formGrp: FormGroup;
 
 
@@ -32,10 +36,11 @@ export class UdtComponent implements OnInit, OnDestroy {
   _subscriptionGet: Subscription;
   constructor(
     private _title: Title, // Page Title Serive
-    private _httpServ: HttpTxRxService
+    private _httpServ: HttpTxRxService,
+    public _hostListner: HostListenerService,
+
   ) {
       this._title.setTitle('UDT');
-
       this.formGrp = this.buildForm(
 
       );
@@ -43,7 +48,6 @@ export class UdtComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.GetAndUpdateData();
-
   }
 
   ngOnDestroy() {
@@ -126,15 +130,5 @@ export class UdtComponent implements OnInit, OnDestroy {
 
   }
 
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll(scrolledY: number): boolean {
-    const posY = window.scrollY ;
-    console.log(posY);
-    if (posY > scrolledY) {
-      return  true;
-    } else if (posY < (scrolledY - 1)) {
-      return false;
-    }
-  }
 
 }

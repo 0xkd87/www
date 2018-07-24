@@ -11,7 +11,12 @@ const url = {
 @Component({
   selector: 'app-libMngr',
   templateUrl: './libMngr.component.html',
-  styleUrls: ['./libMngr.component.css'],
+  styleUrls:
+  [
+    './../../css-glob/_glob.css',
+    './libMngr.component.css',
+
+  ],
   providers: []
 })
 export class LibMngrComponent implements OnInit, OnDestroy {

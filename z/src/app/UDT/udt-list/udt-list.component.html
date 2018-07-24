@@ -1,9 +1,10 @@
 <div class="cl-ListNodeContainer" [class.cl-IsSelected] = "isControlVisible" [class.cl-IsF] = "udtNode.plcTag.isF" >
 
-        <div class="row" (click)="isControlVisible = !isControlVisible">
+        <div class="row">
                 <div
+                (click)="isControlVisible = !isControlVisible"
                 [class.clWidth100Perc] =  "!isControlVisible"
-                [class.clWidth66Perc] =  "isControlVisible"
+                [class.clWidth75Perc] =  "isControlVisible"
                 class = "leftcolumn">
                   <h2> {{udtNode.plcTag.name}}</h2>
                   <p class="cl-Comment"> {{udtNode.plcTag.comment.en}} </p>
@@ -12,7 +13,7 @@
                 </div>
 
                 <div
-                [class.clWidth33Perc] =  "isControlVisible"
+                [class.clWidth25Perc] =  "isControlVisible"
                 [class.rightcolumn] =  "isControlVisible">
                   <div class= "cl-ControlContainer" [style.display]="isControlVisible ? 'block' : 'none'">
                         <div class="cl-button cl-button-edit">
