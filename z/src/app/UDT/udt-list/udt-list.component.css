@@ -19,6 +19,11 @@
   cursor: pointer;
 }
 
+.cl-ListNodeContainer:hover
+{
+  transform: translateX(-5px);
+}
+
 .cl-IsSelected
 {
   border: 1px solid rgb(4, 172, 250);
@@ -37,7 +42,7 @@
 
 .cl-ControlContainer
 {
-  margin-top: 10px;
+  margin: 0px;
   padding: 5px;
   background-color: rgba(209, 209, 209, 0.445);
 

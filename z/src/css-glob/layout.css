@@ -30,6 +30,8 @@ html, body
   padding : 2px;
   width: 100%;
   padding-right: 4px;
+  vertical-align: middle;
+
 }
 /* Right column */
 .rightcolumn {

@@ -7,21 +7,28 @@
 <div class="row">
 
         <div class="cl-TopBarContainer" [class.cl-FixedContainer-Top] = "_hostListner.stickyOnWindowScroll(75)">
-          <div class="clWidth50Perc leftcolumn">
-
-            <button (click)="GetAndUpdateData()">
-              get
-            </button>
+          <div class="clWidth25Perc leftcolumn">
 
               <a
-              routerLink='create'
+              class = "cl-trigger-round cl-trigger-round-add"
+              (click)= "routeToCreateUDT()"
               routerLinkActive="active">
-              <button>ADD</button>
-              </a>
-
+              <div>+</div>
+          </a>
 
           </div>
-          <div class="clWidth50Perc rightcolumn">
+          <div class="clWidth75Perc rightcolumn">
+
+              <input
+              type="text"
+              name = "filter"
+              placeholder="Filter....">
+
+              <button (click)="GetAndUpdateData()">
+                  get
+                </button>
+
+
             <button (click)="postReq_CreateUDT()">
                 post
               </button>
@@ -38,3 +45,11 @@
         </div>
         <div class="clWidth25Perc rightcolumn"></div>
   </div>
+
+
+<!--   <a
+  class = "cl-trigger-round cl-trigger-round-add"
+  [routerLink]= "['createUDT' , {data: this.data}]"
+  routerLinkActive="active">
+  <div>+</div>
+</a> -->

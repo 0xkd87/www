@@ -15,7 +15,7 @@ const routes: Routes = [
         // canActivateChild: [AuthGuard],
         children: [
           { path: 'udt', component: UdtComponent },
-          { path: 'udt/create', component: UdtCreateComponent },
+          { path: 'udt/createUDT', component: UdtCreateComponent },
           { path: '**',  redirectTo: 'udt', pathMatch: 'full' }
         ]
       }

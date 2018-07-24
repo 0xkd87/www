@@ -1,3 +1,8 @@
 <p>
   udtCreate works!
 </p>
+  <ul *ngFor="let u of this.udtList; let i = index">
+      <li>
+         {{i}} | {{u.plcTag.name }}
+      </li>
+  </ul>

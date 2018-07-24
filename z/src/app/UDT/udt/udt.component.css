@@ -13,9 +13,10 @@
   top: 0px; /* Position the navbar at the top of the page */
   left: 0;
 
-  display: block;
+  display: flex;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.604);
   width: 100%;
+  vertical-align: middle;
 }
 
 .cl-TopBarContainer
@@ -26,11 +27,35 @@
   background-color: rgb(238, 238, 238);
 
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.304);
-  min-height: 100px;
+  min-height: 120px;
   width: 100%;
   align-content: center;
   vertical-align: middle;
 }
 
+.cl-trigger-round
+{
+  margin: 10px;
+  padding: 1px;
+  line-height: 64px;
+  height: 64px;
+  width: 64px;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  border : none;
+  border-radius: 90%;
+  box-shadow: 4px 3px 12px 0 rgba(0,0,0,0.5);
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: 400;
 
+  text-shadow: -1px 1px 3px rgb(41, 41, 41);
+  background-color: rgb(61, 61, 61);
+}
+
+.cl-trigger-round-add
+{
+  color: greenyellow;
+}
 

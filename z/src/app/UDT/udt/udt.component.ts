@@ -8,6 +8,7 @@ import { isArray } from 'util';
 
 import { Subscription } from 'rxjs';
 import { IUdt, CONST_OBJTYPE} from '../../../_shared/interface/schemaLib.interface';
+import { Router } from '../../../../node_modules/@angular/router';
 
 const url = {
   addUDT: 'http://emis000695/_c/__api/post/post.udt.add.php',
@@ -38,7 +39,7 @@ export class UdtComponent implements OnInit, OnDestroy {
     private _title: Title, // Page Title Serive
     private _httpServ: HttpTxRxService,
     public _hostListner: HostListenerService,
-
+    private _router: Router
   ) {
       this._title.setTitle('UDT');
       this.formGrp = this.buildForm(
@@ -58,6 +59,13 @@ export class UdtComponent implements OnInit, OnDestroy {
     if (this._subscriptionPost) {
     this._subscriptionPost.unsubscribe();
     }
+  }
+
+  routeToCreateUDT()  {
+    console.log('entered router fxn');
+    this._router.navigate(['createUDT', 'data: [{udt: this.data}]']);
+//    this._router.navigate(['createUDT', {udtListIn: this.data }]); data: [{isProd: true}]
+
   }
 
   buildForm(): FormGroup {
