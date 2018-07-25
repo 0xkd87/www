@@ -10,13 +10,19 @@
           <div class="clWidth25Perc leftcolumn">
 
               <a
-              class = "cl-trigger-round cl-trigger-round-add"
-              (click)= "routeToCreateUDT()"
-              routerLinkActive="active">
-              <div>+</div>
-          </a>
+                class = "cl-trigger-round cl-trigger-round-add"
+                routerLink = "createUDT"
+                routerLinkActive="active">
+                <div>+</div>
+              </a>
 
+              <div
+              class = "cl-trigger-round cl-trigger-round-add"
+                (click)="showAddDialog=!showAddDialog">
+              <div>+</div>
+            </div>
           </div>
+
           <div class="clWidth75Perc rightcolumn">
 
               <input
@@ -24,14 +30,10 @@
               name = "filter"
               placeholder="Filter....">
 
-              <button (click)="GetAndUpdateData()">
+              <button (click)="rxF5()">
                   get
                 </button>
 
-
-            <button (click)="postReq_CreateUDT()">
-                post
-              </button>
           </div>
         </div>
 
@@ -39,11 +41,15 @@
 
     <div class="row">
 
-      <div class="clWidth25Perc leftcolumn"></div>
+      <div class="clWidth50Perc leftcolumn">
+        <udtCreate
+        [style.display]="showAddDialog ? 'block' : 'none'"
+        [udtListIn]="_rxArr" >
+      </udtCreate>
+      </div>
         <div class="clWidth50Perc leftcolumn">
-                  <app-udt-list *ngFor="let d of data; let i = index"  [udtIn]="d"> </app-udt-list>
+                  <app-udt-list *ngFor="let d of _rxArr; let i = index"  [udtIn]="d"> </app-udt-list>
         </div>
-        <div class="clWidth25Perc rightcolumn"></div>
   </div>
 
 
@@ -52,4 +58,9 @@
   [routerLink]= "['createUDT' , {data: this.data}]"
   routerLinkActive="active">
   <div>+</div>
-</a> -->
+</a>
+
+        [udtListIn]="_rxArr"
+
+              (click)= "routeToCreateUDT()"
+-->

@@ -1,0 +1,14 @@
+.cl-ModalDialog
+{
+  position: absolute;
+
+    top: 150px;
+    width: 100%;
+
+    padding-left : 5px;padding-right : 5px;
+    padding-top : 5px;padding-bottom : 5px;
+    background-color: rgb(241, 240, 240);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    z-index: 2;
+
+}

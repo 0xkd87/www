@@ -1,8 +1,17 @@
-<p>
-  udtCreate works!
-</p>
-  <ul *ngFor="let u of this.udtList; let i = index">
-      <li>
-         {{i}} | {{u.plcTag.name }}
-      </li>
-  </ul>
+<div class="cl-glob-ModalBackground" [style.display]="'block'">
+  <div class="cl-ModalDialog">
+
+      <button (click)="postReq_CreateUDT()">
+        post
+      </button>
+
+        <ul *ngFor="let u of this.udtArr; let i = index">
+            <li>
+              {{i}} | {{u.plcTag.name }}
+            </li>
+        </ul>
+  </div>
+</div>
+
+
+
