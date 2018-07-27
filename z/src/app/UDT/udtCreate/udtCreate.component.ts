@@ -38,14 +38,18 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
     private _msg: MsgService,
     public _hostListner: HostListenerService)
     {
+
       this._title.setTitle('Create a New UDT');
-      this.formGroup = this.buildForm();
-      console.log(this.formGroup);
+//      this.formGroup = this.buildForm( <IUdt>this.udtListIn[0] );
+
+
     }
 
   ngOnInit() {
-    this.rxF5();
     window.scrollTo(0, 0);
+    this.udtArr = [];
+    this.rxF5();
+    this.formGroup = this.buildForm( <IUdt>this.udtArr[0]);
   }
 
 
@@ -68,39 +72,27 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
   ngAfterViewInit() {
   }
 
-  buildForm(): FormGroup {
+  /**
+   * build the form as default (if no agument; or if UST is passed as an argument..)
+   */
+  buildForm(editingUDT?: IUdt): FormGroup {
 
-    const Attr = new FormGroup (
-          {
-            ident: new FormGroup(
-              {
-                _uid: new FormControl('xx'),
-                hasChildern: new FormControl(true),
-                idx: new FormControl(-1),
-                lang: new FormControl('en'),
-                objType: new FormControl(CONST_OBJTYPE.UDT)
-              }),
-              plcTag: new FormGroup(
-                {
-                  name: new FormControl(
-                    'LibUDT_...',
-                    Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(48)])
-                  ),
-                  comment: new FormGroup(
-                    {
-                      en: new FormControl
-                      ('//s',
-                        Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(256)])
-                      )
-                    }
-                  ),
-
-                })
-          });
+    console.log(this.udtArr[6]);
 
 
-      return (Attr);
-     }
+    let udt: IUdt;
+      if (editingUDT) {
+      // udt = <IUdt>this.udtArr[6];
+         udt  = new IUdt;
+
+      } else { /* The default form build (in case of "add new" request) */
+       udt  = new IUdt;
+      }
+      console.log(udt);
+
+        const Attr = udt.getFormGroup();
+        return (Attr);
+}
   /**Gets all data with subscription - use this to refresh (i.e. f5) as well */
   rxF5(makeNewReq?: Boolean)  {
     this.udtArr = []; // initialize when called.. otherwise the async data will be keep appended..!
@@ -114,6 +106,11 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
 loadFromForm(): IUdt {
   const formUDT: IUdt = this.formGroup.value;
   return formUDT;
+}
+
+loadToForm(editingUDT: IUdt) {
+// this.formGroup. = editingUDT;
+
 }
     postReq_CreateUDT() {
       const newUDT: IUdt = this.loadFromForm();
@@ -129,8 +126,8 @@ loadFromForm(): IUdt {
 
   }
 
-  x(requiredControl: string): AbstractControl {
-    console.log(this.formGroup.get(requiredControl));
-    return(<AbstractControl>this.formGroup.get(requiredControl));
+  x() {
+    console.log(new IUdt());
+
   }
 }

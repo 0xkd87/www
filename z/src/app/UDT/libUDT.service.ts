@@ -66,6 +66,7 @@ rxArr() {
 
   addNew(newUDT: IUdt): Observable<any> {
 
+    console.log(newUDT);
     return this._httpServ.postTx(url.addUDT, <IUdt>(newUDT));
 
   }
