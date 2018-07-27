@@ -1,15 +1,9 @@
 import { LibUDTService } from './../libUDT.service';
 import { HostListenerService } from './../../../_shared/services/hostListener.service';
-import { HttpTxRxService } from './../../../_shared/services/http-TxRx.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-
-import { isArray } from 'util';
-
 import { Subscription } from 'rxjs';
 import { IUdt, CONST_OBJTYPE} from '../../../_shared/interface/schemaLib.interface';
-import { Router, ActivatedRoute } from '../../../../node_modules/@angular/router';
 
 const url = {
   addUDT: 'http://emis000695/_c/__api/post/post.udt.add.php',
@@ -31,7 +25,6 @@ providers: [
 export class UdtComponent implements OnInit, OnDestroy {
 
   showAddDialog: boolean;
-  public formGrp: FormGroup;
   public newUDT: IUdt;
 
   _rxArr: IUdt[] = [];
@@ -40,13 +33,10 @@ export class UdtComponent implements OnInit, OnDestroy {
 
   constructor(
     private _title: Title, // Page Title Serive
-    private _httpServ: HttpTxRxService,
     public _hostListner: HostListenerService,
     private _libUDTService: LibUDTService,
   ) {
       this._title.setTitle('UDT');
-      this.formGrp = this.buildForm();
-
       this._rxArr = [];
 /* register to the subscription */
 
@@ -65,31 +55,9 @@ export class UdtComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     // prevent memory leak when component destroyed
-    if (this._subscriptionGet) {
-      this._subscriptionGet.unsubscribe();
-    }
-    if (this._subscriptionPost) {
-    this._subscriptionPost.unsubscribe();
-    }
+
   }
 
-  buildForm(): FormGroup {
-
-    let Attr = new FormGroup (
-          {
-            ident: new FormGroup(
-              {
-                _uid: new FormControl('xx'),
-                hasChildern: new FormControl(true),
-                idx: new FormControl(-1),
-                lang: new FormControl('en'),
-                objType: new FormControl(CONST_OBJTYPE.UDT)
-              })
-          });
-
-
-      return (Attr);
-     }
 
 /**Gets all data with subscription - use this to refresh (i.e. f5) as well */
   rxF5()  {

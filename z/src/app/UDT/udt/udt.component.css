@@ -47,7 +47,7 @@
   border-radius: 90%;
   box-shadow: 4px 3px 12px 0 rgba(0,0,0,0.5);
   cursor: pointer;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 400;
 
   text-shadow: -1px 1px 3px rgb(41, 41, 41);
@@ -58,4 +58,9 @@
 {
   color: greenyellow;
 }
-
+.cl-trigger-round:hover
+{
+  animation: shake 0.2s;
+  /* When the animation is finished, start again */
+  animation-iteration-count: 2; /*infinite;*/
+}

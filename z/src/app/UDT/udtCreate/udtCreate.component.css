@@ -1,14 +1,126 @@
-.cl-ModalDialog
+h1{
+  font-size: 36px;
+  font-weight: 300;
+  text-align: right;
+  float: right;
+}
+
+.cl-FormContainer
 {
-  position: absolute;
 
-    top: 150px;
+    display: block;
+    width: auto;
+    height: auto;
+    margin: 10px;
+    padding: 10px;
+    overflow: auto;
+    box-shadow: 4px 3px 14px 0 rgba(0,0,0,0.5);
+    background: rgba(219, 219, 219, 0.692);
+
+}
+/*fixed after certain scroll*/
+.posFixed-Top
+{
+  z-index: 10; /* Sit on top */
+  position: fixed; /* Set  to fixed position */
+  top: 0px; /* Position at the top of the page */
+  left: 0px;
+}
+
+.posRelative
+{
+  position: relative; /* Set  to relative position */
+}
+
+.cl-TopBarContainer
+{
+  margin: 0px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: rgb(238, 238, 238);
+
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.304);
+  /* min-height: 120px; */
+  height: auto;
+  width: 100%;
+  align-content: center;
+  vertical-align: middle;
+}
+label
+{
+    /*display: none;*/
+    font-size: 14px;
+    font-weight: 400;
+    pointer-events: none;
+    padding: 5px;
+    color: rgb(14, 14, 14);
+    text-shadow: 2px 1px 1px rgb(151, 151, 151);
+
+ }
+
+input[type=text]
+{
+    background: rgba(255, 255, 255, 0);
+    color: rgb(75, 75, 75);
+    align-self: center;
+    margin: 1px;
     width: 100%;
+    padding: 2px;
+    font-size: 16px;
+    font-weight: 450;
+    font-variant: normal;
+    min-height: 32px;
+    display: block;
+    border : none;
+    border-bottom: 1.5px solid rgba(138, 138, 138, 0.705);
+}
+.cl-trigger-round
+{
+  margin: 10px;
+  padding: 1px;
+  line-height: 64px;
+  height: 64px;
+  width: 64px;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  border : none;
+  border-radius: 90%;
+  box-shadow: 4px 3px 12px 0 rgba(0,0,0,0.5);
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: 400;
 
-    padding-left : 5px;padding-right : 5px;
-    padding-top : 5px;padding-bottom : 5px;
-    background-color: rgb(241, 240, 240);
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    z-index: 2;
+  text-shadow: -1px 1px 3px rgb(41, 41, 41);
+  background-color: rgb(70, 70, 70);
+}
 
+.cl-trigger-round-blue
+{
+  color: rgb(47, 144, 255);
+}
+.cl-trigger-round-update
+{
+  color: rgb(85, 250, 121);
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.cl-trigger-round:disabled
+{
+  color: rgb(185, 185, 185);
+  background-color: rgb(116, 116, 116);
+}
+.cl-trigger-round:hover
+{
+  animation: shake 0.2s;
+  /* When the animation is finished, start again */
+  animation-iteration-count: 2; /*infinite;*/
+}
+@media screen and (max-width: 600px)
+{
+    .cl-FormContainer,row
+    {
+        margin: 2px;
+    }
 }

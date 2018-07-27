@@ -1,26 +1,21 @@
 
 
+<!-- <div class="row">
+
+</div> -->
+
 <div class="row">
 
-</div>
-
-<div class="row">
-
-        <div class="cl-TopBarContainer" [class.cl-FixedContainer-Top] = "_hostListner.stickyOnWindowScroll(75)">
+        <div class="cl-TopBarContainer"
+        [class.cl-FixedContainer-Top] = "_hostListner.stickyOnWindowScroll(75)">
           <div class="clWidth25Perc leftcolumn">
 
-              <a
+              <div
                 class = "cl-trigger-round cl-trigger-round-add"
                 routerLink = "createUDT"
                 routerLinkActive="active">
-                <div>+</div>
-              </a>
-
-              <div
-              class = "cl-trigger-round cl-trigger-round-add"
-                (click)="showAddDialog=!showAddDialog">
-              <div>+</div>
-            </div>
+                <div>&#x271A;</div>
+              </div>
           </div>
 
           <div class="clWidth75Perc rightcolumn">
@@ -42,10 +37,6 @@
     <div class="row">
 
       <div class="clWidth50Perc leftcolumn">
-        <udtCreate
-        [style.display]="showAddDialog ? 'block' : 'none'"
-        [udtListIn]="_rxArr" >
-      </udtCreate>
       </div>
         <div class="clWidth50Perc leftcolumn">
                   <app-udt-list *ngFor="let d of _rxArr; let i = index"  [udtIn]="d"> </app-udt-list>

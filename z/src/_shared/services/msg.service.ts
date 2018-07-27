@@ -10,12 +10,13 @@ constructor() { }
 
 messages: string[] = [];
 
-add(message: string) {
-  this.messages.push(message);
-}
+  add(message: string) {
+    const msgTimestamp: string = '[' + (new Date()).toJSON() + ']: ' + message;
+    this.messages.push(msgTimestamp);
+  }
 
-clear() {
-  this.messages = [];
-}
+  clear() {
+    this.messages = [];
+  }
 
 }

@@ -1,17 +1,83 @@
-<div class="cl-glob-ModalBackground" [style.display]="'block'">
-  <div class="cl-ModalDialog">
 
+
+
+
+  <div class="row"> <!--Top row - sticky/fiex on scroll -->
+    <div
+    class="cl-TopBarContainer"
+    [class.posFixed-Top] = "_hostListner.stickyOnWindowScroll(30)"
+    [class.posRelative] = "!_hostListner.stickyOnWindowScroll(30)">
+        <!-- router to list page -->
+        <input
+        type="submit"
+        class = "cl-trigger-round cl-trigger-round-blue"
+        routerLink = "/libMngr/udt"
+        routerLinkActive="active"
+        value = "&#x25E4;">
+
+        <input
+        type="submit"
+        class = "cl-trigger-round cl-trigger-round-update"
+        (click)="postReq_CreateUDT()"
+        value = "!#"
+        [disabled]="!formGroup.valid">
+
+        <button (click)="this.x('plcTag.name')">
+            post
+          </button>
+<!--
       <button (click)="postReq_CreateUDT()">
-        post
-      </button>
-
-        <ul *ngFor="let u of this.udtArr; let i = index">
-            <li>
-              {{i}} | {{u.plcTag.name }}
-            </li>
-        </ul>
+          post
+        </button>
+      &#x2771; &#x21bb;-->
+    </div>
   </div>
-</div>
+
+  <div class="row">
+    <h1>User Datatype Builder</h1>
+  </div>
+
+  <form
+  [formGroup]="formGroup.get('plcTag')"
+  class="cl-FormContainer"
+  novalidate>
+    <div class="form-group">
+        <div class="row">
+            <label
+              for="udtName">
+              Name:
+            </label>
+            <input
+              type="text"
+              name = "udtName"
+              class="form-control"
+              formControlName= "name">
+          </div>
+          <div class="row"></div> <!-- for margin; blank -->
+
+          <div class="row form-group"   [formGroup]="formGroup.get('plcTag.comment')">
+              <label
+                for="udtComment">
+                Comment:
+              </label>
+              <input
+                type="text"
+                name = "udtComment"
+                class="form-control"
+                formControlName="en">
+            </div>
+    </div>
+
+<!--
+  <a routerLink="/usrAuth/signup" routerLinkActive="active">Sign Up</a>
+  <a routerLink="/libMngr" routerLinkActive="active">Lib</a>
+-->
+
+    </form>
 
 
-
+    <ul *ngFor="let u of this.udtArr; let i = index">
+        <li>
+          {{i}} | {{u.plcTag.name }}
+        </li>
+    </ul>
