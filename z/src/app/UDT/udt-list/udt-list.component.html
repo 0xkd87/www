@@ -16,9 +16,14 @@
                 [class.clWidth25Perc] =  "isControlVisible"
                 [class.rightcolumn] =  "isControlVisible">
                   <div class= "cl-ControlContainer" [style.display]="isControlVisible ? 'block' : 'none'">
-                        <div class="cl-button cl-button-edit">
-                            &#x2636;  <!--  &#x21b1;&#x21b2; &#9998; -->
-                        </div>
+                        <input class="cl-button cl-button-edit"
+                        type="submit"
+                        routerLink = "/libMngr/udt/editUDT/+{{udtNode.ident.idx}}"
+                        routerLinkActive="active"
+                        value = "&#x2636;"
+                        >
+                             <!--  &#x21b1;&#x21b2; &#9998; -->
+
                         <div class="cl-button cl-button-delete">
                             &#x2718;
                         </div>

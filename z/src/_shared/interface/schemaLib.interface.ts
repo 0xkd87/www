@@ -200,23 +200,20 @@ export class IUdt {
 
     if (src) {
       /**call the shallow copy builder if source is passed as an agument */
-    //  this._shallowCloneFromSrc(src);
+      this._shallowCloneFromSrc(src);
     } else {
-  //    src = new IUdt();
+      this.rev = new _rev();
+      this.plcTag = new _plcTag();
+      this.ident = new _ident();
+      this.var = new Array<_udtVar>();
     }
+  }
 
+  private _shallowCloneFromSrc(src: IUdt) {
     this.rev = new _rev(src.rev);
     this.plcTag = new _plcTag(src.plcTag);
     this.ident = new _ident(src.ident);
     this.var = new Array<_udtVar>();
-
-
-  }
-
-  private _shallowCloneFromSrc(src: IUdt) {
-/*     Object.assign( this.ident, src.ident);
-    Object.assign( this.rev, src.rev);
-    Object.assign( this.plcTag, src.plcTag); */
 
   }
 

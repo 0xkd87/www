@@ -42,11 +42,10 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
     private _msg: MsgService,
     public _hostListner: HostListenerService,
     private route: ActivatedRoute ) {
-
+      this.editingUDT = new IUdt();
       this.opEdit = false;
       this.udtArr = [];
       this.rxF5();
-    const para = [];
     this.route.paramMap.forEach(
       p =>  {
         if (p.has('idx'))  {
@@ -55,27 +54,28 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
         }
       }
     );
-    console.log(para);
-  //  console.log(para['idx']);
     if (this.opEdit) {
       /* The operation is [EDIT] */
-      this._title.setTitle('UDT :: EDIT');
+      this._title.setTitle('UDT :: EDIT :' + this.editingIdx);
+      this.udtArr.forEach(u => {
+        if (u.ident.idx === this.editingIdx) {
+          this.editingUDT = new IUdt(<IUdt>u);
+        }
+      });
+      this.formGroup = this.buildForm( <IUdt>this.udtArr[0] );
 
     } else {
       /* The operation is new create */
       this._title.setTitle('UDT :: CREATE');
-
     }
-//      this.formGroup = this.buildForm( <IUdt>this.udtListIn[0] );
-
-
+      this.formGroup = this.buildForm(<IUdt>this.editingUDT);
     }
 
   ngOnInit() {
     window.scrollTo(0, 0);
 
-    this.formGroup = this.buildForm( <IUdt>this.udtArr[0]);
-  }
+   // this.formGroup = this.buildForm( <IUdt>this.editingUDT );
+    }
 
 
   ngOnChanges() {
