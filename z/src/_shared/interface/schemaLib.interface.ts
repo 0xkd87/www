@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators, FormControl, FormArray, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, FormArray, AbstractControl, ValidatorFn } from '@angular/forms';
 
 
 export enum CONST_OBJTYPE {
@@ -10,12 +10,31 @@ export enum CONST_OBJTYPE {
 
 /*Internal interfaces - No Export */
 class _multiLangText {
-  en?: string; // default langualge  = en
-  de?: string; // default langualge  = de
-  [lang: string]: string; // possible extension = project specific languages might be added
-  constructor( ) {
+  [lang: string]: any; // possible extension = project specific languages might be added
+  en?: string; // default language  = en
+  de?: string; // default language  = de
+  constructor(src?: _multiLangText) {
     this.en = 'en comment';
     this.de = 'de - comment';
+    if (src) { /**shallow copy if source is provided */
+      this._shallowCloneFromSrc(src);
+    }
+  }
+
+  getFormGroup(_validotors?: ValidatorFn[]) {
+      const arr: any = {};
+      Object.keys(this).forEach(
+        k => {
+          arr[k] = new FormControl
+          ( this[k],
+            Validators.compose(_validotors)
+          );
+      });
+      return (new FormGroup(arr));
+  }
+
+  private _shallowCloneFromSrc(src: _multiLangText) {
+    Object.assign( this, src);
   }
 
 }
@@ -27,7 +46,7 @@ class _rev {
   on: string;
   by: string;
   comment:  _multiLangText;
-  constructor() {
+  constructor(src?: _rev) {
     this.major = 0;
     this.minor = 1;
     this.on = '';
@@ -35,8 +54,15 @@ class _rev {
     this.comment = new _multiLangText();
     // this.comment['en'] = 'gf';
     // console.log(this.comment['en']);
+
+    if (src) { /**shallow copy if source is provided */
+      this._shallowCloneFromSrc(src);
+    }
   }
 
+  private _shallowCloneFromSrc(src: _rev) {
+    Object.assign( this, src);
+  }
 
 }
 
@@ -48,16 +74,19 @@ class _ident {
   objType?: CONST_OBJTYPE; // Tag,FB,UDT,AlarmList....
   hasChildern?: boolean;
 
-  constructor() {
+  constructor(src?: _ident) {
     this._uid = 'uid';  // unique object id - assigned at the time of construct
     this.idx = -1; // the index (Auto assigned by DB) which is used to call this element from the App
     this.innerIdx =  -1 ; // inner index - some elements are the part of parent table (e.g. UDT variables..)
     this.lang = 'en';
     this.objType = CONST_OBJTYPE.ABSTRACT; // Tag,FB,UDT,AlarmList....
     this.hasChildern = false;
+    if (src) { /**shallow copy if source is provided */
+      this._shallowCloneFromSrc(src);
+    }
   }
 
-  getFormGroup(): FormGroup {
+  public getFormGroup(): FormGroup {
     const ident = new FormGroup(
       {
         _uid: new FormControl(this._uid),
@@ -69,6 +98,11 @@ class _ident {
       });
       return ident;
   }
+
+  private _shallowCloneFromSrc(src: _ident) {
+    Object.assign( this, src);
+  }
+
 } // </class>
 
 class _plcTag {
@@ -78,15 +112,24 @@ class _plcTag {
   address?: string;
   comment?: _multiLangText;
 
-  constructor() {
+  constructor(src?: _plcTag) {
     this.isF = false;
     this.name = '';
     this.datatype = '';
     this.address = '';
     this.comment = new _multiLangText();
+
+    if (src) { /**shallow copy if source is provided */
+      this._shallowCloneFromSrc(src);
+      this.comment = new _multiLangText(src.comment);
+    }
   }
 
-  getFormGroup(): FormGroup {
+  private _shallowCloneFromSrc(src: _plcTag) {
+    Object.assign( this, src);
+  }
+/*
+  __getFormGroup(): FormGroup {
     const fg = new FormGroup(
       {
         name: new FormControl
@@ -102,6 +145,21 @@ class _plcTag {
             )
           }
         ),
+
+      });
+      return fg;
+  } */
+
+  getFormGroup(): FormGroup {
+
+    const fg = new FormGroup(
+      {
+        name: new FormControl
+        (
+          this.name,
+          Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(48)])
+        ),
+        comment: this.comment.getFormGroup([Validators.minLength(5), Validators.maxLength(48)]),
 
       });
       return fg;
@@ -138,11 +196,28 @@ export class IUdt {
   plcTag?: _plcTag;
   var?: _udtVar[];
 
-  constructor() {
-    this.rev = new _rev();
-    this.plcTag = new _plcTag();
-    this.ident = new _ident();
+  constructor(src?: IUdt) {
+
+    if (src) {
+      /**call the shallow copy builder if source is passed as an agument */
+    //  this._shallowCloneFromSrc(src);
+    } else {
+  //    src = new IUdt();
+    }
+
+    this.rev = new _rev(src.rev);
+    this.plcTag = new _plcTag(src.plcTag);
+    this.ident = new _ident(src.ident);
     this.var = new Array<_udtVar>();
+
+
+  }
+
+  private _shallowCloneFromSrc(src: IUdt) {
+/*     Object.assign( this.ident, src.ident);
+    Object.assign( this.rev, src.rev);
+    Object.assign( this.plcTag, src.plcTag); */
+
   }
 
   public getFormGroup(): FormGroup {

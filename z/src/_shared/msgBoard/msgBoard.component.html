@@ -7,6 +7,6 @@
   <button class="clear" (click)="messageService.clear()">clear</button>
   <br>
   <ol>
-    <li *ngFor='let message of messageService.messages'> {{message}} </li>
+    <li class="msg" *ngFor='let message of messageService.messages'> {{message}} </li>
   </ol>
 </div>

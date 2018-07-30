@@ -77,7 +77,7 @@ input[type=text]
 .cl-trigger-round
 {
   margin: 10px;
-  padding: 1px;
+  padding: 0px;
   line-height: 64px;
   height: 64px;
   width: 64px;
@@ -85,7 +85,7 @@ input[type=text]
   vertical-align: middle;
   text-align: center;
   border : none;
-  border-radius: 90%;
+  border-radius: 50%;
   box-shadow: 4px 3px 12px 0 rgba(0,0,0,0.5);
   cursor: pointer;
   font-size: 24px;

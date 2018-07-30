@@ -19,13 +19,21 @@
         type="submit"
         class = "cl-trigger-round cl-trigger-round-update"
         (click)="postReq_CreateUDT()"
-        value = "!#"
-        [disabled]="!formGroup.valid">
+        value = "&#x271A;"
+        [disabled]="(!formGroup.valid) || (this.opEdit)">
 
-        <button (click)="this.x()">
+        <input
+        type="submit"
+        class = "cl-trigger-round cl-trigger-round-update"
+        (click)="postReq_CreateUDT()"
+        value = "#"
+        [disabled]="(!formGroup.valid) || (!this.opEdit)">
+
+
+<!--
+          <button (click)="this.x()">
             post
           </button>
-<!--
       <button (click)="postReq_CreateUDT()">
           post
         </button>

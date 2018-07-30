@@ -1,11 +1,13 @@
-import { Subscription } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { Subscription, Observable } from 'rxjs';
 import { LibUDTService } from './../libUDT.service';
 import { IUdt, CONST_OBJTYPE } from './../../../_shared/interface/schemaLib.interface';
 import { Component, OnInit, OnDestroy, Input, AfterViewInit, OnChanges } from '@angular/core';
 import { MsgService } from '../../../_shared/services/msg.service';
 import { Title } from '../../../../node_modules/@angular/platform-browser';
-import { FormBuilder, FormGroup, Validators, FormControl, FormArray, AbstractControl } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { HostListenerService } from '../../../_shared/services/hostListener.service';
+import { ActivatedRoute, ParamMap } from '../../../../node_modules/@angular/router';
 
 
 
@@ -31,15 +33,39 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
 
   public formGroup: FormGroup;
   public editingUDT: IUdt;
+  public editingIdx: number;
+  opEdit: boolean; /**which operation is called? new or edit */
 
   constructor(
     private _title: Title, // Page Title Serive
     private _libUDTService: LibUDTService,
     private _msg: MsgService,
-    public _hostListner: HostListenerService)
-    {
+    public _hostListner: HostListenerService,
+    private route: ActivatedRoute ) {
 
-      this._title.setTitle('Create a New UDT');
+      this.opEdit = false;
+      this.udtArr = [];
+      this.rxF5();
+    const para = [];
+    this.route.paramMap.forEach(
+      p =>  {
+        if (p.has('idx'))  {
+          this.opEdit = true;
+          this.editingIdx = +p.get('idx');
+        }
+      }
+    );
+    console.log(para);
+  //  console.log(para['idx']);
+    if (this.opEdit) {
+      /* The operation is [EDIT] */
+      this._title.setTitle('UDT :: EDIT');
+
+    } else {
+      /* The operation is new create */
+      this._title.setTitle('UDT :: CREATE');
+
+    }
 //      this.formGroup = this.buildForm( <IUdt>this.udtListIn[0] );
 
 
@@ -47,8 +73,7 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
 
   ngOnInit() {
     window.scrollTo(0, 0);
-    this.udtArr = [];
-    this.rxF5();
+
     this.formGroup = this.buildForm( <IUdt>this.udtArr[0]);
   }
 
@@ -77,20 +102,17 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
    */
   buildForm(editingUDT?: IUdt): FormGroup {
 
-    console.log(this.udtArr[6]);
 
 
-    let udt: IUdt;
+    let u: IUdt;
       if (editingUDT) {
-      // udt = <IUdt>this.udtArr[6];
-         udt  = new IUdt;
+        u  = new IUdt(editingUDT);
 
       } else { /* The default form build (in case of "add new" request) */
-       udt  = new IUdt;
+        u  = new IUdt();
       }
-      console.log(udt);
 
-        const Attr = udt.getFormGroup();
+        const Attr = u.getFormGroup();
         return (Attr);
 }
   /**Gets all data with subscription - use this to refresh (i.e. f5) as well */

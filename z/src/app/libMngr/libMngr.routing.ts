@@ -16,6 +16,7 @@ const routes: Routes = [
         children: [
           { path: 'udt', component: UdtComponent },
           { path: 'udt/createUDT', component: UdtCreateComponent },
+          { path: 'udt/editUDT/:idx', component: UdtCreateComponent },
           { path: '**',  redirectTo: 'udt', pathMatch: 'full' }
         ]
       }

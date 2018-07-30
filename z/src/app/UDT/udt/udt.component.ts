@@ -61,8 +61,8 @@ export class UdtComponent implements OnInit, OnDestroy {
 
 /**Gets all data with subscription - use this to refresh (i.e. f5) as well */
   rxF5()  {
-    this._rxArr = []; // initialize when called.. otherwise the async data will be keep appended..!
-    this._rxArr = this._libUDTService.rx(); /* The data will be automaticcally populated in the array as it is subscribed */
+    this._rxArr = new Array<IUdt>(); // initialize when called.. otherwise the async data will be keep appended..!
+    this._rxArr = <IUdt[]>this._libUDTService.rx(); /* The data will be automaticcally populated in the array as it is subscribed */
   }
 
 
