@@ -128,27 +128,6 @@ class _plcTag {
   private _shallowCloneFromSrc(src: _plcTag) {
     Object.assign( this, src);
   }
-/*
-  __getFormGroup(): FormGroup {
-    const fg = new FormGroup(
-      {
-        name: new FormControl
-        (
-          this.name,
-          Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(48)])
-        ),
-        comment: new FormGroup(
-          {
-            en: new FormControl
-            ( this.comment['en'],
-              Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(256)])
-            )
-          }
-        ),
-
-      });
-      return fg;
-  } */
 
   getFormGroup(): FormGroup {
 
@@ -157,9 +136,17 @@ class _plcTag {
         name: new FormControl
         (
           this.name,
-          Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(48)])
+          Validators.compose(
+            [Validators.required,
+              Validators.minLength(5),
+              Validators.maxLength(48),
+              Validators.pattern(/^[a-zA-Z0-9!#$%^&*()_-]+$/)])
         ),
-        comment: this.comment.getFormGroup([Validators.minLength(5), Validators.maxLength(48)]),
+        comment: this.comment.getFormGroup(
+          [ Validators.minLength(5),
+            Validators.maxLength(128),
+            Validators.pattern(/^[a-zA-Z0-9!#$%^&*()@|+ _-]+$/)]
+        ),
 
       });
       return fg;
@@ -180,15 +167,6 @@ class _udtVar {
 }
 /*============  Export interfaces   ===================*/
 
-
-export interface __IUdt {
-
-    rev?: _rev;
-    ident?: _ident;
-    plcTag?: _plcTag;
-
-}
-
 export class IUdt {
 
   rev?: _rev;
@@ -207,6 +185,11 @@ export class IUdt {
       this.ident = new _ident();
       this.var = new Array<_udtVar>();
     }
+
+    /**
+     * assign class specific attributes ??
+     */
+
   }
 
   private _shallowCloneFromSrc(src: IUdt) {
@@ -220,7 +203,7 @@ export class IUdt {
   public getFormGroup(): FormGroup {
     const fg = new FormGroup(
       {
-        ident: this.ident.getFormGroup(),
+        // ident: this.ident.getFormGroup(),
         plcTag: this.plcTag.getFormGroup(),
       }
     );

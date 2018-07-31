@@ -1,8 +1,23 @@
 h1{
-  font-size: 36px;
-  font-weight: 300;
+  margin: 0px;
+  margin-bottom: 20px;
+  padding: 2px;
+  font-size: 64px;
+  font-weight: 500;
+  font-kerning: normal;
   text-align: right;
-  float: right;
+  float: left;
+  /* border-bottom: 1.5px solid rgba(167, 167, 167, 0.884); */
+
+  text-shadow: 2px 1px 1px rgb(66, 66, 66);
+  width: 100%;
+  height: auto;
+  line-height: 64px;
+  color: rgb(4, 142, 255);
+  position: relative;
+  top: 0px;
+  right: 0%;
+  font-variant-caps: all-petite-caps;
 }
 
 .cl-FormContainer
@@ -15,7 +30,7 @@ h1{
     padding: 10px;
     overflow: auto;
     box-shadow: 4px 3px 14px 0 rgba(0,0,0,0.5);
-    background: rgba(219, 219, 219, 0.692);
+    background: rgba(243, 243, 243, 0.692);
 
 }
 /*fixed after certain scroll*/
@@ -49,13 +64,13 @@ h1{
 label
 {
     /*display: none;*/
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 20px;
+    font-weight: 500;
     pointer-events: none;
     padding: 5px;
-    color: rgb(14, 14, 14);
-    text-shadow: 2px 1px 1px rgb(151, 151, 151);
-
+    color: rgb(51, 51, 51);
+    font-variant-caps: small-caps;
+/*     text-shadow: 2px 1px 1px rgb(31, 31, 31); */
  }
 
 input[type=text]
@@ -74,6 +89,18 @@ input[type=text]
     border : none;
     border-bottom: 1.5px solid rgba(138, 138, 138, 0.705);
 }
+
+/*invalid input indication*/
+.form-control.ng-dirty.ng-touched.ng-invalid
+{
+    background-color: rgba(255, 217, 0, 0);
+    border-bottom: 3px solid rgba(255, 0, 0, 0.959);
+}
+.form-control.ng-dirty.ng-touched.ng-valid
+{
+    border-bottom: 3px solid rgba(74, 252, 3, 0.986);
+}
+
 .cl-trigger-round
 {
   margin: 10px;
@@ -99,10 +126,17 @@ input[type=text]
 {
   color: rgb(47, 144, 255);
 }
-.cl-trigger-round-update
+.cl-trigger-round-add
 {
   color: rgb(85, 250, 121);
   font-size: 32px;
+  font-weight: 600;
+}
+
+.cl-trigger-round-update
+{
+  color: rgb(250, 225, 85);
+  font-size: 36px;
   font-weight: 600;
 }
 

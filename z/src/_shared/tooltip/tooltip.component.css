@@ -1,0 +1,12 @@
+.cl-tooltip-container
+{
+  display: inline;
+  background-color: rgba(75, 75, 75, 0.384);
+}
+
+.cl-tooltip-text
+{
+  font-size: 10px;
+  color: darkgrey;
+  font-variant: normal;
+}

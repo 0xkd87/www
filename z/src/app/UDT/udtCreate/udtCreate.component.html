@@ -15,18 +15,19 @@
         routerLinkActive="active"
         value = "&#x25E4;">
 
+        <!-- Add new button -->
         <input
         type="submit"
-        class = "cl-trigger-round cl-trigger-round-update"
+        class = "cl-trigger-round cl-trigger-round-add"
         (click)="postReq_CreateUDT()"
         value = "&#x271A;"
         [disabled]="(!formGroup.valid) || (this.opEdit)">
 
+        <!-- Update / Apply modification buuton -->
         <input
         type="submit"
         class = "cl-trigger-round cl-trigger-round-update"
-        (click)="postReq_CreateUDT()"
-        value = "&#x2636;"
+        value = "&#x21bb;"
         [disabled]="(!formGroup.valid) || (!this.opEdit)">
 
 
@@ -41,15 +42,13 @@
     </div>
   </div>
 
-  <div class="row">
-    <h1>User Datatype Builder</h1>
-  </div>
-
   <form
   [formGroup]="formGroup.get('plcTag')"
   class="cl-FormContainer"
   novalidate>
-    <div class="form-group">
+  <h1>UDT</h1>
+  <div class="form-group">
+
         <div class="row">
             <label
               for="udtName">

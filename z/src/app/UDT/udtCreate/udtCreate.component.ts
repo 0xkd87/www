@@ -1,4 +1,3 @@
-import { map, switchMap } from 'rxjs/operators';
 import { Subscription, Observable } from 'rxjs';
 import { LibUDTService } from './../libUDT.service';
 import { IUdt, CONST_OBJTYPE } from './../../../_shared/interface/schemaLib.interface';
@@ -42,39 +41,59 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
     private _msg: MsgService,
     public _hostListner: HostListenerService,
     private route: ActivatedRoute ) {
-      this.editingUDT = new IUdt();
-      this.opEdit = false;
-      this.udtArr = [];
-      this.rxF5();
-    this.route.paramMap.forEach(
-      p =>  {
-        if (p.has('idx'))  {
-          this.opEdit = true;
-          this.editingIdx = +p.get('idx');
+
+
+      // this.udtArr = [];
+      this.rxF5(); /** without argument = just load the array; don't GET from HTTP */
+
+
+      /**
+       * Edit/ create new
+       */
+      this.editingIdx = -1; // initialize to default
+      this.opEdit = false; // Default operation: Create new with a blank
+      /**
+       * check router paramenters; if the desired argument exists?
+       */
+      this.route.paramMap.forEach(
+        p =>  {
+          if (p.has('idx'))  {
+            /**found it..! This is the edit operation */
+            this.opEdit = true;
+            this.editingIdx = +p.get('idx');
+          }
         }
-      }
-    );
+      );
+
+/**
+ * Edit operation is detected with index
+ */
+/**Load the default values ([else] case in following IF) */
+    this._title.setTitle('UDT :: CREATE');
+    this.editingUDT = new IUdt(); // allocate new
     if (this.opEdit) {
       /* The operation is [EDIT] */
-      this._title.setTitle('UDT :: EDIT :' + this.editingIdx);
       this.udtArr.forEach(u => {
         if (u.ident.idx === this.editingIdx) {
-          this.editingUDT = new IUdt(<IUdt>u);
+          this.editingUDT = new IUdt(<IUdt>u); // assign a matching udt (overwrite/shallow copy on the [new] UDT)
+          this._title.setTitle('UDT :: EDIT :' + this.editingIdx);
         }
       });
-      this.formGroup = this.buildForm( <IUdt>this.udtArr[0] );
-
     } else {
-      /* The operation is new create */
-      this._title.setTitle('UDT :: CREATE');
+      /* The operation is new create : this has been taken care in initialization */
     }
+
+    /**
+     * Build a form out of the editing UDT..!
+     */
       this.formGroup = this.buildForm(<IUdt>this.editingUDT);
     }
 
   ngOnInit() {
+    /**
+     * scroll to the top when page is drawn
+     */
     window.scrollTo(0, 0);
-
-   // this.formGroup = this.buildForm( <IUdt>this.editingUDT );
     }
 
 
@@ -100,20 +119,30 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
   /**
    * build the form as default (if no agument; or if UST is passed as an argument..)
    */
-  buildForm(editingUDT?: IUdt): FormGroup {
-
-
-
-    let u: IUdt;
+  buildForm(editingUDT: IUdt): FormGroup {
+      let u: IUdt;
       if (editingUDT) {
         u  = new IUdt(editingUDT);
-
       } else { /* The default form build (in case of "add new" request) */
-        u  = new IUdt();
+        u  = new IUdt(); /**this case should never be reached as the argument is required */
       }
+      const Attr = u.getFormGroup(); // Get attributes in a form of a FormGroup
 
-        const Attr = u.getFormGroup();
-        return (Attr);
+      /**
+       * Add custom (task-specific) field validators
+       */
+      Attr.get('plcTag.name').setValidators([
+          Validators.required,
+          Validators.minLength(15),
+          Validators.maxLength(48),
+          Validators.pattern(/^[a-zA-Z0-9!#$%^&*()_-]+$/),
+        ]); // Sync validators
+
+      Attr.get('plcTag.name').setAsyncValidators([
+
+      ]); // Async validators
+
+      return (Attr); /**return  a newly generated FormGroup to caller */
 }
   /**Gets all data with subscription - use this to refresh (i.e. f5) as well */
   rxF5(makeNewReq?: Boolean)  {
