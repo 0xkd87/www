@@ -11,6 +11,7 @@ import { Title } from '@angular/platform-browser';
 import { LibMngrComponent } from './libMngr.component';
 import { MsgBoardComponent } from '../../_shared/msgBoard/msgBoard.component';
 import { UdtListComponent } from '../UDT/udt-list/udt-list.component';
+import { TooltipComponent } from '../../_shared/tooltip/tooltip.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { UdtListComponent } from '../UDT/udt-list/udt-list.component';
     UdtListComponent,
     UdtCreateComponent,
     MsgBoardComponent,
-    UiNavComponent
+    UiNavComponent,
+    TooltipComponent
   ],
   exports: [
     LibMngrComponent,

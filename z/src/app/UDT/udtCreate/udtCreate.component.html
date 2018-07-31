@@ -60,9 +60,9 @@
               class="form-control"
               formControlName= "name">
           </div>
-<!--           <div *ngIf="formGroup.get('plcTag').errors">
-              illegal character..1
-            </div> -->
+          <div *ngIf="formGroup.get('plcTag').hasError && formGroup.get('plcTag.name').getError('nameExists')">
+              Name Already exists..!
+            </div>
           <div class="row"></div> <!-- for margin; blank -->
 
           <div class="row form-group"   [formGroup]="formGroup.get('plcTag.comment')">

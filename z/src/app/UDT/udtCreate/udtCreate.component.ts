@@ -4,7 +4,7 @@ import { IUdt, CONST_OBJTYPE } from './../../../_shared/interface/schemaLib.inte
 import { Component, OnInit, OnDestroy, Input, AfterViewInit, OnChanges } from '@angular/core';
 import { MsgService } from '../../../_shared/services/msg.service';
 import { Title } from '../../../../node_modules/@angular/platform-browser';
-import { FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { HostListenerService } from '../../../_shared/services/hostListener.service';
 import { ActivatedRoute, ParamMap } from '../../../../node_modules/@angular/router';
 
@@ -145,18 +145,26 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
       return (Attr); /**return  a newly generated FormGroup to caller */
 }
 
-validateUniqueName = (control: AbstractControl) => {
-/*   const x = (this._libUDTService.isNameUnique(control.value, false));
-  console.log(x);
-  return ( x ? null : { nameExists: true }); */
-console.log(this.formGroup);
-  return new Observable(observer => {
+validateUniqueName  = (control: AbstractControl): Observable<ValidationErrors> => {
+
+console.log(control);
+/*   return new Observable(observer => {
     if ( !this._libUDTService.isNameUnique(control.value, false) ) {
       observer.next({nameExists: true});
     } else {
       observer.next(null);
     }
-  });
+  }); */
+
+   return (this._libUDTService.isNameUnique(control.value, false));
+
+ /*  this._libUDTService.isNameUnique(control.value, false)
+  .subscribe(
+    r => {},
+    () => {},
+    () => {}
+  ); */
+
 }
 
   /**Gets all data with subscription - use this to refresh (i.e. f5) as well */

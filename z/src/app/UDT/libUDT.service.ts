@@ -85,7 +85,7 @@ rxArr() {
     );
   }
 
-  isNameUnique(name: string, allowOwn: boolean = false): boolean {
+  isNameUnique(name: string, allowOwn: boolean = false): Observable<any> {
     let i = 0;
     this.rxArr().forEach(
       u => {
@@ -95,7 +95,16 @@ rxArr() {
       }
     );
      console.log(i);
-    return (i === 0 ? true : false );
+    // return (i === 0 ? true : false );
+    return new Observable(observer => {
+      if ( i !== 0 ) {
+        observer.next({nameExists: true});
+      } else {
+        observer.next(null);
+      }
+      observer.complete();
+    });
+
   }
 
 
