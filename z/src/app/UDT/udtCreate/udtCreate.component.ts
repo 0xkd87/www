@@ -4,7 +4,7 @@ import { IUdt, CONST_OBJTYPE } from './../../../_shared/interface/schemaLib.inte
 import { Component, OnInit, OnDestroy, Input, AfterViewInit, OnChanges } from '@angular/core';
 import { MsgService } from '../../../_shared/services/msg.service';
 import { Title } from '../../../../node_modules/@angular/platform-browser';
-import { FormGroup, Validators } from '@angular/forms';
+import { FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { HostListenerService } from '../../../_shared/services/hostListener.service';
 import { ActivatedRoute, ParamMap } from '../../../../node_modules/@angular/router';
 
@@ -133,17 +133,32 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
        */
       Attr.get('plcTag.name').setValidators([
           Validators.required,
-          Validators.minLength(15),
+          Validators.minLength(5),
           Validators.maxLength(48),
-          Validators.pattern(/^[a-zA-Z0-9!#$%^&*()_-]+$/),
+          Validators.pattern(/^[a-zA-Z0-9!#$%^&*()_-]+$/)
         ]); // Sync validators
 
       Attr.get('plcTag.name').setAsyncValidators([
-
+        this.validateUniqueName.bind(Attr.get('plcTag.name'))
       ]); // Async validators
-
+      console.log(Attr);
       return (Attr); /**return  a newly generated FormGroup to caller */
 }
+
+validateUniqueName = (control: AbstractControl) => {
+/*   const x = (this._libUDTService.isNameUnique(control.value, false));
+  console.log(x);
+  return ( x ? null : { nameExists: true }); */
+console.log(this.formGroup);
+  return new Observable(observer => {
+    if ( !this._libUDTService.isNameUnique(control.value, false) ) {
+      observer.next({nameExists: true});
+    } else {
+      observer.next(null);
+    }
+  });
+}
+
   /**Gets all data with subscription - use this to refresh (i.e. f5) as well */
   rxF5(makeNewReq?: Boolean)  {
     this.udtArr = []; // initialize when called.. otherwise the async data will be keep appended..!

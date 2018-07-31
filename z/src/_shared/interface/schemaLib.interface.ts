@@ -140,7 +140,8 @@ class _plcTag {
             [Validators.required,
               Validators.minLength(5),
               Validators.maxLength(48),
-              Validators.pattern(/^[a-zA-Z0-9!#$%^&*()_-]+$/)])
+              Validators.pattern(/^[a-zA-Z0-9!#$%^&*()_-]+$/)]),
+              Validators.composeAsync([]),
         ),
         comment: this.comment.getFormGroup(
           [ Validators.minLength(5),

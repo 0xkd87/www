@@ -85,6 +85,18 @@ rxArr() {
     );
   }
 
+  isNameUnique(name: string, allowOwn: boolean = false): boolean {
+    let i = 0;
+    this.rxArr().forEach(
+      u => {
+        if ((name === u.plcTag.name) && (name !== '') )  {
+          i = i + 1;
+        }
+      }
+    );
+     console.log(i);
+    return (i === 0 ? true : false );
+  }
 
 
 

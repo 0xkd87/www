@@ -60,6 +60,9 @@
               class="form-control"
               formControlName= "name">
           </div>
+<!--           <div *ngIf="formGroup.get('plcTag').errors">
+              illegal character..1
+            </div> -->
           <div class="row"></div> <!-- for margin; blank -->
 
           <div class="row form-group"   [formGroup]="formGroup.get('plcTag.comment')">
