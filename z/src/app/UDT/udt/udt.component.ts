@@ -55,7 +55,8 @@ export class UdtComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     // prevent memory leak when component destroyed
-
+    console.log('destr');
+    this._rxArr = []; /**delete the array */
   }
 
 

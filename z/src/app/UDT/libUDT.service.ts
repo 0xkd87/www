@@ -10,6 +10,7 @@ const url = {
   addUDT: 'http://emis000695/_c/__api/post/post.udt.add.php',
   getListUDT: 'http://emis000695/_c/__api/get/get.udt.list.php',
   updateUDT: 'http://emis000695/_c/__api/u/u.udt.php',
+  deleteUDT: 'http://emis000695/_c/__api/d/d.udt.php',
 };
 
 @Injectable(
@@ -81,7 +82,7 @@ rxArr() {
  * change it later to optimize or unneccessary
  */
 //  console.log(dUDT);
-  return this._httpServ.postTx(url.updateUDT, <IUdt>(dUDT));
+  return this._httpServ.postTx(url.deleteUDT, <IUdt>(dUDT));
   }
 /*   __addNew(newUDT: IUdt) {
 

@@ -6,7 +6,7 @@ import { MsgService } from '../../../_shared/services/msg.service';
 import { Title } from '../../../../node_modules/@angular/platform-browser';
 import { FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { HostListenerService } from '../../../_shared/services/hostListener.service';
-import { ActivatedRoute, ParamMap } from '../../../../node_modules/@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '../../../../node_modules/@angular/router';
 
 
 
@@ -40,7 +40,8 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
     private _libUDTService: LibUDTService,
     private _msg: MsgService,
     public _hostListner: HostListenerService,
-    private route: ActivatedRoute ) {
+    private route: ActivatedRoute,
+    private _goTo: Router ) {
 
 
       // this.udtArr = [];
@@ -118,6 +119,12 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
   ngAfterViewInit() {
   }
 
+  /**
+   * Navigate back to list page: e.g. After delete
+   */
+navigateTo(path: string) {
+  this._goTo.navigateByUrl(path);
+}
   /**
    * build the form as default (if no agument; or if UST is passed as an argument..)
    */
@@ -211,8 +218,32 @@ loadToForm(editingUDT: IUdt) {
       err => {},
       () => this.rxF5(true)
     );
-
 }
+
+deleteUDT() {
+  /**
+   * Load actual (validated) values from the form
+   */
+  const delUDT: IUdt = this.loadFromForm();
+
+  /**
+   * make a update request and upon success, get the entire chunk back (refresh)
+   */
+  this._subscriptionPost = this._libUDTService.deleteSingle(<IUdt>(delUDT))
+  .subscribe(
+  udt => {
+    // console.log(udt);
+    const u: IUdt = udt;
+    this._msg.add('UDT: "' + u.plcTag.name + '" is Deleted..!'); },
+    err => {},
+    () => {
+      // this.rxF5(true); // do not update on delete - we would just get out of this page..
+      this.navigateTo('/libMngr/udt');
+    }
+  );
+}
+
+
 
   x() {
     console.log(new IUdt());

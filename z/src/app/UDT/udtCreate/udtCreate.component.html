@@ -15,6 +15,8 @@
         routerLinkActive="active"
         value = "&#x25E4;">
 
+        <div class = "seperator"></div> <!--Separator-->
+
         <!-- Add new button -->
         <input
         type="submit"
@@ -22,6 +24,8 @@
         (click)="postReq_CreateUDT()"
         value = "&#x271A;"
         [disabled]="(!formGroup.valid) || (this.opEdit)">
+
+        <div class = "seperator"></div> <!--Separator-->
 
         <!-- Update / Apply modification buuton -->
         <input
@@ -34,6 +38,7 @@
         <!-- Trigger element: Open the delete confirmation dialog -->
         <input
         type="submit"
+        (click)="deleteUDT()"
         class = "cl-trigger-round cl-trigger-round-delete"
         value = "&#x2718;"
         [disabled]="(!this.opEdit)">

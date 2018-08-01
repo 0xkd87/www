@@ -14,8 +14,8 @@ class _multiLangText {
   en?: string; // default language  = en
   de?: string; // default language  = de
   constructor(src?: _multiLangText) {
-    this.en = 'en comment';
-    this.de = 'de - comment';
+    this.en = 'en';
+    this.de = '';
     if (src) { /**shallow copy if source is provided */
       this._shallowCloneFromSrc(src);
     }

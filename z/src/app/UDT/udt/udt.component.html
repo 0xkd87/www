@@ -8,28 +8,33 @@
 
         <div class="cl-TopBarContainer"
         [class.cl-FixedContainer-Top] = "_hostListner.stickyOnWindowScroll(75)">
-          <div class="clWidth25Perc leftcolumn">
+              <div class="clWidth15Perc leftcolumn">
 
-              <div
-                class = "cl-trigger-round cl-trigger-round-add"
-                routerLink = "createUDT"
-                routerLinkActive="active">
-                <div>&#x271A;</div>
+                  <div
+                    class = "cl-trigger-round cl-trigger-round-add"
+                    routerLink = "createUDT"
+                    routerLinkActive="active">
+                    <div>&#x271A;</div>
+                  </div>
               </div>
-          </div>
 
-          <div class="clWidth75Perc rightcolumn">
+              <div class="clWidth66Perc leftcolumn">
+                  <input
+                  type="text"
+                  name = "filter"
+                  placeholder="Filter....">
 
-              <input
-              type="text"
-              name = "filter"
-              placeholder="Filter....">
-
-              <button (click)="rxF5()">
-                  get
-                </button>
-
-          </div>
+                  <button (click)="rxF5()">
+                      get
+                    </button>
+              </div>
+              <div class = "seperator"></div>
+              <div class="clWidth15Perc rightcolumn">
+                <div class = "info-container">
+                  <div class = "info-val">{{_rxArr.length}}</div>
+                  <div class = "info-desc">Objects Total</div>
+                </div>
+              </div>
         </div>
 
 </div>

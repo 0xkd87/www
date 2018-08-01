@@ -31,6 +31,7 @@ html, body
   width: 100%;
   padding-right: 4px;
   vertical-align: middle;
+  box-sizing: content-box;
 
 }
 /* Right column */
@@ -40,6 +41,16 @@ html, body
   border-left: 0.5px solid rgba(221, 221, 221, 0.884);
   width: 100%;
   vertical-align: middle;
+  box-sizing: content-box;
+}
+
+.seperator
+{
+  display: inline-flex;
+  min-width: 1px;
+  margin: 0%;
+  padding: 0%;
+  border-left: 1.5px solid rgba(211, 211, 211, 0.884);
 }
 .row
 {
@@ -58,6 +69,10 @@ html, body
   display: table;
   clear: both;
 }
+.clWidth15Perc
+{
+width: 15%;
+}
 .clWidth25Perc
 {
 width: 25%;
@@ -74,6 +89,14 @@ width: 33%;
 {
 width: 75%;
 }
+.clWidth85Perc
+{
+width: 85%;
+}
+.clWidth90Perc
+{
+width: 90%;
+}
 .clWidth66Perc
 {
 width: 66%;
@@ -87,7 +110,7 @@ width: 100%;
 @media screen and (max-width: 600px)
 {
     .leftcolumn, .rightcolumn,row,
-    .clWidth25Perc,.clWidth33Perc,.clWidth50Perc,.clWidth66Perc,.clWidth75Perc,.clWidth100Perc
+    .clWidth15Perc,.clWidth25Perc,.clWidth33Perc,.clWidth50Perc,.clWidth66Perc,.clWidth75Perc,.clWidth85Perc,.clWidth90Perc,.clWidth100Perc
     {
         width: 100%;
         padding: 0;

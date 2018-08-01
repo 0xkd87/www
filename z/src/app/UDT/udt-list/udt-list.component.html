@@ -3,9 +3,10 @@
         <div class="row">
                 <div
                 (click)="isControlVisible = !isControlVisible"
+                class = "leftcolumn"
                 [class.clWidth100Perc] =  "!isControlVisible"
-                [class.clWidth75Perc] =  "isControlVisible"
-                class = "leftcolumn">
+                [class.clWidth85Perc] =  "isControlVisible"
+                >
                   <h2> {{udtNode.plcTag.name}}</h2>
                   <p class="cl-Comment"> {{udtNode.plcTag.comment.en}} </p>
                   <p class="cl-label">Revision: </p>
@@ -13,7 +14,7 @@
                 </div>
 
                 <div
-                [class.clWidth25Perc] =  "isControlVisible"
+                [class.clWidth15Perc] =  "isControlVisible"
                 [class.rightcolumn] =  "isControlVisible">
                   <div class= "cl-ControlContainer" [style.display]="isControlVisible ? 'block' : 'none'">
                         <input class="cl-button cl-button-edit"
@@ -22,17 +23,13 @@
                         routerLinkActive="active"
                         value = "&#x2636;"
                         >
-                             <!--  &#x21b1;&#x21b2; &#9998; -->
-
-                        <div class="cl-button cl-button-delete">
-                            &#x2718;
-                        </div>
                     </div>
                 </div>
-      </div>
+          </div>
+        </div>
 
 
-</div>
+
 
 
 

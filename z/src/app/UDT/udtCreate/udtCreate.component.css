@@ -49,6 +49,7 @@ h1{
 
 .cl-TopBarContainer
 {
+  display: flex;
   margin: 0px;
   margin-bottom: 10px;
   padding: 10px;
@@ -108,11 +109,11 @@ input[type=text]
   line-height: 64px;
   height: 64px;
   width: 64px;
-  display: inline-block;
+  display: flex;
   vertical-align: middle;
   text-align: center;
   border : none;
-  border-radius: 50%;
+  border-radius: 100%;
   box-shadow: 4px 3px 12px 0 rgba(0,0,0,0.5);
   cursor: pointer;
   font-size: 24px;
