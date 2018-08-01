@@ -86,7 +86,8 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
     /**
      * Build a form out of the editing UDT..!
      */
-      this.formGroup = this.buildForm(<IUdt>this.editingUDT);
+    this.formGroup = this.buildForm(<IUdt>this.editingUDT);
+
     }
 
   ngOnInit() {
@@ -94,6 +95,7 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
      * scroll to the top when page is drawn
      */
     window.scrollTo(0, 0);
+
     }
 
 
@@ -134,7 +136,7 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
       Attr.get('plcTag.name').setValidators([
           Validators.required,
           Validators.minLength(5),
-          Validators.maxLength(48),
+          Validators.maxLength(80),
           Validators.pattern(/^[a-zA-Z0-9!#$%^&*()_-]+$/)
         ]); // Sync validators
 
@@ -146,25 +148,13 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
 }
 
 validateUniqueName  = (control: AbstractControl): Observable<ValidationErrors> => {
+  console.log(control);
 
-console.log(control);
-/*   return new Observable(observer => {
-    if ( !this._libUDTService.isNameUnique(control.value, false) ) {
-      observer.next({nameExists: true});
-    } else {
-      observer.next(null);
-    }
-  }); */
-
-   return (this._libUDTService.isNameUnique(control.value, false));
-
- /*  this._libUDTService.isNameUnique(control.value, false)
-  .subscribe(
-    r => {},
-    () => {},
-    () => {}
-  ); */
-
+  /**
+   * pass the own name as an argument to exclude it from the existing scan list..!
+   */
+  const _ownName = this.opEdit ? this.editingUDT.plcTag.name : undefined;
+  return (this._libUDTService.isNameUnique(control.value, _ownName));
 }
 
   /**Gets all data with subscription - use this to refresh (i.e. f5) as well */
@@ -195,10 +185,34 @@ loadToForm(editingUDT: IUdt) {
         const u: IUdt = udt;
         this._msg.add('UDT: ' + u.plcTag.name + ' Added Successfully..!'); },
         err => {},
-        () => this.rxF5(true)
+        () => {
+          this.rxF5(true);
+          this.formGroup = this.buildForm(new IUdt());
+        }
       );
 
   }
+
+  updateUDT() {
+    /**
+     * Load actual (validated) values from the form
+     */
+    const newUDT: IUdt = this.loadFromForm();
+
+    /**
+     * make a update request and upon success, get the entire chunk back (refresh)
+     */
+    this._subscriptionPost = this._libUDTService.update(<IUdt>(newUDT))
+    .subscribe(
+    udt => {
+      // console.log(udt);
+      const u: IUdt = udt;
+      this._msg.add('UDT: "' + u.plcTag.name + '" updated Successfully..!'); },
+      err => {},
+      () => this.rxF5(true)
+    );
+
+}
 
   x() {
     console.log(new IUdt());

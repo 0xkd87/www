@@ -204,7 +204,7 @@ export class IUdt {
   public getFormGroup(): FormGroup {
     const fg = new FormGroup(
       {
-        // ident: this.ident.getFormGroup(),
+        ident: this.ident.getFormGroup(),
         plcTag: this.plcTag.getFormGroup(),
       }
     );

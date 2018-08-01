@@ -26,12 +26,23 @@
         <!-- Update / Apply modification buuton -->
         <input
         type="submit"
+        (click)="updateUDT()"
         class = "cl-trigger-round cl-trigger-round-update"
         value = "&#x21bb;"
         [disabled]="(!formGroup.valid) || (!this.opEdit)">
 
+        <!-- Trigger element: Open the delete confirmation dialog -->
+        <input
+        type="submit"
+        class = "cl-trigger-round cl-trigger-round-delete"
+        value = "&#x2718;"
+        [disabled]="(!this.opEdit)">
 
 <!--
+
+                          <div class="cl-button cl-button-delete">
+                            &#x2718;
+                        </div>
           <button (click)="this.x()">
             post
           </button>
@@ -60,7 +71,7 @@
               class="form-control"
               formControlName= "name">
           </div>
-          <div *ngIf="formGroup.get('plcTag').hasError && formGroup.get('plcTag.name').getError('nameExists')">
+          <div *ngIf="formGroup.get('plcTag.name').hasError && formGroup.get('plcTag.name').getError('nameExists')">
               Name Already exists..!
             </div>
           <div class="row"></div> <!-- for margin; blank -->

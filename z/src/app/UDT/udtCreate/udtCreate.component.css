@@ -139,6 +139,12 @@ input[type=text]
   font-size: 36px;
   font-weight: 600;
 }
+.cl-trigger-round-delete
+{
+  color: rgb(253, 30, 30);
+  font-size: 36px;
+  font-weight: 600;
+}
 
 .cl-trigger-round:disabled
 {
