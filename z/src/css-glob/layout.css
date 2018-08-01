@@ -31,8 +31,6 @@ html, body
   width: 100%;
   padding-right: 4px;
   vertical-align: middle;
-  box-sizing: content-box;
-
 }
 /* Right column */
 .rightcolumn {
@@ -41,7 +39,6 @@ html, body
   border-left: 0.5px solid rgba(221, 221, 221, 0.884);
   width: 100%;
   vertical-align: middle;
-  box-sizing: content-box;
 }
 
 .seperator

@@ -105,11 +105,12 @@ rxArr() {
     let j = 0;
     this.rxArr().forEach(
       u => {
-        j = ((ownName) && ownName !== '' && ownName === u.plcTag.name) ? j + 1 : j;
-        if ((name === u.plcTag.name) && (name !== '') && (ownName ? (ownName !== '' && ownName !== name) : true) )  {
+        const uName = u.plcTag.name.toLowerCase();
+        j = ( ownName !== '' && ownName === uName) ? j + 1 : j;
+        if ((name === uName) && (name !== '') && (ownName !== '' ? (ownName !== name) : true) )  {
           i = i + 1;
         }
-        j = ((ownName) && ownName !== '' && ownName !== name) ? 0 : j; // reset the count if user changes the name
+        j = (ownName !== '' && ownName !== name) ? 0 : j; // reset the count if user changes the name
       }
     );
      console.log(j);
