@@ -195,8 +195,7 @@ a.cl-a-LinkTile:hover div.cl-text-LinkHeading
 
 .img-menu-emb
 {
-  font-size: 24px;
-  font-weight: 900;
+
   cursor: pointer;
   text-align: center;
   vertical-align: middle;
@@ -204,13 +203,15 @@ a.cl-a-LinkTile:hover div.cl-text-LinkHeading
   top: 10;
   float: right;
   box-shadow: -1px 3px 8px 1px rgba(0, 0, 0, 0.404);
-  background: rgba(247, 231, 16, 0.904);
-  color: rgb(31, 30, 27);
-  border-radius: 80%;
-  height: 52px;
-  line-height: 52px; /* same as height! */
-  width: 52px;
+  background: rgba(5, 155, 255, 0.904);
+  color: rgb(66, 66, 66);
+  border-radius: 50%;
+  height: 56px;
+  line-height: 56px; /* same as height! */
+  width: 56px;
   background-repeat: no-repeat;
+  font-size: 36px;
+  font-weight: 400;
   /*
   background-size: contain;
   background-position: center;
@@ -222,6 +223,6 @@ a.cl-a-LinkTile:hover div.cl-text-LinkHeading
   /* Start the shake animation and make the animation last for 0.5 seconds */
   animation: shake 0.2s;
   /* When the animation is finished, start again */
-  animation-iteration-count: 2; /*infinite;*/
+  animation-iteration-count: 1; /*infinite;*/
 }
 

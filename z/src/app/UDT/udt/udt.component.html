@@ -1,39 +1,44 @@
 
 
 <!-- <div class="row">
-
+                    <div class= "mi">&#xe2cc;</div>
 </div> -->
 
 <div class="row">
 
-        <div class="cl-TopBarContainer"
-        [class.cl-FixedContainer-Top] = "_hostListner.stickyOnWindowScroll(75)">
-              <div class="clWidth15Perc leftcolumn">
-
-                  <div
-                    class = "cl-trigger-round cl-trigger-round-add"
+        <div
+        [class.cl-TopBarContainer] = "!_hostListner.stickyOnWindowScroll(25)"
+        [class.cl-FixedContainer-Top] = "_hostListner.stickyOnWindowScroll(25)">
+              <div class="clWidth25Perc leftcolumn">
+                  <!-- Trigger Element: "Add new" button -->
+                  <input
+                    class = "cl-trigger-round cl-trigger-round-add mi"
                     routerLink = "createUDT"
-                    routerLinkActive="active">
-                    <div>&#x271A;</div>
-                  </div>
-              </div>
+                    routerLinkActive="active"
+                    value = "&#xe145;">
 
+                  <!-- Trigger Element: "Refresh (rxF5) http get requesting" button -->
+                  <input
+                  type = "submit"
+                  class = "cl-trigger-round cl-trigger-round-blue mi"
+                  (click)="rxF5()"
+                  value = "&#xe627;"/>
+
+              </div>
+              <div class = "seperator"></div>
               <div class="clWidth66Perc leftcolumn">
                   <input
                   type="text"
                   name = "filter"
                   placeholder="Filter....">
-
-                  <button (click)="rxF5()">
-                      get
-                    </button>
               </div>
               <div class = "seperator"></div>
               <div class="clWidth15Perc rightcolumn">
-                <div class = "info-container">
-                  <div class = "info-val">{{_rxArr.length}}</div>
-                  <div class = "info-desc">Objects Total</div>
-                </div>
+
+                  <div class = "info-container">
+                      <div class = "info-val">{{_rxArr.length}}</div>
+                      <div class = "info-desc">Objects Total</div>
+                    </div>
               </div>
         </div>
 

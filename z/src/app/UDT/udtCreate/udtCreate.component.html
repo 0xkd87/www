@@ -10,7 +10,7 @@
         class = "cl-trigger-round cl-trigger-round-blue"
         routerLink = "/libMngr/udt"
         routerLinkActive="active"
-        value = "&#x25E4;">
+        value = "&#xe5c4;">
 
         <div class = "seperator"></div> <!--Separator-->
 
@@ -19,49 +19,36 @@
         type="submit"
         class = "cl-trigger-round cl-trigger-round-add"
         (click)="postReq_CreateUDT()"
-        value = "&#x271A;"
+        value = "&#xe02e;"
         [disabled]="(!formGroup.valid) || (this.opEdit)">
 
         <div class = "seperator"></div> <!--Separator-->
 
-        <!-- Update / Apply modification buuton -->
+        <!-- save / Update / Apply modification buuton -->
         <input
         type="submit"
         (click)="updateUDT()"
         class = "cl-trigger-round cl-trigger-round-update"
-        value = "&#x21bb;"
+        value = "&#xe161;"
         [disabled]="(!formGroup.valid) || (!this.opEdit)">
 
         <!-- Trigger element: Open the delete confirmation dialog -->
+
         <input
         type="submit"
         (click)="deleteUDT()"
         class = "cl-trigger-round cl-trigger-round-delete mi"
         value = "&#xe92b;"
-        [disabled]="(!this.opEdit)"/>
-
-<!--
-
-                          <div class="cl-button cl-button-delete">
-                            &#x2718;
-                        </div>
-          <button (click)="this.x()">
-            post
-          </button>
-      <button (click)="postReq_CreateUDT()">
-          post
-        </button>
-      &#x2771; &#x21bb;-->
+        [disabled]="(!this.opEdit)">
     </div>
   </div>
-
+<!-- Form starts here -->
   <form
   [formGroup]="formGroup.get('plcTag')"
-  class="cl-FormContainer"
+  class="cl-FormContainer form-group"
+  [class.cl-IsF] = "formGroup.get('plcTag.isF').value"
   novalidate>
-  <h1>UDT</h1>
-  <div class="form-group">
-
+  <!-- <h1>UDT</h1> -->
         <div class="row">
             <label
               for="udtName">
@@ -73,10 +60,20 @@
               class="form-control"
               formControlName= "name">
           </div>
-          <div *ngIf="formGroup.get('plcTag.name').hasError && formGroup.get('plcTag.name').getError('nameExists')">
+          <!-- validation errors -->
+          <div
+          class = "validation-msg-red"
+          *ngIf="formGroup.get('plcTag.name').hasError && formGroup.get('plcTag.name').getError('nameExists')">
               Name Already exists..!
-            </div>
-          <div class="row"></div> <!-- for margin; blank -->
+          </div>
+          <div class="row">
+              <input
+              type="checkbox"
+              name = "isF"
+              class="form-control"
+              formControlName= "isF">
+
+          </div> <!-- for margin; blank -->
 
           <div class="row form-group"   [formGroup]="formGroup.get('plcTag.comment')">
               <label
@@ -89,14 +86,8 @@
                 class="form-control"
                 formControlName="en">
             </div>
-    </div>
 
-<!--
-  <a routerLink="/usrAuth/signup" routerLinkActive="active">Sign Up</a>
-  <a routerLink="/libMngr" routerLinkActive="active">Lib</a>
--->
-
-    </form>
+</form> <!-- Form End -->
 
 
     <ul *ngFor="let u of this.udtArr; let i = index">

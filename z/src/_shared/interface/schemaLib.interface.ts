@@ -148,7 +148,9 @@ class _plcTag {
             Validators.maxLength(128),
             Validators.pattern(/^[a-zA-Z0-9!#$%^&*()@|+ _-]+$/)]
         ),
-
+        isF : new FormControl(this.isF),
+        datatype : new FormControl(this.datatype),
+        address : new FormControl(this.address),
       });
       return fg;
   }

@@ -1,0 +1,126 @@
+
+input[type=text]
+{
+    background: rgba(255, 255, 255, 0);
+    color: rgb(75, 75, 75);
+    align-self: center;
+    margin: 1px;
+    width: 100%;
+    padding: 2px;
+    font-size: 16px;
+    font-weight: 450;
+    font-variant: normal;
+    min-height: 32px;
+    display: block;
+    border : none;
+    border-bottom: 1.5px solid rgba(138, 138, 138, 0.705);
+}
+
+/*invalid input indication*/
+.form-control.ng-dirty.ng-touched.ng-invalid
+{
+    background-color: rgba(255, 217, 0, 0);
+    border-bottom: 3px solid rgba(255, 0, 0, 0.959);
+}
+.form-control.ng-dirty.ng-touched.ng-valid
+{
+    border-bottom: 3px solid rgba(74, 252, 3, 0.986);
+}
+
+.cl-trigger-transperant
+{
+  background-color: rgba(56, 56, 56, 0);
+  text-shadow: 3px 3px 2px rgba(41, 41, 41, 0);
+  box-shadow: 4px 3px 12px 0 rgba(0, 0, 0, 0);
+}
+
+.cl-trigger-round
+{
+  margin: 10px;
+  padding: 0px;
+  line-height: 1px;
+  height: 64px;
+  width: 64px;
+  vertical-align: middle;
+  text-align: center;
+  border : none;
+  border-radius: 50%;
+  box-shadow: 4px 3px 12px 0 rgba(0,0,0,0.5);
+
+  cursor: pointer;
+  font-size: 48px;
+  font-weight: 700;
+
+  text-shadow: 3px 3px 2px rgb(41, 41, 41);
+  background-color: rgba(44, 44, 44, 0.87);
+
+  font-family: 'Material Icons';
+  background-repeat: no-repeat;
+}
+
+.cl-trigger-round-blue
+{
+  color: rgb(65, 152, 252);
+}
+.cl-trigger-round-add
+{
+  color: rgb(133, 255, 52);
+}
+
+.cl-trigger-round-update
+{
+  color: rgb(250, 225, 85);
+}
+.cl-trigger-round-delete
+{
+  color: rgb(247, 72, 72);
+}
+
+.cl-trigger-round:disabled
+{
+  color: rgba(0, 0, 0, 0.212);
+
+  /* transperants = 0 */
+  background-color: rgba(56, 56, 56, 0);
+  text-shadow: 3px 3px 2px rgba(41, 41, 41, 0);
+  box-shadow: 4px 3px 12px 0 rgba(0, 0, 0, 0);
+
+
+}
+.cl-trigger-round:hover
+{
+  animation: shake 0.2s;
+  /* When the animation is finished, start again */
+  animation-iteration-count: 1; /*infinite;*/
+}
+
+.validation-msg-red
+{
+  font-size: 12px;
+  font-weight: 500;
+  color: rgb(250, 54, 54);
+  font-variant: normal;
+}
+
+/* .cl-trigger-round
+{
+  margin: 10px;
+  padding: 0px;
+  line-height: 1px;
+  height: 64px;
+  width: 64px;
+  vertical-align: middle;
+  text-align: center;
+  border : none;
+  border-radius: 100%;
+  box-shadow: 4px 3px 12px 0 rgba(0,0,0,0.5);
+  cursor: pointer;
+  font-size: 48px;
+  font-weight: 700;
+
+  text-shadow: -1px 1px 3px rgb(41, 41, 41);
+  background-color: rgba(56, 56, 56, 0.884);
+
+  font-family: 'Material Icons';
+  background-repeat: no-repeat;
+} */

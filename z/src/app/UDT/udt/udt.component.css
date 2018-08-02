@@ -16,6 +16,7 @@
   left: 0;
 
   display: flex;
+  background-color: rgb(255, 255, 255);
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.604);
   width: 100%;
   vertical-align: middle;
@@ -25,50 +26,20 @@
 {
   margin: 0px;
   margin-bottom: 10px;
-  padding: 20px;
+  padding: 10px;
   background-color: rgb(238, 238, 238);
 
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.304);
-  min-height: 120px;
+/*   min-height: 120px;
+ */
   width: 100%;
   align-content: center;
   vertical-align: middle;
 
-  display: flex;
+  display: inline-flex;
 
 }
 
-.cl-trigger-round
-{
-  margin: 10px;
-  padding: 1px;
-  line-height: 64px;
-  height: 64px;
-  width: 64px;
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-  border : none;
-  border-radius: 90%;
-  box-shadow: 4px 3px 12px 0 rgba(0,0,0,0.5);
-  cursor: pointer;
-  font-size: 28px;
-  font-weight: 400;
-
-  text-shadow: -1px 1px 3px rgb(41, 41, 41);
-  background-color: rgb(61, 61, 61);
-}
-
-.cl-trigger-round-add
-{
-  color: greenyellow;
-}
-.cl-trigger-round:hover
-{
-  animation: shake 0.2s;
-  /* When the animation is finished, start again */
-  animation-iteration-count: 2; /*infinite;*/
-}
 
 .info-container {
   display: inline-block;

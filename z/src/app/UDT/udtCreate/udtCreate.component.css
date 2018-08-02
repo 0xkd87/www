@@ -27,7 +27,7 @@ h1{
     width: auto;
     height: auto;
     margin: 10px;
-    padding: 10px;
+    padding: 20px;
     overflow: auto;
     box-shadow: 4px 3px 14px 0 rgba(0,0,0,0.5);
     background: rgba(243, 243, 243, 0.692);
@@ -61,6 +61,13 @@ h1{
   align-content: center;
   vertical-align: middle;
 }
+
+.cl-IsF
+{
+  border-left: 5px solid rgb(250, 234, 4);
+  background-color: rgb(255, 255, 255);
+
+}
 label
 {
     /*display: none;*/
@@ -73,89 +80,6 @@ label
 /*     text-shadow: 2px 1px 1px rgb(31, 31, 31); */
  }
 
-input[type=text]
-{
-    background: rgba(255, 255, 255, 0);
-    color: rgb(75, 75, 75);
-    align-self: center;
-    margin: 1px;
-    width: 100%;
-    padding: 2px;
-    font-size: 16px;
-    font-weight: 450;
-    font-variant: normal;
-    min-height: 32px;
-    display: block;
-    border : none;
-    border-bottom: 1.5px solid rgba(138, 138, 138, 0.705);
-}
-
-/*invalid input indication*/
-.form-control.ng-dirty.ng-touched.ng-invalid
-{
-    background-color: rgba(255, 217, 0, 0);
-    border-bottom: 3px solid rgba(255, 0, 0, 0.959);
-}
-.form-control.ng-dirty.ng-touched.ng-valid
-{
-    border-bottom: 3px solid rgba(74, 252, 3, 0.986);
-}
-
-.cl-trigger-round
-{
-  margin: 10px;
-  padding: 0px;
-  line-height: 64px;
-  height: 64px;
-  width: 64px;
-  vertical-align: middle;
-  text-align: center;
-  border : none;
-  border-radius: 100%;
-  box-shadow: 4px 3px 12px 0 rgba(0,0,0,0.5);
-  cursor: pointer;
-  font-size: 36px;
-  font-weight: 400;
-
-  text-shadow: -1px 1px 3px rgb(41, 41, 41);
-  background-color: rgb(70, 70, 70);
-}
-
-.cl-trigger-round-blue
-{
-  color: rgb(47, 144, 255);
-}
-.cl-trigger-round-add
-{
-  color: rgb(85, 250, 121);
-  font-size: 32px;
-  font-weight: 600;
-}
-
-.cl-trigger-round-update
-{
-  color: rgb(250, 225, 85);
-  font-size: 48px;
-  font-weight: 600;
-}
-.cl-trigger-round-delete
-{
-  color: rgb(253, 30, 30);
-  font-size: 36px;
-  font-weight: 600;
-}
-
-.cl-trigger-round:disabled
-{
-  color: rgb(185, 185, 185);
-  background-color: rgb(116, 116, 116);
-}
-.cl-trigger-round:hover
-{
-  animation: shake 0.2s;
-  /* When the animation is finished, start again */
-  animation-iteration-count: 2; /*infinite;*/
-}
 @media screen and (max-width: 600px)
 {
     .cl-FormContainer,row
