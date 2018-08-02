@@ -36,7 +36,7 @@ html, body
 .rightcolumn {
   float: right;
   padding : 2px;
-  border-left: 0.5px solid rgba(221, 221, 221, 0.884);
+  /* border-left: 0.5px solid rgba(221, 221, 221, 0.884); */
   width: 100%;
   vertical-align: middle;
 }
@@ -57,6 +57,7 @@ html, body
   /* max-height: 200px; */
 
 /*   overflow: auto; */ /* Enable scroll if needed */
+vertical-align: middle;
 
 
 }

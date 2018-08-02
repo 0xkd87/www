@@ -190,9 +190,9 @@ export class IUdt {
     }
 
     /**
-     * assign class specific attributes ??
+     * assign class specific attributes
      */
-
+    this.plcTag.datatype = 'UDT'; // default as UDT
   }
 
   private _shallowCloneFromSrc(src: IUdt) {

@@ -150,7 +150,11 @@ navigateTo(path: string) {
       Attr.get('plcTag.name').setAsyncValidators([
         this.validateUniqueName.bind(Attr.get('plcTag.name'))
       ]); // Async validators
-      console.log(Attr);
+
+      // Disable some fields (readonly)
+      Attr.get('plcTag.datatype').disable();
+
+      // console.log(Attr);
       return (Attr); /**return  a newly generated FormGroup to caller */
 }
 
@@ -216,7 +220,20 @@ loadToForm(editingUDT: IUdt) {
       const u: IUdt = udt;
       this._msg.add('UDT: "' + u.plcTag.name + '" updated Successfully..!'); },
       err => {},
-      () => this.rxF5(true)
+      () => {
+        /**
+         * After the observer is finished (on complete,)
+         * + Refresh the updated data
+         * + Mark the form group (and all its children) as pristine (non Dirty) to disable the save Trigger
+         *   This has been saved and let's not give a user the ability to keep saving and not making senseless http requests
+         */
+        this.rxF5(true);
+        /**
+         *  + Mark the form group (and all its children) as pristine (non Dirty) to disable the save Trigger
+         *   This has been saved and let's not give a user the ability to keep saving and not making senseless http requests
+         */
+        this.formGroup.markAsPristine();
+      }
     );
 }
 

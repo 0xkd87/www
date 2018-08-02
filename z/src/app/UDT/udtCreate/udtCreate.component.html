@@ -24,13 +24,18 @@
 
         <div class = "seperator"></div> <!--Separator-->
 
-        <!-- save / Update / Apply modification buuton -->
+        <!-- save / Update / Apply modification button
+          This will stay disabled when
+           + From group is pristine (touched = no dirty, but no value change),
+           + form group is not valid,
+           + This is not an Edit (modifying) operation
+        -->
         <input
         type="submit"
         (click)="updateUDT()"
         class = "cl-trigger-round cl-trigger-round-update"
         value = "&#xe161;"
-        [disabled]="(!formGroup.valid) || (!this.opEdit)">
+        [disabled]="(!formGroup.valid) || (!this.opEdit) || (!formGroup.dirty)">
 
         <!-- Trigger element: Open the delete confirmation dialog -->
 
@@ -49,43 +54,74 @@
   [class.cl-IsF] = "formGroup.get('plcTag.isF').value"
   novalidate>
   <!-- <h1>UDT</h1> -->
-        <div class="row">
-            <label
-              for="udtName">
-              Name:
-            </label>
-            <input
-              type="text"
-              name = "udtName"
-              class="form-control"
-              formControlName= "name">
-          </div>
-          <!-- validation errors -->
-          <div
-          class = "validation-msg-red"
-          *ngIf="formGroup.get('plcTag.name').hasError && formGroup.get('plcTag.name').getError('nameExists')">
-              Name Already exists..!
-          </div>
-          <div class="row">
-              <input
-              type="checkbox"
-              name = "isF"
-              class="form-control"
-              formControlName= "isF">
 
-          </div> <!-- for margin; blank -->
+        <div class="row"> <!--row 1-->
+              <div class = "leftcolumn clWidth25Perc">
+                  <label  for="udtName">Name:</label>
+              </div>
+              <div class = "rightcolumn clWidth75Perc">
+                    <input
+                      type="text"
+                      name = "udtName"
+                      class="form-control"
+                      formControlName= "name">
 
-          <div class="row form-group"   [formGroup]="formGroup.get('plcTag.comment')">
-              <label
-                for="udtComment">
-                Comment:
-              </label>
-              <input
+            <!-- validation errors -->
+                      <div
+                      class = "validation-msg-red"
+                      *ngIf="formGroup.get('plcTag.name').hasError && formGroup.get('plcTag.name').getError('nameExists')">
+                          Name Already exists..!
+                      </div>
+                </div>
+          </div> <!--row 1 END -->
+
+          <div class="row form-group"   [formGroup]="formGroup.get('plcTag.comment')"> <!--row 2 BEGIN -->
+            <div class = "leftcolumn clWidth25Perc">
+                <label  for="udtComment">Comment:</label>
+            </div>
+            <div class = "rightcolumn clWidth75Perc">
+                <input
                 type="text"
                 name = "udtComment"
                 class="form-control"
                 formControlName="en">
             </div>
+          </div> <!--row 2 END -->
+
+
+          <div class="row"> <!--row 3 BEGIN -->
+            <div class = "leftcolumn clWidth25Perc">
+                <label for="isF"> Fail-Safe:</label>
+            </div>
+            <div class = "rightcolumn clWidth75Perc">
+                  <input
+                  type="checkbox"
+                  name = "isF"
+                  class="form-control"
+                  formControlName= "isF">
+            </div>
+          </div><!--row 3 END -->
+
+          <div class="row"> <!--row 4 BEGIN -->
+            <div class = "leftcolumn clWidth15Perc">
+                <label for="datatype"> Data-Type:</label>
+            </div>
+            <div class = "rightcolumn clWidth85Perc">
+                <input
+                type="text"
+                name = "datatype"
+                class="form-control"
+                formControlName= "datatype">
+            </div>
+          </div><!--row 4 END -->
+
+          <div class="row"> <!--row 4 BEGIN -->
+
+            <input
+            type="submit"
+            class = "cl-trigger-round cl-trigger-round-add mi"
+            value = "&#xe03b;">
+          </div>
 
 </form> <!-- Form End -->
 

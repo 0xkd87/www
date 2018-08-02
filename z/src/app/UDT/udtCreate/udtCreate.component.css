@@ -24,6 +24,7 @@ h1{
 {
 
     display: block;
+
     width: auto;
     height: auto;
     margin: 10px;
@@ -70,7 +71,12 @@ h1{
 }
 label
 {
-    /*display: none;*/
+  align-self: center;
+    /* float: right; */
+    text-align: right;
+    display: block;
+
+    width: 100%;
     font-size: 20px;
     font-weight: 500;
     pointer-events: none;
