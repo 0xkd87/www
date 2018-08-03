@@ -1,15 +1,29 @@
- <label  for="x">{{_lbl}}:</label>
+ <label
+ for="x"
+ name = "labeltext">
+   {{_lbl}}:
+  </label>
+
+
     <input
     type="text"
     name = "x"
     class="form-control"
-    [formControl] = _fc />
+    [formControl] = _fc
+    (click)="onFocusInput()"
+    />
+
+    <!-- Validation Error messages  -->
     <div
     class = "validation-msg-red"
     *ngIf="_fc.hasError && _fc.getError('nameExists')">
         Name Already exists..!
     </div>
-
+    <div
+    class = "validation-msg-red"
+    *ngIf="_fc.hasError && _fc.dirty && _fc.getError('minlength')">
+        Too less characters..!
+    </div>
     <div
     class = "validation-msg-red"
     *ngIf="_fc.hasError && _fc.touched && _fc.getError('required')">
@@ -18,7 +32,13 @@
     <div
     class = "validation-msg-red"
     *ngIf="_fc.hasError && _fc.dirty && _fc.getError('pattern')">
-        Forbidden charecter(s)..!
+        Invalid charecter(s)..!
+    </div>
+    <div
+    class = "validation-msg-red"
+    *ngIf="_fc.hasError && _fc.dirty && _fc.getError('maxlength')">
+        Charecter Limit Exceeded..!
     </div>
 
 
+ <!-- [style.display] = "_fc.dirty? 'block' : 'none'" -->

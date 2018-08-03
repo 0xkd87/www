@@ -137,15 +137,14 @@ class _plcTag {
         (
           this.name,
           Validators.compose(
-            [Validators.required,
+            [ Validators.required,
               Validators.minLength(5),
               Validators.maxLength(48),
               Validators.pattern(/^[a-zA-Z0-9!#$%^&*()_-]+$/)]),
               Validators.composeAsync([]),
         ),
         comment: this.comment.getFormGroup(
-          [ Validators.minLength(5),
-            Validators.maxLength(128),
+          [ Validators.maxLength(128),
             Validators.pattern(/^[a-zA-Z0-9!#$%^&*()@|+ _-]+$/)]
         ),
         isF : new FormControl(this.isF),

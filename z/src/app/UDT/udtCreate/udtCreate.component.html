@@ -57,41 +57,27 @@
   [class.cl-IsF] = "formGroup.get('plcTag.isF').value"
   novalidate>
   <h1>{{formHeaderText}}</h1>
-  <div class="row">
 
-
-  </div>
         <div class="row"> <!--row 1-->
-              <div class = "leftcolumn clWidth25Perc">
-<!--                   <label  for="udtName">Name:</label> -->
+              <div class = "leftcolumn clWidth50Perc">
+
+               </div>
+              <div class = "rightcolumn clWidth50Perc">
+                    <libForm-InputText
+                    [labelText] = '"Name"'
+                    [formControl] = "formGroup.get('plcTag.name')">
+                  </libForm-InputText>
               </div>
-              <div class = "rightcolumn clWidth75Perc">
-<!--                     <input
-                      type="text"
-                      name = "udtName"
-                      class="form-control"
-                      formControlName= "name"> -->
-                      <libForm-InputText
-                      [labelText] = '"Name"'
-                      [fcn] = "formGroup.get('plcTag.name')">
-                    </libForm-InputText>
-                </div>
           </div> <!--row 1 END -->
 
-          <div class="row form-group"   [formGroup]="formGroup.get('plcTag.comment')"> <!--row 2 BEGIN -->
-            <div class = "leftcolumn clWidth25Perc">
-                <!-- <label  for="udtComment">Comment:</label> -->
+          <div class="row"> <!--row 2 BEGIN -->
+            <div class = "leftcolumn clWidth50Perc">
             </div>
-            <div class = "rightcolumn clWidth75Perc">
-<!--                 <input
-                type="text"
-                name = "udtComment"
-                class="form-control"
-                formControlName="en"> -->
-                <libForm-InputText
-                [labelText] = '"Comment"'
-                [fcn] = "formGroup.get('plcTag.comment.en')">
-              </libForm-InputText>
+            <div class = "rightcolumn clWidth50Perc">
+                  <libForm-InputText
+                  [labelText] = '"Comment"'
+                  [formControl] = "formGroup.get('plcTag.comment.en')">
+                </libForm-InputText>
             </div>
           </div> <!--row 2 END -->
 
@@ -115,14 +101,12 @@
 
           <div class="row"> <!--row 4 BEGIN -->
             <div class = "leftcolumn clWidth15Perc">
-                <label for="datatype"> Data-Type:</label>
             </div>
-            <div class = "rightcolumn clWidth85Perc">
-                <input
-                type="text"
-                name = "datatype"
-                class="form-control"
-                formControlName= "datatype">
+            <div class = "rightcolumn clWidth75Perc">
+                <libForm-InputText
+                [labelText] = '"Data-Type"'
+                [formControl] = "formGroup.get('plcTag.datatype')">
+              </libForm-InputText>
             </div>
           </div><!--row 4 END -->
 

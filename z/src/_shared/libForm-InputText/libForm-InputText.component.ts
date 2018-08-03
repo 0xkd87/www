@@ -1,12 +1,11 @@
-import { Component, OnInit, Input, OnChanges, Renderer, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Renderer, ElementRef, Renderer2 } from '@angular/core';
 import { FormControl, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'libForm-InputText',
   templateUrl: './libForm-InputText.component.html',
   styleUrls:
-  [ './../../css-glob/_glob.css',
-    './libForm-InputText.component.css'],
+  [  './libForm-InputText.component.css'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: LibFormInputTextComponent,
@@ -19,7 +18,7 @@ export class LibFormInputTextComponent implements ControlValueAccessor, OnInit, 
    * input parameter(s) to bind with parent/child
    */
   @Input()  labelText: string;
-  @Input()  fcn: FormControl;
+  @Input()  formControl: FormControl;
 /**
  * class specific variables
  */
@@ -30,7 +29,7 @@ onChange = (_: any) => {
   console.log('ssss');
 }
 onTouched = () => {};
-  constructor(private _renderer: Renderer, private _elementRef: ElementRef
+  constructor(private _renderer: Renderer2, private _elementRef: ElementRef
   ) {
     /**
      * initialize the default values
@@ -50,13 +49,15 @@ onTouched = () => {};
   }
 
   initControls() {
-      if (this.fcn) {
-        this._fc = this.fcn;
+      if (this.formControl) {
+        this._fc = this.formControl;
       }
       this._lbl = this.labelText;
   }
   writeValue(val: any): void {
-    this._renderer.setElementProperty(this._elementRef.nativeElement, 'value', val);
+    // this._renderer.setElementProperty(this._elementRef.nativeElement, 'value', val);
+    this._renderer.setValue(this._elementRef.nativeElement, val);
+
   }
   registerOnChange(fn: any): void {
     // throw new Error("Method not implemented.");
@@ -70,6 +71,10 @@ onTouched = () => {};
   }
 
 
+  onFocusInput() {
+/*     console.log(this._elementRef.nativeElement);
+    this._renderer.setStyle(this._elementRef.nativeElement, 'color', 'yellow'); */
+  }
 
 
 
