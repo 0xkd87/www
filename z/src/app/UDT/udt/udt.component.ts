@@ -5,10 +5,6 @@ import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { IUdt, CONST_OBJTYPE} from '../../../_shared/interface/schemaLib.interface';
 
-const url = {
-  addUDT: 'http://emis000695/_c/__api/post/post.udt.add.php',
-  getListUDT: 'http://emis000695/_c/__api/get/get.udt.list.php'
-};
 
 @Component({
   selector: 'app-udt',
@@ -50,7 +46,10 @@ export class UdtComponent implements OnInit, OnDestroy {
     this._rxArr = [];
     this.showAddDialog = false;
     this.rxF5(); // update / fetch and refresh all data on init..!
-
+    /**
+     * scroll to the top when page is drawn
+     */
+    window.scrollTo(0, 0);
   }
 
   ngOnDestroy() {

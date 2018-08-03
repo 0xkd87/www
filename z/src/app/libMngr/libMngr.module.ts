@@ -1,3 +1,4 @@
+import { LibFormInputTextComponent } from './../../_shared/libForm-InputText/libForm-InputText.component';
 import { UdtCreateComponent } from './../UDT/udtCreate/udtCreate.component';
 import { UiNavComponent } from './../../_shared/ui-nav/ui-nav.component';
 import { UdtComponent } from './../UDT/udt/udt.component';
@@ -26,7 +27,8 @@ import { TooltipComponent } from '../../_shared/tooltip/tooltip.component';
     UdtCreateComponent,
     MsgBoardComponent,
     UiNavComponent,
-    TooltipComponent
+    TooltipComponent,
+    LibFormInputTextComponent
   ],
   exports: [
     LibMngrComponent,

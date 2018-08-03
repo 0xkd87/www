@@ -24,16 +24,33 @@ import { ActivatedRoute, ParamMap, Router } from '../../../../node_modules/@angu
 })
 export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges {
 
+  /**
+   * input parameter(s) to bind with parent/child
+   */
   @Input()  udtListIn: IUdt[];
+
+
+  /**
+   * "Public" members to be reflected in html form
+   */
+
+      /**
+       * Holds all the existing objects found in the database.
+       * used for comparision / and display..!
+       */
+        public udtArr: IUdt[] = [];
+        public formGroup: FormGroup;
+        public editingUDT: IUdt;  /**New or editing UDT to be held */
+        public editingIdx: number; /**IDX of the editing UDT -1 as default */
+        public opEdit: boolean; /**which operation is called? new or edit */
+        public formHeaderText: string; /** Dynamic text to be displayed on form header */
+
+  /**
+   * Memebers for functional use of this component
+   */
   _subscriptionGet: Subscription;
   _subscriptionPost: Subscription;
 
-  udtArr: IUdt[] = [];
-
-  public formGroup: FormGroup;
-  public editingUDT: IUdt;
-  public editingIdx: number;
-  opEdit: boolean; /**which operation is called? new or edit */
 
   constructor(
     private _title: Title, // Page Title Serive
@@ -41,10 +58,8 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
     private _msg: MsgService,
     public _hostListner: HostListenerService,
     private route: ActivatedRoute,
-    private _goTo: Router ) {
+    private _goTo: Router, ) {
 
-
-      // this.udtArr = [];
       this.rxF5(); /** without argument = just load the array; don't GET from HTTP */
 
 
@@ -72,16 +87,20 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
 /**Load the default values ([else] case in following IF) */
     this._title.setTitle('UDT :: CREATE');
     this.editingUDT = new IUdt(); // allocate new
+    this.formHeaderText = 'Undefined..!'; // init to default undefined state
     if (this.opEdit) {
       /* The operation is [EDIT] */
       this.udtArr.forEach(u => {
         if (u.ident.idx === this.editingIdx) {
           this.editingUDT = new IUdt(<IUdt>u); // assign a matching udt (overwrite/shallow copy on the [new] UDT)
           this._title.setTitle('UDT :: EDIT :' + this.editingIdx);
+          this.formHeaderText = 'Editing the Selected Object'; // new
+
         }
       });
     } else {
       /* The operation is new create : this has been taken care in initialization */
+      this.formHeaderText = 'Create a New Object'; // new
     }
 
     /**

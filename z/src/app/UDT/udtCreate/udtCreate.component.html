@@ -1,9 +1,12 @@
 
-  <div class="row"> <!--Top row - sticky/fiex on scroll -->
+
+    <!-- sticky/fiex on scroll -->
     <div
     class="cl-TopBarContainer"
-    [class.posFixed-Top] = "_hostListner.stickyOnWindowScroll(30)"
-    [class.posRelative] = "!_hostListner.stickyOnWindowScroll(30)">
+    [class.posFixed-Top] = "_hostListner.stickyOnWindowScroll(31)"
+    [class.posRelative] = "!_hostListner.stickyOnWindowScroll(33)">
+
+    <div class="row"> <!--Top row -->
         <!-- router to list page -->
         <input
         type="submit"
@@ -53,53 +56,61 @@
   class="cl-FormContainer form-group"
   [class.cl-IsF] = "formGroup.get('plcTag.isF').value"
   novalidate>
-  <!-- <h1>UDT</h1> -->
+  <h1>{{formHeaderText}}</h1>
+  <div class="row">
 
+
+  </div>
         <div class="row"> <!--row 1-->
               <div class = "leftcolumn clWidth25Perc">
-                  <label  for="udtName">Name:</label>
+<!--                   <label  for="udtName">Name:</label> -->
               </div>
               <div class = "rightcolumn clWidth75Perc">
-                    <input
+<!--                     <input
                       type="text"
                       name = "udtName"
                       class="form-control"
-                      formControlName= "name">
-
-            <!-- validation errors -->
-                      <div
-                      class = "validation-msg-red"
-                      *ngIf="formGroup.get('plcTag.name').hasError && formGroup.get('plcTag.name').getError('nameExists')">
-                          Name Already exists..!
-                      </div>
+                      formControlName= "name"> -->
+                      <libForm-InputText
+                      [labelText] = '"Name"'
+                      [fcn] = "formGroup.get('plcTag.name')">
+                    </libForm-InputText>
                 </div>
           </div> <!--row 1 END -->
 
           <div class="row form-group"   [formGroup]="formGroup.get('plcTag.comment')"> <!--row 2 BEGIN -->
             <div class = "leftcolumn clWidth25Perc">
-                <label  for="udtComment">Comment:</label>
+                <!-- <label  for="udtComment">Comment:</label> -->
             </div>
             <div class = "rightcolumn clWidth75Perc">
-                <input
+<!--                 <input
                 type="text"
                 name = "udtComment"
                 class="form-control"
-                formControlName="en">
+                formControlName="en"> -->
+                <libForm-InputText
+                [labelText] = '"Comment"'
+                [fcn] = "formGroup.get('plcTag.comment.en')">
+              </libForm-InputText>
             </div>
           </div> <!--row 2 END -->
 
 
           <div class="row"> <!--row 3 BEGIN -->
             <div class = "leftcolumn clWidth25Perc">
-                <label for="isF"> Fail-Safe:</label>
             </div>
             <div class = "rightcolumn clWidth75Perc">
-                  <input
-                  type="checkbox"
-                  name = "isF"
-                  class="form-control"
-                  formControlName= "isF">
-            </div>
+                <div class = "leftcolumn clWidth25Perc">
+                    <label for="isF"> Fail-Safe:</label>
+                </div>
+                <div class = "rightcolumn clWidth75Perc">
+                      <input
+                      type="checkbox"
+                      name = "isF"
+                      class="form-control"
+                      formControlName= "isF">
+                </div>
+          </div>
           </div><!--row 3 END -->
 
           <div class="row"> <!--row 4 BEGIN -->
