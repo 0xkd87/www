@@ -291,10 +291,13 @@ deleteUDT() {
 
 addNewVar() {
   if (this.editingUDT) {
-    this.editingUDT =  new IUdt(this.loadFromForm());
+    // this.editingUDT =  new IUdt(this.loadFromForm());
     this.editingUDT.addNewVar();
     this.formGroup = this.buildForm(this.editingUDT);
     // console.log(this.editingUDT);
+
+    this.formGroup.markAsDirty();
+
   }
 }
 

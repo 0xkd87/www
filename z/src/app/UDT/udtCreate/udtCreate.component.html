@@ -69,7 +69,7 @@
               <div class = "leftcolumn clWidth33Perc">
                 <libForm-InputText
                 [labelText] = '"Name"'
-                [(formControl)] = "formGroup.controls['plcTag'].controls['name']">
+                [formControl] = "formGroup.get('plcTag.name')">
               </libForm-InputText>
                </div>
               <div class = "rightcolumn clWidth66Perc">
@@ -125,8 +125,9 @@
   <!-- UDT Vars -->
 <div class="cl-FormContainer form-group" >
           <ul *ngFor="let v of this.editingUDT.vars; let i = index">
-              <udt-var [uVarIn]="v" [uVarFormGroup]="this.formGroup.controls['vars'].controls[i]">
-              </udt-var>
+              <udt-var [uVarIn]="v" [uVarFormGroup]="this.formGroup.controls['vars'].controls[i]"> </udt-var>
+              <!-- <udt-var [uVarIn]="v" [uVarFormGroup]="v.getFormGroup()"> </udt-var> -->
+
           </ul>
 </div>
 </form> <!-- Form End -->
