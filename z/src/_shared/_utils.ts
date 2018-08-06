@@ -3,9 +3,9 @@ import * as CryptoJS from 'crypto-js';
 
 @Injectable()
 export class _utils {
-    getSHA1(_plainText: string) {
+    getSHA1(_plainText: string): string {
         if (_plainText !== '') {
-        return (CryptoJS.SHA1(_plainText));
+        return (CryptoJS.SHA1(_plainText).toString());
         }
     }
 }

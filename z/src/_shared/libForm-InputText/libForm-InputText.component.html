@@ -1,4 +1,8 @@
+
+ <div class = "input-container">
+
  <label
+ [class.focused] = "_inputFocused"
  for="x"
  name = "labeltext">
    {{_lbl}}:
@@ -9,36 +13,38 @@
     type="text"
     name = "x"
     class="form-control"
-    [formControl] = _fc
-    (click)="onFocusInput()"
+    [(formControl)] = formControl
+    (focus)="_inputFocused = true;"
+    (blur)="_inputFocused = false;"
     />
+    <div class = "text-len">{{formControl.value.length}}</div>
 
     <!-- Validation Error messages  -->
     <div
     class = "validation-msg-red"
-    *ngIf="_fc.hasError && _fc.getError('nameExists')">
+    *ngIf="formControl.hasError && formControl.getError('nameExists')">
         Name Already exists..!
     </div>
     <div
     class = "validation-msg-red"
-    *ngIf="_fc.hasError && _fc.dirty && _fc.getError('minlength')">
+    *ngIf="formControl.hasError && formControl.dirty && formControl.getError('minlength')">
         Too less characters..!
     </div>
     <div
     class = "validation-msg-red"
-    *ngIf="_fc.hasError && _fc.touched && _fc.getError('required')">
+    *ngIf="formControl.hasError && formControl.touched && formControl.getError('required')">
         Value is required..!
     </div>
     <div
     class = "validation-msg-red"
-    *ngIf="_fc.hasError && _fc.dirty && _fc.getError('pattern')">
+    *ngIf="formControl.hasError && formControl.dirty && formControl.getError('pattern')">
         Invalid charecter(s)..!
     </div>
     <div
     class = "validation-msg-red"
-    *ngIf="_fc.hasError && _fc.dirty && _fc.getError('maxlength')">
+    *ngIf="formControl.hasError && formControl.dirty && formControl.getError('maxlength')">
         Charecter Limit Exceeded..!
     </div>
 
-
+  </div>
  <!-- [style.display] = "_fc.dirty? 'block' : 'none'" -->

@@ -13,6 +13,7 @@ import { LibMngrComponent } from './libMngr.component';
 import { MsgBoardComponent } from '../../_shared/msgBoard/msgBoard.component';
 import { UdtListComponent } from '../UDT/udt-list/udt-list.component';
 import { TooltipComponent } from '../../_shared/tooltip/tooltip.component';
+import { UdtVarComponent } from '../UDT/udt-var/udt-var.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { TooltipComponent } from '../../_shared/tooltip/tooltip.component';
     UdtComponent,
     UdtListComponent,
     UdtCreateComponent,
+    UdtVarComponent,
     MsgBoardComponent,
     UiNavComponent,
     TooltipComponent,
@@ -34,7 +36,8 @@ import { TooltipComponent } from '../../_shared/tooltip/tooltip.component';
     LibMngrComponent,
     UdtListComponent,
     UdtComponent,
-    UdtCreateComponent
+    UdtCreateComponent,
+    UdtVarComponent,
 
 ],
 providers: [

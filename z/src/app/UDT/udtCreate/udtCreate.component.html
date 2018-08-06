@@ -48,10 +48,17 @@
         class = "cl-trigger-round cl-trigger-round-delete mi"
         value = "&#xe92b;"
         [disabled]="(!this.opEdit)">
+
+        <input
+        type="submit"
+        (click)="x()"
+        class = "cl-trigger-round cl-trigger-round-delete mi"
+        value = "x" >
     </div>
   </div>
 <!-- Form starts here -->
   <form
+  (change)="onFormchange()"
   [formGroup]="formGroup.get('plcTag')"
   class="cl-FormContainer form-group"
   [class.cl-IsF] = "formGroup.get('plcTag.isF').value"
@@ -59,33 +66,22 @@
   <h1>{{formHeaderText}}</h1>
 
         <div class="row"> <!--row 1-->
-              <div class = "leftcolumn clWidth50Perc">
-
+              <div class = "leftcolumn clWidth33Perc">
+                <libForm-InputText
+                [labelText] = '"Name"'
+                [(formControl)] = "formGroup.controls['plcTag'].controls['name']">
+              </libForm-InputText>
                </div>
-              <div class = "rightcolumn clWidth50Perc">
-                    <libForm-InputText
-                    [labelText] = '"Name"'
-                    [formControl] = "formGroup.get('plcTag.name')">
-                  </libForm-InputText>
+              <div class = "rightcolumn clWidth66Perc">
+                <libForm-InputText
+                [labelText] = '"Comment"'
+                [formControl] = "formGroup.get('plcTag.comment.en')">
+              </libForm-InputText>
               </div>
           </div> <!--row 1 END -->
 
           <div class="row"> <!--row 2 BEGIN -->
             <div class = "leftcolumn clWidth50Perc">
-            </div>
-            <div class = "rightcolumn clWidth50Perc">
-                  <libForm-InputText
-                  [labelText] = '"Comment"'
-                  [formControl] = "formGroup.get('plcTag.comment.en')">
-                </libForm-InputText>
-            </div>
-          </div> <!--row 2 END -->
-
-
-          <div class="row"> <!--row 3 BEGIN -->
-            <div class = "leftcolumn clWidth25Perc">
-            </div>
-            <div class = "rightcolumn clWidth75Perc">
                 <div class = "leftcolumn clWidth25Perc">
                     <label for="isF"> Fail-Safe:</label>
                 </div>
@@ -96,17 +92,24 @@
                       class="form-control"
                       formControlName= "isF">
                 </div>
-          </div>
+            </div>
+            <div class = "rightcolumn clWidth50Perc">
+                <libForm-InputText
+                [labelText] = '"Data-Type"'
+                [formControl] = "formGroup.get('plcTag.datatype')">
+              </libForm-InputText>
+            </div>
+          </div> <!--row 2 END -->
+
+
+          <div class="row"> <!--row 3 BEGIN -->
           </div><!--row 3 END -->
 
           <div class="row"> <!--row 4 BEGIN -->
             <div class = "leftcolumn clWidth15Perc">
             </div>
             <div class = "rightcolumn clWidth75Perc">
-                <libForm-InputText
-                [labelText] = '"Data-Type"'
-                [formControl] = "formGroup.get('plcTag.datatype')">
-              </libForm-InputText>
+
             </div>
           </div><!--row 4 END -->
 
@@ -115,9 +118,17 @@
             <input
             type="submit"
             class = "cl-trigger-round cl-trigger-round-add mi"
-            value = "&#xe03b;">
+            value = "&#xe03b;"
+            (click)= "addNewVar()" >
           </div>
 
+  <!-- UDT Vars -->
+<div class="cl-FormContainer form-group" >
+          <ul *ngFor="let v of this.editingUDT.vars; let i = index">
+              <udt-var [uVarIn]="v" [uVarFormGroup]="this.formGroup.controls['vars'].controls[i]">
+              </udt-var>
+          </ul>
+</div>
 </form> <!-- Form End -->
 
 

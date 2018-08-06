@@ -22,11 +22,14 @@ export class LibFormInputTextComponent implements ControlValueAccessor, OnInit, 
 /**
  * class specific variables
  */
-public _fc: FormControl; // control name
+// public _fc: FormControl; // control name
 public _lbl: string; // control name
 
+public _inputFocused: boolean;
+public _textLength: number; // current text length
+
 onChange = (_: any) => {
-  console.log('ssss');
+  // console.log(_);
 }
 onTouched = () => {};
   constructor(private _renderer: Renderer2, private _elementRef: ElementRef
@@ -38,7 +41,7 @@ onTouched = () => {};
   }
 
   ngOnInit() {
-    this.initControls();
+   this.initControls();
   }
 
   ngOnChanges() {
@@ -50,14 +53,15 @@ onTouched = () => {};
 
   initControls() {
       if (this.formControl) {
-        this._fc = this.formControl;
+        // this._fc = this.formControl;
       }
       this._lbl = this.labelText;
+      this._inputFocused = false;
   }
   writeValue(val: any): void {
     // this._renderer.setElementProperty(this._elementRef.nativeElement, 'value', val);
     this._renderer.setValue(this._elementRef.nativeElement, val);
-
+    this._textLength = (val.toString()).length;
   }
   registerOnChange(fn: any): void {
     // throw new Error("Method not implemented.");
@@ -69,8 +73,6 @@ onTouched = () => {};
   setDisabledState?(isDisabled: boolean): void {
     // throw new Error("Method not implemented.");
   }
-
-
   onFocusInput() {
 /*     console.log(this._elementRef.nativeElement);
     this._renderer.setStyle(this._elementRef.nativeElement, 'color', 'yellow'); */

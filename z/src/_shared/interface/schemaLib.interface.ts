@@ -1,3 +1,4 @@
+import { _utils } from '../_utils';
 import { FormBuilder, FormGroup, Validators, FormControl, FormArray, AbstractControl, ValidatorFn } from '@angular/forms';
 
 
@@ -160,11 +161,54 @@ class _plcTag {
 } // </class>
 
 
-class _udtVar {
+export class IudtVar {
 
   rev?: _rev;
   ident?: _ident;
   plcTag?: _plcTag;
+
+  constructor(src?: IudtVar) {
+    if (src) {
+      /**call the shallow copy builder if source is passed as an agument */
+      this._shallowCloneFromSrc(src);
+    } else {
+      this.rev = new _rev();
+
+      this.ident = new _ident();
+
+      this.plcTag = new _plcTag();
+      /*
+      * Load default values
+      */
+
+     const u = new _utils();
+     this.plcTag.name =  u.getSHA1(new Date().toString());
+     this.plcTag.isF = false;
+     this.plcTag.comment.en = '';
+     this.plcTag.datatype   = 'BOOL';
+    }
+
+    /**
+     * assign class specific attributes
+     */
+    this.ident.objType = CONST_OBJTYPE.UDT_VAR; // default as UDT
+  }
+
+  private _shallowCloneFromSrc(src: IudtVar) {
+    this.rev = new _rev(src.rev);
+    this.plcTag = new _plcTag(src.plcTag);
+    this.ident = new _ident(src.ident);
+  }
+
+  public getFormGroup(): FormGroup {
+    const fg = new FormGroup(
+      {
+        ident: this.ident.getFormGroup(),
+        plcTag: this.plcTag.getFormGroup(),
+      }
+    );
+   return fg;
+  }
 
 }
 /*============  Export interfaces   ===================*/
@@ -174,7 +218,7 @@ export class IUdt {
   rev?: _rev;
   ident?: _ident;
   plcTag?: _plcTag;
-  var?: _udtVar[];
+  vars?: IudtVar[];
 
   constructor(src?: IUdt) {
 
@@ -185,7 +229,7 @@ export class IUdt {
       this.rev = new _rev();
       this.plcTag = new _plcTag();
       this.ident = new _ident();
-      this.var = new Array<_udtVar>();
+      this.vars = new Array<IudtVar>(); /* *Allocating just an array */
     }
 
     /**
@@ -198,18 +242,54 @@ export class IUdt {
     this.rev = new _rev(src.rev);
     this.plcTag = new _plcTag(src.plcTag);
     this.ident = new _ident(src.ident);
-    this.var = new Array<_udtVar>();
+
+    /*
+    * Allocate an array and then shallow copy each member from src
+    */
+    this.vars = new Array<IudtVar>();
+    if (src.vars) { // check if src containd var definition?
+      src.vars.forEach( v => {
+        this.vars.push(new IudtVar(v)); /** push each element with shallow copy */
+      });
+  }
 
   }
 
+  /**
+   * returns the basic structure of the form building group
+   */
   public getFormGroup(): FormGroup {
+    const vars = new FormArray([]);
+    if (this.vars) {
+      this.vars.forEach( v => {
+        vars.push(v.getFormGroup());
+      });
+    }
     const fg = new FormGroup(
       {
         ident: this.ident.getFormGroup(),
         plcTag: this.plcTag.getFormGroup(),
-      }
+      },
+      // {updateOn: 'blur'} // ?
     );
+    fg.addControl('vars', vars);
    return fg;
   }
+
+  /**
+   * on user's trigger, automatically create (with default parameters)
+   *  and push it to the array.
+   * User would modify the VAR detaild once it has been added to the array
+   */
+  public addNewVar() {
+    if (this.vars) { // check if the array has been allocated?
+      /**
+       * create a new variable with default constructor
+       */
+      this.vars.push(new IudtVar());
+    }
+
+  }
+
 }
 

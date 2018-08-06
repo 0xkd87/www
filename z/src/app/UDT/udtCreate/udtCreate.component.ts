@@ -7,6 +7,7 @@ import { Title } from '../../../../node_modules/@angular/platform-browser';
 import { FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { HostListenerService } from '../../../_shared/services/hostListener.service';
 import { ActivatedRoute, ParamMap, Router } from '../../../../node_modules/@angular/router';
+import { toArray } from '../../../../node_modules/rxjs/operators';
 
 
 
@@ -150,10 +151,15 @@ navigateTo(path: string) {
   buildForm(editingUDT: IUdt): FormGroup {
       let u: IUdt;
       if (editingUDT) {
-        u  = new IUdt(editingUDT);
+        // u  = new IUdt(editingUDT);
+        u  = (editingUDT);
       } else { /* The default form build (in case of "add new" request) */
         u  = new IUdt(); /**this case should never be reached as the argument is required */
       }
+//      console.log(editingUDT);
+ //     console.log('u');
+ //     console.log(u);
+
       const Attr = u.getFormGroup(); // Get attributes in a form of a FormGroup
 
       /**
@@ -217,7 +223,11 @@ loadToForm(editingUDT: IUdt) {
         err => {},
         () => {
           this.rxF5(true);
-          this.formGroup = this.buildForm(new IUdt());
+          this.editingUDT = new IUdt();
+          this.formGroup = this.buildForm(this.editingUDT);
+
+
+          // this.navigateTo('/libMngr/udt/createUDT');
         }
       );
 
@@ -279,10 +289,24 @@ deleteUDT() {
   );
 }
 
-
+addNewVar() {
+  if (this.editingUDT) {
+    this.editingUDT =  new IUdt(this.loadFromForm());
+    this.editingUDT.addNewVar();
+    this.formGroup = this.buildForm(this.editingUDT);
+    // console.log(this.editingUDT);
+  }
+}
 
   x() {
-    console.log(new IUdt());
+    // this.formGroup = this.buildForm(this.editingUDT);
+    console.log(this.formGroup);
 
+  }
+
+  onFormchange() {
+    // console.log('chnged');
+    // this.editingUDT =  new IUdt(this.loadFromForm());
+    // this.formGroup = this.buildForm(this.editingUDT);
   }
 }
