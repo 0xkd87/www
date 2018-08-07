@@ -1,0 +1,17 @@
+<div class = "input-container">
+
+    <label
+    [class.focused] = "isFocused"
+    for="_dropdown">{{_labelText}}:</label>
+
+
+       <select
+       name = "_dropdown"
+       class="form-control"
+       (focus)="isFocused = true"
+       (blur)="isFocused = false"
+       [(formControl)] = formControl>
+          <option  *ngFor="let di of dropdownItems; let i = index" [value]="di"> {{di}}</option>
+        </select>
+
+     </div>

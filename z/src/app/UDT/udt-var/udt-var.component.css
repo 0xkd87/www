@@ -18,4 +18,18 @@ td {
   min-width: 20px;
 }
 
+td,tr {
+  border: 0.5px solid rgb(207, 207, 207);
+
+}
+
+
+.background-text {
+  z-index: -1;
+  display: inline-block;
+  font-size: 48px;
+  font-weight: 500;
+  color: rgba(122, 122, 122, 0.836);
+}
+
 

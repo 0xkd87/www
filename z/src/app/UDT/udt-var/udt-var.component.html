@@ -1,5 +1,4 @@
 
-
 <!-- Form container structure -->
 <form
 class = "form-group cl-ListNodeContainer"
@@ -8,15 +7,29 @@ novalidate>
 
     <table> <!-- Table structure -->
         <tr> <!--Single Row -->
+          <td> <!-- cell (col) # = Delete trigger -->
 
-          <td> <!-- cell (col) # = inner index -->
-            <p>{{uVarIn.ident.innerIdx}}</p>
+            <tr>
+
+                <input class="cl-trigger-transperant cl-trigger-round-delete mi"
+                type="submit"
+                value = "&#xe92b;">
+            </tr>
+            <tr>
+              <span class = "background-text">{{uVarIn.ident.innerIdx}}</span>
+            </tr>
+            <tr>
+                <input class="cl-trigger-transperant cl-trigger-round-delete mi"
+                type="submit"
+                value = "&#xe92b;">
+            </tr>
           </td>
 
           <td> <!-- cell (col) # = Delete trigger -->
             <input class="cl-trigger-transperant cl-trigger-round-delete mi"
             type="submit"
             value = "&#xe92b;">
+
           </td>
 
           <td> <!-- cell (col) 1 -->
@@ -27,10 +40,10 @@ novalidate>
           </td>
 
           <td> <!-- cell (col) 2 -->
-            <libForm-InputText
+<!--             <libForm-InputText
             [labelText] = '"Data-Type"'
             [formControl] = "this.uVarFormGroup.get('plcTag.datatype')">
-            </libForm-InputText>
+            </libForm-InputText> -->
           </td>
 
           <td colspan="2"> <!-- cell (col) 3 -->
@@ -39,7 +52,13 @@ novalidate>
             [formControl] = "this.uVarFormGroup.get('plcTag.comment.en')">
             </libForm-InputText>
           </td>
-
+          <td>
+            <libForm-InputCombo
+            [_labelText] = '"DataType"'
+            [formControl] = "this.uVarFormGroup.get('plcTag.datatype')"
+            [_dropdownItems] = "['xxxx','xrewrer','45yrtgrt']">
+            </libForm-InputCombo>
+          </td>
 
 
         </tr><!--End Row -->

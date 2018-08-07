@@ -1,0 +1,67 @@
+.input-container
+{
+  border-left: 1px solid rgba(235, 235, 235, 0.959);
+
+  padding: 5px;
+  margin-bottom: 5px;
+}
+label
+{
+    font-size: 18px;
+    font-weight: 500;
+    pointer-events: none;
+    color: rgb(51, 51, 51);
+    font-variant-caps: small-caps;
+/*     text-shadow: 2px 1px 1px rgb(31, 31, 31); */
+ }
+
+ .focused
+ {
+  color: rgb(47, 144, 255);
+ }
+
+ select:disabled
+{
+  cursor: not-allowed;
+  color: rgba(75, 75, 75, 0.699);
+}
+
+select:focus
+{
+  border-bottom: 2.5px solid rgb(47, 144, 255);
+
+}
+
+select
+{
+    background: rgba(255, 255, 255, 0);
+    color: rgb(61, 61, 61);
+    align-self: center;
+    margin: 1px;
+    width: 100%;
+    padding: 2px;
+    font-size: 16px;
+    font-weight: 450;
+    font-variant: normal;
+    min-height: 32px;
+    border : none;
+    border-bottom: 1.5px solid rgba(138, 138, 138, 0.705);
+
+    display: block;
+}
+
+/*invalid input indication*/
+.form-control.ng-dirty.ng-touched.ng-invalid
+{
+    background-color: rgba(255, 217, 0, 0);
+    border-bottom: 3px solid rgba(255, 0, 0, 0.959);
+}
+
+
+.validation-msg-red
+{
+  font-size: 12px;
+  font-weight: 500;
+  color: rgb(250, 54, 54);
+  font-variant: normal;
+}

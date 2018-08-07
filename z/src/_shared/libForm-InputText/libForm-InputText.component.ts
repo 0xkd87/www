@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, Renderer, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, ElementRef, Renderer2 } from '@angular/core';
 import { FormControl, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Component({

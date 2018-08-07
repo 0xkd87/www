@@ -1,3 +1,4 @@
+import { LibFormInputComboComponent } from './../../_shared/libForm-InputCombo/libForm-InputCombo.component';
 import { LibFormInputTextComponent } from './../../_shared/libForm-InputText/libForm-InputText.component';
 import { UdtCreateComponent } from './../UDT/udtCreate/udtCreate.component';
 import { UiNavComponent } from './../../_shared/ui-nav/ui-nav.component';
@@ -30,7 +31,8 @@ import { UdtVarComponent } from '../UDT/udt-var/udt-var.component';
     MsgBoardComponent,
     UiNavComponent,
     TooltipComponent,
-    LibFormInputTextComponent
+    LibFormInputTextComponent,
+    LibFormInputComboComponent
   ],
   exports: [
     LibMngrComponent,
