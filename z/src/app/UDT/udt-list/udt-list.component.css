@@ -84,6 +84,9 @@ h2:hover
   font-size: 13px;
   line-height: 15px;
   color: rgb(105, 107, 103);
+  color: rgb(69, 138, 0);
+
+  word-wrap: break-word;
 }
 .cl-label
 {
@@ -110,4 +113,14 @@ h2:hover
 }
 
 
-
+.text-right
+{
+  vertical-align: baseline;
+  text-align: right;
+  float: right;
+  font-size: 11px;
+  font-weight: 300;
+  border : none;
+  display: flex;
+  line-height: 12px;
+}

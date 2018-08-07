@@ -118,3 +118,18 @@ width: 100%;
         border: 0px;
     }
 }
+
+
+/*
+Chrome friendly - Chrome doesn't consider the text transform property for rendering
+
+So it screws up verticle alignment of the characters (specially in buttons where Material Icon Fonts (unicode symbols)
+are used.
+
+This class will transform the text to lowercase and make it small-capped.
+*/
+
+.v-align-text-chrome {
+  text-transform: lowercase;
+  font-variant: small-caps;
+}

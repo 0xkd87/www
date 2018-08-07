@@ -42,9 +42,33 @@ input[type=checkbox]
 
 .cl-trigger-transperant
 {
-  background-color: rgba(56, 56, 56, 0);
-  text-shadow: 3px 3px 2px rgba(41, 41, 41, 0);
+
+  margin: 10px;
+  padding: 0px;
+  line-height: 1px;
+  height: 64px;
+  width: 64px;
+  vertical-align: middle;
+  text-align: center;
+  border : none;
+  border-radius: 50%;
+
+  cursor: pointer;
+  font-size: 48px;
+  font-weight: 700;
+
+  font-family: 'Material Icons';
+  background-repeat: no-repeat;
+
+
+  text-transform: lowercase;
+  font-variant: small-caps;
+
+  background-color: rgba(0, 0, 0, 0);
   box-shadow: 4px 3px 12px 0 rgba(0, 0, 0, 0);
+
+  text-shadow: 3px 3px 2px rgba(216, 216, 216, 0.795);
+
 }
 
 .cl-trigger-round
@@ -58,17 +82,24 @@ input[type=checkbox]
   text-align: center;
   border : none;
   border-radius: 50%;
-  box-shadow: 4px 3px 12px 0 rgba(0,0,0,0.5);
 
   cursor: pointer;
   font-size: 48px;
   font-weight: 700;
 
-  text-shadow: 3px 3px 2px rgb(41, 41, 41);
-  background-color: rgba(44, 44, 44, 0.87);
 
   font-family: 'Material Icons';
   background-repeat: no-repeat;
+
+
+  text-transform: lowercase;
+  font-variant: small-caps;
+
+
+  text-shadow: 3px 3px 2px rgb(41, 41, 41);
+  background-color: rgba(44, 44, 44, 0.87);
+  box-shadow: 4px 3px 12px 0 rgba(0,0,0,0.5);
+
 }
 
 .cl-trigger-round-blue
@@ -100,7 +131,8 @@ input[type=checkbox]
 
 
 }
-.cl-trigger-round:hover
+.cl-trigger-round:hover,
+.cl-trigger-transperant:hover
 {
   animation: shake 0.2s;
   /* When the animation is finished, start again */

@@ -5,7 +5,10 @@ import { IudtVar } from '../../../_shared/interface/schemaLib.interface';
 @Component({
   selector: 'udt-var',
   templateUrl: './udt-var.component.html',
-  styleUrls: ['./udt-var.component.css']
+  styleUrls:
+  [ './../../../css-glob/_glob.css',
+    './udt-var.component.css',
+  ]
 })
 export class UdtVarComponent implements OnInit, OnDestroy {
 

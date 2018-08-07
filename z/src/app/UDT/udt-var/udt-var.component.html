@@ -1,14 +1,49 @@
-<!-- <div>
-{{_uVar.plcTag.name}}
-</div> -->
-<div
- class = "form-group"
- [formGroup]="uVarFormGroup"
- novalidate>
-    <libForm-InputText
-    [labelText] = '"Name"'
-    [formControl] = "this.uVarFormGroup.get('plcTag.name')">
-    </libForm-InputText>
-</div>
+
+
+<!-- Form container structure -->
+<form
+class = "form-group cl-ListNodeContainer"
+[formGroup]="uVarFormGroup"
+novalidate>
+
+    <table> <!-- Table structure -->
+        <tr> <!--Single Row -->
+
+          <td> <!-- cell (col) # = inner index -->
+            <p>{{uVarIn.ident.innerIdx}}</p>
+          </td>
+
+          <td> <!-- cell (col) # = Delete trigger -->
+            <input class="cl-trigger-transperant cl-trigger-round-delete mi"
+            type="submit"
+            value = "&#xe92b;">
+          </td>
+
+          <td> <!-- cell (col) 1 -->
+            <libForm-InputText
+            [labelText] = '"Name"'
+            [formControl] = "this.uVarFormGroup.get('plcTag.name')">
+            </libForm-InputText>
+          </td>
+
+          <td> <!-- cell (col) 2 -->
+            <libForm-InputText
+            [labelText] = '"Data-Type"'
+            [formControl] = "this.uVarFormGroup.get('plcTag.datatype')">
+            </libForm-InputText>
+          </td>
+
+          <td colspan="2"> <!-- cell (col) 3 -->
+            <libForm-InputText
+            [labelText] = '"Comment"'
+            [formControl] = "this.uVarFormGroup.get('plcTag.comment.en')">
+            </libForm-InputText>
+          </td>
+
+
+
+        </tr><!--End Row -->
+  </table>
+</form>
 
 <!-- Form End -->

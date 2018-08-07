@@ -113,28 +113,35 @@
             </div>
           </div><!--row 4 END -->
 
-          <div class="row"> <!--row 4 BEGIN -->
-
-            <input
-            type="submit"
-            class = "cl-trigger-round cl-trigger-round-add mi"
-            value = "&#xe03b;"
-            (click)= "addNewVar()" >
-          </div>
 
   <!-- UDT Vars -->
-<div class="cl-FormContainer form-group" >
-          <ul *ngFor="let v of this.editingUDT.vars; let i = index">
+    <div>
+        <h1>
+          STAT_VAR<span class="float-r">{{this.editingUDT.vars.length}}</span>
+        </h1>
+    </div>
+<div class="form-group" >
+          <div *ngFor="let v of this.editingUDT.vars; let i = index">
               <udt-var [uVarIn]="v" [uVarFormGroup]="this.formGroup.controls['vars'].controls[i]"> </udt-var>
-              <!-- <udt-var [uVarIn]="v" [uVarFormGroup]="v.getFormGroup()"> </udt-var> -->
-
-          </ul>
+          </div>
 </div>
+
+    <div class="row"> <!--row BEGIN -->
+      <input
+      type="submit"
+      class = "cl-trigger-round cl-trigger-round-add mi float-r"
+      value = "&#xe03b;"
+      (click)= "addNewVar()" >
+    </div> <!--row END -->
+
 </form> <!-- Form End -->
 
 
-    <ul *ngFor="let u of this.udtArr; let i = index">
+
+
+
+<!--     <ul *ngFor="let u of this.udtArr; let i = index">
         <li>
           {{i}} | {{u.plcTag.name }}
         </li>
-    </ul>
+    </ul> -->

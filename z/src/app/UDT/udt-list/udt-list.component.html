@@ -5,13 +5,20 @@
                 (click)="isControlVisible = !isControlVisible"
                 class = "leftcolumn"
                 [class.clWidth100Perc] =  "!isControlVisible"
-                [class.clWidth85Perc] =  "isControlVisible"
-                >
-                  <h2> {{udtNode.plcTag.name}}</h2>
-                  <p class="cl-Comment"> {{udtNode.plcTag.comment.en}} </p>
-                  <p class="cl-label">Revision: </p>
-                  <p class="cl-desc"> {{udtNode.rev.major}} | {{udtNode.rev.minor}} </p>
-                </div>
+                [class.clWidth85Perc] =  "isControlVisible">
+
+                      <h2> {{udtNode.plcTag.name}}</h2>
+                      <p class="cl-desc text-right">Variables: {{udtNode.vars.length}}</p>
+                      <p class="cl-Comment"> {{udtNode.plcTag.comment.en}} </p>
+
+                      <p class="cl-label">Revision: </p>
+                      <p class="cl-desc"> {{udtNode.rev.major}} | {{udtNode.rev.minor}} </p>
+
+
+
+
+
+              </div>
 
                 <div
                 [class.clWidth15Perc] =  "isControlVisible"

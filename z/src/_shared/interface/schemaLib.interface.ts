@@ -287,6 +287,16 @@ export class IUdt {
        * create a new variable with default constructor
        */
       this.vars.push(new IudtVar());
+
+      /**
+       * Assignt its inner index as next increamental array index
+       * Also take care of any orphans (unsaved)
+       */
+      this.vars.forEach( v => {
+        if (v.ident.innerIdx < 0) { // non positive = default (-1);
+          v.ident.innerIdx = this.vars.indexOf(v) + 1; // Let's start from 1 instead of 0
+        }
+      });
     }
 
   }

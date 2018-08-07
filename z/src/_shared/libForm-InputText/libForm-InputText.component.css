@@ -3,6 +3,7 @@
   border-left: 1px solid rgba(235, 235, 235, 0.959);
 
   padding: 5px;
+  margin-bottom: 5px;
 }
 
 label
@@ -44,9 +45,10 @@ input[type=text]
     font-weight: 450;
     font-variant: normal;
     min-height: 32px;
-    display: block;
     border : none;
     border-bottom: 1.5px solid rgba(138, 138, 138, 0.705);
+
+    display: block;
 }
 
 /*invalid input indication*/
