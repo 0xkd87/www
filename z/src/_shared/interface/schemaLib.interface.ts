@@ -1,11 +1,131 @@
+/**
+ * @author [kd]
+ * @email [karna.dalal@gmail.com]
+ * @create date 2018-08-08 12:16:22
+ * @modify date 2018-08-08 03:32:51
+ * @desc [Schema and basic definitions of objects]
+*/
 import { _utils } from '../_utils';
-import { FormBuilder, FormGroup, Validators, FormControl, FormArray, AbstractControl, ValidatorFn } from '@angular/forms';
+import { FormGroup, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
 
 
 export enum CONST_OBJTYPE {
    ABSTRACT = 'ABSTRACT',
    UDT = 'UDT',
    UDT_VAR = 'UDT_VAR'
+}
+
+/**
+ * Development platforms
+ */
+export enum DEV_PLATFORMS {
+  ALL = 'Generic CPU',
+  S7_300 = 'Siemens S7 300',
+  S7_1200 = 'Siemens S7 1200',
+  S7_1500 = 'Siemens S7 1500',
+  AB = 'Allen Bradley RS-Logix',
+  CODESYS = 'CoDeSys x.x',
+}
+
+
+/**
+ * abstract definition of an object: (data) Type
+ */
+class _defDataType {
+  private _sz: number; // Size of the datatype in bits
+  private _n: string;
+  /*
+  *development platforms in which this datatype is supported
+  */
+  private _supportedPl: DEV_PLATFORMS[];
+
+
+/**
+ *
+ * @param typeName literal text string with which this datatype is identified
+ * @param typeSize Size of the datatype in bits
+ * @param supportedPlatforms array of the enumerated list of defined platforms in which this datatype is supported
+ * if supported platforms are omitted during construct, this data type will be considered to be supported by all platforms (default)
+ */
+  constructor(typeName: string, typeSize: number, supportedPlatforms?: DEV_PLATFORMS[]) {
+
+    if (typeName !== '') {
+      this._n = typeName;
+    }
+
+    /**
+     * default size = 1 bit if not constructed
+     */
+    this._sz = typeSize > 0 ? typeSize : 1;
+
+    /**
+     * supported platforms - omitted? then assing default = ALL
+     */
+    this._supportedPl = (supportedPlatforms) ? supportedPlatforms : [DEV_PLATFORMS.ALL];
+
+  }
+
+  /**
+   * returns the Size of the datatype in bits
+   */
+  get bitWeight(): number {
+    return this._sz;
+  }
+
+/**
+ * Returns literal text string with which this datatype is identified
+ */
+  get nameString(): string {
+    return this._n;
+  }
+
+  /**
+   * returns the array of the enum object in which this datatype is supported
+   */
+  get supportedPlatforms(): DEV_PLATFORMS[] {
+    return this._supportedPl;
+  }
+}
+
+export class plc {
+  private _myPlatform: DEV_PLATFORMS;
+  private _dtArr: _defDataType[];
+  constructor (platform: DEV_PLATFORMS) {
+    this._myPlatform = platform;
+    this._populateDataTypeArr();
+  }
+
+  private _populateDataTypeArr() {
+    this._dtArr = []; // initialize
+
+    /**
+     * populate DataTypes Array
+     * Example:
+     * Array.push(new _defDataType('INT', 1, [DEV_PLATFORMS.S7_300, DEV_PLATFORMS.S7_1200, DEV_PLATFORMS.S7_1500]));
+     */
+    this._dtArr.push(new _defDataType('BOOL', 1));
+    this._dtArr.push(new _defDataType('BYTE', 8));
+    this._dtArr.push(new _defDataType('WORD', 16));
+    this._dtArr.push(new _defDataType('DINT', 32));
+
+    this._dtArr.push(new _defDataType('INT', 16, [DEV_PLATFORMS.S7_300, DEV_PLATFORMS.S7_1200, DEV_PLATFORMS.S7_1500]));
+    this._dtArr.push(new _defDataType('ABONLY', 16, [DEV_PLATFORMS.AB]));
+  }
+
+  get myPlatform(): DEV_PLATFORMS {
+    return this._myPlatform;
+  }
+
+  get dataTypeNameStrings (): string[] {
+    let _nArr: string[] = [];
+
+    this._dtArr.forEach(d => {
+      if (d.supportedPlatforms.includes(this.myPlatform) || d.supportedPlatforms.includes(DEV_PLATFORMS.ALL)) {
+        _nArr.push(d.nameString);
+      }
+    });
+    return _nArr;
+  }
 }
 
 
@@ -149,7 +269,10 @@ class _plcTag {
             Validators.pattern(/^[a-zA-Z0-9!#$%^&*()@|+ _-]+$/)]
         ),
         isF : new FormControl(this.isF),
-        datatype : new FormControl(this.datatype),
+        datatype : new FormControl(
+          this.datatype,
+          Validators.compose([ Validators.required, ])
+        ),
         address : new FormControl(this.address),
       });
       return fg;

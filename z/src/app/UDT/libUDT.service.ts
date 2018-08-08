@@ -2,7 +2,7 @@
  * @author [kd]
  * @email [karna.dalal@gmail.com]
  * @create date 2018-08-08 11:28:04
- * @modify date 2018-08-08 11:28:04
+ * @modify date 2018-08-08 12:08:41
  * @desc [description]
 */
 
@@ -52,11 +52,20 @@ rxArr() {
   return this._rxArr;
 }
 
-
+/**
+ * @description:
+ * Returns the Array of string which contains
+ * all the "plcTag.name" strings in the rx list
+ */
 get namesArr() {
-  let nArr: string[] = []; // assign and init
-
-  return nArr;
+    let nArr: string[] = []; // assign and init
+    const uArr = this.rxArr(); // fetch all the Objects
+    if (isArray(uArr))  {
+        uArr.forEach(u => {
+          nArr.push(<string>u.plcTag.name);
+        });
+      return nArr;
+    }
 }
 
   rx(): any {
@@ -81,73 +90,24 @@ get namesArr() {
   }
 
   addNew(newUDT: IUdt): Observable<any> {
- //   console.log(newUDT);
     return this._httpServ.postTx(url.addUDT, <IUdt>(newUDT));
   }
 
   update(uUDT: IUdt): Observable<any> {
- //   console.log(uUDT);
     return this._httpServ.postTx(url.updateUDT, <IUdt>(uUDT));
   }
 
+  /**
+   *
+   * @param dUDT : The selected Object which  has to be deleted.
+   * this object details will be sent to server to request delete operation
+   */
   deleteSingle(dUDT: IUdt) {
 /**
  * sending the complete UDT may make sense instead of just it's idx..!
  * change it later to optimize or unneccessary
  */
-//  console.log(dUDT);
   return this._httpServ.postTx(url.deleteUDT, <IUdt>(dUDT));
   }
-/*   __addNew(newUDT: IUdt) {
-
-    this._subscriptionPost = this._httpServ.postTx(url.addUDT, <IUdt>(newUDT))
-    .subscribe(
-      udt => {
-        console.log(udt);
-        let u: IUdt = udt;
-        this._msg.add('UDT: ' + u.plcTag.name + ' Added Successfully..!');
-       },
-      err => {},
-      () =>  {}
-    );
-  } */
-
-  isNameUnique(_name: string, _ownName?: string): Observable<any> {
-    const ownName = (_ownName) ? _ownName.toLowerCase() : '';
-    const name = _name.toLowerCase();
-    let i = 0;
-    let j = 0;
-    this.rxArr().forEach(
-      u => {
-        const uName = u.plcTag.name.toLowerCase();
-        j = ( ownName !== '' && ownName === uName) ? j + 1 : j;
-        if ((name === uName) && (name !== '') && (ownName !== '' ? (ownName !== name) : true) )  {
-          i = i + 1;
-        }
-        j = (ownName !== '' && ownName !== name) ? 0 : j; // reset the count if user changes the name
-      }
-    );
-     console.log(j);
-    return new Observable(observer => {
-      if ((i === 0) && (j < 2)) {
-        /*
-        *is unique / or / matched with own = no Duplicate error
-        */
-        observer.next(null);
-      } else {
-        /**
-         * Found duplicate..!
-         */
-        observer.next({nameExists: true});
-      }
-      /**
-       * Do not forget to sign complete this observer, otherwise validator will never react to it
-       * The observer will complete hence the async caller will never signled to do [.then]
-       */
-      observer.complete();
-    });
-
-  }
-
 
 }

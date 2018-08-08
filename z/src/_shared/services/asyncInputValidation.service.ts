@@ -13,7 +13,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class FormInputValidatorService {
+export class AsyncInputValidationService {
 
 constructor() { }
 

@@ -14,6 +14,7 @@ export class UdtVarComponent implements OnInit, OnDestroy {
 
   @Input() uVarIn: IudtVar;
   @Input() uVarFormGroup: FormGroup;
+  @Input() dataTypes: string[];
 
   /**
    * local form binding variables

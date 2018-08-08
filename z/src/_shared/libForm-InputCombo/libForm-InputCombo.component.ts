@@ -1,3 +1,10 @@
+/**
+ * @author [kd]
+ * @email [karna.dalal@gmail.com]
+ * @create date 2018-08-08 03:33:14
+ * @modify date 2018-08-08 03:33:14
+ * @desc [description]
+*/
 import { NG_VALUE_ACCESSOR, FormControl, ControlValueAccessor } from '@angular/forms';
 import { Component, OnInit, Input, ElementRef, Renderer2 } from '@angular/core';
 

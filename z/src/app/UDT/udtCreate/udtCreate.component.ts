@@ -1,13 +1,21 @@
+/**
+ * @author [kd]
+ * @email [karna.dalal@gmail.com]
+ * @create date 2018-08-08 11:55:49
+ * @modify date 2018-08-08 04:43:48
+ * @desc [Create / Update operations in libUDT module]
+*/
+
 import { Subscription, Observable } from 'rxjs';
 import { LibUDTService } from '../libUDT.service';
-import { IUdt, CONST_OBJTYPE } from '../../../_shared/interface/schemaLib.interface';
+import { IUdt, plc, DEV_PLATFORMS } from '../../../_shared/interface/schemaLib.interface';
 import { Component, OnInit, OnDestroy, Input, AfterViewInit, OnChanges } from '@angular/core';
 import { MsgService } from '../../../_shared/services/msg.service';
 import { Title } from '@angular/platform-browser';
 import { FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { HostListenerService } from '../../../_shared/services/hostListener.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { toArray } from 'rxjs/operators';
+import { AsyncInputValidationService } from '../../../_shared/services/asyncInputValidation.service';
 
 
 
@@ -39,6 +47,7 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
        * Holds all the existing objects found in the database.
        * used for comparision / and display..!
        */
+        public dataTypes: string[];
         public udtArr: IUdt[] = [];
         public formGroup: FormGroup;
         public editingUDT: IUdt;  /**New or editing UDT to be held */
@@ -59,8 +68,11 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
     private _msg: MsgService,
     public _hostListner: HostListenerService,
     private route: ActivatedRoute,
-    private _goTo: Router, ) {
+    private _goTo: Router,
+    private _asyncValidation: AsyncInputValidationService
+   ) {
 
+    this.dataTypes = (new plc(DEV_PLATFORMS.S7_300)).dataTypeNameStrings;
       this.rxF5(); /** without argument = just load the array; don't GET from HTTP */
 
 
@@ -156,10 +168,6 @@ navigateTo(path: string) {
       } else { /* The default form build (in case of "add new" request) */
         u  = new IUdt(); /**this case should never be reached as the argument is required */
       }
-//      console.log(editingUDT);
- //     console.log('u');
- //     console.log(u);
-
       const Attr = u.getFormGroup(); // Get attributes in a form of a FormGroup
 
       /**
@@ -183,18 +191,19 @@ navigateTo(path: string) {
       return (Attr); /**return  a newly generated FormGroup to caller */
 }
 
-validateUniqueName  = (control: AbstractControl): Observable<ValidationErrors> => {
-  console.log(control);
+validateUniqueName  = (c: AbstractControl): Observable<ValidationErrors> => {
+  // console.log(c);
 
   /**
    * pass the own name as an argument to exclude it from the existing scan list..!
    */
   const _ownName = this.opEdit ? this.editingUDT.plcTag.name : undefined;
-  return (this._libUDTService.isNameUnique(control.value, _ownName));
+  return (this._asyncValidation.isTextUnique(this._libUDTService.namesArr, c.value, false, _ownName));
+
 }
 
   /**Gets all data with subscription - use this to refresh (i.e. f5) as well */
-  rxF5(makeNewReq?: Boolean)  {
+   rxF5(makeNewReq?: Boolean)  {
     this.udtArr = []; // initialize when called.. otherwise the async data will be keep appended..!
     if (makeNewReq) {
       this.udtArr = this._libUDTService.rx(); /* The data will be automaticcally populated in the array as it is subscribed */
