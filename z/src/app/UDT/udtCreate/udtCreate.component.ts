@@ -1,13 +1,13 @@
 import { Subscription, Observable } from 'rxjs';
-import { LibUDTService } from './../libUDT.service';
-import { IUdt, CONST_OBJTYPE } from './../../../_shared/interface/schemaLib.interface';
+import { LibUDTService } from '../libUDT.service';
+import { IUdt, CONST_OBJTYPE } from '../../../_shared/interface/schemaLib.interface';
 import { Component, OnInit, OnDestroy, Input, AfterViewInit, OnChanges } from '@angular/core';
 import { MsgService } from '../../../_shared/services/msg.service';
-import { Title } from '../../../../node_modules/@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
 import { FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { HostListenerService } from '../../../_shared/services/hostListener.service';
-import { ActivatedRoute, ParamMap, Router } from '../../../../node_modules/@angular/router';
-import { toArray } from '../../../../node_modules/rxjs/operators';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { toArray } from 'rxjs/operators';
 
 
 

@@ -1,5 +1,5 @@
-import { HostListenerService } from './../services/hostListener.service';
-import { NavigationService } from './../services/navigation.service';
+import { HostListenerService } from '../services/hostListener.service';
+import { NavigationService } from '../services/navigation.service';
 import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'ui-nav',

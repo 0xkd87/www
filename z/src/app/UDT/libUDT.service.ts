@@ -1,7 +1,15 @@
-import { MsgService } from './../../_shared/services/msg.service';
+/**
+ * @author [kd]
+ * @email [karna.dalal@gmail.com]
+ * @create date 2018-08-08 11:28:04
+ * @modify date 2018-08-08 11:28:04
+ * @desc [description]
+*/
+
+import { MsgService } from '../../_shared/services/msg.service';
 import { Subscription, Observable } from 'rxjs';
 import { isArray } from 'util';
-import { HttpTxRxService } from './../../_shared/services/http-TxRx.service';
+import { HttpTxRxService } from '../../_shared/services/http-TxRx.service';
 import { Injectable, OnDestroy } from '@angular/core';
 import { IUdt } from '../../_shared/interface/schemaLib.interface';
 
@@ -44,6 +52,12 @@ rxArr() {
   return this._rxArr;
 }
 
+
+get namesArr() {
+  let nArr: string[] = []; // assign and init
+
+  return nArr;
+}
 
   rx(): any {
     this.initRxArray();  // no null, no undefined..!

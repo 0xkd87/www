@@ -1,8 +1,8 @@
-import { LibFormInputComboComponent } from './../../_shared/libForm-InputCombo/libForm-InputCombo.component';
-import { LibFormInputTextComponent } from './../../_shared/libForm-InputText/libForm-InputText.component';
-import { UdtCreateComponent } from './../UDT/udtCreate/udtCreate.component';
-import { UiNavComponent } from './../../_shared/ui-nav/ui-nav.component';
-import { UdtComponent } from './../UDT/udt/udt.component';
+import { LibFormInputComboComponent } from '../../_shared/libForm-InputCombo/libForm-InputCombo.component';
+import { LibFormInputTextComponent } from '../../_shared/libForm-InputText/libForm-InputText.component';
+import { UdtCreateComponent } from '../UDT/udtCreate/udtCreate.component';
+import { UiNavComponent } from '../../_shared/ui-nav/ui-nav.component';
+import { UdtComponent } from '../UDT/udt/udt.component';
 import { LibMngrRoutes } from './libMngr.routing';
 import { _utils } from '../../_shared/_utils';
 import { NgModule } from '@angular/core';

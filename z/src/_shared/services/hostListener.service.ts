@@ -1,6 +1,6 @@
 import { map, pairwise, distinctUntilChanged, share, throttleTime } from 'rxjs/operators';
 import { Injectable  } from '@angular/core';
-import { fromEvent } from '../../../node_modules/rxjs';
+import { fromEvent } from 'rxjs';
 
 
 

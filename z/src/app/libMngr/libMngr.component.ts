@@ -1,4 +1,4 @@
-import { NavigationService } from './../../_shared/services/navigation.service';
+import { NavigationService } from '../../_shared/services/navigation.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 

@@ -1,5 +1,5 @@
-import { LibUDTService } from './../libUDT.service';
-import { HostListenerService } from './../../../_shared/services/hostListener.service';
+import { LibUDTService } from '../libUDT.service';
+import { HostListenerService } from '../../../_shared/services/hostListener.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';

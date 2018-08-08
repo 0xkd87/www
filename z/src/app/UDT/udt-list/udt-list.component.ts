@@ -1,4 +1,4 @@
-import { IUdt } from './../../../_shared/interface/schemaLib.interface';
+import { IUdt } from '../../../_shared/interface/schemaLib.interface';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 
 

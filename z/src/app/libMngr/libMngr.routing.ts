@@ -1,4 +1,4 @@
-import { UdtCreateComponent } from './../UDT/udtCreate/udtCreate.component';
+import { UdtCreateComponent } from '../UDT/udtCreate/udtCreate.component';
 import { NgModule } from '@angular/core';
 
 import { LibMngrComponent } from './libMngr.component';
