@@ -1,7 +1,7 @@
 .cl-ListNodeContainer
 {
   display: block;
-  width: auto;
+  width: 100%;
   margin: 2px;
   padding: 2px;
 
@@ -16,16 +16,18 @@ table{
 
 td {
   min-width: 20px;
+  width: max-content;
+  display: inline-flex;
 }
 
 td,tr {
-  border: 0.5px solid rgb(207, 207, 207);
+  /* border: 0.5px solid rgb(207, 207, 207); */
 
 }
 
 
 .background-text {
-  z-index: -1;
+  z-index: auto;
   display: inline-block;
   font-size: 48px;
   font-weight: 500;

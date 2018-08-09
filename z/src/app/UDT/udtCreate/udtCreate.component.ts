@@ -1,3 +1,4 @@
+import { FileTxtService } from './../../../_shared/services/file-txt.service';
 /**
  * @author [kd]
  * @email [karna.dalal@gmail.com]
@@ -69,7 +70,8 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
     public _hostListner: HostListenerService,
     private route: ActivatedRoute,
     private _goTo: Router,
-    private _asyncValidation: AsyncInputValidationService
+    private _asyncValidation: AsyncInputValidationService,
+    private txt: FileTxtService,
    ) {
 
     this.dataTypes = (new plc(DEV_PLATFORMS.S7_300)).dataTypeNameStrings;
@@ -311,9 +313,9 @@ addNewVar() {
 }
 
   x() {
-    // this.formGroup = this.buildForm(this.editingUDT);
-    console.log(this.formGroup);
-
+    // console.log(this.txt.expFile());
+    this.txt.expFile();
+    // this._msg.add(this.txt.expFile());
   }
 
   onFormchange() {
