@@ -1,23 +1,36 @@
 .cl-ListNodeContainer
 {
   display: block;
-  width: 100%;
   margin: 2px;
   padding: 2px;
 
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   background-color: rgb(247, 247, 247);
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
-table{
+table,tbody,tr{
+  display: block;
+  width: 100%;
+}
+table,td,th,tr{
   border-collapse: collapse;
 }
 
 td {
   min-width: 20px;
-  width: max-content;
-  display: inline-flex;
+  display: inline-block;
+}
+
+.w10 {
+  width: 10%;
+}
+
+.w20 {
+  width: 20%;
+}
+.w40 {
+  width: 40%;
 }
 
 td,tr {

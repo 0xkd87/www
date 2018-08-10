@@ -1,9 +1,8 @@
-import { FileTxtService } from './../../../_shared/services/file-txt.service';
 /**
  * @author [kd]
  * @email [karna.dalal@gmail.com]
  * @create date 2018-08-08 11:55:49
- * @modify date 2018-08-08 04:43:48
+ * @modify date 2018-08-10 10:02:14
  * @desc [Create / Update operations in libUDT module]
 */
 
@@ -71,7 +70,6 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
     private route: ActivatedRoute,
     private _goTo: Router,
     private _asyncValidation: AsyncInputValidationService,
-    private txt: FileTxtService,
    ) {
 
     this.dataTypes = (new plc(DEV_PLATFORMS.S7_300)).dataTypeNameStrings;
@@ -314,7 +312,7 @@ addNewVar() {
 
   x() {
     // console.log(this.txt.expFile());
-    this.txt.expFile();
+    // this.txt.sa();
     // this._msg.add(this.txt.expFile());
   }
 

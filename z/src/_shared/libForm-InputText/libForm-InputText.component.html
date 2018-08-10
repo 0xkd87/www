@@ -4,7 +4,8 @@
  <label
  [class.focused] = "_inputFocused"
  for="x"
- name = "labeltext">{{_lbl}}:</label>
+ name = "labeltext">{{_lbl}}:
+</label> <span class = "text-len">{{formControl.value.length}}</span>
 
     <input
     type="text"
@@ -14,7 +15,7 @@
     (focus)="_inputFocused = true;"
     (blur)="_inputFocused = false;"  />
 
-<span class = "text-len">{{formControl.value.length}}</span>
+
 
 
 <!--     <div class = "text-len">{{formControl.value.length}}</div>  -->

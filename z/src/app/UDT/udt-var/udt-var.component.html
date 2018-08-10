@@ -6,46 +6,39 @@ class = "form-group cl-ListNodeContainer"
 novalidate>
 
     <table> <!-- Table structure -->
+<!--       <tr>
+        {{this.uVarFormGroup.get('plcTag.name').value}}
+      </tr> -->
         <tr> <!--Single Row -->
-          <td> <!-- cell (col) # = Delete trigger -->
+          <td class = "w20"> <!-- cell (col) # = Delete trigger -->
               <span class = "background-text">{{uVarIn.ident.innerIdx}}</span>
+
+              <input class="cl-trigger-transperant cl-trigger-round-delete mi"
+              type="submit"
+              value = "&#xe92b;">
           </td>
 
-          <td> <!-- cell (col) # = Delete trigger -->
-            <input class="cl-trigger-transperant cl-trigger-round-delete mi"
-            type="submit"
-            value = "&#xe92b;">
 
-          </td>
-
-          <td> <!-- cell (col) 1 -->
+          <td class = "w20"> <!-- cell (col) 1 -->
             <libForm-InputText
             [labelText] = '"Name"'
             [formControl] = "this.uVarFormGroup.get('plcTag.name')">
             </libForm-InputText>
           </td>
 
-          <td> <!-- cell (col) 2 -->
-<!--             <libForm-InputText
-            [labelText] = '"Data-Type"'
-            [formControl] = "this.uVarFormGroup.get('plcTag.datatype')">
-            </libForm-InputText> -->
-          </td>
-
-          <td colspan="2"> <!-- cell (col) 3 -->
+          <td class = "w40"> <!-- cell (col) 3 -->
             <libForm-InputText
             [labelText] = '"Comment"'
             [formControl] = "this.uVarFormGroup.get('plcTag.comment.en')">
             </libForm-InputText>
           </td>
-          <td>
+          <td class = "w20">
             <libForm-InputCombo
             [_labelText] = '"DataType"'
             [formControl] = "this.uVarFormGroup.get('plcTag.datatype')"
             [_dropdownItems] = "this.dataTypes">
             </libForm-InputCombo>
           </td>
-
 
         </tr><!--End Row -->
   </table>
