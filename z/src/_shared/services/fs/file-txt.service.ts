@@ -25,15 +25,17 @@ public export (content: string, fileName: string, fileExtension: string) {
    fileName = 'console.json';
   }
 
+  let _fName = fileName + fileExtension;
+
   let _blob = new Blob([content], {type: 'text/plain'});
   let _ev    =  new Event('MouseEvents');
   let _a    = document.createElement('a');
 // FOR IE:
 
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-    window.navigator.msSaveOrOpenBlob(_blob, fileName);
+    window.navigator.msSaveOrOpenBlob(_blob, _fName);
     } else {
-      _a.download = fileName;
+      _a.download = _fName;
       _a.href = window.URL.createObjectURL(_blob);
       _a.dataset.downloadurl = ['text/plain', _a.download, _a.href].join(':');
 
@@ -42,21 +44,17 @@ public export (content: string, fileName: string, fileExtension: string) {
       /*     e.initEvent('click', true, false, window,
         0, 0, 0, 0, 0, false, false, false, false, 0, null);
     a.dispatchEvent(e); */
-    console.log(document.body);
     document.body.appendChild(_a);
-    console.log(document.body);
     _a.click();
     if (document.body.contains(_a)) {
-       console.log(_a);
        document.body.removeChild(_a);
     }
-
-    if (document.body.contains(_a)) {
-      console.log('removed');
-   }
-    return _blob;
+    // return _blob;
 
     }
+
+    console.log('content');
+
 }
 
 

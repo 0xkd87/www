@@ -1,3 +1,4 @@
+import { ExportHandlerUDTService } from './../../../_shared/services/exportHandlers/exportHandler-UDT.service';
 /**
  * @author [kd]
  * @email [karna.dalal@gmail.com]
@@ -70,6 +71,7 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
     private route: ActivatedRoute,
     private _goTo: Router,
     private _asyncValidation: AsyncInputValidationService,
+    private _textExport: ExportHandlerUDTService,
    ) {
 
     this.dataTypes = (new plc(DEV_PLATFORMS.S7_300)).dataTypeNameStrings;
@@ -311,9 +313,7 @@ addNewVar() {
 }
 
   x() {
-    // console.log(this.txt.expFile());
-    // this.txt.sa();
-    // this._msg.add(this.txt.expFile());
+    this._textExport.expotAsAwlSrc(this.editingUDT);
   }
 
   onFormchange() {
