@@ -46,7 +46,7 @@ buildS7Src(u: IUdt, db?: boolean): string {
       /**
        * Object Children
        */
-      s.addLine('STRUCT', 1);
+/*       s.addLine('STRUCT', 1);
           u.vars.forEach( v => {
             s.addLine('', 2);
             s.appendText('"' + v.plcTag.name + '"');
@@ -54,11 +54,14 @@ buildS7Src(u: IUdt, db?: boolean): string {
             s.appendText(v.plcTag.datatype + '; ');
             s.appendText('//' + v.plcTag.comment['en']);
           });
-      s.addLine('END_STRUCT;', 1);
-      /**
-        * object END
-        */
+      s.addLine('END_STRUCT;', 1); */
 
+      s.addLine(this._getChildrenAsStruct(u));
+
+
+      /**
+      * object END
+      */
     s.addLine('END_'); s.appendText(prgBlock);
 
     return s.ToString;
@@ -72,7 +75,25 @@ exportAsTIASrc(u: IUdt, exportAsDB?: boolean) {
   this._txt.export(this.buildS7Src(u, _asDB), u.plcTag.name, _fileExt);
 }
 
+// get all children as struct
+private _getChildrenAsStruct(u: IUdt, tabIdent: number = 1, structArr?: IUdt[]): TextBuffer {
+    let s = new TextBuffer();
 
+      s.addLine('STRUCT', tabIdent);
+          u.vars.forEach( v => {
+            s.addLine('', tabIdent + 1);
+            s.appendText('"' + v.plcTag.name + '"');
+            s.appendText(' : ');
+            s.appendText(v.plcTag.datatype + '; ');
+            s.appendText('//' + v.plcTag.comment['en']);
+          });
+      s.addLine('END_STRUCT;', tabIdent);
 
+      return s;
+}
+
+exportAsDBSrcGalileo10(u: IUdt, uArr: IUdt[]) {
+
+}
 
 }

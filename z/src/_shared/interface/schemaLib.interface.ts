@@ -271,7 +271,9 @@ class _plcTag {
         isF : new FormControl(this.isF),
         datatype : new FormControl(
           this.datatype,
-          Validators.compose([ Validators.required, ])
+          Validators.compose([ Validators.required,
+            Validators.minLength(1),
+          ])
         ),
         address : new FormControl(this.address),
       });
@@ -309,6 +311,8 @@ export class IudtVar {
      this.plcTag.isF = false;
      this.plcTag.comment.en = '';
      this.plcTag.datatype   = 'BOOL';
+
+     this.ident.hasChildern = false;
     }
 
     /**

@@ -50,11 +50,19 @@ export class TextBuffer {
 /**
  * Append text to the text buffer with a new line (Append)
  *
- * @param line line to be fed (NewLine)
+ * @param line line(s) to be fed (NewLine)
  * @param tabIndent tab indent for this line (default = 0)
  */
-  public addLine(line: string, tabIndent?: number) {
-    this._sbuf.push(this._indentTab(tabIndent) + line);
+  public addLine(line: string | TextBuffer, tabIndent?: number) {
+        if (typeof line === 'string')  {
+          this._sbuf.push(this._indentTab(tabIndent) + line);
+          return true;
+        } else {
+          line.buffer.forEach( s => {
+            this.addLine(s);
+          });
+          return true;
+        }
   }
 
 

@@ -318,7 +318,7 @@ addNewVar() {
 }
 
   x() {
-    this._exportTIA.exportAsTIASrc(this.editingUDT, true);
+    this._exportTIA.exportAsTIASrc(new IUdt(this.loadFromForm()), true);
   }
 
   onFormchange() {

@@ -14,4 +14,18 @@
           <option  *ngFor="let di of dropdownItems; let i = index" [value]="di"> {{di}}</option>
         </select>
 
+
+    <!-- Validation Error messages  -->
+    <div
+    class = "validation-msg-red"
+    *ngIf="this.formControl.hasError && this.formControl.getError('invalidSelection')">
+        Invalid or Obsolete value selected..!
+    </div>
+
+    <div
+    class = "validation-msg-red"
+    *ngIf="this.formControl.hasError && this.formControl.getError('required')">
+        Invalid or Obsolete value selected..!
+    </div>
      </div>
+

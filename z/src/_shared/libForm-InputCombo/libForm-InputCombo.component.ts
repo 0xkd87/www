@@ -65,6 +65,24 @@ export class LibFormInputComboComponent implements OnInit, ControlValueAccessor 
       // this._fc = this.formControl;
     }
     this.isFocused = false;
+
+    let i = 0;
+    this._dropdownItems.forEach( s => {
+      if (this.formControl.value === s) {
+        i++;
+      }
+    });
+
+    if (i !== 1) {
+      this.formControl.setValue('');
+      this.formControl.updateValueAndValidity();
+
+      this.formControl.setErrors({
+        invalidSelection : true
+      });
+
+      console.log(this.formControl);
+    }
 }
 
 onChange = (_: any) => {
