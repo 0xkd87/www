@@ -2,7 +2,7 @@
  * @author [kd]
  * @email [karna.dalal@gmail.com]
  * @create date 2018-08-09 01:50:22
- * @modify date 2018-08-09 01:50:22
+ * @modify date 2018-08-13 09:13:54
  * @desc [File System operations provider for a text file]
 */
 import { Injectable } from '@angular/core';
@@ -17,44 +17,46 @@ constructor() { }
 public export (content: string, fileName: string, fileExtension: string) {
 
   if (!content) {
-      console.error('Console.save: No data');
+      console.error('TxtExport Error: Empty Content..! No Export will be performed.');
       return;
   }
 
   if (!fileName) {
-   fileName = 'console.json';
+   return;
   }
 
-  let _fName = fileName + fileExtension;
+    let _fName = fileName + fileExtension;
 
-  let _blob = new Blob([content], {type: 'text/plain'});
-  let _ev    =  new Event('MouseEvents');
-  let _a    = document.createElement('a');
-// FOR IE:
+    /**
+     * Creates the BLOB object : Check browser compatibility...
+     */
+    // let _blob = new Blob([content], {type: 'text/plain'});
 
-    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-    window.navigator.msSaveOrOpenBlob(_blob, _fName);
-    } else {
-      _a.download = _fName;
-      _a.href = window.URL.createObjectURL(_blob);
-      _a.dataset.downloadurl = ['text/plain', _a.download, _a.href].join(':');
+    /**
+     * Creates a new File Object... Supported on more browser platforms
+     */
+    let _blob = new File([content], _fName, {type: 'text/src'});
 
-      _ev.initEvent('click', true, false);
-       _a.dispatchEvent(_ev);
-      /*     e.initEvent('click', true, false, window,
-        0, 0, 0, 0, 0, false, false, false, false, 0, null);
-    a.dispatchEvent(e); */
-    document.body.appendChild(_a);
-    _a.click();
-    if (document.body.contains(_a)) {
-       document.body.removeChild(_a);
-    }
-    // return _blob;
+    let _ev    =  new Event('MouseEvents');
+    let _a    = document.createElement('a');
+  // FOR IE:
 
-    }
+      if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+      window.navigator.msSaveOrOpenBlob(_blob, _fName);
+      } else {
+          _a.download = _fName;
+          _a.href = window.URL.createObjectURL(_blob);
+          _a.dataset.downloadurl = ['text/plain', _a.download, _a.href].join(':');
 
-    console.log('content');
-
+          _ev.initEvent('click', true, false);
+          _a.dispatchEvent(_ev);
+          document.body.appendChild(_a);
+          _a.click();
+        if (document.body.contains(_a)) {
+          /**Remove the element "a" from the document body if it exists */
+          document.body.removeChild(_a);
+        }
+      }
 }
 
 

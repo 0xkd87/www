@@ -1,9 +1,8 @@
-import { ExportHandlerUDTService } from './../../../_shared/services/exportHandlers/exportHandler-UDT.service';
 /**
  * @author [kd]
  * @email [karna.dalal@gmail.com]
  * @create date 2018-08-08 11:55:49
- * @modify date 2018-08-10 10:02:14
+ * @modify date 2018-08-13 03:21:08
  * @desc [Create / Update operations in libUDT module]
 */
 
@@ -17,6 +16,7 @@ import { FormGroup, Validators, AbstractControl, ValidationErrors } from '@angul
 import { HostListenerService } from '../../../_shared/services/hostListener.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { AsyncInputValidationService } from '../../../_shared/services/asyncInputValidation.service';
+import { ExportHandlerUDTService } from './../../../_shared/services/exportHandlers/exportHandler-UDT.service';
 
 
 
@@ -71,11 +71,11 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
     private route: ActivatedRoute,
     private _goTo: Router,
     private _asyncValidation: AsyncInputValidationService,
-    private _textExport: ExportHandlerUDTService,
+    private _exportTIA: ExportHandlerUDTService,
    ) {
 
-    this.dataTypes = (new plc(DEV_PLATFORMS.S7_300)).dataTypeNameStrings;
       this.rxF5(); /** without argument = just load the array; don't GET from HTTP */
+
 
 
       /**
@@ -110,7 +110,6 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
           this.editingUDT = new IUdt(<IUdt>u); // assign a matching udt (overwrite/shallow copy on the [new] UDT)
           this._title.setTitle('UDT :: EDIT :' + this.editingIdx);
           this.formHeaderText = 'Editing the Selected Object'; // new
-
         }
       });
     } else {
@@ -212,6 +211,12 @@ validateUniqueName  = (c: AbstractControl): Observable<ValidationErrors> => {
     }   else {
       this.udtArr = this._libUDTService.rxArr();
     }
+
+    this.dataTypes = [];
+    this.dataTypes = (new plc(DEV_PLATFORMS.S7_300)).dataTypeNameStrings;
+    this.udtArr.forEach( u => {
+      this.dataTypes.push(u.plcTag.name);
+    });
   }
 
 loadFromForm(): IUdt {
@@ -313,7 +318,7 @@ addNewVar() {
 }
 
   x() {
-    this._textExport.expotAsAwlSrc(this.editingUDT);
+    this._exportTIA.exportAsTIASrc(this.editingUDT, true);
   }
 
   onFormchange() {
