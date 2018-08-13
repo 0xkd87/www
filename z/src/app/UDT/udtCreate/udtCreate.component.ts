@@ -75,6 +75,7 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
    ) {
 
       this.rxF5(); /** without argument = just load the array; don't GET from HTTP */
+      this.dataTypes = this.updateDataTypeList();
 
 
 
@@ -205,6 +206,7 @@ validateUniqueName  = (c: AbstractControl): Observable<ValidationErrors> => {
 
   /**Gets all data with subscription - use this to refresh (i.e. f5) as well */
    rxF5(makeNewReq?: Boolean)  {
+
     this.udtArr = []; // initialize when called.. otherwise the async data will be keep appended..!
     if (makeNewReq) {
       this.udtArr = this._libUDTService.rx(); /* The data will be automaticcally populated in the array as it is subscribed */
@@ -212,11 +214,27 @@ validateUniqueName  = (c: AbstractControl): Observable<ValidationErrors> => {
       this.udtArr = this._libUDTService.rxArr();
     }
 
-    this.dataTypes = [];
-    this.dataTypes = (new plc(DEV_PLATFORMS.S7_300)).dataTypeNameStrings;
+     // this.dataTypes = this.updateDataTypeList();
+
+  }
+
+  updateDataTypeList(): string [] {
+
+    let arr: string[] = [];
+
     this.udtArr.forEach( u => {
-      this.dataTypes.push(u.plcTag.name);
+      arr.push(u.plcTag.name);
     });
+
+    console.log('arr');
+
+    console.log(arr);
+
+    let p = new plc(DEV_PLATFORMS.S7_300).dataTypeNameStrings.forEach( n => {
+      arr.push(n);
+    });
+
+    return arr;
   }
 
 loadFromForm(): IUdt {
@@ -253,12 +271,14 @@ loadToForm(editingUDT: IUdt) {
     /**
      * Load actual (validated) values from the form
      */
-    const newUDT: IUdt = this.loadFromForm();
 
+    if (this.editingUDT) {
+      this.editingUDT =  new IUdt(this.loadFromForm());
+    }
     /**
      * make a update request and upon success, get the entire chunk back (refresh)
      */
-    this._subscriptionPost = this._libUDTService.update(<IUdt>(newUDT))
+    this._subscriptionPost = this._libUDTService.update(<IUdt>(this.editingUDT))
     .subscribe(
     udt => {
       // console.log(udt);
@@ -272,7 +292,13 @@ loadToForm(editingUDT: IUdt) {
          * + Mark the form group (and all its children) as pristine (non Dirty) to disable the save Trigger
          *   This has been saved and let's not give a user the ability to keep saving and not making senseless http requests
          */
+
         this.rxF5(true);
+        // this.dataTypes = this.updateDataTypeList();
+
+        this.formGroup = this.buildForm(this.editingUDT);
+
+
         /**
          *  + Mark the form group (and all its children) as pristine (non Dirty) to disable the save Trigger
          *   This has been saved and let's not give a user the ability to keep saving and not making senseless http requests
@@ -318,7 +344,10 @@ addNewVar() {
 }
 
   x() {
-    this._exportTIA.exportAsTIASrc(new IUdt(this.loadFromForm()), true);
+   // this._exportTIA.exportAsTIASrc(new IUdt(this.loadFromForm()), true);
+
+    this._exportTIA.exportAsDBSrcGalileo10(new IUdt(this.loadFromForm()), this.udtArr);
+
   }
 
   onFormchange() {

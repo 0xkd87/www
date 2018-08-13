@@ -1,3 +1,4 @@
+import { AfterViewInit } from '@angular/core';
 /**
  * @author [kd]
  * @email [karna.dalal@gmail.com]
@@ -18,7 +19,7 @@ import { Component, OnInit, Input, ElementRef, Renderer2 } from '@angular/core';
     multi: true
   }]
 })
-export class LibFormInputComboComponent implements OnInit, ControlValueAccessor {
+export class LibFormInputComboComponent implements OnInit, ControlValueAccessor, AfterViewInit {
 
   /**
    * input parameter(s) to bind with parent/child
@@ -60,11 +61,7 @@ export class LibFormInputComboComponent implements OnInit, ControlValueAccessor 
     this.initControls();
   }
 
-  initControls() {
-    if (this.formControl) {
-      // this._fc = this.formControl;
-    }
-    this.isFocused = false;
+  ngAfterViewInit() {
 
     let i = 0;
     this._dropdownItems.forEach( s => {
@@ -75,7 +72,7 @@ export class LibFormInputComboComponent implements OnInit, ControlValueAccessor 
 
     if (i !== 1) {
       this.formControl.setValue('');
-      this.formControl.updateValueAndValidity();
+      // this.formControl.updateValueAndValidity();
 
       this.formControl.setErrors({
         invalidSelection : true
@@ -83,6 +80,15 @@ export class LibFormInputComboComponent implements OnInit, ControlValueAccessor 
 
       console.log(this.formControl);
     }
+
+  }
+
+  initControls() {
+    if (this.formControl) {
+      // this._fc = this.formControl;
+    }
+    this.isFocused = false;
+
 }
 
 onChange = (_: any) => {
