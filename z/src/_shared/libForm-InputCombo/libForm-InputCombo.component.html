@@ -11,7 +11,7 @@
        (focus)="isFocused = true"
        (blur)="isFocused = false"
        [(formControl)] = formControl>
-          <option  *ngFor="let di of dropdownItems; let i = index" [value]="di"> {{di}}</option>
+       <option class = "opt" *ngFor="let di of dropdownItems; let i = index" [value]="di"> {{di}}</option>
         </select>
 
 

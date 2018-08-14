@@ -106,9 +106,12 @@ export class plc {
     this._dtArr.push(new _defDataType('BOOL', 1));
     this._dtArr.push(new _defDataType('BYTE', 8));
     this._dtArr.push(new _defDataType('WORD', 16));
-    this._dtArr.push(new _defDataType('DINT', 32));
-
     this._dtArr.push(new _defDataType('INT', 16, [DEV_PLATFORMS.S7_300, DEV_PLATFORMS.S7_1200, DEV_PLATFORMS.S7_1500]));
+
+    this._dtArr.push(new _defDataType('DINT', 32, [DEV_PLATFORMS.S7_300, DEV_PLATFORMS.S7_1200, DEV_PLATFORMS.S7_1500]));
+    this._dtArr.push(new _defDataType('DWORD', 32, [DEV_PLATFORMS.S7_300, DEV_PLATFORMS.S7_1200, DEV_PLATFORMS.S7_1500]));
+    this._dtArr.push(new _defDataType('REAL', 32, [DEV_PLATFORMS.S7_300, DEV_PLATFORMS.S7_1200, DEV_PLATFORMS.S7_1500]));
+
     this._dtArr.push(new _defDataType('ABONLY', 16, [DEV_PLATFORMS.AB]));
   }
 

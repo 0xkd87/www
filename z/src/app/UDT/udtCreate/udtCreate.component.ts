@@ -75,7 +75,6 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
    ) {
 
       this.rxF5(); /** without argument = just load the array; don't GET from HTTP */
-      this.dataTypes = this.updateDataTypeList();
 
 
 
@@ -117,6 +116,9 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
       /* The operation is new create : this has been taken care in initialization */
       this.formHeaderText = 'Create a New Object'; // new
     }
+
+    /**Populate the data-type name array before bulding the form */
+    this.dataTypes = this.updateDataTypeList(this.editingUDT);
 
     /**
      * Build a form out of the editing UDT..!
@@ -218,22 +220,34 @@ validateUniqueName  = (c: AbstractControl): Observable<ValidationErrors> => {
 
   }
 
-  updateDataTypeList(): string [] {
+  /**Update the Datatype option list which user can select from
+   * This first includes all platform (CPU) specific native datatypes and then adds user created.
+   *
+   * Direct/Indirect recursion..to be considered.
+   *
+   * @param excludeUDT The UDT name will not be added to the list to avoid Direct/Indirect recursion
+   */
+  updateDataTypeList(excludeUDT?: IUdt): string [] {
+
 
     let arr: string[] = [];
-
-    this.udtArr.forEach( u => {
-      arr.push(u.plcTag.name);
-    });
-
-    console.log('arr');
-
-    console.log(arr);
 
     let p = new plc(DEV_PLATFORMS.S7_300).dataTypeNameStrings.forEach( n => {
       arr.push(n);
     });
 
+    this.udtArr.forEach( u => {
+      let un = u.plcTag.name;
+      if ((excludeUDT) && ((excludeUDT.plcTag.name === un)) ) {
+        /**Do not include - NOP */
+      } else {
+        arr.push(un);
+      }
+    });
+
+    // console.log('arr');
+
+    // console.log(arr);
     return arr;
   }
 

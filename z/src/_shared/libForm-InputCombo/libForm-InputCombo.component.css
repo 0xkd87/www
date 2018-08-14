@@ -51,6 +51,18 @@ select
     display: block;
 }
 
+.opt {
+  margin: 1px;
+  width: 100%;
+  padding: 2px;
+  font-size: 16px;
+  font-weight: 450;
+  font-variant: normal;
+  min-height: 32px;
+  line-height: 32px;
+  border : none;
+}
+
 /*invalid input indication*/
 .form-control.ng-dirty.ng-touched.ng-invalid
 {
