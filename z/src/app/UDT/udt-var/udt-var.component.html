@@ -1,9 +1,11 @@
+<span class = "background-text">{{uVarIn.ident.innerIdx}}</span>
 
 <!-- Form container structure -->
-<form
-class = "form-group cl-ListNodeContainer"
-[formGroup]="uVarFormGroup"
-novalidate>
+  <form
+  class = "form-group cl-ListNodeContainer"
+  [class.invalid-form] = "uVarFormGroup.invalid"
+  [formGroup]="uVarFormGroup"
+  novalidate>
 
     <table> <!-- Table structure -->
 <!--       <tr>
@@ -11,7 +13,6 @@ novalidate>
       </tr> -->
         <tr> <!--Single Row -->
           <td class = "w20"> <!-- cell (col) # = Delete trigger -->
-              <span class = "background-text">{{uVarIn.ident.innerIdx}}</span>
 
               <input class="cl-trigger-transperant cl-trigger-round-delete mi"
               type="submit"

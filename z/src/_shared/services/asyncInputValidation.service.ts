@@ -32,9 +32,12 @@ isTextUnique(_nArr: string [], _name: string, _matchCase = false, _ownName?: str
    */
   let c: (s: string) => string;
   if (_matchCase === true) {
-    c = (s) => (s);
+    c = (s: string) => (s);
   } else {
-    c = (s) => (s.toLowerCase());
+    c = (s: string) => {
+      console.log(s);
+      return s.toLowerCase();
+    };
   }
 
   const ownName = (_ownName) ? c(_ownName) : '';

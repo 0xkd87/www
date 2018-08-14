@@ -63,23 +63,7 @@ export class LibFormInputComboComponent implements OnInit, ControlValueAccessor,
 
   ngAfterViewInit() {
 
-    let i = 0;
-    this._dropdownItems.forEach( s => {
-      if (this.formControl.value === s) {
-        i++;
-      }
-    });
 
-    if (i !== 1) {
-      this.formControl.setValue('');
-      // this.formControl.updateValueAndValidity();
-
-      this.formControl.setErrors({
-        invalidSelection : true
-      });
-
-      console.log(this.formControl);
-    }
 
   }
 
@@ -89,10 +73,28 @@ export class LibFormInputComboComponent implements OnInit, ControlValueAccessor,
     }
     this.isFocused = false;
 
+    let i = 0;
+    this._dropdownItems.forEach( s => {
+      if (this.formControl.value === s) {
+        i++;
+      }
+    });
+
+    if (i !== 1) {
+      this.formControl.setValue('');
+      this.formControl.updateValueAndValidity();
+
+      this.formControl.setErrors({
+        invalidSelection : true
+      });
+
+      console.log(this.formControl);
+    }
+
 }
 
 onChange = (_: any) => {
-  // console.log(_);
+   console.log(_);
 }
 onTouched = () => {};
 
@@ -103,7 +105,7 @@ writeValue(val: any): void {
   this._renderer.setValue(this._elementRef.nativeElement, val);
 }
 registerOnChange(fn: any): void {
-  this.onChange = fn;
+  // this.onChange = fn;
 }
 registerOnTouched(fn: any): void {
   // throw new Error("Method not implemented.");

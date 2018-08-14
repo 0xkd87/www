@@ -47,4 +47,10 @@ td,tr {
   color: rgba(122, 122, 122, 0.836);
 }
 
+.invalid-form
+{
+  border-left: 7px solid rgb(250, 53, 4);
+  background-color: rgb(255, 255, 255);
+}
+
 

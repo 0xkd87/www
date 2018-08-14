@@ -1,3 +1,4 @@
+import { IudtVar } from './../../../_shared/interface/schemaLib.interface';
 /**
  * @author [kd]
  * @email [karna.dalal@gmail.com]
@@ -179,7 +180,7 @@ navigateTo(path: string) {
        */
       Attr.get('plcTag.name').setValidators([
           Validators.required,
-          Validators.minLength(5),
+          Validators.minLength(2),
           Validators.maxLength(80),
           Validators.pattern(/^[a-zA-Z0-9!#$%^&*()_-]+$/)
         ]); // Sync validators
@@ -188,6 +189,12 @@ navigateTo(path: string) {
         this.validateUniqueName.bind(Attr.get('plcTag.name'))
       ]); // Async validators
 
+      // this.formGroup.controls['vars'].controls[i]
+      u.vars.forEach( (v, i) => {
+        ((<FormGroup>Attr.controls['vars']).controls[i].get('plcTag.name')).setAsyncValidators([
+           this.validateUniqueVarName.bind(u.vars, ...[((<FormGroup>Attr.controls['vars']).controls[i].get('plcTag.name')), i])
+        ]); // Async validators
+      });
       // Disable some fields (readonly)
       Attr.get('plcTag.datatype').disable();
 
@@ -203,6 +210,21 @@ validateUniqueName  = (c: AbstractControl): Observable<ValidationErrors> => {
    */
   const _ownName = this.opEdit ? this.editingUDT.plcTag.name : undefined;
   return (this._asyncValidation.isTextUnique(this._libUDTService.namesArr, c.value, false, _ownName));
+
+}
+
+validateUniqueVarName = (_c: AbstractControl, i: number): Observable<ValidationErrors> => {
+  /**
+   * pass the own name as an argument to exclude it from the existing scan list..!
+   */
+
+  let n = this.editingUDT.vars[i].plcTag.name;
+  let _nArr: string[] = [];
+  this.loadFromForm().vars.forEach( el => {
+    _nArr.push(el.plcTag.name);
+  });
+
+     return (this.editingUDT.vars[i].plcTag.isTextUnique(_nArr, _c.value, false, n));
 
 }
 
@@ -245,10 +267,22 @@ validateUniqueName  = (c: AbstractControl): Observable<ValidationErrors> => {
       }
     });
 
-    // console.log('arr');
+     // console.log('arr');
 
     // console.log(arr);
     return arr;
+  }
+
+  preventRecusion(excludeUDT: IUdt, uArr: IUdt[]): boolean {
+
+    let rec = false;
+
+
+      if ( (excludeUDT) && (uArr.includes(excludeUDT))) {
+        return true;
+      }
+
+       return false;
   }
 
 loadFromForm(): IUdt {

@@ -8,6 +8,7 @@
        <select
        name = "_dropdown"
        class="form-control"
+       (change)="onChange($event)"
        (focus)="isFocused = true"
        (blur)="isFocused = false"
        [(formControl)] = formControl>

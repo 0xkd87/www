@@ -1,4 +1,4 @@
-import { FormGroup } from '@angular/forms';
+import { FormGroup, } from '@angular/forms';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { IudtVar } from '../../../_shared/interface/schemaLib.interface';
 
@@ -21,7 +21,9 @@ export class UdtVarComponent implements OnInit, OnDestroy {
    */
    public _uVar: IudtVar;
    public _formGroup: FormGroup;
-  constructor() {
+  constructor(
+  ) {
+
 
   }
 
@@ -34,4 +36,5 @@ export class UdtVarComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
 
   }
+
 }
