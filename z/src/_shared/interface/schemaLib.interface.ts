@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
  * @author [kd]
  * @email [karna.dalal@gmail.com]
  * @create date 2018-08-08 12:16:22
- * @modify date 2018-08-08 03:32:51
+ * @modify date 2018-08-15 08:26:53
  * @desc [Schema and basic definitions of objects]
 */
 import { _utils } from '../_utils';
@@ -131,21 +131,29 @@ export class plc {
     return _nArr;
   }
 
+  /**
+   * Asserts and returns the size of the datatype in bits.
+   * If the data type is not found (or not supported by the specified plc platform), 0 (non assertive)
+   * value will be returned.
+   *
+   * @param dataType Verbose string of the data type whose bit-weight has to be determined
+   */
   isNativeDataType(dataType: string): number {
     if (typeof dataType === 'string') { // type must be string
-      this._dtArr.forEach((d, i, dArr) => {
+
+      for (let d of this._dtArr) {
         if (
           (d.nameString === dataType) &&
-          (d.supportedPlatforms.includes(this.myPlatform) || d.supportedPlatforms.includes(DEV_PLATFORMS.ALL))
-        ) {
-          console.log(dArr[i].bitWeight);
-          return dArr[i].bitWeight;
+          (d.supportedPlatforms.includes(this.myPlatform) || d.supportedPlatforms.includes(DEV_PLATFORMS.ALL)) ) {
+          return d.bitWeight; // get out (assert) on first successful find
         }
-      });
+      }
     }
     return 0; // return 0 as default, non assertive answer
   }
-}
+
+
+} // </class>
 
 
 /*Internal interfaces - No Export */
@@ -252,6 +260,14 @@ class _plcTag {
   address?: string;
   comment?: _multiLangText;
 
+  private _memOffset: number;
+  public get memOffset(): number {
+    return this._memOffset;
+  }
+  public set memOffset(value: number) {
+    this._memOffset = value;
+  }
+
   constructor(src?: _plcTag) {
     this.isF = false;
     this.name = '';
@@ -311,23 +327,14 @@ class _plcTag {
  */
 isTextUnique(_nArr: string [], _name: string, _matchCase = false, _ownName?: string): Observable<any> {
 
-  //console.log(_nArr);
-  //console.log(_name);
-
-  //console.log(_ownName);
-
-
   /**
    * case handler
    */
   let c: (s: string) => string;
   if (_matchCase === true) {
-    c = (s: string = '') => (s);
+    c = (s) => (s);
   } else {
-    c = (s: string = '') => {
-      // console.log('local: ' + s);
-      return s.toLowerCase();
-    };
+    c = (s) =>  (s.toLowerCase());
   }
 
   const ownName = (_ownName) ? c(_ownName) : '';
@@ -469,12 +476,15 @@ export class IUdt {
    * returns the basic structure of the form building group
    */
   public getFormGroup(): FormGroup {
+    // create and populate "vars"
     const vars = new FormArray([]);
     if (this.vars) {
       this.vars.forEach( v => {
         vars.push(v.getFormGroup());
       });
     }
+
+    // create a form group - which has to be returned
     const fg = new FormGroup(
       {
         ident: this.ident.getFormGroup(),
@@ -482,6 +492,8 @@ export class IUdt {
       },
       // {updateOn: 'blur'} // ?
     );
+
+    // add the children (populated above) as form array
     fg.addControl('vars', vars);
    return fg;
   }
@@ -521,11 +533,14 @@ export class IUdt {
       let sz = p.isNativeDataType(v.plcTag.datatype);
       if (sz > 0) {
         bW = bW + sz;
-        console.log(bW);
+      } else {
+        // recursive call ?
       }
     });
     return bW;
   }
+
+
 
 }
 

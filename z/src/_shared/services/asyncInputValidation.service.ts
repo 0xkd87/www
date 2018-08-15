@@ -27,17 +27,15 @@ constructor() { }
  * @param _ownName : [optional] if passed as a non-empty string, this string occurance is allowed once in the given array
  */
 isTextUnique(_nArr: string [], _name: string, _matchCase = false, _ownName?: string): Observable<any> {
+
   /**
    * case handler
    */
   let c: (s: string) => string;
   if (_matchCase === true) {
-    c = (s: string) => (s);
+    c = (s) => (s);
   } else {
-    c = (s: string) => {
-      console.log(s);
-      return s.toLowerCase();
-    };
+    c = (s) =>  (s.toLowerCase());
   }
 
   const ownName = (_ownName) ? c(_ownName) : '';

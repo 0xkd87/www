@@ -366,7 +366,6 @@ get bitWeight() {
    // this._exportTIA.exportAsTIASrc(new IUdt(this.loadFromForm()), true);
 
     // this._exportTIA.exportAsDBSrcGalileo10(new IUdt(this.loadFromForm()), this.udtArr);
-    new plc(DEV_PLATFORMS.S7_300).isNativeDataType('REAL');
   }
 
   /**
