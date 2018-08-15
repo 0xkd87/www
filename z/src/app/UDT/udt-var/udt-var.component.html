@@ -1,4 +1,4 @@
-<span class = "background-text">{{uVarIn.ident.innerIdx}}</span>
+
 
 <!-- Form container structure -->
   <form
@@ -7,16 +7,18 @@
   [formGroup]="uVarFormGroup"
   novalidate>
 
-    <table> <!-- Table structure -->
+
+  <table> <!-- Table structure -->
+    <tr> <!--Single Row -->
 <!--       <tr>
         {{this.uVarFormGroup.get('plcTag.name').value}}
       </tr> -->
-        <tr> <!--Single Row -->
           <td class = "w20"> <!-- cell (col) # = Delete trigger -->
-
+            <div class = "background-text">{{uVarIn.ident.innerIdx}}   |         </div>
               <input class="cl-trigger-transperant cl-trigger-round-delete mi"
               type="submit"
               value = "&#xe92b;">
+
           </td>
 
 
@@ -42,7 +44,8 @@
           </td>
 
         </tr><!--End Row -->
-  </table>
+      </table>
+
 </form>
 
 <!-- Form End -->

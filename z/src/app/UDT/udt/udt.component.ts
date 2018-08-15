@@ -4,6 +4,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { IUdt, CONST_OBJTYPE} from '../../../_shared/interface/schemaLib.interface';
+import { UdtCreateComponent } from '../udtCreate/udtCreate.component';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class UdtComponent implements OnInit, OnDestroy {
   public newUDT: IUdt;
 
   _rxArr: IUdt[] = [];
+
   _subscriptionPost: Subscription;
   _subscriptionGet: Subscription;
 
@@ -65,6 +67,16 @@ export class UdtComponent implements OnInit, OnDestroy {
     this._rxArr = <IUdt[]>this._libUDTService.rx(); /* The data will be automaticcally populated in the array as it is subscribed */
   }
 
+  isValidForm(i: number): boolean {
+    if (i >= 0) {
+
+      if (this._rxArr && this._rxArr.length > 0) {
+      }
+
+    }
+    /**Default return to False */
+    return false;
+  }
 
 
 

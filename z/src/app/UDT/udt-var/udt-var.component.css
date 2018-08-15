@@ -40,11 +40,16 @@ td,tr {
 
 
 .background-text {
+
+  /* transform: translate(-5px, -35px); */
+  position: relative;
+  top: 0px;
   z-index: auto;
-  display: inline-block;
-  font-size: 48px;
+  display: inline-table;
+  font-size: 36px;
   font-weight: 500;
-  color: rgba(122, 122, 122, 0.836);
+  color: rgba(180, 180, 180, 0.836);
+  vertical-align: middle;
 }
 
 .invalid-form
@@ -53,4 +58,57 @@ td,tr {
   background-color: rgb(255, 255, 255);
 }
 
+.cl-trigger-transperant
+{
+
+  margin: 1px;
+  padding: 0px;
+  line-height: 1px;
+  height: 40px;
+  width: 40px;
+  vertical-align: middle;
+  text-align: center;
+  border : none;
+  border-radius: 50%;
+
+  cursor: pointer;
+  font-size: 36px;
+  font-weight: 700;
+
+  font-family: 'Material Icons';
+  background-repeat: no-repeat;
+
+
+  text-transform: lowercase;
+  font-variant: small-caps;
+
+  background-color: rgba(0, 0, 0, 0);
+  box-shadow: 4px 3px 12px 0 rgba(0, 0, 0, 0);
+
+  text-shadow: 3px 3px 2px rgba(216, 216, 216, 0.795);
+
+}
+
+@media screen and (max-width: 600px)
+{
+
+  table,tbody,tr,td {
+    width: 100%;
+    display: block;
+  }
+    .w10, .w20, .w40
+    {
+        width: 100%;
+        padding: 0;
+    }
+    td
+    {
+        border-bottom: 0.3px solid rgb(233, 233, 233);
+        margin-bottom: 1px;
+    }
+
+    .cl-ListNodeContainer{
+      margin-bottom: 5px;
+    }
+}
 

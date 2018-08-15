@@ -130,6 +130,21 @@ export class plc {
     });
     return _nArr;
   }
+
+  isNativeDataType(dataType: string): number {
+    if (typeof dataType === 'string') { // type must be string
+      this._dtArr.forEach((d, i, dArr) => {
+        if (
+          (d.nameString === dataType) &&
+          (d.supportedPlatforms.includes(this.myPlatform) || d.supportedPlatforms.includes(DEV_PLATFORMS.ALL))
+        ) {
+          console.log(dArr[i].bitWeight);
+          return dArr[i].bitWeight;
+        }
+      });
+    }
+    return 0; // return 0 as default, non assertive answer
+  }
 }
 
 
@@ -263,14 +278,14 @@ class _plcTag {
           this.name,
           Validators.compose(
             [ Validators.required,
-              Validators.minLength(5),
+              Validators.minLength(2),
               Validators.maxLength(48),
               Validators.pattern(/^[a-zA-Z0-9!#$%^&*()_-]+$/)]),
               Validators.composeAsync([]),
         ),
         comment: this.comment.getFormGroup(
           [ Validators.maxLength(128),
-            Validators.pattern(/^[a-zA-Z0-9!#$%^&*()@|+ _-]+$/)]
+            Validators.pattern(/^[a-zA-Z0-9.,;:><[!#$%^&*()@|+ _-]+$/)]
         ),
         isF : new FormControl(this.isF),
         datatype : new FormControl(
@@ -487,13 +502,29 @@ export class IUdt {
        * Assignt its inner index as next increamental array index
        * Also take care of any orphans (unsaved)
        */
-      this.vars.forEach( v => {
+      this.vars.forEach( (v, i) => {
         if (v.ident.innerIdx < 0) { // non positive = default (-1);
-          v.ident.innerIdx = this.vars.indexOf(v) + 1; // Let's start from 1 instead of 0
+          // v.ident.innerIdx = this.vars.indexOf(v) + 1; // Let's start from 1 instead of 0
+          v.ident.innerIdx = i + 1; // Let's start from 1 instead of 0
+
         }
       });
     }
 
+  }
+
+  bitWeight(): number {
+
+    let p = new plc(DEV_PLATFORMS.S7_300);
+    let bW = 0;
+    this.vars.forEach((v, i) => {
+      let sz = p.isNativeDataType(v.plcTag.datatype);
+      if (sz > 0) {
+        bW = bW + sz;
+        console.log(bW);
+      }
+    });
+    return bW;
   }
 
 }

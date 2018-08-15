@@ -64,6 +64,7 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
   _subscriptionPost: Subscription;
 
 
+
   constructor(
     private _title: Title, // Page Title Serive
     private _libUDTService: LibUDTService,
@@ -162,45 +163,7 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
 navigateTo(path: string) {
   this._goTo.navigateByUrl(path);
 }
-  /**
-   * build the form as default (if no agument; or if UST is passed as an argument..)
-   */
-  buildForm(editingUDT: IUdt): FormGroup {
-      let u: IUdt;
-      if (editingUDT) {
-        // u  = new IUdt(editingUDT);
-        u  = (editingUDT);
-      } else { /* The default form build (in case of "add new" request) */
-        u  = new IUdt(); /**this case should never be reached as the argument is required */
-      }
-      const Attr = u.getFormGroup(); // Get attributes in a form of a FormGroup
 
-      /**
-       * Add custom (task-specific) field validators
-       */
-      Attr.get('plcTag.name').setValidators([
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(80),
-          Validators.pattern(/^[a-zA-Z0-9!#$%^&*()_-]+$/)
-        ]); // Sync validators
-
-      Attr.get('plcTag.name').setAsyncValidators([
-        this.validateUniqueName.bind(Attr.get('plcTag.name'))
-      ]); // Async validators
-
-      // this.formGroup.controls['vars'].controls[i]
-      u.vars.forEach( (v, i) => {
-        ((<FormGroup>Attr.controls['vars']).controls[i].get('plcTag.name')).setAsyncValidators([
-           this.validateUniqueVarName.bind(u.vars, ...[((<FormGroup>Attr.controls['vars']).controls[i].get('plcTag.name')), i])
-        ]); // Async validators
-      });
-      // Disable some fields (readonly)
-      Attr.get('plcTag.datatype').disable();
-
-      // console.log(Attr);
-      return (Attr); /**return  a newly generated FormGroup to caller */
-}
 
 validateUniqueName  = (c: AbstractControl): Observable<ValidationErrors> => {
   // console.log(c);
@@ -294,26 +257,27 @@ loadToForm(editingUDT: IUdt) {
 // this.formGroup. = editingUDT;
 
 }
-    postReq_CreateUDT() {
-      const newUDT: IUdt = this.loadFromForm();
-      this._subscriptionPost = this._libUDTService.addNew(<IUdt>(newUDT))
-      .subscribe(
-      udt => {
-        // console.log(udt);
-        const u: IUdt = udt;
-        this._msg.add('UDT: ' + u.plcTag.name + ' Added Successfully..!'); },
-        err => {},
-        () => {
-          this.rxF5(true);
-          this.editingUDT = new IUdt();
-          this.formGroup = this.buildForm(this.editingUDT);
+
+postReq_CreateUDT() {
+  const newUDT: IUdt = this.loadFromForm();
+  this._subscriptionPost = this._libUDTService.addNew(<IUdt>(newUDT))
+  .subscribe(
+  udt => {
+    // console.log(udt);
+    const u: IUdt = udt;
+    this._msg.add('UDT: ' + u.plcTag.name + ' Added Successfully..!'); },
+    err => {},
+    () => {
+      this.rxF5(true);
+      this.editingUDT = new IUdt();
+      this.formGroup = this.buildForm(this.editingUDT);
 
 
-          // this.navigateTo('/libMngr/udt/createUDT');
-        }
-      );
+      // this.navigateTo('/libMngr/udt/createUDT');
+    }
+  );
 
-  }
+}
 
   updateUDT() {
     /**
@@ -391,16 +355,57 @@ addNewVar() {
   }
 }
 
+/**
+ * Size of the editing UDT
+ */
+get bitWeight() {
+  return (new IUdt(this.loadFromForm()).bitWeight());
+}
+
   x() {
    // this._exportTIA.exportAsTIASrc(new IUdt(this.loadFromForm()), true);
 
-    this._exportTIA.exportAsDBSrcGalileo10(new IUdt(this.loadFromForm()), this.udtArr);
-
+    // this._exportTIA.exportAsDBSrcGalileo10(new IUdt(this.loadFromForm()), this.udtArr);
+    new plc(DEV_PLATFORMS.S7_300).isNativeDataType('REAL');
   }
 
-  onFormchange() {
-    // console.log('chnged');
-    // this.editingUDT =  new IUdt(this.loadFromForm());
-    // this.formGroup = this.buildForm(this.editingUDT);
+  /**
+   * build the form as default (if no agument; or if UDT is passed as an argument..)
+   */
+  buildForm(editingUDT: IUdt): FormGroup {
+    let u: IUdt;
+    if (editingUDT) {
+      // u  = new IUdt(editingUDT);
+      u  = (editingUDT);
+    } else { /* The default form build (in case of "add new" request) */
+      u  = new IUdt(); /**this case should never be reached as the argument is required */
+    }
+    const Attr = u.getFormGroup(); // Get attributes in a form of a FormGroup
+
+    /**
+     * Add custom (task-specific) field validators
+     */
+    Attr.get('plcTag.name').setValidators([
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(80),
+        Validators.pattern(/^[a-zA-Z0-9!#$%^&*()_-]+$/)
+      ]); // Sync validators
+
+    Attr.get('plcTag.name').setAsyncValidators([
+      this.validateUniqueName.bind(Attr.get('plcTag.name'))
+    ]); // Async validators
+
+    // this.formGroup.controls['vars'].controls[i]
+    u.vars.forEach( (v, i) => {
+      ((<FormGroup>Attr.controls['vars']).controls[i].get('plcTag.name')).setAsyncValidators([
+          this.validateUniqueVarName.bind(u.vars, ...[((<FormGroup>Attr.controls['vars']).controls[i].get('plcTag.name')), i])
+      ]); // Async validators
+    });
+    // Disable some fields (readonly)
+    Attr.get('plcTag.datatype').disable();
+
+    // console.log(Attr);
+    return (Attr); /**return  a newly generated FormGroup to caller */
   }
 }
