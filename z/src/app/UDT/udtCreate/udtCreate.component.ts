@@ -359,7 +359,9 @@ addNewVar() {
  * Size of the editing UDT
  */
 get bitWeight() {
-  return (new IUdt(this.loadFromForm()).bitWeight());
+  // return (new IUdt(this.loadFromForm()).bitWeight());
+  return ((new IUdt(this.loadFromForm()).reIndexMem(0, this.udtArr) / 8) + ' Bytes');
+
 }
 
   x() {
