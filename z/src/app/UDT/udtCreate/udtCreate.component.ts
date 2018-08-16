@@ -359,8 +359,14 @@ addNewVar() {
  * Size of the editing UDT
  */
 get bitWeight() {
-  // return (new IUdt(this.loadFromForm()).bitWeight());
-  return ((new IUdt(this.loadFromForm()).reIndexMem(0, this.udtArr) / 8) + ' Bytes');
+/*   const x = () => {
+    return (new IUdt(this.loadFromForm()).reIndexMem(0, this.udtArr));
+  };
+  return (x()); */
+
+  // return (new IUdt(this.loadFromForm()).reIndexMem(0, this.udtArr));
+
+  return (this.editingUDT.reIndexMem(0, this.udtArr));
 
 }
 
@@ -381,6 +387,8 @@ get bitWeight() {
     } else { /* The default form build (in case of "add new" request) */
       u  = new IUdt(); /**this case should never be reached as the argument is required */
     }
+    // u.reIndexMem(0, this.udtArr);
+
     const Attr = u.getFormGroup(); // Get attributes in a form of a FormGroup
 
     /**

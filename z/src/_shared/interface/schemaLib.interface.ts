@@ -275,10 +275,13 @@ class _plcTag {
     this.address = '';
     this.comment = new _multiLangText();
 
+    /// this.memOffset = -1;
     if (src) { /**shallow copy if source is provided */
       this._shallowCloneFromSrc(src);
       this.comment = new _multiLangText(src.comment);
     }
+
+
   }
 
   private _shallowCloneFromSrc(src: _plcTag) {
@@ -557,17 +560,18 @@ export class IUdt {
       const bPos = (_n % _al); // bit position - actual, in this iteration
       return (bPos === 0) ? _n : (_n + (_al - (bPos)));
      };
-    console.log('Re-Indexing Memory for: ' + this.symbolicName);
+    // console.log('Re-Indexing Memory for: ' + this.symbolicName);
     // sanity check for memory alignment before using it - check if it is BYTE aligned and non-zero
     const ma = ((memAlign > 0) && ((memAlign % 8) === 0)) ? memAlign : 16;
     if (memBase >= 0) { // if seed memory offset is non-negative number
       // establish the memory base - received from the previously define block
       this.plcTag.memOffset = memBase;
     }
-    let p = new plc(DEV_PLATFORMS.S7_300);
+    const p = new plc(DEV_PLATFORMS.S7_300);
     let bW = 0;
     this.vars.forEach((v, i, arr) => {
-      let typeSize = p.isNativeDataType(v.plcTag.datatype);
+      const dType = v.plcTag.datatype;
+      const typeSize = p.isNativeDataType(dType);
       if (typeSize > 0) { // a non-zero answer = native datatype of this CPU with known type size
         // Further alignment check
         if (typeSize < ma) {
@@ -576,19 +580,17 @@ export class IUdt {
           // memory will be un-aligned with this size.. aligne it before proceeding
           bW = _alignMem(bW, ma);
         }
+        this.vars[i].plcTag.memOffset = bW;
+
         // Aligned at this point - add size to bitWeight
         bW = bW + typeSize;
       } else {
         /* non-native data type. (= UDT or complex datatype).
           Align to the memory boundary first and pass it as a mem base for the iterative call */
           bW = _alignMem(bW, ma);
-/*           const bPos = (bW % ma); // bit position - actual, in this iteration
-          bW = (bPos === 0) ? bW : (bW + (ma - (bPos))); */
-
           // recursively iterate through the complex data-type
           for (let u of siblingsArr) {
-            if (v.symbolicName === u.symbolicName) {
-              console.log('matched');
+            if (dType === u.symbolicName) {
               bW = u.reIndexMem(bW, siblingsArr, ma);
               break;
             }
@@ -599,7 +601,7 @@ export class IUdt {
     // Align again before sending it out..!
     bW = _alignMem(bW, ma);
     // answer the total size of the datatype, aligned to the memory
-    console.log('Re-Indexing Memory [Done]: sizeOf(' + this.symbolicName + ') = ' + bW + ' bits');
+    // console.log('Re-Indexing Memory [Done]: sizeOf(' + this.symbolicName + ') = ' + bW + ' bits');
 
     return bW;
   }

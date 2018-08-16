@@ -30,7 +30,7 @@ export class UdtVarComponent implements OnInit, OnDestroy {
   ngOnInit() {
      // this._uVar = this.uVarIn;
     // this._formGroup = this.uVarFormGroup;
-     // console.log(this.uVarFormGroup);
+   //   console.log(this.uVarIn.plcTag.memOffset);
   }
 
   ngOnDestroy() {

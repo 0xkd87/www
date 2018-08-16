@@ -77,8 +77,10 @@ get namesArr() {
 
         if (isArray(rxArr))  {
           rxArr.forEach(rx => {
-            this._rxArr.push(<IUdt>JSON.parse(rx)); }
-          );
+            // this._rxArr.push(<IUdt>JSON.parse(rx));
+            this._rxArr.push(new IUdt(<IUdt>JSON.parse(rx)));
+
+          });
       }
 
       },
