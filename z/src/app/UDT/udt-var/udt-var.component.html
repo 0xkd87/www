@@ -14,7 +14,8 @@
         {{this.uVarFormGroup.get('plcTag.name').value}}
       </tr> -->
           <td class = "w20"> <!-- cell (col) # = Delete trigger -->
-            <div class = "background-text">{{uVarIn.ident.innerIdx}}| {{uVarIn.plcTag.memOffset}}       </div>
+            <div class = "background-text">{{uVarIn.ident.innerIdx}}
+            </div>
               <input class="cl-trigger-transperant cl-trigger-round-delete mi"
               type="submit"
               value = "&#xe92b;">
@@ -39,7 +40,8 @@
             <libForm-InputCombo
             [_labelText] = '"DataType"'
             [formControl] = "this.uVarFormGroup.get('plcTag.datatype')"
-            [_dropdownItems] = "this.dataTypes">
+            [_dropdownItems] = "this.dataTypes"
+            (valueChangeTrigger)="  this.onDataTypeChanged()" >
             </libForm-InputCombo>
           </td>
 

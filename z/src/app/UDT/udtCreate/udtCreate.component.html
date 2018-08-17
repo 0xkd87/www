@@ -124,9 +124,17 @@
           STAT_VAR
         </h1>
     </div>
-<div class="form-group" >
+<div class="form-group">
           <div *ngFor="let v of this.editingUDT.vars; let i = index">
-              <udt-var [dataTypes]="this.dataTypes" [uVarIn]="v" [uVarFormGroup]="this.formGroup.controls['vars'].controls[i]"> </udt-var>
+              <span class="sub-text"> {{v.plcTag.memOffset}}</span>
+              <udt-var
+              [dataTypes]="this.dataTypes"
+              [uVarIn]="v"
+              [uVarFormGroup]="this.formGroup.controls['vars'].controls[i]"
+              (dataTypeChangeTrigger)= "this.onChildrenVarChanged()"
+              >
+
+              </udt-var>
           </div>
 </div>
 

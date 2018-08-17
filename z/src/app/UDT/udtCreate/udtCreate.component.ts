@@ -230,9 +230,6 @@ validateUniqueVarName = (_c: AbstractControl, i: number): Observable<ValidationE
       }
     });
 
-     // console.log('arr');
-
-    // console.log(arr);
     return arr;
   }
 
@@ -246,6 +243,15 @@ validateUniqueVarName = (_c: AbstractControl, i: number): Observable<ValidationE
       }
 
        return false;
+  }
+
+  /**
+   * called by html template on change event emitted by childern
+   */
+  onChildrenVarChanged() {
+      console.log('changed..');
+
+    // this.editingUDT.reIndexMem(0, this.udtArr);
   }
 
 loadFromForm(): IUdt {
@@ -348,7 +354,6 @@ addNewVar() {
     this.editingUDT =  new IUdt(this.loadFromForm());
     this.editingUDT.addNewVar();
     this.formGroup = this.buildForm(this.editingUDT);
-    // console.log(this.editingUDT);
 
     this.formGroup.markAsDirty();
 
@@ -364,9 +369,9 @@ get bitWeight() {
   };
   return (x()); */
 
-  // return (new IUdt(this.loadFromForm()).reIndexMem(0, this.udtArr));
+   return (new IUdt(this.loadFromForm()).reIndexMem(0, this.udtArr));
 
-  return (this.editingUDT.reIndexMem(0, this.udtArr));
+  // return (this.editingUDT.reIndexMem(0, this.udtArr));
 
 }
 
@@ -387,7 +392,6 @@ get bitWeight() {
     } else { /* The default form build (in case of "add new" request) */
       u  = new IUdt(); /**this case should never be reached as the argument is required */
     }
-    // u.reIndexMem(0, this.udtArr);
 
     const Attr = u.getFormGroup(); // Get attributes in a form of a FormGroup
 

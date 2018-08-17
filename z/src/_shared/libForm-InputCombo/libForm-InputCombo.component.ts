@@ -1,4 +1,4 @@
-import { AfterViewInit } from '@angular/core';
+import { AfterViewInit, Output, EventEmitter } from '@angular/core';
 /**
  * @author [kd]
  * @email [karna.dalal@gmail.com]
@@ -43,6 +43,12 @@ export class LibFormInputComboComponent implements OnInit, ControlValueAccessor,
   public set labelText(value: string) {
     this._labelText = value;
   }
+
+  /**
+   * @Outputs
+   */
+  @Output() valueChangeTrigger = new EventEmitter();
+
 
 
   private _isFocused: boolean;
@@ -94,7 +100,9 @@ export class LibFormInputComboComponent implements OnInit, ControlValueAccessor,
 }
 
 onChange = (_: any) => {
-   console.log(_);
+   // console.log(_);
+   this.valueChangeTrigger.emit();
+   this.valueChangeTrigger.complete();
 }
 onTouched = () => {};
 

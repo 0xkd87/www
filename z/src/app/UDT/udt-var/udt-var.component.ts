@@ -1,5 +1,5 @@
 import { FormGroup, } from '@angular/forms';
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { IudtVar } from '../../../_shared/interface/schemaLib.interface';
 
 @Component({
@@ -16,11 +16,14 @@ export class UdtVarComponent implements OnInit, OnDestroy {
   @Input() uVarFormGroup: FormGroup;
   @Input() dataTypes: string[];
 
+  @Output() dataTypeChangeTrigger = new EventEmitter();
+
   /**
    * local form binding variables
    */
-   public _uVar: IudtVar;
-   public _formGroup: FormGroup;
+
+ /*   public _uVar: IudtVar;
+   public _formGroup: FormGroup; */
   constructor(
   ) {
 
@@ -28,13 +31,23 @@ export class UdtVarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-     // this._uVar = this.uVarIn;
-    // this._formGroup = this.uVarFormGroup;
-   //   console.log(this.uVarIn.plcTag.memOffset);
+
+  // this.onDataTypeChanged();
+
   }
 
   ngOnDestroy() {
 
   }
+
+  onDataTypeChanged() {
+    // console.log('emitted in udt-var');
+    this.dataTypeChangeTrigger.emit();
+    this.dataTypeChangeTrigger.complete();
+  }
+
+
+
+
 
 }

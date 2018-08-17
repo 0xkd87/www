@@ -260,6 +260,12 @@ class _plcTag {
   address?: string;
   comment?: _multiLangText;
 
+  private _cache: {
+    _isNativeType: boolean;
+    _absAddrString: string;
+    _memOffset: number; // memory offset in bits (position in structure)
+  };
+
   private _memOffset: number;
   public get memOffset(): number {
     return this._memOffset;
@@ -316,6 +322,21 @@ class _plcTag {
         address : new FormControl(this.address),
       });
       return fg;
+  }
+
+  getAddressAsString(parentMemBase: number = 0): string {
+
+    let B = 0; // byte
+    let x = 0; // bit
+    if (parentMemBase >= 0) { // positives only
+
+      x = (this.memOffset % 8);
+      B = parentMemBase + (this.memOffset / 8);
+
+    }
+
+    return (B + '.' + x);
+
   }
 
 
@@ -583,7 +604,7 @@ export class IUdt {
         this.vars[i].plcTag.memOffset = bW;
 
         // Aligned at this point - add size to bitWeight
-        bW = bW + typeSize;
+        bW += typeSize;
       } else {
         /* non-native data type. (= UDT or complex datatype).
           Align to the memory boundary first and pass it as a mem base for the iterative call */
@@ -591,7 +612,8 @@ export class IUdt {
           // recursively iterate through the complex data-type
           for (let u of siblingsArr) {
             if (dType === u.symbolicName) {
-              bW = u.reIndexMem(bW, siblingsArr, ma);
+              this.vars[i].plcTag.memOffset = bW;
+              bW += u.reIndexMem(bW, siblingsArr, ma);
               break;
             }
           }
@@ -601,7 +623,7 @@ export class IUdt {
     // Align again before sending it out..!
     bW = _alignMem(bW, ma);
     // answer the total size of the datatype, aligned to the memory
-    // console.log('Re-Indexing Memory [Done]: sizeOf(' + this.symbolicName + ') = ' + bW + ' bits');
+     // console.log('Re-Indexing Memory [Done]: sizeOf(' + this.symbolicName + ') = ' + bW + ' bits');
 
     return bW;
   }
