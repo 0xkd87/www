@@ -46,15 +46,6 @@ buildS7Src(u: IUdt, db?: boolean): string {
       /**
        * Object Children
        */
-/*       s.addLine('STRUCT', 1);
-          u.vars.forEach( v => {
-            s.addLine('', 2);
-            s.appendText('"' + v.plcTag.name + '"');
-            s.appendText(' : ');
-            s.appendText(v.plcTag.datatype + '; ');
-            s.appendText('//' + v.plcTag.comment['en']);
-          });
-      s.addLine('END_STRUCT;', 1); */
 
       s.addLine(this._getChildrenAsStruct(u));
 
@@ -114,6 +105,7 @@ exportAsTIASrc(u: IUdt, exportAsDB?: boolean) {
 // get all children as struct
 private _getChildrenAsStruct(u: IUdt, tabIdent: number = 1, structArr?: IUdt[], inlineStruct: boolean = false): TextBuffer {
     let s = new TextBuffer();
+    console.log(u);
 
 
       s.addLine('STRUCT', tabIdent);
@@ -122,24 +114,10 @@ private _getChildrenAsStruct(u: IUdt, tabIdent: number = 1, structArr?: IUdt[], 
             s.appendText('"' + v.plcTag.name + '"');
             s.appendText(' : ');
 
-            let structUDT = null;
-            let matched = 0;
-            if (structArr) {
-              structArr.forEach(st => {
-                if (v.plcTag.datatype === st.plcTag.name) {
-                  structUDT = new IUdt(st);
-                  matched ++;
-                }
-              });
-            }
-            console.log(matched);
-
-            if (matched > 0) {
-
-              s.addLine(this._getChildrenAsStruct(structUDT, tabIdent + 1, structArr, true));
-            } else {
+              if (v.plcTag.dataTypeHelper.isNative) {
               s.appendText(v.plcTag.datatype + '; ');
-
+            } else {
+              s.addLine(this._getChildrenAsStruct(v.plcTag.dataTypeHelper.udt, tabIdent + 1, structArr, true));
             }
             s.appendText('//' + v.plcTag.comment['en']);
           });
@@ -148,10 +126,45 @@ private _getChildrenAsStruct(u: IUdt, tabIdent: number = 1, structArr?: IUdt[], 
       return s;
 }
 
+// get all children as struct
+private ___getChildrenAsStruct(u: IUdt, tabIdent: number = 1, structArr?: IUdt[], inlineStruct: boolean = false): TextBuffer {
+  let s = new TextBuffer();
+
+
+    s.addLine('STRUCT', tabIdent);
+        u.vars.forEach( v => {
+          s.addLine('', tabIdent + 1);
+          s.appendText('"' + v.plcTag.name + '"');
+          s.appendText(' : ');
+
+          let structUDT = null;
+          let matched = 0;
+          if (structArr) {
+            structArr.forEach(st => {
+              if (v.plcTag.datatype === st.plcTag.name) {
+                structUDT = new IUdt(st);
+                matched ++;
+              }
+            });
+          }
+          console.log(matched);
+
+          if (matched > 0) {
+
+            s.addLine(this._getChildrenAsStruct(structUDT, tabIdent + 1, structArr, true));
+          } else {
+            s.appendText(v.plcTag.datatype + '; ');
+
+          }
+          s.appendText('//' + v.plcTag.comment['en']);
+        });
+    s.addLine('END_STRUCT;', tabIdent);
+
+    return s;
+}
+
 exportAsDBSrcGalileo10(u: IUdt, uArr: IUdt[]) {
   this._txt.export(this.buildGalileoDbSrc(u, uArr), u.plcTag.name, '.udt');
-
-
 }
 
 }

@@ -126,13 +126,11 @@
     </div>
 <div class="form-group">
           <div *ngFor="let v of this.editingUDT.vars; let i = index">
-              <span class="sub-text"> {{v.plcTag.memOffset}}</span>
               <udt-var
               [dataTypes]="this.dataTypes"
               [uVarIn]="v"
               [uVarFormGroup]="this.formGroup.controls['vars'].controls[i]"
-              (dataTypeChangeTrigger)= "this.onChildrenVarChanged()"
-              >
+              (dataTypeChangeTrigger)= "this.onChildrenVarChanged()" >
 
               </udt-var>
           </div>
@@ -148,12 +146,3 @@
 
 </form> <!-- Form End -->
 
-
-
-
-
-<!--     <ul *ngFor="let u of this.udtArr; let i = index">
-        <li>
-          {{i}} | {{u.plcTag.name }}
-        </li>
-    </ul> -->

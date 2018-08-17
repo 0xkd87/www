@@ -285,6 +285,34 @@ class _absAddrHelper {
     }
     return (B + '.' + x); // answer as B.x format
   }
+}// </class>
+
+class _dataTypeHelper {
+  private _isNative: boolean;
+  public get isNative(): boolean {
+    return this._isNative;
+  }
+  public set isNative(value: boolean) {
+    this._isNative = value;
+  }
+
+  private _lookupIdx: number;
+
+
+  private _nestedUDT: IUdt;
+  public get udt(): IUdt {
+    return this._nestedUDT;
+  }
+  public set udt(u: IUdt) {
+    this._nestedUDT = new IUdt(u);
+    this.isNative = false;
+  }
+
+  constructor(src?: IUdt) {
+    if (src) {
+      this.udt = src;
+    }
+  }
 }
 
 class _plcTag {
@@ -299,14 +327,8 @@ class _plcTag {
    * Re0Indexing must be performend prior to accessing the getter methods accessing this values.
    */
   public memAddr?: _absAddrHelper; // not included inb the server interface
+  public dataTypeHelper?: _dataTypeHelper;
 
-/*   private _memOffset: number;
-  public get memOffset(): number {
-    return this._memOffset;
-  }
-  public set memOffset(value: number) {
-    this._memOffset = value;
-  } */
 
   constructor(src?: _plcTag) {
     this.isF = false;
@@ -314,6 +336,8 @@ class _plcTag {
     this.datatype = '';
     this.address = '';
     this.comment = new _multiLangText();
+
+    this.dataTypeHelper = new _dataTypeHelper();
 
     /// this.memOffset = -1;
     if (src) { /**shallow copy if source is provided */
@@ -323,6 +347,7 @@ class _plcTag {
 
     // helper construct
     this.memAddr = new _absAddrHelper();
+
 
   }
 
@@ -617,6 +642,8 @@ export class IUdt {
       const dType = v.plcTag.datatype;
       const typeSize = p.isNativeDataType(dType);
       if (typeSize > 0) { // a non-zero answer = native datatype of this CPU with known type size
+        this.vars[i].plcTag.dataTypeHelper.isNative = true;
+
         // Further alignment check
         if (typeSize < ma) {
           // Don't align in this case... the data type can be accomodate in this limit
@@ -637,9 +664,13 @@ export class IUdt {
           // recursively iterate through the complex data-type
           for (let u of siblingsArr) {
             if (dType === u.symbolicName) {
+
               this.vars[i].plcTag.memAddr.offset = bW; // save offset before adding up the offset
 
               const len = u.reIndexMem(bW, siblingsArr, ma);
+
+              this.vars[i].plcTag.dataTypeHelper.udt = u; // set the  UDT after it has been re-indexed
+
               this.vars[i].plcTag.memAddr.length = len;
               bW += len;
               break;
