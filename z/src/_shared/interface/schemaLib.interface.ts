@@ -253,6 +253,40 @@ class _ident {
 
 } // </class>
 
+class _absAddrHelper {
+
+  // memory offset in bits (position in structure)
+  private _offset: number;
+  public get offset(): number {
+    return this._offset;
+  }
+  public set offset(value: number) {
+    this._offset = value;
+  }
+
+  // calculated size of this object allocated in memory of the PLC (number of bits)
+  private _length: number;
+  public get length(): number {
+    return this._length;
+  }
+  public set length(value: number) {
+    this._length = value;
+  }
+
+  getAsString(parentMemBase: number = 0): string {
+
+    let B = 0; // byte
+    let x = 0; // bit
+    if (parentMemBase >= 0) { // positives only
+
+      x = (this.offset % 8);
+      B = parentMemBase + (this.offset / 8);
+
+    }
+    return (B + '.' + x); // answer as B.x format
+  }
+}
+
 class _plcTag {
   isF: boolean;
   name: string;
@@ -260,19 +294,19 @@ class _plcTag {
   address?: string;
   comment?: _multiLangText;
 
-  private _cache: {
-    _isNativeType: boolean;
-    _absAddrString: string;
-    _memOffset: number; // memory offset in bits (position in structure)
-  };
+  /**
+   * these are the helper values which stores the data after re-indexing.
+   * Re0Indexing must be performend prior to accessing the getter methods accessing this values.
+   */
+  public memAddr?: _absAddrHelper; // not included inb the server interface
 
-  private _memOffset: number;
+/*   private _memOffset: number;
   public get memOffset(): number {
     return this._memOffset;
   }
   public set memOffset(value: number) {
     this._memOffset = value;
-  }
+  } */
 
   constructor(src?: _plcTag) {
     this.isF = false;
@@ -287,6 +321,8 @@ class _plcTag {
       this.comment = new _multiLangText(src.comment);
     }
 
+    // helper construct
+    this.memAddr = new _absAddrHelper();
 
   }
 
@@ -306,7 +342,7 @@ class _plcTag {
               Validators.minLength(2),
               Validators.maxLength(48),
               Validators.pattern(/^[a-zA-Z0-9!#$%^&*()_-]+$/)]),
-              Validators.composeAsync([]),
+              Validators.composeAsync([]), // to be overridden in the ui form if required
         ),
         comment: this.comment.getFormGroup(
           [ Validators.maxLength(128),
@@ -324,20 +360,7 @@ class _plcTag {
       return fg;
   }
 
-  getAddressAsString(parentMemBase: number = 0): string {
 
-    let B = 0; // byte
-    let x = 0; // bit
-    if (parentMemBase >= 0) { // positives only
-
-      x = (this.memOffset % 8);
-      B = parentMemBase + (this.memOffset / 8);
-
-    }
-
-    return (B + '.' + x);
-
-  }
 
 
 /**
@@ -586,7 +609,7 @@ export class IUdt {
     const ma = ((memAlign > 0) && ((memAlign % 8) === 0)) ? memAlign : 16;
     if (memBase >= 0) { // if seed memory offset is non-negative number
       // establish the memory base - received from the previously define block
-      this.plcTag.memOffset = memBase;
+      this.plcTag.memAddr.offset = memBase;
     }
     const p = new plc(DEV_PLATFORMS.S7_300);
     let bW = 0;
@@ -601,7 +624,9 @@ export class IUdt {
           // memory will be un-aligned with this size.. aligne it before proceeding
           bW = _alignMem(bW, ma);
         }
-        this.vars[i].plcTag.memOffset = bW;
+        this.vars[i].plcTag.memAddr.offset = bW; // store as object's own property as well
+
+        this.vars[i].plcTag.memAddr.length = typeSize;
 
         // Aligned at this point - add size to bitWeight
         bW += typeSize;
@@ -612,8 +637,11 @@ export class IUdt {
           // recursively iterate through the complex data-type
           for (let u of siblingsArr) {
             if (dType === u.symbolicName) {
-              this.vars[i].plcTag.memOffset = bW;
-              bW += u.reIndexMem(bW, siblingsArr, ma);
+              this.vars[i].plcTag.memAddr.offset = bW; // save offset before adding up the offset
+
+              const len = u.reIndexMem(bW, siblingsArr, ma);
+              this.vars[i].plcTag.memAddr.length = len;
+              bW += len;
               break;
             }
           }
@@ -625,6 +653,7 @@ export class IUdt {
     // answer the total size of the datatype, aligned to the memory
      // console.log('Re-Indexing Memory [Done]: sizeOf(' + this.symbolicName + ') = ' + bW + ' bits');
 
+    this.plcTag.memAddr.length = bW;
     return bW;
   }
 

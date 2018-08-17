@@ -379,6 +379,11 @@ get bitWeight() {
    // this._exportTIA.exportAsTIASrc(new IUdt(this.loadFromForm()), true);
 
     // this._exportTIA.exportAsDBSrcGalileo10(new IUdt(this.loadFromForm()), this.udtArr);
+
+    // tests
+    const x = new IUdt(this.loadFromForm());
+    x.reIndexMem(0, this.udtArr);
+    console.log(x.plcTag.memAddr.length);
   }
 
   /**
