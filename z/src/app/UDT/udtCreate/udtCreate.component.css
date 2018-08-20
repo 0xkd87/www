@@ -74,6 +74,13 @@ h1{
   width: 100%;
   align-content: center;
   vertical-align: middle;
+
+}
+
+.grid-container {
+
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
 }
 
 .cl-IsF
