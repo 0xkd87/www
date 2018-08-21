@@ -1,0 +1,30 @@
+.cl-trigger-round
+{
+  margin: 10px;
+  padding: 0px;
+  line-height: 1px;
+  height: 64px;
+  width: 64px;
+  vertical-align: middle;
+  text-align: center;
+  border : none;
+  border-radius: 50%;
+
+  cursor: pointer;
+  font-size: 48px;
+  font-weight: 700;
+
+
+  font-family: 'Material Icons';
+  background-repeat: no-repeat;
+
+
+  text-transform: lowercase;
+  font-variant: small-caps;
+
+
+  text-shadow: 3px 3px 2px rgb(41, 41, 41);
+  background-color: rgba(44, 44, 44, 0.87);
+  box-shadow: 4px 3px 12px 0 rgba(0,0,0,0.5);
+
+}

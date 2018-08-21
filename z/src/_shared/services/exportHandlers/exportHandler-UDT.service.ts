@@ -88,7 +88,7 @@ buildS7Src(u: IUdt, db?: boolean): string {
     let s = new TextBuffer();
 
      // Auto generate header
-      s.addLineAsComment( 'This block has been Auto-Generated');
+      s.addLine(this._buildAutoGenCommentHeadSiemens());
 
      // BLOCK header
       s.addLine(this._buildBlockHeaderSiemens(u, prgBlock, blkAttib));
@@ -105,22 +105,36 @@ buildS7Src(u: IUdt, db?: boolean): string {
     return s.ToString;
 }
 
-buildGalileoDbSrc(u: IUdt): string {
+buildGalileoDbSrc(u: IUdt, errorDB: boolean = false): string {
 
   const prgBlock = 'DATA_BLOCK';
   let blkAttib = new blockAttributesS7();
   blkAttib.add('S7_Optimized_Access', 'FALSE');
+
+  if (errorDB) { // to be exported as an error DB?
+    let len = u.plcTag.memAddr.length - 1;
+    u.vars = [];
+    u.addNewVar();
+
+    if (u.vars[0]) {
+      u.vars[0].plcTag.name = u.symbolicName;
+      u.vars[0].plcTag.comment['en'] = 'Array of Error bit for Galileo: Array Size: ' + (len + 1);
+
+      u.vars[0].plcTag.datatype = 'ARRAY [0..' + (len) + '] OF BOOL';
+      u.vars[0].plcTag.dataTypeHelper.isNative = true;
+    }
+
+  }
     let s = new TextBuffer();
 
       // Auto generate header
-      s.addLineAsComment( 'This block has been Auto-Generated');
-
+      s.addLine(this._buildAutoGenCommentHeadSiemens());
 
     // Object info, Header
      s.addLine(this._buildBlockHeaderSiemens(u, prgBlock, blkAttib));
 
       // children
-      s.addLine(this._getChildrenAsStructS7(u,  1, true)); // inline STRUCT = TRUE..!
+      s.addLine(this._getChildrenAsStructS7(u,  1, (errorDB === false))); // inline STRUCT = TRUE..!
 
 
     // mark object END
@@ -138,6 +152,8 @@ buildGalileoDbSrc(u: IUdt): string {
  * @param inlineStruct is this strucutre to be provide further definition of nesting structure?
  */
 private _getChildrenAsStructS7(u: IUdt, tabIndent: number = 1, inlineStruct: boolean = false): TextBuffer {
+  console.log(u);
+
     let s = new TextBuffer();
       s.addLine('STRUCT', tabIndent);
           u.vars.forEach( v => {
@@ -173,7 +189,7 @@ AsTIASrc(u: IUdt, exportAsDB?: boolean) {
 }
 
 AsErrorDBGalileo10(u: IUdt) {
-
+  this._txt.export(this.buildGalileoDbSrc(u, true), u.plcTag.name, '.udt');
 }
 
 }

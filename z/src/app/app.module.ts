@@ -14,7 +14,7 @@ import {AppRoutes} from './app.routing';
    declarations: [
       AppComponent,
       PageNotfoundComponent,
-    ],
+   ],
    imports: [
       BrowserModule,
       HttpClientModule,

@@ -383,7 +383,7 @@ get bitWeight() {
     const x = new IUdt(this.loadFromForm());
     x.reIndexMem(0, this.udtArr);
     // console.log(x);
-    this._exportTIA.AsDBSrcGalileo10(x);
+    this._exportTIA.AsErrorDBGalileo10(x);
 
   }
 
