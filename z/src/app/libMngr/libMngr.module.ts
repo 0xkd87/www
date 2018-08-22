@@ -1,3 +1,5 @@
+import { LibFormActionTriggerComponent } from './../../_shared/libForm-ActionTrigger/libForm-ActionTrigger.component';
+
 import { LibFormInputComboComponent } from '../../_shared/libForm-InputCombo/libForm-InputCombo.component';
 import { LibFormInputTextComponent } from '../../_shared/libForm-InputText/libForm-InputText.component';
 import { UdtCreateComponent } from '../UDT/udtCreate/udtCreate.component';
@@ -15,12 +17,14 @@ import { MsgBoardComponent } from '../../_shared/msgBoard/msgBoard.component';
 import { UdtListComponent } from '../UDT/udt-list/udt-list.component';
 import { TooltipComponent } from '../../_shared/tooltip/tooltip.component';
 import { UdtVarComponent } from '../UDT/udt-var/udt-var.component';
+import { SharedElementsModule } from '../../_shared/sharedElements/sharedElements.module';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    LibMngrRoutes
+    LibMngrRoutes,
+    SharedElementsModule,
   ],
   declarations: [
     LibMngrComponent,
@@ -31,8 +35,9 @@ import { UdtVarComponent } from '../UDT/udt-var/udt-var.component';
     MsgBoardComponent,
     UiNavComponent,
     TooltipComponent,
-    LibFormInputTextComponent,
-    LibFormInputComboComponent
+    // LibFormInputTextComponent,
+    // LibFormInputComboComponent,
+    // LibFormActionTriggerComponent,
   ],
   exports: [
     LibMngrComponent,

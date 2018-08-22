@@ -1,15 +1,36 @@
-.cl-trigger-round
+.wrapper {
+  margin: 5px;
+  display: inline-grid;
+  grid-template-rows: 64px auto;
+  grid-template-columns: minmax(32px, 64px);
+  grid-template-areas:
+  "icn"
+  "txt"
+}
+
+.grid-icn {
+  grid-area: "icn";
+
+}
+
+.grid-txt {
+  grid-area: "txt";
+  align-self: center;
+  text-align: center;
+  word-wrap: normal;
+}
+
+
+.trigger
 {
-  margin: 10px;
-  padding: 0px;
+
+  padding: 2px;
   line-height: 1px;
   height: 64px;
   width: 64px;
   vertical-align: middle;
   text-align: center;
   border : none;
-  border-radius: 50%;
-
   cursor: pointer;
   font-size: 48px;
   font-weight: 700;
@@ -21,10 +42,79 @@
 
   text-transform: lowercase;
   font-variant: small-caps;
-
+}
+.round-dark1
+{
 
   text-shadow: 3px 3px 2px rgb(41, 41, 41);
-  background-color: rgba(44, 44, 44, 0.87);
   box-shadow: 4px 3px 12px 0 rgba(0,0,0,0.5);
+  border-radius: 50%;
 
+  background-color: rgba(44, 44, 44, 0.87);
+}
+
+.round-dark
+{
+
+  text-shadow:
+  -3px 2px 2px rgba(209, 209, 209, 0.829),
+  3px 3px 2px rgba(199, 199, 199, 0.692),
+  0px -1px 3px rgba(192, 192, 192, 0.856);
+    border-radius: 50%;
+
+  background-color: rgba(0, 119, 216, 0);
+}
+
+.transperant
+{
+
+  background-color: rgba(0, 0, 0, 0);
+  box-shadow: 4px 3px 12px 0 rgba(0, 0, 0, 0);
+
+  text-shadow: 3px 3px 2px rgba(216, 216, 216, 0.795);
+
+}
+
+.trigger:disabled
+{
+  color: rgba(0, 0, 0, 0.212);
+
+  /* transperants = 0 */
+  background-color: rgba(56, 56, 56, 0);
+  text-shadow: 3px 3px 2px rgba(41, 41, 41, 0);
+  box-shadow: 4px 3px 12px 0 rgba(0, 0, 0, 0);
+
+  cursor: not-allowed;
+}
+.trigger:hover
+{
+  animation: shake 0.2s;
+  /* When the animation is finished, start again */
+  animation-iteration-count: 1; /*infinite;*/
+}
+
+
+/*label*/
+label{
+  font-size: 12px;
+  font-weight: 500;
+  pointer-events: none;
+  color: rgba(0, 0, 0, 0.61);
+  font-variant-caps: small-caps;
+}
+
+.isHovered
+{
+ color: rgb(47, 144, 255);
+ font-size: 13px;
+}
+
+.disabledText
+{
+  color: rgba(0, 0, 0, 0.212);
+}
+
+input[type=submit]
+{
+  cursor: pointer;
 }

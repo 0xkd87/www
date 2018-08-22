@@ -1,3 +1,28 @@
-<p>
-  libForm-ActionTrigger works!
-</p>
+
+  <div
+  class = "wrapper"
+  (mouseover)= "this.isHovered = true"
+  (mouseleave)= "this.isHovered = false"
+  >
+
+
+<!-- Submit element container -->
+        <input
+        [style.color]= this.iconColor
+        class = "grid-icn trigger round-dark"
+        name = "btn"
+        type="submit"
+        (click)="this.onUserTrigger($event)"
+        value = {{this.actionIcon}}
+        [disabled]="this.disableControl">
+
+        <label
+        for="btn"
+        [class.isHovered] = "isHovered"
+        [class.disabledText] = "this.disableControl"
+        class="grid-txt">
+        {{actionText}}
+      </label>
+</div>
+
+

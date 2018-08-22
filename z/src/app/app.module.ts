@@ -1,3 +1,4 @@
+import { SharedElementsModule } from './../_shared/sharedElements/sharedElements.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
@@ -19,9 +20,10 @@ import {AppRoutes} from './app.routing';
       BrowserModule,
       HttpClientModule,
       ReactiveFormsModule,
+      SharedElementsModule,
       LibMngrModule,
       UsrModule,
-      AppRoutes
+      AppRoutes,
    ],
    providers: [],
    bootstrap: [

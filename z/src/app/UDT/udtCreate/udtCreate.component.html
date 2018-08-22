@@ -55,6 +55,16 @@
         class = "cl-trigger-round cl-trigger-round-delete mi"
         value = "?">
 
+        <libForm-ActionTrigger
+        (execOnTrigger)= "x()"
+        [actionIcon] = "'&#xe2c0;'"
+        [actionText]= "'Export'"
+        [disableControl]="(!formGroup.valid) || (!this.opEdit)|| (formGroup.dirty) || (this.editingUDT.vars.length <= 0)"
+        [css]="['rgba(0,120,220,1)','none','l']"
+        >
+
+        </libForm-ActionTrigger>
+
     </div>
   </div>
 <!-- Form starts here -->
@@ -142,6 +152,15 @@
       class = "cl-trigger-round cl-trigger-round-add mi float-r"
       value = "&#xe03b;"
       (click)= "addNewVar()" >
+
+      <libForm-ActionTrigger
+      class = "float-r"
+      (execOnTrigger)= "addNewVar()"
+      [actionIcon] = "'&#xe03b;'"
+      [actionText]= "'ADD VAR'"
+      [disableControl]="false"
+      [css]="['rgb(126, 163, 3)','none','l']"></libForm-ActionTrigger>
+
     </div> <!--row END -->
 
 </form> <!-- Form End -->
