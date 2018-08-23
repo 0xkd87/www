@@ -1,9 +1,16 @@
+<!-- Export Dialog: Modal, Controlled by visibility flag -->
+<udt-ExportDialog
+[style.display] = "(this.visible.exportDialog)? 'block': 'none'"
+(evCancelled)="this.visible.exportDialog = false"
+(evExportTrigger)="this.exportHandler($event)"
+>
 
+</udt-ExportDialog>
 
     <!-- sticky/fiex on scroll -->
     <div
     class="cl-TopBarContainer"
-    [class.posFixed-Top] = "_hostListner.stickyOnWindowScroll(31)"
+    [class.posFixed-Top] = "_hostListner.stickyOnWindowScroll(31) && (!this.visible.exportDialog)"
     [class.posRelative] = "!_hostListner.stickyOnWindowScroll(33)">
 
     <div class="row"> <!--Top row -->
@@ -33,37 +40,28 @@
            + form group is not valid,
            + This is not an Edit (modifying) operation
         -->
-        <input
-        type="submit"
-        (click)="updateUDT()"
-        class = "cl-trigger-round cl-trigger-round-update"
-        value = "&#xe161;"
-        [disabled]="(!formGroup.valid) || (!this.opEdit) || (!formGroup.dirty)">
+        <libForm-ActionTrigger
+        (execOnTrigger)= "updateUDT()"
+        [actionIcon] = "'&#xe161;'"
+        [actionText]= "'UPDATE'"
+        [disableControl]="(!formGroup.valid) || (!this.opEdit) || (!formGroup.dirty)"
+        [css]="['rgb(0, 156, 96)','none','l']"></libForm-ActionTrigger>
 
         <!-- Trigger element: Open the delete confirmation dialog -->
 
-        <input
-        type="submit"
-        (click)="deleteUDT()"
-        class = "cl-trigger-round cl-trigger-round-delete mi"
-        value = "&#xe92b;"
-        [disabled]="(!this.opEdit)">
-
-        <input
-        type="submit"
-        (click)="x()"
-        class = "cl-trigger-round cl-trigger-round-delete mi"
-        value = "?">
+        <libForm-ActionTrigger
+        (execOnTrigger)= "deleteUDT()"
+        [actionIcon] = "'&#xe92b;'"
+        [actionText]= "'DELETE'"
+        [disableControl]="(!this.opEdit)"
+        [css]="['rgb(247, 72, 72)','none','l']"></libForm-ActionTrigger>
 
         <libForm-ActionTrigger
-        (execOnTrigger)= "x()"
+        (execOnTrigger)= "this.visible.exportDialog = !this.visible.exportDialog"
         [actionIcon] = "'&#xe2c0;'"
-        [actionText]= "'Export'"
-        [disableControl]="(!formGroup.valid) || (!this.opEdit)|| (formGroup.dirty) || (this.editingUDT.vars.length <= 0)"
-        [css]="['rgba(0,120,220,1)','none','l']"
-        >
-
-        </libForm-ActionTrigger>
+        [actionText]= "'EXPORT'"
+        [disableControl]="(!formGroup.valid) || (!this.opEdit)|| (formGroup.dirty) || (this.editingObj.u.vars.length <= 0)"
+        [css]="['rgba(0,120,220,1)','none','l']"></libForm-ActionTrigger>
 
     </div>
   </div>
@@ -127,7 +125,8 @@
   <!-- UDT Vars -->
     <div>
         <div class="float-r sub-text">
-            <br> Variables: {{this.editingUDT.vars.length}} <br>  Block Size: {{this.bitWeight / 8}} Bytes
+            <br> Variables: {{this.editingObj.u.vars.length}}
+            <br>  Block Size: {{this.bitWeight / 8}} Bytes
         </div>
 
         <h1>
@@ -135,7 +134,7 @@
         </h1>
     </div>
 <div class="form-group">
-          <div *ngFor="let v of this.editingUDT.vars; let i = index">
+          <div *ngFor="let v of this.editingObj.u.vars; let i = index">
               <udt-var
               [dataTypes]="this.dataTypes"
               [uVarIn]="v"

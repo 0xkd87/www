@@ -18,6 +18,7 @@ import { UdtListComponent } from '../UDT/udt-list/udt-list.component';
 import { TooltipComponent } from '../../_shared/tooltip/tooltip.component';
 import { UdtVarComponent } from '../UDT/udt-var/udt-var.component';
 import { SharedElementsModule } from '../../_shared/sharedElements/sharedElements.module';
+import { UdtExportDialogComponent } from '../UDT/udt-ExportDialog/udt-ExportDialog.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { SharedElementsModule } from '../../_shared/sharedElements/sharedElement
     UdtListComponent,
     UdtCreateComponent,
     UdtVarComponent,
+    UdtExportDialogComponent,
     MsgBoardComponent,
     UiNavComponent,
     TooltipComponent,
@@ -45,6 +47,7 @@ import { SharedElementsModule } from '../../_shared/sharedElements/sharedElement
     UdtComponent,
     UdtCreateComponent,
     UdtVarComponent,
+    UdtExportDialogComponent,
 
 ],
 providers: [

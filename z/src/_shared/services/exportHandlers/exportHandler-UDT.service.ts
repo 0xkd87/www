@@ -156,17 +156,19 @@ private _getChildrenAsStructS7(u: IUdt, tabIndent: number = 1, inlineStruct: boo
 
     let s = new TextBuffer();
       s.addLine('STRUCT', tabIndent);
+      s.appendText('//' + u.plcTag.comment['en']);
           u.vars.forEach( v => {
             s.addLine('', tabIndent + 1);
             s.appendText('"' + v.plcTag.name + '"');
             s.appendText(' : ');
 
               if (v.plcTag.dataTypeHelper.isNative) {
-              s.appendText(v.plcTag.datatype + '; ');
-            } else {
-              s.addLine(this._getChildrenAsStructS7(v.plcTag.dataTypeHelper.udt, tabIndent + 1, inlineStruct));
-            }
-            s.appendText('//' + v.plcTag.comment['en']);
+                s.appendText(v.plcTag.datatype + '; ');
+                s.appendText('//' + v.plcTag.comment['en']);
+              } else {
+                s.addLine(this._getChildrenAsStructS7(v.plcTag.dataTypeHelper.udt, tabIndent + 1, inlineStruct));
+              }
+            // s.appendText('//' + v.plcTag.comment['en']);
           });
       s.addLine('END_STRUCT;', tabIndent);
 

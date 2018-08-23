@@ -52,10 +52,18 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
         public dataTypes: string[];
         public udtArr: IUdt[] = [];
         public formGroup: FormGroup;
-        public editingUDT: IUdt;  /**New or editing UDT to be held */
-        public editingIdx: number; /**IDX of the editing UDT -1 as default */
+
         public opEdit: boolean; /**which operation is called? new or edit */
         public formHeaderText: string; /** Dynamic text to be displayed on form header */
+
+        public editingObj: {
+          u: IUdt;  /**New or editing UDT to be held */
+          idx: number; /**IDX of the editing UDT -1 as default */
+        };
+
+        public visible: {
+          exportDialog: boolean;
+        };
 
   /**
    * Memebers for functional use of this component
@@ -73,17 +81,23 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
     private route: ActivatedRoute,
     private _goTo: Router,
     private _asyncValidation: AsyncInputValidationService,
-    private _exportTIA: ExportHandlerUDTService,
+    private _exp: ExportHandlerUDTService,
    ) {
 
       this.rxF5(); /** without argument = just load the array; don't GET from HTTP */
 
+      this.editingObj = {
+        u: new IUdt(),
+        idx: -1 };
 
+      // Visibility controllers
+      this.visible = {
+        exportDialog: false};
 
       /**
        * Edit/ create new
        */
-      this.editingIdx = -1; // initialize to default
+      this.editingObj.idx = -1; // initialize to default
       this.opEdit = false; // Default operation: Create new with a blank
       /**
        * check router paramenters; if the desired argument exists?
@@ -93,7 +107,7 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
           if (p.has('idx'))  {
             /**found it..! This is the edit operation */
             this.opEdit = true;
-            this.editingIdx = +p.get('idx');
+            this.editingObj.idx = +p.get('idx');
           }
         }
       );
@@ -103,14 +117,14 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
  */
 /**Load the default values ([else] case in following IF) */
     this._title.setTitle('UDT :: CREATE');
-    this.editingUDT = new IUdt(); // allocate new
+    this.editingObj.u = new IUdt(); // allocate new
     this.formHeaderText = 'Undefined..!'; // init to default undefined state
     if (this.opEdit) {
       /* The operation is [EDIT] */
       this.udtArr.forEach(u => {
-        if (u.ident.idx === this.editingIdx) {
-          this.editingUDT = new IUdt(<IUdt>u); // assign a matching udt (overwrite/shallow copy on the [new] UDT)
-          this._title.setTitle('UDT :: EDIT :' + this.editingIdx);
+        if (u.ident.idx === this.editingObj.idx) {
+          this.editingObj.u = new IUdt(<IUdt>u); // assign a matching udt (overwrite/shallow copy on the [new] UDT)
+          this._title.setTitle('UDT :: EDIT :' + this.editingObj.idx);
           this.formHeaderText = 'Editing the Selected Object'; // new
         }
       });
@@ -120,12 +134,12 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
     }
 
     /**Populate the data-type name array before bulding the form */
-    this.dataTypes = this.updateDataTypeList(this.editingUDT);
+    this.dataTypes = this.updateDataTypeList(this.editingObj.u);
 
     /**
      * Build a form out of the editing UDT..!
      */
-    this.formGroup = this.buildForm(<IUdt>this.editingUDT);
+    this.formGroup = this.buildForm(<IUdt>this.editingObj.u);
 
     }
 
@@ -171,7 +185,7 @@ validateUniqueName  = (c: AbstractControl): Observable<ValidationErrors> => {
   /**
    * pass the own name as an argument to exclude it from the existing scan list..!
    */
-  const _ownName = this.opEdit ? this.editingUDT.plcTag.name : undefined;
+  const _ownName = this.opEdit ? this.editingObj.u.plcTag.name : undefined;
   return (this._asyncValidation.isTextUnique(this._libUDTService.namesArr, c.value, false, _ownName));
 
 }
@@ -181,13 +195,13 @@ validateUniqueVarName = (_c: AbstractControl, i: number): Observable<ValidationE
    * pass the own name as an argument to exclude it from the existing scan list..!
    */
 
-  let n = this.editingUDT.vars[i].plcTag.name;
+  let n = this.editingObj.u.vars[i].plcTag.name;
   let _nArr: string[] = [];
   this.loadFromForm().vars.forEach( el => {
     _nArr.push(el.plcTag.name);
   });
 
-     return (this.editingUDT.vars[i].plcTag.isTextUnique(_nArr, _c.value, false, n));
+     return (this.editingObj.u.vars[i].plcTag.isTextUnique(_nArr, _c.value, false, n));
 
 }
 
@@ -275,8 +289,8 @@ postReq_CreateUDT() {
     err => {},
     () => {
       this.rxF5(true);
-      this.editingUDT = new IUdt();
-      this.formGroup = this.buildForm(this.editingUDT);
+      this.editingObj.u = new IUdt();
+      this.formGroup = this.buildForm(this.editingObj.u);
 
 
       // this.navigateTo('/libMngr/udt/createUDT');
@@ -290,13 +304,13 @@ postReq_CreateUDT() {
      * Load actual (validated) values from the form
      */
 
-    if (this.editingUDT) {
-      this.editingUDT =  new IUdt(this.loadFromForm());
+    if (this.editingObj.u) {
+      this.editingObj.u =  new IUdt(this.loadFromForm());
     }
     /**
      * make a update request and upon success, get the entire chunk back (refresh)
      */
-    this._subscriptionPost = this._libUDTService.update(<IUdt>(this.editingUDT))
+    this._subscriptionPost = this._libUDTService.update(<IUdt>(this.editingObj.u))
     .subscribe(
     udt => {
       // console.log(udt);
@@ -314,7 +328,7 @@ postReq_CreateUDT() {
         this.rxF5(true);
         // this.dataTypes = this.updateDataTypeList();
 
-        this.formGroup = this.buildForm(this.editingUDT);
+        this.formGroup = this.buildForm(this.editingObj.u);
 
 
         /**
@@ -350,10 +364,10 @@ deleteUDT() {
 }
 
 addNewVar() {
-  if (this.editingUDT) {
-    this.editingUDT =  new IUdt(this.loadFromForm());
-    this.editingUDT.addNewVar();
-    this.formGroup = this.buildForm(this.editingUDT);
+  if (this.editingObj.u) {
+    this.editingObj.u =  new IUdt(this.loadFromForm());
+    this.editingObj.u.addNewVar();
+    this.formGroup = this.buildForm(this.editingObj.u);
 
     this.formGroup.markAsDirty();
 
@@ -383,10 +397,24 @@ get bitWeight() {
     const x = new IUdt(this.loadFromForm());
     x.reIndexMem(0, this.udtArr);
     // console.log(x);
-    this._exportTIA.AsErrorDBGalileo10(x);
+    // this._exportTIA.AsErrorDBGalileo10(x);
 
   }
 
+  exportHandler(_evTriggerIdx: number) {
+     console.log(_evTriggerIdx);
+     const x = new IUdt(this.loadFromForm());
+     x.reIndexMem(0, this.udtArr);
+
+     switch (_evTriggerIdx) {
+       case 1:
+         this._exp.AsDBSrcGalileo10(x);
+         break;
+
+       default:
+         break;
+     }
+  }
   /**
    * build the form as default (if no agument; or if UDT is passed as an argument..)
    */
