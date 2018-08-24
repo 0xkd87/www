@@ -50,7 +50,12 @@ constructor(private _txt: FileTxtService) { }
 
 private _buildAutoGenCommentHeadSiemens(): TextBuffer {
   let s = new TextBuffer();
-  s.addLineAsComment( 'This block has been Auto-Generated');
+  s.addLine         ('(******************************************************************************'); // Begin comment
+  s.addLineAsComment( '    [+] Automatically Generated Source Code; Do Not Modify                  ');
+  s.addLineAsComment( '     |----[TimeStamp: ');
+  s.appendText((new Date().toLocaleDateString()) + ' | ' + (new Date().toLocaleTimeString()) + ']');
+  s.addLineAsComment( '     |----[Code Generator Signature: '); s.appendText('ToDo: Client+Server Rev. Data' + ']');
+  s.addLine         ('******************************************************************************)'); // End comment
   s.lf();
   return s; // return the text buffer
 }
@@ -150,31 +155,36 @@ buildGalileoDbSrc(u: IUdt, errorDB: boolean = false): string {
  * @param u A UDT (or DB or a programmingBlock object which has to be converted to struct)
  * @param tabIndent for ease of readability - the exported content of this block will be tab indented by this number
  * @param inlineStruct is this strucutre to be provide further definition of nesting structure?
+ * @param inlineComment optional comment to be passed to recursive call to be included in the STRUCT comment
  */
-private _getChildrenAsStructS7(u: IUdt, tabIndent: number = 1, inlineStruct: boolean = false): TextBuffer {
-  console.log(u);
+private _getChildrenAsStructS7(
+  u: IUdt, tabIndent: number = 1,
+  inlineStruct: boolean = false, inlineComment?: string): TextBuffer  {
 
+    const _inlineComment = ((inlineComment !== undefined)) ? inlineComment : '...';
     let s = new TextBuffer();
       s.addLine('STRUCT', tabIndent);
-      s.appendText('//' + u.plcTag.comment['en']);
+      s.appendText(' //' + _inlineComment);
           u.vars.forEach( v => {
-            s.addLine('', tabIndent + 1);
-            s.appendText('"' + v.plcTag.name + '"');
-            s.appendText(' : ');
-
+            let s1 = new TextBuffer();
+            s1.addLine('', tabIndent + 1);
+            s1.appendText('"' + v.plcTag.name + '"');
+            s1.appendText(' : ');
               if (v.plcTag.dataTypeHelper.isNative) {
-                s.appendText(v.plcTag.datatype + '; ');
-                s.appendText('//' + v.plcTag.comment['en']);
+                s1.appendText(v.plcTag.datatype + '; ');
+                s1.appendText('//' + v.plcTag.comment['en']);
               } else {
-                s.addLine(this._getChildrenAsStructS7(v.plcTag.dataTypeHelper.udt, tabIndent + 1, inlineStruct));
+                s1.addLine(this._getChildrenAsStructS7(v.plcTag.dataTypeHelper.udt,
+                                                        tabIndent + 1,
+                                                        inlineStruct,
+                                                        v.plcTag.comment['en']));
               }
-            // s.appendText('//' + v.plcTag.comment['en']);
+             s.addLine(s1);
           });
       s.addLine('END_STRUCT;', tabIndent);
 
-      return s; // textbuffer (string[])
+      return s; // textbuffer (class object)
 }
-
 
 
 /**API public  Calls */

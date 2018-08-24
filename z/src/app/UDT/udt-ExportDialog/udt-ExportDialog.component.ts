@@ -2,11 +2,11 @@
  * @author [kd]
  * @email [karna.dalal@gmail.com]
  * @create date 2018-08-23 04:27:53
- * @modify date 2018-08-23 04:27:53
+ * @modify date 2018-08-24 01:43:42
  * @desc [description]
 */
 // import { ExportHandlerUDTService } from './../../../_shared/services/exportHandlers/exportHandler-UDT.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'udt-ExportDialog',
@@ -15,7 +15,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 
 export class UdtExportDialogComponent implements OnInit {
-  // @Input() exportingObj: IUdt;
+  @Input() objectName: string;
   @Output() evCancelled = new EventEmitter();
   @Output() evExportTrigger = new EventEmitter<number>();
 

@@ -9,15 +9,18 @@
 }
 
 .grid-icn {
-  grid-area: "icn";
+  grid-area: icn;
+  justify-self: stretch;
 
 }
 
 .grid-txt {
-  grid-area: "txt";
+  grid-area: txt;
   align-self: center;
   text-align: center;
   word-wrap: normal;
+  justify-self: center;
+
 }
 
 

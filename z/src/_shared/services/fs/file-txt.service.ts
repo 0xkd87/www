@@ -25,7 +25,11 @@ public export (content: string, fileName: string, fileExtension: string) {
    return;
   }
 
-    let _fName = fileName + fileExtension;
+    const d = new Date();
+    const _timestamp = '_' +
+    d.getFullYear() + (d.getMonth() + 1).toString().padStart(2, '0') + d.getDate()  +
+    '_' + d.getHours() + d.getMinutes();
+    const _fName = fileName + _timestamp + fileExtension;
 
     /**
      * Creates the BLOB object : Check browser compatibility...

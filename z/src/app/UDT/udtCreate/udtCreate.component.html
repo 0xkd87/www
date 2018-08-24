@@ -1,6 +1,7 @@
 <!-- Export Dialog: Modal, Controlled by visibility flag -->
 <udt-ExportDialog
 [style.display] = "(this.visible.exportDialog)? 'block': 'none'"
+[objectName]= "this.editingObj.u.symbolicName"
 (evCancelled)="this.visible.exportDialog = false"
 (evExportTrigger)="this.exportHandler($event)"
 >

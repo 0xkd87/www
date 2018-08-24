@@ -2,7 +2,7 @@
  * @author [kd]
  * @email [karna.dalal@gmail.com]
  * @create date 2018-08-10 03:26:27
- * @modify date 2018-08-13 10:37:37
+ * @modify date 2018-08-24 03:22:17
  * @desc [Text buffer service]
 */
 
@@ -72,9 +72,11 @@ export class TextBuffer {
    */
   public appendText(text: string) {
 
-    if (this._sbuf.length > 0) {
-
-      this._sbuf[this._sbuf.length - 1] = this._sbuf[this._sbuf.length - 1].concat(text);
+    let len = this._sbuf.length;
+    if (len > 0) {
+      this._sbuf[len - 1] = this._sbuf[len - 1].concat(text);
+    } else {
+      this.prepend(text);
     }
   }
 
@@ -104,7 +106,7 @@ export class TextBuffer {
   }
 
   /**
-   *  @param txt - Test to be prepend at the beginning of the text buffer
+   *  @param txt - Text to be prepend at the beginning of the text buffer
    */
   public prepend(txt: string | TextBuffer) {
 
