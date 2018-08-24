@@ -25,10 +25,13 @@ public export (content: string, fileName: string, fileExtension: string) {
    return;
   }
 
+    // Attach the Time stamp : ToDo: consider moving this to a globally acceessible function
     const d = new Date();
     const _timestamp = '_' +
     d.getFullYear() + (d.getMonth() + 1).toString().padStart(2, '0') + d.getDate()  +
-    '_' + d.getHours() + d.getMinutes();
+    '_' + d.getHours() + d.getMinutes().toString().padStart(2, '0');
+
+    // construct a file name
     const _fName = fileName + _timestamp + fileExtension;
 
     /**

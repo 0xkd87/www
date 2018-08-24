@@ -25,8 +25,8 @@
     display: block;
     position: absolute;
     margin-left: 20px; margin-top: 20px; margin-bottom: 20px;margin-right: 20px;
-    min-height: 90%;
-    min-width: calc(100% - 40px);;
+    min-height: calc(100% - 50px);
+    min-width: calc(100% - 40px);
     padding-left : 5px;padding-right : 5px;
     padding-top : 5px;padding-bottom : 5px;
     background-color: rgba(235, 235, 235, 0.952);
@@ -47,25 +47,32 @@
 }
 
 h1{
+  display: inline-block;
   margin: 0px;
   padding: 1px;
-  font-size: 1.5em;
-  font-weight: 400;
+  font-size: 1.0em;
+  font-weight: 500;
   height: auto;
   line-height: auto;
-  color: rgba(0, 0, 0, 0.26);
+  color: rgba(121, 121, 121, 0.877);
   font-variant-caps: small-caps;
 }
 
 h2{
-  display: inline;
+  display: inline-block;
   margin: 0px;
   padding: 1px;
   font-size: 1em;
   font-weight: 500;
   line-height: auto;
-  color: rgba(0, 0, 0, 0.658);
+  color: rgba(0, 0, 0, 0.87);
   font-variant-caps: normal;
+}
+
+h3{
+  font-size: 2em;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.318);
 }
 
 
@@ -97,21 +104,70 @@ h2{
   justify-self: stretch;
 }
 
+.r1c1 {  grid-area: r1c1; }
+.r1c2 {  grid-area: r1c2; }
+.r1c3 {  grid-area: r1c3; }
+
+.r2c1 {  grid-area: r2c1; }
+.r2c2 {  grid-area: r2c2; }
+.r2c3 {  grid-area: r2c3; }
+
+.r3c1 {  grid-area: r3c1; }
+
 .grid-wrapper {
   height: 100%;
   margin: 5px;
   display: grid;
   /* grid-template-rows:  1fr 1fr 1fr; */
   grid-template-rows:  auto;
-  grid-template-columns: 100px 50px 1fr;
+  grid-template-columns: 100px 200px 1fr;
 
   grid-template-areas:
   "area-toprow ..... ....."
-  ".... area-toprowtitle area-toprowtitle"
-  ".... area-devgroup area-triggers"
-  ".... area-devgroup area-triggers";
+  "..... area-toprowtitle area-toprowtitle"
+  "..... r1c1 r1c2"
+  "..... r2c1 r2c2"
+  "..... r3c1 area-triggers" ;
 
   grid-gap: 10px;
+}
+
+.r1c1,.r1c2,
+.r2c1,.r2c2,
+.r3c1, .gr-triggers
+{
+  background-color:  rgba(156, 156, 156, 0.103);
+}
+
+.r1c1,
+.r2c1,
+.r3c1
+{
+  justify-self: stretch;
+  text-align: center;
+
+}
 
 
+
+/* respoisive with screen size*/
+
+@media screen and (max-width: 600px)
+{
+  .grid-wrapper {
+    height: 100%;
+    margin: 5px;
+    display: grid;
+    /* grid-template-rows:  1fr 1fr 1fr; */
+    grid-template-rows:  auto;
+    grid-template-columns: 1fr;
+
+    grid-template-areas:
+    "area-toprow"
+    "area-toprowtitle"
+    "area-devgroup"
+    "area-triggers";
+
+    grid-gap: 5px;
+  }
 }

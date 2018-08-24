@@ -4,45 +4,56 @@
 
       <div class= "grid-wrapper">
 
-            <div class =  "gr-toprow">
-                <!-- Cancel Trigger: Close this dialog and go to parent -->
-                <libForm-ActionTrigger
-                (execOnTrigger)= "this.onClickCancel()"
-                [actionIcon] = "'&#xe5c9;'"
-                [actionText]= "'CANCEL'"
-                [disableControl]="false"
-                [css]="['rgb(250, 60, 76)','none','l']"></libForm-ActionTrigger>
-            </div>
+                  <div class =  "gr-toprow">
+                      <!-- Cancel Trigger: Close this dialog and go to parent -->
+                      <libForm-ActionTrigger
+                      (execOnTrigger)= "this.onClickCancel()"
+                      [actionIcon] = "'&#xe5c9;'"
+                      [actionText]= "'CANCEL'"
+                      [disableControl]="false"
+                      [css]="['rgb(250, 60, 76)','none','l']"></libForm-ActionTrigger>
+                  </div>
 
-            <div class = "gr-toprowtitle">
-              <h1> EXPORT OPTIONS FOR:</h1>
-              <h2> {{objectName}} </h2>
+                  <div class = "gr-toprowtitle">
+                    <h1> EXPORT OPTIONS | </h1>
+                    <h2> {{ objectName}} </h2>
+                  </div>
+          <div class = "r1c1"> <h3>GALILEO</h3>  </div>
+          <div class = "r2c1"> <h3>SIEMENS<br>TIA PORTAL</h3>  </div>
+          <div class = "r3c1"> <h3>SIEMENS<br>Step7</h3>  </div>
+
+          <div class = "gr-triggers">
+              <libForm-ActionTrigger
+              (execOnTrigger)= "this.onClickExportTrigger(1)"
+              [actionIcon] = "'&#xe884;'"
+              [actionText]= "'DB\nHMI INTERFACE'"
+              [disableControl]="false"
+              [css]="['rgb(16, 130, 236)','none','l']"></libForm-ActionTrigger>
           </div>
-    <div class = "gr-devgroup">
-      <p>Galileo</p>
-    </div>
 
-    <div class = "gr-triggers">
-        <libForm-ActionTrigger
-        (execOnTrigger)= "this.onClickExportTrigger(1)"
-        [actionIcon] = "'&#xe884;'"
-        [actionText]= "'DB\nHMI INTERFACE'"
-        [disableControl]="false"
-        [css]="['rgb(16, 130, 236)','none','l']"></libForm-ActionTrigger>
+          <div class = "r1c2">
+            <libForm-InputCombo
+            [_labelText] = '"SELECT THE DEVELOPMENT PLATFORM"'
+            [formControl] = "this.formGroup.get('devPlatform')"
+            [_dropdownItems] = "['Siemens TIA Portal', 'Siemens Step7', 'Allen Bradley', 'CodeSys']"
+            (valueChangeTrigger)="  this.onDevPlatformChange()"
+            >
+            </libForm-InputCombo>
+          </div>
 
-        <libForm-ActionTrigger
-        (execOnTrigger)= "this.onClickExportTrigger(1)"
-        [actionIcon] = "'&#xe884;'"
-        [actionText]= "'ERROR\nARRAY'"
-        [disableControl]="false"
-        [css]="['rgb(16, 130, 236)','none','l']"></libForm-ActionTrigger>
-    </div>
-
-    </div>
+    </div> <!-- Grid Wrapper -->
 
 
 
-  </div>
+  </div> <!-- Modal Dialog -->
 
 </div> <!-- end modal backgroud -->
+
+
+<!-- <libForm-InputCombo
+[_labelText] = '"SELECT THE DEVELOPMENT PLATFORM"'
+[formControl] = "this.uVarFormGroup.get('plcTag.datatype')"
+[_dropdownItems] = "this.dataTypes"
+(valueChangeTrigger)="  this.onDataTypeChanged()" >
+</libForm-InputCombo> -->
 

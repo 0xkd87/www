@@ -1,3 +1,4 @@
+import { FormControl, FormGroup } from '@angular/forms';
 /**
  * @author [kd]
  * @email [karna.dalal@gmail.com]
@@ -19,10 +20,15 @@ export class UdtExportDialogComponent implements OnInit {
   @Output() evCancelled = new EventEmitter();
   @Output() evExportTrigger = new EventEmitter<number>();
 
-
+  public formGroup: FormGroup;
   constructor(
     // private _exp: ExportHandlerUDTService,
-  ) { }
+  ) {
+    this.formGroup = new FormGroup({
+      devPlatform: new FormControl(),
+    });
+
+   }
   ngOnInit() {
   }
 
@@ -37,6 +43,10 @@ export class UdtExportDialogComponent implements OnInit {
     if (idx > 0) {
       this.evExportTrigger.emit(idx);
     }
+  }
+
+  onDevPlatformChange() {
+
   }
 
 }
