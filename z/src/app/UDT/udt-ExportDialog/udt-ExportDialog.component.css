@@ -33,7 +33,7 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     z-index: 11;
 
-    border-left: 5px solid rgb(19, 230, 82);
+    border-left: 5px solid rgb(35, 148, 253);
 
 }
 
@@ -70,9 +70,59 @@ h2{
 }
 
 h3{
-  font-size: 2em;
+  justify-self: center;
+  margin: 0%;
+  line-height: 32px;
+  font-size: 24px;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.318);
+  cursor: pointer;
+}
+
+h3:hover {
+  color: rgb(0, 182, 173);
+}
+
+ul{
+  padding-left: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgb(20, 20, 20);
+  border-left: 2px solid rgba(255, 96, 96, 0.116);
+
+}
+
+li{
+  padding-top: 5px; padding-bottom: 5px;
+  font-variant: normal;
+  cursor: pointer;
+  list-style: none;
+  vertical-align: middle;
+  justify-self: center;
+  margin: 10px;
+  line-height: auto;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: rgba(20, 20, 20, 0.651);
+  background-color: rgba(226, 226, 226, 0.137);
+  box-shadow: 2px 4px 3px 0 rgba(0,0,0,0.2);
+
+}
+
+.li-desc {
+  font-style: italic;
+  font-variant: normal;
+  color: rgba(20, 20, 20, 0.404);
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+li:hover {
+  background-color:  rgb(252, 255, 51);
+  color: rgb(59, 59, 59);
+}
+
+.isDetailShowing {
+  border-left: 5px solid rgb(0, 104, 201);
 }
 
 
@@ -95,57 +145,94 @@ h3{
 }
 
 
-.gr-devgroup{
-  grid-area: area-devgroup;
-  justify-self: stretch;
-}
-.gr-triggers{
-  grid-area: area-triggers;
-  justify-self: stretch;
-}
-
-.r1c1 {  grid-area: r1c1; }
-.r1c2 {  grid-area: r1c2; }
-.r1c3 {  grid-area: r1c3; }
-
-.r2c1 {  grid-area: r2c1; }
-.r2c2 {  grid-area: r2c2; }
-.r2c3 {  grid-area: r2c3; }
-
-.r3c1 {  grid-area: r3c1; }
+.r1 {  grid-area: r1; }
+.r2 {  grid-area: r2; }
+.r3 {  grid-area: r3; }
+.r4 {  grid-area: r4; }
+.r5 {  grid-area: r5; }
 
 .grid-wrapper {
   height: 100%;
   margin: 5px;
   display: grid;
-  /* grid-template-rows:  1fr 1fr 1fr; */
+  /* grid-template-rows:  1fr 1fr 1fr; auto  repeat(5, 64px);*/
   grid-template-rows:  auto;
   grid-template-columns: 100px 200px 1fr;
 
   grid-template-areas:
   "area-toprow ..... ....."
   "..... area-toprowtitle area-toprowtitle"
-  "..... r1c1 r1c2"
-  "..... r2c1 r2c2"
-  "..... r3c1 area-triggers" ;
-
+  "..... r1 r1"
+  "..... r2 r2"
+  "..... r3 r3"
+  "..... r4 r4"
+  "..... r5 r5"
+  ;
   grid-gap: 10px;
 }
 
-.r1c1,.r1c2,
-.r2c1,.r2c2,
-.r3c1, .gr-triggers
+.grid-container-detail {
+
+  margin: 5px;
+  padding-left: 25px;
+  display: grid;
+  /* grid-template-rows:  1fr 1fr 1fr; */
+    grid-template-rows: auto;
+    grid-template-columns: 50px 1fr;
+
+  grid-template-areas:
+  "c2 c1"
+  ;
+  grid-gap: 10px;
+}
+
+.c1 {  grid-area: c1; }
+.c2 {  grid-area: c2; }
+
+.c1, .c2
+{
+
+  padding: 5px;
+  vertical-align: middle;
+}
+
+.c1
+{
+  cursor: pointer;
+  background-color:  rgba(255, 255, 255, 0);
+  text-align: left;
+}
+
+
+
+.c2
+{
+  background-color:  rgba(255, 255, 255, 0.247);
+  justify-self: center;
+}
+
+
+
+
+.r1,
+.r2,
+.r3,
+.r4,
+.r5
 {
   background-color:  rgba(156, 156, 156, 0.103);
 }
 
-.r1c1,
-.r2c1,
-.r3c1
+.r1,
+.r2,
+.r3,
+.r4,
+.r5
 {
   justify-self: stretch;
-  text-align: center;
-
+  text-align: left;
+  padding: 5px;
+  vertical-align: middle;
 }
 
 
@@ -165,8 +252,11 @@ h3{
     grid-template-areas:
     "area-toprow"
     "area-toprowtitle"
-    "area-devgroup"
-    "area-triggers";
+    "r1"
+    "r2"
+    "r3"
+    "r4"
+    "r5";
 
     grid-gap: 5px;
   }

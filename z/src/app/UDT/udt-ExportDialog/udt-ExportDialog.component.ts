@@ -1,4 +1,4 @@
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 /**
  * @author [kd]
  * @email [karna.dalal@gmail.com]
@@ -21,15 +21,28 @@ export class UdtExportDialogComponent implements OnInit {
   @Output() evExportTrigger = new EventEmitter<number>();
 
   public formGroup: FormGroup;
+  public visible = {
+    rowDetail: Array<boolean>(5)
+  };
   constructor(
     // private _exp: ExportHandlerUDTService,
   ) {
-    this.formGroup = new FormGroup({
-      devPlatform: new FormControl(),
+    this.visible.rowDetail.forEach(b => {
+      b = false;
     });
+
+
+    this.formGroup = new FormGroup({
+      target: new FormControl(
+         '', Validators.compose([ Validators.required, Validators.minLength(2)]), )
+    });
+
 
    }
   ngOnInit() {
+    this.visible.rowDetail.forEach(b => {
+      b = false;
+    });
   }
 
   onClickCancel() {

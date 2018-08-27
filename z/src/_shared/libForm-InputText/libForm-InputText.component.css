@@ -9,11 +9,12 @@
 
 label
 {
-    font-size: 14px;
+    font-size: 0.8rem;
     font-weight: 500;
     pointer-events: none;
-    color: rgb(51, 51, 51);
-    font-variant-caps: small-caps;
+    color: rgb(80, 80, 80);
+    text-transform: uppercase;
+    font-variant: small-caps;
 /*     text-shadow: 2px 1px 1px rgb(31, 31, 31); */
  }
 
@@ -39,11 +40,11 @@ input[type=text]
     background: rgba(255, 255, 255, 0);
     color: rgb(61, 61, 61);
     align-self: center;
-    margin: 1px;
+    margin: 0px;
     width: 100%;
-    padding: 2px;
-    font-size: 16px;
-    font-weight: 450;
+    padding: 0px;
+    font-size: 1rem;
+    font-weight: 400;
     font-variant: normal;
     min-height: 32px;
     border : none;
@@ -63,7 +64,7 @@ input[type=text]
 .validation-msg-red
 {
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 400;
   color: rgb(250, 54, 54);
   font-variant: normal;
 }

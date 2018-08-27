@@ -18,28 +18,33 @@
                     <h1> EXPORT OPTIONS | </h1>
                     <h2> {{ objectName}} </h2>
                   </div>
-          <div class = "r1c1"> <h3>GALILEO</h3>  </div>
-          <div class = "r2c1"> <h3>SIEMENS<br>TIA PORTAL</h3>  </div>
-          <div class = "r3c1"> <h3>SIEMENS<br>Step7</h3>  </div>
 
-          <div class = "gr-triggers">
-              <libForm-ActionTrigger
-              (execOnTrigger)= "this.onClickExportTrigger(1)"
-              [actionIcon] = "'&#xe884;'"
-              [actionText]= "'DB\nHMI INTERFACE'"
-              [disableControl]="false"
-              [css]="['rgb(16, 130, 236)','none','l']"></libForm-ActionTrigger>
-          </div>
 
-          <div class = "r1c2">
-            <libForm-InputCombo
-            [_labelText] = '"SELECT THE DEVELOPMENT PLATFORM"'
-            [formControl] = "this.formGroup.get('devPlatform')"
-            [_dropdownItems] = "['Siemens TIA Portal', 'Siemens Step7', 'Allen Bradley', 'CodeSys']"
-            (valueChangeTrigger)="  this.onDevPlatformChange()"
-            >
-            </libForm-InputCombo>
+          <div class = "r1"
+          [class.isDetailShowing] = this.visible.rowDetail[0]>
+            <h3 (click)="this.visible.rowDetail[0] = !this.visible.rowDetail[0]">
+              GALILEO
+            </h3>
+              <ul [style.display] = "this.visible.rowDetail[0]? 'block' : 'none'">Controller Interface: SIEMENS
+                  <div class = "li-desc">HMI interfaces with Siemens s7-300/1200/1500 CPUs</div>
+                  <li (click) = this.onClickExportTrigger(1)>Error Interface (Alarm, Warning, Message) ARRAY</li>
+                  <li (click) = this.onClickExportTrigger(1)>HMI Interace DB (V10.x)</li>
+                  <li (click) = this.onClickExportTrigger(1)>HMI Interace (ITF [Internal Tag Format]) (V8.x)</li>
+              </ul>
+
+              <ul [style.display] = "this.visible.rowDetail[0]? 'block' : 'none'">Controller Interface: Allen Bradley
+              </ul>
+
+              <ul [style.display] = "this.visible.rowDetail[0]? 'block' : 'none'">Controller Interface: CodeSys
+              </ul>
+
           </div>
+          <div class = "r2"> <h3>SIEMENS TIA PORTAL</h3>  </div>
+          <div class = "r3"> <h3 >SIEMENS Step7</h3>  </div>
+
+
+
+
 
     </div> <!-- Grid Wrapper -->
 
@@ -55,5 +60,32 @@
 [formControl] = "this.uVarFormGroup.get('plcTag.datatype')"
 [_dropdownItems] = "this.dataTypes"
 (valueChangeTrigger)="  this.onDataTypeChanged()" >
-</libForm-InputCombo> -->
+</libForm-InputCombo>
+
+          <div class = "r1c2">
+            <libForm-InputCombo
+            [_labelText] = '"SELECT THE DEVELOPMENT PLATFORM"'
+            [formControl] = "this.formGroup.get('target')"
+            [_dropdownItems] = "['Siemens TIA Portal', 'Siemens Step7', 'Allen Bradley', 'CodeSys']"
+            (valueChangeTrigger)="  this.onDevPlatformChange()"
+            >
+            </libForm-InputCombo>
+          </div>
+
+                    <div class = "gr-triggers">
+              <libForm-ActionTrigger
+              (execOnTrigger)= "this.onClickExportTrigger(1)"
+              [actionIcon] = "'&#xe884;'"
+              [actionText]= "'DB\nHMI INTERFACE'"
+              [disableControl]="false"
+              [css]="['rgb(16, 130, 236)','none','l']"></libForm-ActionTrigger>
+
+              <libForm-ActionTrigger
+              (execOnTrigger)= "this.onClickExportTrigger(1)"
+              [actionIcon] = "'E'"
+              [actionText]= "'ERROR\nARRAY'"
+              [disableControl]="!this.formGroup.valid"
+              [css]="['rgb(16, 130, 236)','none','l']"></libForm-ActionTrigger>
+          </div>
+-->
 

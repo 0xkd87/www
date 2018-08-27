@@ -24,11 +24,19 @@
                 [class.clWidth15Perc] =  "isControlVisible"
                 [class.rightcolumn] =  "isControlVisible">
                   <div class= "cl-ControlContainer" [style.display]="isControlVisible ? 'block' : 'none'">
-                        <input class="cl-trigger-round cl-trigger-round-blue mi"
+<!--                         <input class="cl-trigger-round cl-trigger-round-blue mi"
                         type="submit"
                         routerLink = "/libMngr/udt/editUDT/+{{udtNode.ident.idx}}"
                         routerLinkActive="active"
-                        value = "&#xe429;">
+                        value = "&#xe429;"> -->
+
+                        <libForm-ActionTrigger
+                        routerLink = "/libMngr/udt/editUDT/+{{udtNode.ident.idx}}"
+                        routerLinkActive="active"
+                        [actionIcon] = "'&#xe429;'"
+                        [actionText]= "'EDIT'"
+                        [disableControl]="false"
+                        [css]="['rgb(16, 130, 236)','none','l']"></libForm-ActionTrigger>
                     </div>
                 </div>
           </div>
