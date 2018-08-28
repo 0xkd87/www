@@ -48,7 +48,6 @@ import { UdtExportDialogComponent } from '../UDT/udt-ExportDialog/udt-ExportDial
     UdtCreateComponent,
     UdtVarComponent,
     UdtExportDialogComponent,
-
 ],
 providers: [
   _utils,

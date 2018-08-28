@@ -20,27 +20,64 @@
                   </div>
 
 
-          <div class = "r1"
+          <ul class = "r1"
           [class.isDetailShowing] = this.visible.rowDetail[0]>
             <h3 (click)="this.visible.rowDetail[0] = !this.visible.rowDetail[0]">
               GALILEO
             </h3>
               <ul [style.display] = "this.visible.rowDetail[0]? 'block' : 'none'">Controller Interface: SIEMENS
-                  <div class = "li-desc">HMI interfaces with Siemens s7-300/1200/1500 CPUs</div>
-                  <li (click) = this.onClickExportTrigger(1)>Error Interface (Alarm, Warning, Message) ARRAY</li>
-                  <li (click) = this.onClickExportTrigger(1)>HMI Interace DB (V10.x)</li>
-                  <li (click) = this.onClickExportTrigger(1)>HMI Interace (ITF [Internal Tag Format]) (V8.x)</li>
+              <div class = "li-desc">HMI interfaces with Siemens s7-300/1200/1500 CPUs</div>
+                  <li (click) = this.onClickExportTrigger(111)>Error Interface (Alarm, Warning, Message) ARRAY
+                    <div class = "li-desc">Generate a DB source containing a BOOL array equivalent to the size of the structure Aligned at 2-BYTE boudary</div>
+                  </li>
+                  <li (click) = this.onClickExportTrigger(112)>HMI Interace DB Source (V10.x)
+                    <div class = "li-desc">Generate a V10.x compatible DB source (*.awl) containing the definition of the structure. All the variable of
+                      UDT/STRUCT Type will be inlined in the definition.</div>
+                  </li>
+                  <li (click) = this.onClickExportTrigger(113)>HMI Interace DB Source (V8.x) | (Soon to be Deprecated)
+                      <div class = "li-desc">Generate a V8.x compatible DB source (*.itf) containing the <i>ABSOLUTE ADDRESS</i> dependant definition of the structure.
+                        The inline structure will be flattened.</div>
+                  </li>
               </ul>
 
               <ul [style.display] = "this.visible.rowDetail[0]? 'block' : 'none'">Controller Interface: Allen Bradley
+                  <li (click) = this.onClickExportTrigger(121)>Error Interface (Alarm, Warning, Message) ARRAY
+                      <div class = "li-desc">Generate a (*.L5X) source containing a BOOL array equivalent to the size of the structure Aligned at 4-BYTE boudary</div>
+                  </li>
+                  <li (click) = this.onClickExportTrigger(122)>HMI Interace Source (STRUCT)
+                      <div class = "li-desc">Generate a (*.L5X) source containing the definition of the structure. All the variable of
+                        UDT/STRUCT Type will be inlined in the definition.</div>
+                  </li>
               </ul>
 
-              <ul [style.display] = "this.visible.rowDetail[0]? 'block' : 'none'">Controller Interface: CodeSys
+              <ul [style.display] = "this.visible.rowDetail[0]? 'block' : 'none'">Controller Interface: CodeSys | ToDo
               </ul>
 
-          </div>
-          <div class = "r2"> <h3>SIEMENS TIA PORTAL</h3>  </div>
-          <div class = "r3"> <h3 >SIEMENS Step7</h3>  </div>
+            </ul>
+          <ul class = "r2"
+          [class.isDetailShowing] = this.visible.rowDetail[1]>
+           <h3 (click)="this.visible.rowDetail[1] = !this.visible.rowDetail[1]">SIEMENS -- TIA PORTAL</h3>
+              <ul [style.display] = "this.visible.rowDetail[1]? 'block' : 'none'">PLC
+                  <li (click) = this.onClickExportTrigger(211)>DATA_BLOCK (*.db)
+                      <div class = "li-desc">Generate a DATA BLOCK source containing the definition of the structure.</div>
+                  </li>
+                  <li (click) = this.onClickExportTrigger(212)>User Data Type (*.udt)
+                      <div class = "li-desc">Generate a source for UDT that contains the definition of the structure.</div>
+                  </li>
+              </ul>
+              <ul [style.display] = "this.visible.rowDetail[1]? 'block' : 'none'">HMI | TBD
+                  <li (click) = this.onClickExportTrigger(221)>HMI Tags (HmiDB Interface) (*.xls)
+                      <div class = "li-desc">Generate an import table for HMI tags. | Tag connection with PLC: SYMBOLIC</div>
+                  </li>
+                  <li (click) = this.onClickExportTrigger(222)>Alarm Triggers
+                      <div class = "li-desc">Generate an impotable table for HMI Alarm triggers</div>
+                  </li>
+              </ul>
+          </ul>
+          <ul class = "r3">
+            <h3 (click)="this.visible.rowDetail[2] = !this.visible.rowDetail[2]">SIEMENS -- Step7 (Soon to be Deprecated) | TBD</h3>
+
+          </ul>
 
 
 

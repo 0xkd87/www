@@ -1,0 +1,121 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Covers active page transperantely and contains the navigation control*/
+.cl-glob-ModalBackground
+{
+  padding: 0%;
+  display:none; /*none;  Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(228, 228, 228, 0.5); /* Black w/ opacity */
+
+  /*Animate Slide in*/
+}
+
+.cl-ModalDialog
+{
+    display: block;
+    position: absolute;
+    margin-left: 20px; margin-top: 20px; margin-bottom: 20px;margin-right: 20px;
+
+    min-height: calc(100% - 50px);
+    min-width: calc(100% - 40px);
+    padding-left : 5px;padding-right : 5px;
+    padding-top : 5px;padding-bottom : 5px;
+    background-color: rgba(255, 255, 255, 0.877);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    /* keep on top */
+    z-index: 12;
+}
+
+h1{
+  display: block;
+  border-bottom: 2px solid rgb(85, 85, 85);
+  margin: 0px;
+  padding: 1px;
+  font-size: 2.2em;
+  font-weight: 500;
+  height: auto;
+  line-height: auto;
+  color: rgba(121, 121, 121, 0.877);
+  text-transform: uppercase;
+  font-variant-caps: small-caps;
+}
+
+h2{
+  display: block;
+  margin: 0px;
+  padding: 1px;
+  font-size: 1.5em;
+  font-weight: 400;
+  line-height: auto;
+  color: rgba(95, 95, 95, 0.87);
+  font-variant-caps: normal;
+}
+
+.x
+{
+  color: rgba(89, 167, 0, 0.753);
+}
+
+.grid-wrapper {
+  height: 100%;
+  margin: 5px;
+  margin-top: 200px;
+  display: grid;
+  /* grid-template-rows:  1fr 1fr 1fr; auto  repeat(5, 64px);*/
+  grid-template-rows:  auto;
+  grid-template-columns: 50px 1fr 100px 100px;
+
+  grid-template-areas:
+  "..... r1 t1 t2";
+  grid-gap: 10px;
+}
+
+.c1 {  grid-area: c1; }
+
+.r1 {  grid-area: r1; }
+.r2 {  grid-area: r2; }
+.t1 {  grid-area: t1; }
+.t2 {  grid-area: t2; }
+
+.r1
+{
+  align-self: stretch;
+  align-items: center;
+  justify-self: stretch;
+  text-align: left;
+  padding: 5px;
+  vertical-align: middle;
+}
+
+/* responsive with screen size*/
+
+@media screen and (max-width: 600px)
+{
+  .grid-wrapper {
+    height: 100%;
+    margin: 5px;
+
+    display: grid;
+    /* grid-template-rows:  1fr 1fr 1fr; */
+    grid-template-rows:  auto;
+    grid-template-columns: 1fr 1fr;
+
+    grid-template-areas:
+
+    "r1 r1"
+    "t1 t2";
+
+
+    grid-gap: 5px;
+  }
+}

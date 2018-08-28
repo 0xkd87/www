@@ -1,3 +1,4 @@
+import { AlertDialogComponent } from './../alertDialog/alertDialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LibFormActionTriggerComponent } from './../libForm-ActionTrigger/libForm-ActionTrigger.component';
 import { NgModule } from '@angular/core';
@@ -14,12 +15,14 @@ import { LibFormInputTextComponent } from '../libForm-InputText/libForm-InputTex
     LibFormActionTriggerComponent,
     LibFormInputComboComponent,
     LibFormInputTextComponent,
+    AlertDialogComponent,
 
   ],
   exports: [
     LibFormActionTriggerComponent,
     LibFormInputComboComponent,
     LibFormInputTextComponent,
+    AlertDialogComponent,
   ],
 
 })

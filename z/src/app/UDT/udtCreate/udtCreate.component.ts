@@ -63,6 +63,7 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
 
         public visible: {
           exportDialog: boolean;
+          deleteConfirmationDialog: boolean;
         };
 
   /**
@@ -92,7 +93,9 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
 
       // Visibility controllers
       this.visible = {
-        exportDialog: false};
+        exportDialog: false,
+        deleteConfirmationDialog: false
+      };
 
       /**
        * Edit/ create new
@@ -404,12 +407,29 @@ get bitWeight() {
   exportHandler(_evTriggerIdx: number) {
      console.log(_evTriggerIdx);
      const x = new IUdt(this.loadFromForm());
-     x.reIndexMem(0, this.udtArr);
+     const _memAl = ((_evTriggerIdx === 121) || (_evTriggerIdx === 122)) ? 32 : 16;
+     x.reIndexMem(0, this.udtArr, _memAl);
 
      switch (_evTriggerIdx) {
-       case 1:
-         this._exp.AsDBSrcGalileo10(x);
-         break;
+
+       // S7 + Galileo Error Interface Array
+        case 111:
+          this._exp.AsErrorDBGalileo10(x); // Memory Alignment is take care already
+          break;
+      // s7 + Galileo HMI interface : Export as DB source
+        case 112:
+          this._exp.AsDBSrcGalileo10(x);
+          break;
+
+      // Export as DB source: TIA Portal
+        case 211:
+          this._exp.AsTIASrc(x, true);
+          break;
+
+      // Export as DB source: TIA Portal
+        case 212:
+          this._exp.AsTIASrc(x, false);
+          break;
 
        default:
          break;

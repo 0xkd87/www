@@ -31,20 +31,15 @@
     padding-top : 5px;padding-bottom : 5px;
     background-color: rgba(235, 235, 235, 0.952);
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    /* keep on top */
     z-index: 11;
-
-    border-left: 5px solid rgb(35, 148, 253);
-
 }
 
 .float-r {
   float: right;
 }
 
-.x
-{
-  color: rgb(250, 60, 76);
-}
+
 
 h1{
   display: inline-block;
@@ -80,49 +75,53 @@ h3{
 }
 
 h3:hover {
-  color: rgb(0, 182, 173);
+  color: rgb(0, 172, 143);
 }
 
 ul{
-  padding-left: 20px;
-  font-size: 0.9rem;
+  background-color: rgba(240, 238, 238, 0.774);
+  margin-top: 10px;margin-bottom: 10px;
+  margin-right: 2px;
+  padding-left: 5px; padding-right: 8px;padding-bottom: 8px;
+  font-size: 1.1rem;
   font-weight: 500;
-  color: rgb(20, 20, 20);
-  border-left: 2px solid rgba(255, 96, 96, 0.116);
+  color: rgb(0, 179, 149);
+  border-left: 2px solid rgba(151, 147, 147, 0.445);
 
 }
 
 li{
-  padding-top: 5px; padding-bottom: 5px;
+  padding: 5px;
   font-variant: normal;
   cursor: pointer;
   list-style: none;
   vertical-align: middle;
   justify-self: center;
-  margin: 10px;
+  margin-left: 10px; margin-top: 5px;margin-bottom: 2px;
   line-height: auto;
-  font-size: 0.7rem;
-  font-weight: 400;
+  font-size: 0.9rem;
+  font-weight: 450;
   color: rgba(20, 20, 20, 0.651);
   background-color: rgba(226, 226, 226, 0.137);
-  box-shadow: 2px 4px 3px 0 rgba(0,0,0,0.2);
+  box-shadow: 2px 4px 8px 0 rgba(0,0,0,0.2), 0px -2px 8px 0 rgba(0,0,0,0.2) ;
 
 }
 
 .li-desc {
-  font-style: italic;
-  font-variant: normal;
+  /* font-style: italic; */
+  font-variant-caps: titling-caps;
   color: rgba(20, 20, 20, 0.404);
   font-size: 0.8rem;
   font-weight: 400;
 }
 li:hover {
-  background-color:  rgb(252, 255, 51);
-  color: rgb(59, 59, 59);
+  /* background-color:  rgb(24, 147, 248); */
+  background-color: rgb(64, 218, 197);
+  color: rgb(252, 252, 252);
 }
 
 .isDetailShowing {
-  border-left: 5px solid rgb(0, 104, 201);
+  border-left: 5px solid rgb(64, 218, 197);
 }
 
 
@@ -237,7 +236,7 @@ li:hover {
 
 
 
-/* respoisive with screen size*/
+/* responsive with screen size*/
 
 @media screen and (max-width: 600px)
 {

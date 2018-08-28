@@ -51,11 +51,19 @@
         <!-- Trigger element: Open the delete confirmation dialog -->
 
         <libForm-ActionTrigger
-        (execOnTrigger)= "deleteUDT()"
+        (execOnTrigger)= "this.visible.deleteConfirmationDialog = true"
         [actionIcon] = "'&#xe92b;'"
         [actionText]= "'DELETE'"
         [disableControl]="(!this.opEdit)"
         [css]="['rgb(247, 72, 72)','none','l']"></libForm-ActionTrigger>
+
+        <alertDialog
+        [style.display] = "this.visible.deleteConfirmationDialog? 'block' : 'none'"
+        [alertTitle]= "'Confirm Delete'"
+        [alertDesc]= "'Delete the UDT? This operation is non-reversable'"
+        (evCancelled)= "this.visible.deleteConfirmationDialog = false"
+        (evConfirmed)= "deleteUDT()">
+        </alertDialog>
 
         <libForm-ActionTrigger
         (execOnTrigger)= "this.visible.exportDialog = !this.visible.exportDialog"
@@ -66,35 +74,40 @@
 
     </div>
   </div>
+
+
+
 <!-- Form starts here -->
   <form
   [formGroup]="formGroup.get('plcTag')"
-  class="cl-FormContainer form-group"
+  class="cl-FormContainer form-group grid-wrapper"
   [class.cl-IsF] = "formGroup.get('plcTag.isF').value"
   novalidate>
-  <h1>{{formHeaderText}}</h1>
 
-        <div class="row"> <!--row 1-->
-              <div class = "leftcolumn clWidth33Perc">
-                <libForm-InputText
-                [labelText] = '"Name"'
-                [formControl] = "formGroup.get('plcTag.name')">
-              </libForm-InputText>
-               </div>
-              <div class = "rightcolumn clWidth66Perc">
-                <libForm-InputText
-                [labelText] = '"Comment"'
-                [formControl] = "formGroup.get('plcTag.comment.en')">
-              </libForm-InputText>
-              </div>
-          </div> <!--row 1 END -->
+  <div class="ga-title1">
+      <h1>{{formHeaderText}}</h1>
+  </div>
 
-          <div class="row"> <!--row 2 BEGIN -->
-            <div class = "leftcolumn clWidth50Perc">
-                <div class = "leftcolumn clWidth25Perc">
+      <div class = "ga-udt-name">
+            <libForm-InputText
+            [labelText] = '"Name"'
+            [formControl] = "formGroup.get('plcTag.name')">
+          </libForm-InputText>
+        </div>
+        <div class = "ga-udt-comment">
+            <libForm-InputText
+            [labelText] = '"Comment"'
+            [formControl] = "formGroup.get('plcTag.comment.en')">
+            </libForm-InputText>
+        </div>
+
+
+
+            <div class = "ga-udt-isF">
+                <div>
                     <label for="isF"> Fail-Safe:</label>
                 </div>
-                <div class = "rightcolumn clWidth75Perc">
+                <div>
                       <input
                       type="checkbox"
                       name = "isF"
@@ -102,59 +115,49 @@
                       formControlName= "isF">
                 </div>
             </div>
-            <div class = "rightcolumn clWidth50Perc">
+            <div class = "ga-udt-datatype">
                 <libForm-InputText
                 [labelText] = '"Data-Type"'
                 [formControl] = "formGroup.get('plcTag.datatype')">
               </libForm-InputText>
             </div>
-          </div> <!--row 2 END -->
+<div class="ga-rev">
 
 
-          <div class="row"> <!--row 3 BEGIN -->
-          </div><!--row 3 END -->
-
-          <div class="row"> <!--row 4 BEGIN -->
-            <div class = "leftcolumn clWidth15Perc">
-            </div>
-            <div class = "rightcolumn clWidth75Perc">
-
-            </div>
-          </div><!--row 4 END -->
-
+</div>
 
   <!-- UDT Vars -->
-    <div>
-        <div class="float-r sub-text">
-            <br> Variables: {{this.editingObj.u.vars.length}}
+    <div class="ga-udtvar-info">
+        <div class="sub-text">
+             Variables: {{this.editingObj.u.vars.length}}
             <br>  Block Size: {{this.bitWeight / 8}} Bytes
         </div>
-
-        <h1>
-          STAT_VAR
-        </h1>
     </div>
-<div class="form-group">
+    <div class="ga-title2">
+        <h1>
+            STAT_VAR
+          </h1>
+    </div>
+
+<div class="form-group ga-udtvars">
           <div *ngFor="let v of this.editingObj.u.vars; let i = index">
               <udt-var
               [dataTypes]="this.dataTypes"
               [uVarIn]="v"
               [uVarFormGroup]="this.formGroup.controls['vars'].controls[i]"
               (dataTypeChangeTrigger)= "this.onChildrenVarChanged()" >
-
               </udt-var>
           </div>
 </div>
 
-    <div class="row"> <!--row BEGIN -->
-      <input
+    <div class="ga-last-row"> <!--row BEGIN -->
+      <!-- <input
       type="submit"
       class = "cl-trigger-round cl-trigger-round-add mi float-r"
       value = "&#xe03b;"
-      (click)= "addNewVar()" >
+      (click)= "addNewVar()" > -->
 
       <libForm-ActionTrigger
-      class = "float-r"
       (execOnTrigger)= "addNewVar()"
       [actionIcon] = "'&#xe03b;'"
       [actionText]= "'ADD VAR'"

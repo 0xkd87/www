@@ -108,16 +108,75 @@ label
  .grid-container {
 
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-template-rows: auto;
 
   /* grid-template-areas:  */
 }
 
+/*Grid layout*/
+.grid-wrapper {
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto;
+
+  grid-template-areas:
+  "ga-title1 ga-title1 ga-title1 ga-title1 ga-title1"
+  "ga-udt-name ga-udt-name ga-udt-name ga-rev ga-rev"
+  "ga-udt-comment ga-udt-comment ga-udt-comment ga-rev ga-rev"
+  "ga-udt-datatype ga-udt-datatype ga-udt-isF ga-rev ga-rev"
+  "ga-title2 ga-title2 ga-title2 ga-title2 ga-udtvar-info"
+  "ga-udtvars ga-udtvars ga-udtvars ga-udtvars ga-udtvars"
+  "..... ...... ..... ..... ga-last-row"
+  ;
+
+  grid-gap: 10px;
+}
+
+.ga-title1      {  grid-area: ga-title1;    }
+.ga-title2      {  grid-area: ga-title2;    }
+.ga-udt-name    {  grid-area: ga-udt-name;  }
+.ga-rev         {  grid-area: ga-rev;       }
+.ga-udt-comment {  grid-area: ga-udt-comment;       }
+.ga-udt-datatype {  grid-area: ga-udt-datatype;       }
+.ga-udt-isF {  grid-area: ga-udt-isF;       }
+.ga-udtvar-info {  grid-area: ga-udtvar-info;       }
+.ga-udtvars {  grid-area: ga-udtvars;       }
+.ga-last-row {  grid-area: ga-last-row;       }
+
+
+.ga-rev
+{
+  background-color: rgba(104, 104, 104, 0.075);
+}
+
+/* Responsive layout */
 @media screen and (max-width: 600px)
 {
     .cl-FormContainer,row
     {
         margin: 2px;
+    }
+
+    .grid-wrapper {
+
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+
+      grid-template-areas:
+      "ga-title1"
+      "ga-udt-name"
+      "ga-udt-comment"
+      "ga-udt-datatype"
+      "ga-udt-isF"
+      "ga-title2"
+      "ga-udtvar-info"
+      "ga-udtvars"
+      "ga-last-row"
+      ;
+
+      grid-gap: 2px;
     }
 }

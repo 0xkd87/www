@@ -101,7 +101,7 @@ buildS7Src(u: IUdt, db?: boolean): string {
 
 
       // children (VAR)
-      s.addLine(this._getChildrenAsStructS7(u));
+      s.addLine(this._getChildrenAsStructS7(u, 1, false));
 
 
     // mark object END
@@ -170,7 +170,7 @@ private _getChildrenAsStructS7(
             s1.addLine('', tabIndent + 1);
             s1.appendText('"' + v.plcTag.name + '"');
             s1.appendText(' : ');
-              if (v.plcTag.dataTypeHelper.isNative) {
+              if ((v.plcTag.dataTypeHelper.isNative) || (inlineStruct === false)) {
                 s1.appendText(v.plcTag.datatype + '; ');
                 s1.appendText('//' + v.plcTag.comment['en']);
               } else {
@@ -192,6 +192,10 @@ AsDBSrcGalileo10(u: IUdt) {
   this._txt.export(this.buildGalileoDbSrc(u), u.plcTag.name, '.udt');
 }
 
+AsErrorDBGalileo10(u: IUdt) {
+  this._txt.export(this.buildGalileoDbSrc(u, true), u.plcTag.name, '.udt');
+}
+
 AsTIASrc(u: IUdt, exportAsDB?: boolean) {
 
   const _asDB = (exportAsDB && exportAsDB === true) ? true : false;
@@ -200,8 +204,5 @@ AsTIASrc(u: IUdt, exportAsDB?: boolean) {
   this._txt.export(this.buildS7Src(u, _asDB), u.plcTag.name, _fileExt);
 }
 
-AsErrorDBGalileo10(u: IUdt) {
-  this._txt.export(this.buildGalileoDbSrc(u, true), u.plcTag.name, '.udt');
-}
 
 }
