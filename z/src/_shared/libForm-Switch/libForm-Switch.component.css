@@ -43,7 +43,7 @@ input[type=checkbox]:disabled
 
   margin: 10px;
   position: relative;
-  display: inline-block;
+  display: block;
   vertical-align: middle;
   width: 80px;
   height: 8px;
@@ -80,22 +80,41 @@ input[type=checkbox]:disabled
   min-width: 24px;
   box-shadow: 0px 0px 11px 2px rgba(68, 68, 68, 0.42);
 
+  border-radius: 100%;
+  align-content: center;
+
+  text-align: center;
+  vertical-align: middle;
+
+  -webkit-transition: .2s;
+  transition: .2s;
 }
 
 
 .isChecked {
   /* background-color: #2196F3; */
-  background-color: rgb(10, 96, 224);
+  background-color: rgb(45, 206, 112);
 }
 
 .To-Checked{
-  -webkit-transform: translateX(60px);
-  -ms-transform: translateX(60px);
-  transform: translateX(60px);
+  -webkit-transform: translateX(58px);
+  -ms-transform: translateX(58px);
+  transform: translateX(58px);
 }
 
 .To-Unchecked{
   -webkit-transform: translateX(0px);
   -ms-transform: translateX(0px);
   transform: translateX(0px);
+}
+
+h6 {
+  display: inline;
+  line-height: 1px;
+  font-size: 10px;
+  font-weight: 500;
+  pointer-events: none;
+  color: rgb(80, 80, 80);
+  text-transform: uppercase;
+  font-variant: small-caps;
 }

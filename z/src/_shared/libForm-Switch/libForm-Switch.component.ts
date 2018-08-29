@@ -59,4 +59,11 @@ export class LibFormSwitchComponent implements OnInit, ControlValueAccessor {
   setDisabledState?(isDisabled: boolean): void {
   }
 
+  get val() {
+    return this.formControl.value;
+  }
+  get switchState() {
+    return ((this.val) ? '1' : '0');
+  }
+
 }
