@@ -104,16 +104,20 @@
 
 
             <div class = "ga-udt-isF">
-                <div>
-                    <label for="isF"> Fail-Safe:</label>
-                </div>
-                <div>
+                <!-- <div>
                       <input
                       type="checkbox"
                       name = "isF"
                       class="form-control"
                       formControlName= "isF">
-                </div>
+                </div> -->
+                <libForm-Switch
+                [labelText]='"Fail-Safe"'
+                [formControl] = "formGroup.get('plcTag.isF')"
+                [disableControl]="false"
+                >
+
+                </libForm-Switch>
             </div>
             <div class = "ga-udt-datatype">
                 <libForm-InputText
@@ -145,7 +149,7 @@
               [dataTypes]="this.dataTypes"
               [uVarIn]="v"
               [uVarFormGroup]="this.formGroup.controls['vars'].controls[i]"
-              (dataTypeChangeTrigger)= "this.onChildrenVarChanged()" >
+              (dataTypeChangeTrigger)= "this.onChildrenVarChanged($event)" >
               </udt-var>
           </div>
 </div>

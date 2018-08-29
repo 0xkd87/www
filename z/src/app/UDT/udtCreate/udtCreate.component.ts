@@ -265,8 +265,9 @@ validateUniqueVarName = (_c: AbstractControl, i: number): Observable<ValidationE
   /**
    * called by html template on change event emitted by childern
    */
-  onChildrenVarChanged() {
-      console.log('changed..');
+  onChildrenVarChanged(_: any) {
+      console.log('changed..::');
+      console.log(_);
 
     // this.editingUDT.reIndexMem(0, this.udtArr);
   }

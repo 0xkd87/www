@@ -1,0 +1,35 @@
+<div class = "input-container">
+
+    <label
+    for="_switch">{{labelText}}:</label>
+    <div (click)="_ToggleState()"
+    class="switch">
+        <!-- {{this.formControl.value}} -->
+        <div
+        class="slide"
+        [class.isChecked] = "this.formControl.value">
+          <div
+          class= "pointer"
+          [class.To-Checked] = "this.formControl.value"
+          [class.To-Unchecked] = "!this.formControl.value" >
+          </div>
+        </div>
+
+        <input
+        (change)="onChange($event)"
+        type="checkbox"
+        name = "_switch"
+        [(formControl)] = this.formControl
+        [value] = "this.formControl.value"
+        [attr.checked]="this.formControl.value">
+    </div>
+
+</div>
+
+
+<!-- <input
+[style.opacity] = "'0'"
+(change)="onChange($event)"
+type="checkbox"
+name = "_switch"
+[(formControl)] = formControl> -->

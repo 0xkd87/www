@@ -100,9 +100,9 @@ export class LibFormInputComboComponent implements OnInit, ControlValueAccessor,
 }
 
 onChange = (_: any) => {
-   // console.log(_);
+    // console.log(_);
    this.valueChangeTrigger.emit();
-   this.valueChangeTrigger.complete();
+    // this.valueChangeTrigger.complete();
 }
 onTouched = () => {};
 
@@ -113,7 +113,7 @@ writeValue(val: any): void {
   this._renderer.setValue(this._elementRef.nativeElement, val);
 }
 registerOnChange(fn: any): void {
-  // this.onChange = fn;
+   // this.onChange = fn;
 }
 registerOnTouched(fn: any): void {
   // throw new Error("Method not implemented.");

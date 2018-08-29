@@ -1,3 +1,4 @@
+import { LibFormSwitchComponent } from './../libForm-Switch/libForm-Switch.component';
 import { AlertDialogComponent } from './../alertDialog/alertDialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LibFormActionTriggerComponent } from './../libForm-ActionTrigger/libForm-ActionTrigger.component';
@@ -15,6 +16,7 @@ import { LibFormInputTextComponent } from '../libForm-InputText/libForm-InputTex
     LibFormActionTriggerComponent,
     LibFormInputComboComponent,
     LibFormInputTextComponent,
+    LibFormSwitchComponent,
     AlertDialogComponent,
 
   ],
@@ -22,6 +24,7 @@ import { LibFormInputTextComponent } from '../libForm-InputText/libForm-InputTex
     LibFormActionTriggerComponent,
     LibFormInputComboComponent,
     LibFormInputTextComponent,
+    LibFormSwitchComponent,
     AlertDialogComponent,
   ],
 

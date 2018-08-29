@@ -148,7 +148,8 @@ label
 
 .ga-rev
 {
-  background-color: rgba(104, 104, 104, 0.075);
+  /* background-color: rgba(104, 104, 104, 0.075); */
+  border-left: 3px solid rgba(104, 104, 104, 0.075);
 }
 
 /* Responsive layout */
