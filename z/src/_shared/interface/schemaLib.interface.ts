@@ -212,6 +212,17 @@ class _rev {
     Object.assign( this, src);
   }
 
+  public getFormGroup(): FormGroup {
+    const rev = new FormGroup(
+      {
+        major: new FormControl(this.major),
+        minor: new FormControl(this.minor),
+        on: new FormControl(this.on),
+        by: new FormControl(this.by)
+      });
+      return rev;
+  }
+
 }
 
 class _ident {
@@ -540,7 +551,7 @@ export class IUdt {
     * Allocate an array and then shallow copy each member from src
     */
     this.vars = new Array<IudtVar>();
-    if (src.vars) { // check if src containd var definition?
+    if (src.vars) { // check if src contained var definition?
       src.vars.forEach( v => {
         this.vars.push(new IudtVar(v)); /** push each element with shallow copy */
       });
@@ -567,10 +578,11 @@ export class IUdt {
     // create a form group - which has to be returned
     const fg = new FormGroup(
       {
+
         ident: this.ident.getFormGroup(),
+        rev: this.rev.getFormGroup(),
         plcTag: this.plcTag.getFormGroup(),
       },
-      // {updateOn: 'blur'} // ?
     );
 
     // add the children (populated above) as form array

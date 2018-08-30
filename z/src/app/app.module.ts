@@ -10,20 +10,29 @@ import { UsrModule } from './usr/usr.module';
 import { LibMngrModule } from './libMngr/libMngr.module';
 
 import {AppRoutes} from './app.routing';
+import { PrjManagerModule } from './prjManager/prjManager.module';
+import { UiNavComponent } from '../_shared/ui-nav/ui-nav.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       PageNotfoundComponent,
+      // UiNavComponent,
+
    ],
    imports: [
       BrowserModule,
       HttpClientModule,
       ReactiveFormsModule,
-      SharedElementsModule,
+       // SharedElementsModule,
+      PrjManagerModule,
       LibMngrModule,
       UsrModule,
       AppRoutes,
+
+   ],
+   exports: [
+      // SharedElementsModule,
    ],
    providers: [],
    bootstrap: [

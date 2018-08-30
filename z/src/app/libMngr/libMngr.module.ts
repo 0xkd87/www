@@ -1,9 +1,5 @@
-import { LibFormActionTriggerComponent } from './../../_shared/libForm-ActionTrigger/libForm-ActionTrigger.component';
 
-import { LibFormInputComboComponent } from '../../_shared/libForm-InputCombo/libForm-InputCombo.component';
-import { LibFormInputTextComponent } from '../../_shared/libForm-InputText/libForm-InputText.component';
 import { UdtCreateComponent } from '../UDT/udtCreate/udtCreate.component';
-import { UiNavComponent } from '../../_shared/ui-nav/ui-nav.component';
 import { UdtComponent } from '../UDT/udt/udt.component';
 import { LibMngrRoutes } from './libMngr.routing';
 import { _utils } from '../../_shared/_utils';
@@ -15,10 +11,10 @@ import { Title } from '@angular/platform-browser';
 import { LibMngrComponent } from './libMngr.component';
 import { MsgBoardComponent } from '../../_shared/msgBoard/msgBoard.component';
 import { UdtListComponent } from '../UDT/udt-list/udt-list.component';
-import { TooltipComponent } from '../../_shared/tooltip/tooltip.component';
 import { UdtVarComponent } from '../UDT/udt-var/udt-var.component';
 import { SharedElementsModule } from '../../_shared/sharedElements/sharedElements.module';
 import { UdtExportDialogComponent } from '../UDT/udt-ExportDialog/udt-ExportDialog.component';
+import { UiNavComponent } from '../../_shared/ui-nav/ui-nav.component';
 
 @NgModule({
   imports: [
@@ -35,8 +31,7 @@ import { UdtExportDialogComponent } from '../UDT/udt-ExportDialog/udt-ExportDial
     UdtVarComponent,
     UdtExportDialogComponent,
     MsgBoardComponent,
-    UiNavComponent,
-    TooltipComponent,
+    // UiNavComponent,
     // LibFormInputTextComponent,
     // LibFormInputComboComponent,
     // LibFormActionTriggerComponent,

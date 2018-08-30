@@ -311,6 +311,12 @@ postReq_CreateUDT() {
     if (this.editingObj.u) {
       this.editingObj.u =  new IUdt(this.loadFromForm());
     }
+
+    /**
+     * update revision data
+     */
+    this.editingObj.u.rev.on = (new Date().toLocaleDateString()) + ' | ' + (new Date().toLocaleTimeString());
+    this.editingObj.u.rev.minor = this.editingObj.u.rev.minor + 1;
     /**
      * make a update request and upon success, get the entire chunk back (refresh)
      */

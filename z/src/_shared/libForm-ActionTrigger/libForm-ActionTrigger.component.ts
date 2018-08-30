@@ -14,9 +14,12 @@ import { Component, OnInit, Output, EventEmitter, Input, OnChanges } from '@angu
 })
 export class LibFormActionTriggerComponent implements OnInit, OnChanges {
 
+  @Input() tooltipText: string;
   @Input() actionIcon: string;
   @Input() actionText: string;
   @Input() disableControl: boolean;
+  @Input()
+  css: ['iconColor', 'cc'];
   // @Input() styleHints: [];
   @Output() execOnTrigger = new EventEmitter();
 
@@ -25,16 +28,18 @@ export class LibFormActionTriggerComponent implements OnInit, OnChanges {
    */
   isHovered: boolean;
   iconColor: string;
-  @Input()
-  css: ['x', 'cc'];
+  myToolTip: String;
+
 
   constructor() { }
 
   ngOnInit() {
     this.isHovered = false;
      this.iconColor = this._redraw();
+
   }
 
+  // important - to change on enable/disable events
   ngOnChanges() {
     this.iconColor = this._redraw();
   }
@@ -46,6 +51,13 @@ export class LibFormActionTriggerComponent implements OnInit, OnChanges {
   }
 
   private _redraw(): string {
+
+    // Tool tip
+    if (this.tooltipText) {
+      this.myToolTip = this.tooltipText;
+    } else {
+      this.myToolTip = this.actionText;
+    }
 
     let clr = 'rgba(200,200,200,1.0)';
     if (this.css[0] && (this.disableControl !== true)) {

@@ -3,10 +3,7 @@
 [style.display] = "(this.visible.exportDialog)? 'block': 'none'"
 [objectName]= "this.editingObj.u.symbolicName"
 (evCancelled)="this.visible.exportDialog = false"
-(evExportTrigger)="this.exportHandler($event)"
->
-
-</udt-ExportDialog>
+(evExportTrigger)="this.exportHandler($event)"></udt-ExportDialog>
 
     <!-- sticky/fiex on scroll -->
     <div
@@ -42,6 +39,7 @@
            + This is not an Edit (modifying) operation
         -->
         <libForm-ActionTrigger
+        [tooltipText]="'Update the modifications'"
         (execOnTrigger)= "updateUDT()"
         [actionIcon] = "'&#xe161;'"
         [actionText]= "'UPDATE'"
@@ -104,20 +102,10 @@
 
 
             <div class = "ga-udt-isF">
-                <!-- <div>
-                      <input
-                      type="checkbox"
-                      name = "isF"
-                      class="form-control"
-                      formControlName= "isF">
-                </div> -->
                 <libForm-Switch
                 [labelText]='"Fail-Safe"'
                 [formControl] = "formGroup.get('plcTag.isF')"
-                [disableControl]="false"
-                >
-
-                </libForm-Switch>
+                [disableControl]="false" > </libForm-Switch>
             </div>
             <div class = "ga-udt-datatype">
                 <libForm-InputText
@@ -126,7 +114,10 @@
               </libForm-InputText>
             </div>
 <div class="ga-rev">
-
+  <div class="sub-text">
+    <strong>Revision:</strong> {{this.editingObj.u.rev.major}} | {{this.editingObj.u.rev.minor}} <br>
+    <strong>Last Modified:</strong> {{this.editingObj.u.rev.on}}
+  </div>
 
 </div>
 
@@ -155,18 +146,13 @@
 </div>
 
     <div class="ga-last-row"> <!--row BEGIN -->
-      <!-- <input
-      type="submit"
-      class = "cl-trigger-round cl-trigger-round-add mi float-r"
-      value = "&#xe03b;"
-      (click)= "addNewVar()" > -->
 
       <libForm-ActionTrigger
       (execOnTrigger)= "addNewVar()"
       [actionIcon] = "'&#xe03b;'"
       [actionText]= "'ADD VAR'"
       [disableControl]="false"
-      [css]="['rgb(126, 163, 3)','none','l']"></libForm-ActionTrigger>
+      [css]="['rgb(88, 206, 114)','none','l']"></libForm-ActionTrigger>
 
     </div> <!--row END -->
 

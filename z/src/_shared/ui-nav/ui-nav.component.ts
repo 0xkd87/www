@@ -1,6 +1,11 @@
+import { AppRoutes } from './../../app/app.routing';
 import { HostListenerService } from '../services/hostListener.service';
 import { NavigationService } from '../services/navigation.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+
+
 @Component({
   selector: 'ui-nav',
   templateUrl: './ui-nav.component.html',
@@ -9,6 +14,9 @@ import { Component, OnInit } from '@angular/core';
     './ui-nav.component.css',
   ],
 })
+
+
+
 export class UiNavComponent implements OnInit {
 
 

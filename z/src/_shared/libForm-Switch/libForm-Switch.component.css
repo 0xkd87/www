@@ -109,12 +109,21 @@ input[type=checkbox]:disabled
 }
 
 h6 {
-  display: inline;
-  line-height: 1px;
-  font-size: 10px;
-  font-weight: 500;
+  margin: 0%;
+  display: inline-block;
+  line-height: 24px;
+  font-size: 12px;
+  font-weight: 700;
   pointer-events: none;
   color: rgb(80, 80, 80);
   text-transform: uppercase;
   font-variant: small-caps;
+
+  vertical-align: middle;
+  /* font-family: 'Material Icons';
+  background-color: rgb(168, 168, 168);
+  border-radius: 100%; */
+
+
+  width: 100%;
 }

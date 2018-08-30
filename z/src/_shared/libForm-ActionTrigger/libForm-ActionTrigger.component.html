@@ -2,8 +2,9 @@
   <div
   class = "wrapper"
   (mouseover)= "this.isHovered = true"
-  (mouseleave)= "this.isHovered = false"
-  >
+  (mouseleave)= "this.isHovered = false">
+  <!-- [attr.tooltip]="this.myToolTip" -->
+
 
 
 <!-- Submit element container -->
@@ -14,7 +15,8 @@
         type="submit"
         (click)="this.onUserTrigger($event)"
         value = {{this.actionIcon}}
-        [disabled]="this.disableControl">
+        [disabled]="this.disableControl"
+        >
 
         <label
         for="btn"

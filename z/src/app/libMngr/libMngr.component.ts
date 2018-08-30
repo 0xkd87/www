@@ -30,6 +30,7 @@ export class LibMngrComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._nav.clearLinks();
+    this._nav.addNavLink('PROJECTS', '/prjManager');
     this._nav.addNavLink('UDT', 'udt');
     this._nav.addNavLink('login', '/usrAuth/signin');
 
@@ -37,7 +38,7 @@ export class LibMngrComponent implements OnInit, OnDestroy {
 
   }
   ngOnDestroy() {
-    this._nav.clearLinks();
+     this._nav.clearLinks();
   }
 
 }

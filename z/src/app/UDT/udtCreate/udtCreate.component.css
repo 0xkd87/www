@@ -155,11 +155,16 @@ label
 /* Responsive layout */
 @media screen and (max-width: 600px)
 {
+
+
     .cl-FormContainer,row
     {
         margin: 2px;
     }
 
+    .ga-rev {
+      display: none;
+    }
     .grid-wrapper {
 
       display: grid;

@@ -18,7 +18,7 @@
           <a *ngFor="let n of nav.navLinks; let i = index"
           (click)="OnClickToggleVisButton()"
           class = "cl-a-LinkTile"
-          routerLink={{n.navRoute}}
+          routerLink = "{{n.navRoute}}"
           routerLinkActive="active">
             <div class = "cl-text-LinkHeading">
               {{n.navText}}
@@ -37,3 +37,13 @@
 [style.display]="!_isVisible ? 'block' : 'none'">
      &#9776;
 </div> -->
+
+<!-- <a *ngFor="let n of nav.navLinks; let i = index"
+(click)="OnClickToggleVisButton()"
+class = "cl-a-LinkTile"
+routerLink = "{{n.navRoute}}"
+routerLinkActive="active">
+  <div class = "cl-text-LinkHeading">
+    {{n.navText}}
+  </div>
+</a> -->

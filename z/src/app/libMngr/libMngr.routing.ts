@@ -1,3 +1,10 @@
+/**
+ * @author [kd]
+ * @email [karna.dalal@gmail.com]
+ * @create date 2018-08-30 11:53:30
+ * @modify date 2018-08-30 11:53:30
+ * @desc [description]
+*/
 import { UdtCreateComponent } from '../UDT/udtCreate/udtCreate.component';
 import { NgModule } from '@angular/core';
 
