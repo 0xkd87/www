@@ -30,6 +30,19 @@ export enum DEV_PLATFORMS {
 
 
 /**
+ * Abstract class : baseObj implements all basic functions of a class
+ */
+export abstract class __baseMethods {
+
+  protected _shallowCloneFromSrc(src: any) {
+    Object.assign( this, src);
+  }
+  public abstract getFormGroup(_validotors?: ValidatorFn[]): FormGroup;
+}
+
+
+
+/**
  * abstract definition of an object: (data) Type
  */
 class _defDataType {
@@ -157,7 +170,7 @@ export class plc {
 
 
 /*Internal interfaces - No Export */
-class _multiLangText {
+export class _multiLangText {
   [lang: string]: any; // possible extension = project specific languages might be added
   en?: string; // default language  = en
   de?: string; // default language  = de
@@ -188,7 +201,7 @@ class _multiLangText {
 }
 
 
-class _rev {
+export class _rev {
   major: number;
   minor: number;
   on: string;
@@ -225,7 +238,7 @@ class _rev {
 
 }
 
-class _ident {
+export class _ident {
   _uid?: string;  // unique object id - assigned at the time of construct
   idx?:  number; // the index (Auto assigned by DB) which is used to call this element from the App
   innerIdx?: number; // inner index - some elements are the part of parent table (e.g. UDT variables..)
