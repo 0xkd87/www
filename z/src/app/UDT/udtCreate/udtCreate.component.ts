@@ -384,6 +384,35 @@ addNewVar() {
   }
 }
 
+deleteVar (varIdx: number) {
+  if (this.editingObj.u) {
+    this.editingObj.u =  new IUdt(this.loadFromForm());
+    this.editingObj.u.deleteVar(varIdx);
+    this.formGroup = this.buildForm(this.editingObj.u);
+
+    this.formGroup.markAsDirty();
+
+  }
+}
+
+swapVar(varIdx: number, up: boolean= false) {
+  if (this.editingObj.u) {
+    this.editingObj.u =  new IUdt(this.loadFromForm());
+    if (up) {
+      this.editingObj.u.swapVar(varIdx, (varIdx - 1));
+    } else {
+      this.editingObj.u.swapVar(varIdx);
+    }
+    this.formGroup = this.buildForm(this.editingObj.u);
+
+    this.formGroup.markAsDirty();
+
+  }
+
+}
+
+
+
 /**
  * Size of the editing UDT
  */

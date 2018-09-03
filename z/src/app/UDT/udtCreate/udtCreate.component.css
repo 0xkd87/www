@@ -109,7 +109,7 @@ label
 
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: auto;
+  grid-template-rows: minmax(32px, auto);
 
   /* grid-template-areas:  */
 }
@@ -126,6 +126,7 @@ label
   "ga-udt-name ga-udt-name ga-udt-name ga-rev ga-rev"
   "ga-udt-comment ga-udt-comment ga-udt-comment ga-rev ga-rev"
   "ga-udt-datatype ga-udt-datatype ga-udt-isF ga-rev ga-rev"
+  "ga-gap-row1  ga-gap-row1  ga-gap-row1  ga-gap-row1  ga-gap-row1 "
   "ga-title2 ga-title2 ga-title2 ga-title2 ga-udtvar-info"
   "ga-udtvars ga-udtvars ga-udtvars ga-udtvars ga-udtvars"
   "..... ...... ..... ..... ga-last-row"
@@ -144,11 +145,17 @@ label
 .ga-udtvar-info {  grid-area: ga-udtvar-info;       }
 .ga-udtvars {  grid-area: ga-udtvars;       }
 .ga-last-row {  grid-area: ga-last-row;       }
+.ga-gap-row1 {  grid-area: ga-gap-row1;       }
 
+.ga-gap-row1
+{
+  margin-top: 20px;
+  /* border-top: 1px solid rgba(44, 132, 247, 0.315); */
+}
 
 .ga-rev
 {
-  /* background-color: rgba(104, 104, 104, 0.075); */
+  background-color: rgba(126, 126, 126, 0.075);
   border-left: 3px solid rgba(104, 104, 104, 0.075);
 }
 
@@ -177,6 +184,7 @@ label
       "ga-udt-comment"
       "ga-udt-datatype"
       "ga-udt-isF"
+      "ga-gap-row1"
       "ga-title2"
       "ga-udtvar-info"
       "ga-udtvars"

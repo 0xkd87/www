@@ -150,27 +150,30 @@ label{
   font-weight: 500;
   pointer-events: none;
   color: rgba(0, 0, 0, 0.61);
+  text-transform: uppercase;
   font-variant-caps: small-caps;
 
   /* font-size: 12px; */
 }
 
 .label-size-L {
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .label-size-M {
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .label-size-S {
-  font-size: 8px;
+  font-size: 9px;
 }
 
 .isHovered
 {
- color: rgb(47, 144, 255);
- font-size: 13px;
+  color: rgb(47, 144, 255);
+  font-weight: 500;
+  text-transform: lowercase;
+  font-variant-caps: small-caps;
 }
 
 .disabledText

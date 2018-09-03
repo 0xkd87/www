@@ -14,7 +14,7 @@
         {{this.uVarFormGroup.get('plcTag.name').value}}
       </tr> -->
           <td class = "w20"> <!-- cell (col) # = Delete trigger -->
-            <div class = "background-text">{{uVarIn.ident.innerIdx}}
+            <div class = "background-text">{{this.innerIdx}}
             </div>
             <libForm-ActionTrigger
             (execOnTrigger)= "this.visible.deleteConfirmationDialog = true"
@@ -33,17 +33,17 @@
 
             <libForm-ActionTrigger
             (execOnTrigger)= "this.onEvPromote()"
-            [actionIcon] = "'&#xe92b;'"
+            [actionIcon] = "'&#xe5c7;'"
             [actionText]= "'PROMOTE'"
-            [disableControl]="this.isLastArrElement"
-            [css]="['rgb(247, 72, 72)','none','s']"></libForm-ActionTrigger>
+            [disableControl]="this.isFirstArrElement"
+            [css]="['rgb(15, 170, 226)','none','s']"></libForm-ActionTrigger>
 
             <libForm-ActionTrigger
             (execOnTrigger)= "this.onEvDemote()"
-            [actionIcon] = "'&#xe92b;'"
+            [actionIcon] = "'&#xe5c5;'"
             [actionText]= "'DEMOTE'"
-            [disableControl]="this.isFirstArrElement"
-            [css]="['rgb(247, 72, 72)','none','s']"></libForm-ActionTrigger>
+            [disableControl]="this.isLastArrElement"
+            [css]="['rgb(15, 170, 226)','none','s']"></libForm-ActionTrigger>
 
           </td>
 

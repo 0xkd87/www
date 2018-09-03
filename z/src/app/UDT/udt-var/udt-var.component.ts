@@ -58,8 +58,15 @@ export class UdtVarComponent implements OnInit, OnDestroy {
 
   }
 
+  // Getters
+
+
   get isFirstArrElement(): boolean {
     return ((this.uVarIn.ident.innerIdx <= 1) ? true : false);
+  }
+
+  get innerIdx(): number {
+    return (this.uVarIn.ident.innerIdx);
   }
 
   // Tiggering Callbacks
@@ -70,16 +77,13 @@ export class UdtVarComponent implements OnInit, OnDestroy {
   }
 
   onEvDelete() {
-    this.evTriggerDelVar_.emit(this.uVarIn.ident.innerIdx);
+    this.evTriggerDelVar_.emit(this.innerIdx);
   }
   onEvPromote() {
-    this.evTriggerPromote_.emit(this.uVarIn.ident.innerIdx);
-
-
+    this.evTriggerPromote_.emit(this.innerIdx);
   }
   onEvDemote() {
-    this.evTriggerDemote_.emit(this.uVarIn.ident.innerIdx);
-
+    this.evTriggerDemote_.emit(this.innerIdx);
   }
 
 

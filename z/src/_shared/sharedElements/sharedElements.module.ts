@@ -1,3 +1,4 @@
+import { LibContextMenuComponent } from './../lib-ContextMenu/lib-ContextMenu.component';
 import { LibMngrModule } from './../../app/libMngr/libMngr.module';
 import { LibFormSwitchComponent } from './../libForm-Switch/libForm-Switch.component';
 import { AlertDialogComponent } from './../alertDialog/alertDialog.component';
@@ -22,6 +23,7 @@ import { Routes, RouterModule } from '@angular/router';
     LibFormInputComboComponent,
     LibFormInputTextComponent,
     LibFormSwitchComponent,
+    LibContextMenuComponent,
     AlertDialogComponent,
     UiNavComponent,
 
@@ -31,6 +33,8 @@ import { Routes, RouterModule } from '@angular/router';
     LibFormInputComboComponent,
     LibFormInputTextComponent,
     LibFormSwitchComponent,
+    LibContextMenuComponent,
+
     AlertDialogComponent,
     UiNavComponent,
   ],

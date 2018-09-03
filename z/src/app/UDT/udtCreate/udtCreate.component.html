@@ -8,7 +8,7 @@
     <!-- sticky/fiex on scroll -->
     <div
     class="cl-TopBarContainer"
-    [class.posFixed-Top] = "_hostListner.stickyOnWindowScroll(31) && (!this.visible.exportDialog)"
+    [class.posFixed-Top] = "_hostListner.stickyOnWindowScroll(31) && (!this.visible.exportDialog) && (!this.visible.deleteConfirmationDialog)"
     [class.posRelative] = "!_hostListner.stickyOnWindowScroll(33)">
 
     <div class="row"> <!--Top row -->
@@ -121,6 +121,7 @@
 
 </div>
 
+<!-- gap row --> <div class="ga-gap-row1"></div>
   <!-- UDT Vars -->
     <div class="ga-udtvar-info">
         <div class="sub-text">
@@ -142,10 +143,9 @@
               [uVarFormGroup]="this.formGroup.controls['vars'].controls[i]"
               [isLastArrElement]= "this.editingObj.u.vars.length === v.ident.innerIdx"
               (dataTypeChangeTrigger)= "this.onChildrenVarChanged($event)"
-              (evTriggerDelVar_)="this.x($event)"
-              (evTriggerPromote_)="this.x($event)"
-              (evTriggerDemote_)="this.x($event)"
-              >
+              (evTriggerDelVar_)="this.deleteVar($event)"
+              (evTriggerPromote_)="this.swapVar($event, true)"
+              (evTriggerDemote_)="this.swapVar($event, false)" >
               </udt-var>
           </div>
 </div>

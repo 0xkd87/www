@@ -12,6 +12,7 @@ import { isArray } from 'util';
 import { HttpTxRxService } from '../../_shared/services/http-TxRx.service';
 import { Injectable, OnDestroy } from '@angular/core';
 import { IUdt } from '../../_shared/interface/schemaLib.interface';
+import { UrlBuilderService } from '../../_shared/services/urlBuilder.service';
 
 
 const url = {
@@ -31,6 +32,7 @@ export class LibUDTService implements OnDestroy {
   _subscriptionPost: Subscription;
 constructor(
   private _httpServ: HttpTxRxService,
+  private _url: UrlBuilderService,
   private _msg: MsgService
 ) {
 }
@@ -70,7 +72,7 @@ get namesArr() {
 
   rx(): any {
     this.initRxArray();  // no null, no undefined..!
-    this._subscriptionGet = this._httpServ.getEncData(url.getListUDT)
+    this._subscriptionGet = this._httpServ.getEncData(this._url.url__UDT('r'))
     .subscribe(
       x => {
         let rxArr = <any[]>x;

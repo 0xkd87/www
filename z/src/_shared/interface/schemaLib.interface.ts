@@ -619,15 +619,69 @@ export class IUdt {
        * Assignt its inner index as next increamental array index
        * Also take care of any orphans (unsaved)
        */
-      this.vars.forEach( (v, i) => {
-        if (v.ident.innerIdx < 0) { // non positive = default (-1);
-          // v.ident.innerIdx = this.vars.indexOf(v) + 1; // Let's start from 1 instead of 0
-          v.ident.innerIdx = i + 1; // Let's start from 1 instead of 0
-
-        }
-      });
+      this._reOrderInnerIdx();
     }
 
+  }
+
+  public deleteVar(idx: number) {
+    if (this.vars) { // check if the array has been allocated?
+      const _i = idx - 1;
+      if ( (_i >= 0) && (_i <= (this.vars.length - 1)) ) {
+        this.vars.splice(_i, 1);
+      /**
+       * Assignt its inner index as next increamental array index
+       * Also take care of any orphans (unsaved)
+       */
+      this._reOrderInnerIdx();
+      }
+    }
+  }
+
+  swapVar(idx: number, dst: number = idx + 1) {
+    if (this.vars) { // check if the array has been allocated?
+      const len = this.numVars - 1;
+      const _i = idx - 1;
+      let _d = dst - 1;
+      if (
+        (_i >= 0) && (_i <= (len)) &&
+        (_d >= 0) && (_d <= (len)) ) {
+          const _x = this.vars.splice(_i, 1);
+          _x.forEach((el, c, arr) => {
+            this.vars.splice(_d + c, 0, el); // index = destination, remove = 0, insert which was deleted in previous step
+          });
+      }
+
+            /**
+       * Assignt its inner index as next increamental array index
+       * Also take care of any orphans (unsaved)
+       */
+      this._reOrderInnerIdx();
+    }
+  }
+
+  get numVars(): number {
+    if (this.vars) {
+      return (this.vars.length);
+    }
+    return 0;
+  }
+
+  /**
+   * re-orders the inner index of Vars after add/remove or any structural change is made
+   */
+  private _reOrderInnerIdx () {
+
+    if (this.vars) { // check if the array has been allocated?
+      this.vars.forEach( (v, i) => {
+        v.ident.innerIdx = i + 1; // Let's start from 1 instead of 0
+
+        // if (v.ident.innerIdx < 0) { // non positive = default (-1);
+        //   // v.ident.innerIdx = this.vars.indexOf(v) + 1; // Let's start from 1 instead of 0
+        //   v.ident.innerIdx = i + 1; // Let's start from 1 instead of 0
+        // }
+      });
+    }
   }
 
   bitWeight(): number {
