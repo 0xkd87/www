@@ -140,7 +140,12 @@
               [dataTypes]="this.dataTypes"
               [uVarIn]="v"
               [uVarFormGroup]="this.formGroup.controls['vars'].controls[i]"
-              (dataTypeChangeTrigger)= "this.onChildrenVarChanged($event)" >
+              [isLastArrElement]= "this.editingObj.u.vars.length === v.ident.innerIdx"
+              (dataTypeChangeTrigger)= "this.onChildrenVarChanged($event)"
+              (evTriggerDelVar_)="this.x($event)"
+              (evTriggerPromote_)="this.x($event)"
+              (evTriggerDemote_)="this.x($event)"
+              >
               </udt-var>
           </div>
 </div>

@@ -399,15 +399,7 @@ get bitWeight() {
 
 }
 
-  x() {
-   // this._exportTIA.exportAsTIASrc(new IUdt(this.loadFromForm()), true);
-
-
-    // tests
-    const x = new IUdt(this.loadFromForm());
-    x.reIndexMem(0, this.udtArr);
-    // console.log(x);
-    // this._exportTIA.AsErrorDBGalileo10(x);
+  x(_varIdx: number) {
 
   }
 

@@ -15,8 +15,8 @@ import { IUdt } from '../../_shared/interface/schemaLib.interface';
 
 
 const url = {
-  addUDT: 'http://emis000695/_c/__api/post/post.udt.add.php',
-  getListUDT: 'http://emis000695/_c/__api/get/get.udt.list.php',
+  addUDT: 'http://emis000695/_c/__api/c/c.udt.php',
+  getListUDT: 'http://emis000695/_c/__api/r/r.udt.list.php',
   updateUDT: 'http://emis000695/_c/__api/u/u.udt.php',
   deleteUDT: 'http://emis000695/_c/__api/d/d.udt.php',
 };

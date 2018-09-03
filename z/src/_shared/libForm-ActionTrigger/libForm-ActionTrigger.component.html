@@ -1,6 +1,9 @@
 
   <div
   class = "wrapper"
+  [class.wrapper-size-L] = "this._disp.componentSize === 0"
+  [class.wrapper-size-M] = "this._disp.componentSize === 1"
+  [class.wrapper-size-S] = "this._disp.componentSize === 2"
   (mouseover)= "this.isHovered = true"
   (mouseleave)= "this.isHovered = false">
   <!-- [attr.tooltip]="this.myToolTip" -->
@@ -9,8 +12,11 @@
 
 <!-- Submit element container -->
         <input
-        [style.color]= this.iconColor
-        class = "grid-icn trigger round-dark"
+        [style.color]= this._disp.iconColor
+        class = "grid-icn trigger transperant"
+        [class.trigger-size-L] = "this._disp.componentSize === 0"
+        [class.trigger-size-M] = "this._disp.componentSize === 1"
+        [class.trigger-size-S] = "this._disp.componentSize === 2"
         name = "btn"
         type="submit"
         (click)="this.onUserTrigger($event)"
@@ -22,6 +28,9 @@
         for="btn"
         [class.isHovered] = "isHovered"
         [class.disabledText] = "this.disableControl"
+        [class.label-size-L] = "this._disp.componentSize === 0"
+        [class.label-size-M] = "this._disp.componentSize === 1"
+        [class.label-size-S] = "this._disp.componentSize === 2"
         class="grid-txt">
         {{actionText}}
       </label>

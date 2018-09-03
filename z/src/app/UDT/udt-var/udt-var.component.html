@@ -16,9 +16,34 @@
           <td class = "w20"> <!-- cell (col) # = Delete trigger -->
             <div class = "background-text">{{uVarIn.ident.innerIdx}}
             </div>
-              <input class="cl-trigger-transperant cl-trigger-round-delete mi"
-              type="submit"
-              value = "&#xe92b;">
+            <libForm-ActionTrigger
+            (execOnTrigger)= "this.visible.deleteConfirmationDialog = true"
+            [actionIcon] = "'&#xe92b;'"
+            [actionText]= "'DELETE'"
+            [disableControl]="false"
+            [css]="['rgb(247, 72, 72)','none','s']"></libForm-ActionTrigger>
+
+            <alertDialog
+            [style.display] = "this.visible.deleteConfirmationDialog? 'block' : 'none'"
+            [alertTitle]= "'Confirm Delete Variable'"
+            [alertDesc]= "'Delete variable [' + this.uVarIn.plcTag.name + ', of Type:' +this.uVarIn.plcTag.datatype  + ']?' + '\nThis operation is non-reversable'"
+            (evCancelled)= "this.visible.deleteConfirmationDialog = false"
+            (evConfirmed)= "onEvDelete()">
+            </alertDialog>
+
+            <libForm-ActionTrigger
+            (execOnTrigger)= "this.onEvPromote()"
+            [actionIcon] = "'&#xe92b;'"
+            [actionText]= "'PROMOTE'"
+            [disableControl]="this.isLastArrElement"
+            [css]="['rgb(247, 72, 72)','none','s']"></libForm-ActionTrigger>
+
+            <libForm-ActionTrigger
+            (execOnTrigger)= "this.onEvDemote()"
+            [actionIcon] = "'&#xe92b;'"
+            [actionText]= "'DEMOTE'"
+            [disableControl]="this.isFirstArrElement"
+            [css]="['rgb(247, 72, 72)','none','s']"></libForm-ActionTrigger>
 
           </td>
 

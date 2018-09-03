@@ -19,7 +19,7 @@ export class LibFormActionTriggerComponent implements OnInit, OnChanges {
   @Input() actionText: string;
   @Input() disableControl: boolean;
   @Input()
-  css: ['iconColor', 'cc'];
+  css: {iconColor: '', x: '', componentSize: ''};
   // @Input() styleHints: [];
   @Output() execOnTrigger = new EventEmitter();
 
@@ -30,18 +30,32 @@ export class LibFormActionTriggerComponent implements OnInit, OnChanges {
   iconColor: string;
   myToolTip: String;
 
+  // Template binding stylesheet
+  _disp: {
+    iconColor: string,
+    componentSize: number
+  };
 
-  constructor() { }
+
+
+  constructor() {
+
+    // Load default values
+    this._disp = {
+      iconColor: 'rgba(200,200,200,1.0)',
+      componentSize: 0 // L/l :  large by default
+    };
+  }
 
   ngOnInit() {
     this.isHovered = false;
-     this.iconColor = this._redraw();
+     this._disp = this._redraw();
 
   }
 
   // important - to change on enable/disable events
   ngOnChanges() {
-    this.iconColor = this._redraw();
+    this._disp = this._redraw();
   }
 
   onUserTrigger(_: any) {
@@ -50,7 +64,7 @@ export class LibFormActionTriggerComponent implements OnInit, OnChanges {
 
   }
 
-  private _redraw(): string {
+  private _redraw() {
 
     // Tool tip
     if (this.tooltipText) {
@@ -59,13 +73,37 @@ export class LibFormActionTriggerComponent implements OnInit, OnChanges {
       this.myToolTip = this.actionText;
     }
 
+    // Component sizing
+    let cs = 0;
+    const sizeString = this.css[2];
+    switch (sizeString) {
+      case 'l':
+      case 'L':
+        cs = 0;
+        break;
+
+        case 'M':
+        case 'm':
+          cs = 1;
+          break;
+
+        case 's':
+        case 'S':
+          cs = 2;
+          break;
+
+      default:
+      cs = 0;
+        break;
+    }
+
+    // icon colouring
     let clr = 'rgba(200,200,200,1.0)';
     if (this.css[0] && (this.disableControl !== true)) {
       clr = this.css[0];
     } else {
-      return clr;
     }
-    return clr;
+    return ({iconColor: clr, componentSize: cs});
   }
 
 }
