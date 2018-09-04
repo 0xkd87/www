@@ -73,9 +73,12 @@ h3{
   margin: 0%;
   line-height: 32px;
   font-size: 24px;
-  font-weight: 400;
-  color: rgba(0, 0, 0, 0.318);
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.452);
   cursor: pointer;
+
+  text-transform: lowercase;
+  font-variant-caps: small-caps;
 }
 
 h3:hover {
@@ -91,7 +94,6 @@ ul{
   font-weight: 500;
   color: rgb(0, 179, 149);
   border-left: 2px solid rgba(151, 147, 147, 0.445);
-
 }
 
 li{
@@ -108,8 +110,8 @@ li{
   color: rgba(20, 20, 20, 0.651);
   background-color: rgba(226, 226, 226, 0.137);
   box-shadow: 2px 4px 8px 0 rgba(0,0,0,0.2), 0px -2px 8px 0 rgba(0,0,0,0.2) ;
-
 }
+
 
 .li-desc {
   /* font-style: italic; */

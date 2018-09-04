@@ -74,9 +74,20 @@
                   </li>
               </ul>
           </ul>
-          <ul class = "r3">
+          <ul class = "r3"
+          [class.isDetailShowing] = this.visible.rowDetail[2]>
             <h3 (click)="this.visible.rowDetail[2] = !this.visible.rowDetail[2]">SIEMENS -- Step7 (Soon to be Deprecated) | TBD</h3>
 
+          </ul>
+
+          <ul class = "r4"
+          [class.isDetailShowing] = this.visible.rowDetail[3]>
+            <h3 (click)="this.visible.rowDetail[3] = !this.visible.rowDetail[3]">SYSTEM</h3>
+            <ul [style.display] = "this.visible.rowDetail[3]? 'block' : 'none'">LOCAL STORE
+                <li (click) = this.onClickExportTrigger(411)>Intermidiate format for Object Transport (*JSON)
+                  <div class = "li-desc">Creates an internal file for portable access of this object</div>
+                </li>
+            </ul>
           </ul>
 
 

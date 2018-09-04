@@ -2,7 +2,7 @@
  * @author [kd]
  * @email [karna.dalal@gmail.com]
  * @create date 2018-08-08 11:28:04
- * @modify date 2018-08-08 12:08:41
+ * @modify date 2018-09-04 09:45:34
  * @desc [description]
 */
 
@@ -13,14 +13,6 @@ import { HttpTxRxService } from '../../_shared/services/http-TxRx.service';
 import { Injectable, OnDestroy } from '@angular/core';
 import { IUdt } from '../../_shared/interface/schemaLib.interface';
 import { UrlBuilderService } from '../../_shared/services/urlBuilder.service';
-
-
-const url = {
-  addUDT: 'http://emis000695/_c/__api/c/c.udt.php',
-  getListUDT: 'http://emis000695/_c/__api/r/r.udt.list.php',
-  updateUDT: 'http://emis000695/_c/__api/u/u.udt.php',
-  deleteUDT: 'http://emis000695/_c/__api/d/d.udt.php',
-};
 
 @Injectable(
   {  providedIn: 'root'}
@@ -94,11 +86,11 @@ get namesArr() {
   }
 
   addNew(newUDT: IUdt): Observable<any> {
-    return this._httpServ.postTx(url.addUDT, <IUdt>(newUDT));
+    return this._httpServ.postTx(this._url.url__UDT('c'), <IUdt>(newUDT));
   }
 
   update(uUDT: IUdt): Observable<any> {
-    return this._httpServ.postTx(url.updateUDT, <IUdt>(uUDT));
+    return this._httpServ.postTx(this._url.url__UDT('u'), <IUdt>(uUDT));
   }
 
   /**
@@ -111,7 +103,7 @@ get namesArr() {
  * sending the complete UDT may make sense instead of just it's idx..!
  * change it later to optimize or unneccessary
  */
-  return this._httpServ.postTx(url.deleteUDT, <IUdt>(dUDT));
+  return this._httpServ.postTx(this._url.url__UDT('d'), <IUdt>(dUDT));
   }
 
 }

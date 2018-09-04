@@ -204,5 +204,14 @@ AsTIASrc(u: IUdt, exportAsDB?: boolean) {
   this._txt.export(this.buildS7Src(u, _asDB), u.plcTag.name, _fileExt);
 }
 
+AsJsonObj(u: IUdt, iEnc: number = 3) {
+  const _fileExt = '.json_UDT';
+  let s = JSON.stringify(u);
+  for (let i = 0; i < iEnc; i++) {
+    s = btoa(s);
+  }
+  this._txt.export(s, u.plcTag.name, _fileExt);
+}
+
 
 }

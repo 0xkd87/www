@@ -13,24 +13,33 @@
 
     <div class="row"> <!--Top row -->
         <!-- router to list page -->
-        <input
-        type="submit"
-        class = "cl-trigger-round cl-trigger-round-blue"
+        <libForm-ActionTrigger
+        [tooltipText]="'Navigate back to overview'"
         routerLink = "/libMngr/udt"
         routerLinkActive="active"
-        value = "&#xe5c4;">
-
-        <div class = "seperator"></div> <!--Separator-->
+        [actionIcon] = "'&#xe5c4;'"
+        [actionText]= "'BACK'"
+        [disableControl]="false"
+        [css]="['rgb(43, 156, 255)','none','l']"></libForm-ActionTrigger>
 
         <!-- Add new button -->
-        <input
-        type="submit"
-        class = "cl-trigger-round cl-trigger-round-add"
-        (click)="postReq_CreateUDT()"
-        value = "&#xe02e;"
-        [disabled]="(!formGroup.valid) || (this.opEdit)">
 
-        <div class = "seperator"></div> <!--Separator-->
+        <libForm-ActionTrigger
+        [tooltipText]="'Create a new object with following data'"
+        (execOnTrigger)= "createUDT(false)"
+        [actionIcon] = "'&#xe02e;'"
+        [actionText]= "'NEW'"
+        [disableControl]="(!formGroup.valid) || (this.opEdit)"
+        [css]="['rgb(0, 156, 96)','none','l']"></libForm-ActionTrigger>
+
+        <!-- Clone this as a new object Available only with EDIT operation if the form is valid..-->
+        <libForm-ActionTrigger
+        [tooltipText]="'Create a new object with following data'"
+        (execOnTrigger)= "createUDT(true)"
+        [actionIcon] = "'&#xe02e;'"
+        [actionText]= "'CLONE'"
+        [disableControl]="(!formGroup.valid) || (!this.opEdit)"
+        [css]="['rgb(0, 156, 96)','none','l']"></libForm-ActionTrigger>
 
         <!-- save / Update / Apply modification button
           This will stay disabled when
@@ -44,7 +53,7 @@
         [actionIcon] = "'&#xe161;'"
         [actionText]= "'UPDATE'"
         [disableControl]="(!formGroup.valid) || (!this.opEdit) || (!formGroup.dirty)"
-        [css]="['rgb(0, 156, 96)','none','l']"></libForm-ActionTrigger>
+        [css]="['rgb(32, 86, 234)','none','l']"></libForm-ActionTrigger>
 
         <!-- Trigger element: Open the delete confirmation dialog -->
 

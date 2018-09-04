@@ -183,7 +183,9 @@ navigateTo(path: string) {
 
 
 validateUniqueName  = (c: AbstractControl): Observable<ValidationErrors> => {
-  // console.log(c);
+  //  console.log(c);
+  //  console.log(this._libUDTService.namesArr);
+  //  console.log('-----');
 
   /**
    * pass the own name as an argument to exclude it from the existing scan list..!
@@ -282,9 +284,20 @@ loadToForm(editingUDT: IUdt) {
 
 }
 
-postReq_CreateUDT() {
-  const newUDT: IUdt = this.loadFromForm();
-  this._subscriptionPost = this._libUDTService.addNew(<IUdt>(newUDT))
+createUDT(clone: boolean = false) {
+  /**
+   * is this a clone request?
+   * In case of clone request, make some adjustments
+   */
+  if (clone) {
+    this.formGroup.get('plcTag.name').setValue(this.formGroup.get('plcTag.name').value + '_clone');
+  }
+  if (this.editingObj.u) {
+    this.editingObj.u =  new IUdt(this.loadFromForm());
+  }
+  // let newUDT = new IUdt(<IUdt>this.loadFromForm());
+
+  this._subscriptionPost = this._libUDTService.addNew(<IUdt>(this.editingObj.u))
   .subscribe(
   udt => {
     // console.log(udt);
@@ -292,12 +305,19 @@ postReq_CreateUDT() {
     this._msg.add('UDT: ' + u.plcTag.name + ' Added Successfully..!'); },
     err => {},
     () => {
-      this.rxF5(true);
-      this.editingObj.u = new IUdt();
-      this.formGroup = this.buildForm(this.editingObj.u);
 
+      // Go back to overview after it has been cloned
+      if (clone) {
+        // Don't even refresh or rebuild the form - just get out..
+        // Refreshing all objects from server is an async operation and buffer will be overwritten in page transition
+        this.navigateTo('/libMngr/udt');
+      } else {
 
-      // this.navigateTo('/libMngr/udt/createUDT');
+        // Not a clone operation..! Refresh, rebuild and stay on the page
+        this.rxF5(true);
+        this.editingObj.u = new IUdt();
+        this.formGroup = this.buildForm(this.editingObj.u);
+      }
     }
   );
 
@@ -458,6 +478,11 @@ get bitWeight() {
         case 212:
           this._exp.AsTIASrc(x, false);
           break;
+
+        // Export as JSON
+        case 411:
+        this._exp.AsJsonObj(x);
+        break;
 
        default:
          break;

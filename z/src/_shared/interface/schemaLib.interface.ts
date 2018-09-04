@@ -576,6 +576,12 @@ export class IUdt {
     return this.plcTag.name;
   }
 
+  // set symbolicName(n: string) {
+  //   if (n && n !== '') {
+  //     this.plcTag.name = n;
+  //   }
+  // }
+
   /**
    * returns the basic structure of the form building group
    */
