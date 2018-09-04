@@ -58,7 +58,7 @@ h2{
   display: block;
   margin: 0px;
   padding: 1px;
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: 400;
   line-height: auto;
   color: rgba(95, 95, 95, 0.87);
@@ -76,29 +76,33 @@ h2{
   margin-top: 200px;
   display: grid;
   /* grid-template-rows:  1fr 1fr 1fr; auto  repeat(5, 64px);*/
-  grid-template-rows:  auto;
-  grid-template-columns: 50px 1fr 100px 100px;
+  grid-template-rows:
+  minmax(100px,auto)
+  minmax(100px,auto);;
+  grid-template-columns: 50px 100px 1fr;
 
   grid-template-areas:
-  "..... r1 t1 t2";
+  "..... t1 r1"
+  "..... t2 r1";
   grid-gap: 10px;
 }
 
-.c1 {  grid-area: c1; }
+/* .c1 {  grid-area: c1; } */
 
 .r1 {  grid-area: r1; }
-.r2 {  grid-area: r2; }
+/* .r2 {  grid-area: r2; } */
 .t1 {  grid-area: t1; }
 .t2 {  grid-area: t2; }
 
 .r1
 {
-  align-self: stretch;
   align-items: center;
   justify-self: stretch;
   text-align: left;
-  padding: 5px;
+  padding: 20px;
   vertical-align: middle;
+  display: grid;
+  border-left: 3px solid rgba(0, 0, 0, 0.151);
 }
 
 /* responsive with screen size*/

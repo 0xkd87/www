@@ -20,26 +20,26 @@
         [actionIcon] = "'&#xe5c4;'"
         [actionText]= "'BACK'"
         [disableControl]="false"
-        [css]="['rgb(43, 156, 255)','none','l']"></libForm-ActionTrigger>
+        [css]="['rgb(43, 120, 255)','none','l']"></libForm-ActionTrigger>
 
         <!-- Add new button -->
 
         <libForm-ActionTrigger
         [tooltipText]="'Create a new object with following data'"
         (execOnTrigger)= "createUDT(false)"
-        [actionIcon] = "'&#xe02e;'"
+        [actionIcon] = "'&#xe148;'"
         [actionText]= "'NEW'"
         [disableControl]="(!formGroup.valid) || (this.opEdit)"
-        [css]="['rgb(0, 156, 96)','none','l']"></libForm-ActionTrigger>
+        [css]="['rgb(230, 227, 3)','none','l']"></libForm-ActionTrigger>
 
         <!-- Clone this as a new object Available only with EDIT operation if the form is valid..-->
         <libForm-ActionTrigger
         [tooltipText]="'Create a new object with following data'"
         (execOnTrigger)= "createUDT(true)"
-        [actionIcon] = "'&#xe02e;'"
+        [actionIcon] = "'&#xe0b6;'"
         [actionText]= "'CLONE'"
-        [disableControl]="(!formGroup.valid) || (!this.opEdit)"
-        [css]="['rgb(0, 156, 96)','none','l']"></libForm-ActionTrigger>
+        [disableControl]="(!formGroup.valid) || (!this.opEdit)|| (formGroup.dirty) || (this.editingObj.u.vars.length <= 0)"
+        [css]="['rgb(248, 129, 114)','none','l']"></libForm-ActionTrigger>
 
         <!-- save / Update / Apply modification button
           This will stay disabled when
@@ -53,7 +53,7 @@
         [actionIcon] = "'&#xe161;'"
         [actionText]= "'UPDATE'"
         [disableControl]="(!formGroup.valid) || (!this.opEdit) || (!formGroup.dirty)"
-        [css]="['rgb(32, 86, 234)','none','l']"></libForm-ActionTrigger>
+        [css]="['rgb(246, 232, 75)','none','l']"></libForm-ActionTrigger>
 
         <!-- Trigger element: Open the delete confirmation dialog -->
 
