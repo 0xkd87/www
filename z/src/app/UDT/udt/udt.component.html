@@ -1,12 +1,8 @@
 
-
-<!-- <div class="row">
-                    <div class= "mi">&#xe2cc;</div>
-</div> -->
-
-<div class="row">
+<div class="gr1">
 
         <div
+        class="gr1-topbar"
         [class.cl-TopBarContainer] = "!_hostListner.stickyOnWindowScroll(25)"
         [class.cl-FixedContainer-Top] = "_hostListner.stickyOnWindowScroll(25)">
               <div class="clWidth25Perc leftcolumn">
@@ -42,19 +38,32 @@
               </div>
         </div>
 
-</div>
 
-    <div class="row">
 
-      <div class="clWidth25Perc leftcolumn"> </div> <!--Gutter collumn-->
 
-        <div class="clWidth50Perc leftcolumn">
-                  <app-udt-list *ngFor="let d of _rxArr; let i = index"  [udtIn]="d"> </app-udt-list>
+      <div class="gr1-contentcontrol">  <!--content control (filters, categories..) column-->
+        <ul>CATEGORIZATION
+          <li>Category 1</li>
+
+
+
+          <libForm-ActionTrigger
+          [actionIcon] = "'&#xe03b;'"
+          [actionText]= "'ADD\nCATEGORY'"
+          [disableControl]="formGroup.invalid"
+          [css]="['rgb(19, 149, 255)','none','l']"></libForm-ActionTrigger>
+
+          <libForm-InputText
+          [labelText] = '"Name"'
+          [formControl] = "formGroup.get('name')"> </libForm-InputText>
+        </ul>
+      </div>
+        <div class="gr1-content">
+                 <div> <app-udt-list *ngFor="let d of _rxArr; let i = index"  [udtIn]="d"> </app-udt-list></div>
         </div>
 
-      <div class="clWidth25Perc leftcolumn"> </div><!--Gutter collumn-->
+  </div> <!--  grid wrapper -->
 
-  </div>
 
 
 <!--   <a
@@ -67,4 +76,9 @@
         [udtListIn]="_rxArr"
 
               (click)= "routeToCreateUDT()"
+
+          <libForm-InputText
+            [labelText] = '"Name"'
+            [formControl] = "formGroup.get('plcTag.name')">
+          </libForm-InputText>
 -->

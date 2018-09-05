@@ -1,3 +1,12 @@
+import { FormControl } from '@angular/forms';
+/**
+ * @author [kd]
+ * @email [karna.dalal@gmail.com]
+ * @create date 2018-09-05 01:52:22
+ * @modify date 2018-09-05 01:52:22
+ * @desc [description]
+*/
+import { FormGroup, Validators } from '@angular/forms';
 import { LibUDTService } from '../libUDT.service';
 import { HostListenerService } from '../../../_shared/services/hostListener.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -23,6 +32,8 @@ export class UdtComponent implements OnInit, OnDestroy {
 
   showAddDialog: boolean;
   public newUDT: IUdt;
+  public formGroup: FormGroup;
+
 
   _rxArr: IUdt[] = [];
 
@@ -42,6 +53,9 @@ export class UdtComponent implements OnInit, OnDestroy {
         rxUDT => {
           this._rxArr.push(rxUDT); }
       ); */
+
+
+      this.formGroup = this.buildForm();
     }
 
   ngOnInit() {
@@ -76,6 +90,29 @@ export class UdtComponent implements OnInit, OnDestroy {
     }
     /**Default return to False */
     return false;
+  }
+
+    /**
+   * build the form as default (if no agument; or if UDT is passed as an argument..)
+   */
+  buildForm(): FormGroup {
+
+
+    const fg = new FormGroup(
+      {
+        name: new FormControl
+        (
+          '',
+          Validators.compose(
+            [ Validators.required,
+              Validators.minLength(2),
+              Validators.maxLength(48),
+              Validators.pattern(/^[a-zA-Z0-9!#$%^&*()_-]+$/)]),
+              Validators.composeAsync([]), // to be overridden in the ui form if required
+        ),
+        });
+      return fg;
+    return (fg); /**return  a newly generated FormGroup to caller */
   }
 
 
