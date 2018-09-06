@@ -140,7 +140,7 @@ li:hover {
 
 
 /* Responsive layout */
-@media screen and (max-width: 600px)
+@media screen and (max-width: 800px)
 {
 
   .gr1 {
@@ -158,5 +158,10 @@ li:hover {
     ;
 
     grid-gap: 10px;
+  }
+
+  .gr1-contentcontrol
+  {
+    border-bottom: 2px solid rgb(2, 151, 250);
   }
 }

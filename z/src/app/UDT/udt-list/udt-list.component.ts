@@ -1,5 +1,5 @@
 import { IUdt } from '../../../_shared/interface/schemaLib.interface';
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, AfterViewInit } from '@angular/core';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
   providers: []
 
 })
-export class UdtListComponent implements OnInit, OnDestroy {
+export class UdtListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @Input()
   udtIn: IUdt;
@@ -27,11 +27,18 @@ export class UdtListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // this.isControlVisible = false;
     this.udtNode = this.udtIn;
-
   }
 
   ngOnDestroy() {
 
+  }
+
+  ngAfterViewInit() {
+    // this.refreshBlockSize();
+  }
+
+  get refreshBlockSize() {
+    return this.udtIn.plcTag.memAddr.length;
   }
 
 }

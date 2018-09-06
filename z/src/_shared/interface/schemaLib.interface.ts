@@ -332,6 +332,31 @@ class _dataTypeHelper {
     this.isNative = false;
   }
 
+  // Number of dependancy objects (additional object is required to use this object)
+  private _dependencies: IUdt[];
+  /**
+   * returns the number of dependancies. This number indicates that how many external objects this
+   * object is referring to. I.e. is dependant on
+   * This count is calculated and refreshed in re-indexing routine
+   */
+  public get depCount(): number {
+    if (this._dependencies) {
+      return this._dependencies.length;
+    }
+    return 0;
+  }
+  public clearDependencies() {
+    this._dependencies = []; // flush
+  }
+  public addDependency(depObj: IUdt) {
+    if ((depObj) && (this._dependencies)) {
+      if (!this._dependencies.includes(depObj, 0)) {
+        this._dependencies.push(depObj);
+      }
+    }
+  }
+
+
   constructor(src?: IUdt) {
     if (src) {
       this.udt = src;
@@ -361,13 +386,13 @@ class _plcTag {
     this.address = '';
     this.comment = new _multiLangText();
 
-    this.dataTypeHelper = new _dataTypeHelper();
 
     /// this.memOffset = -1;
     if (src) { /**shallow copy if source is provided */
       this._shallowCloneFromSrc(src);
       this.comment = new _multiLangText(src.comment);
     }
+    this.dataTypeHelper = new _dataTypeHelper();
 
     // helper construct
     this.memAddr = new _absAddrHelper();
@@ -588,7 +613,8 @@ export class IUdt {
     incrMinor: boolean = true,
   ) {
     if (newTimestamp) {
-      this.rev.on = (new Date().toLocaleDateString()) + ' | ' + (new Date().toLocaleTimeString());
+      const d = new Date();
+      this.rev.on = d.toDateString() + ' | ' + d.toLocaleTimeString();
     }
     if (incrMinor) {
       this.rev.minor = this.rev.minor + 1;
@@ -749,6 +775,8 @@ export class IUdt {
       // establish the memory base - received from the previously define block
       this.plcTag.memAddr.offset = memBase;
     }
+
+    this.plcTag.dataTypeHelper.clearDependencies(); // reset the dependancy count
     const p = new plc(DEV_PLATFORMS.S7_300);
     let bW = 0;
     this.vars.forEach((v, i, arr) => {
@@ -777,6 +805,10 @@ export class IUdt {
           // recursively iterate through the complex data-type
           for (let u of siblingsArr) {
             if (dType === u.symbolicName) {
+              // found:
+
+              // dependancy ++
+              this.plcTag.dataTypeHelper.addDependency(u);
 
               this.vars[i].plcTag.memAddr.offset = bW; // save offset before adding up the offset
 

@@ -66,7 +66,7 @@ get namesArr() {
     this.initRxArray();  // no null, no undefined..!
     this._subscriptionGet = this._httpServ.getEncData(this._url.url__UDT('r'))
     .subscribe(
-      x => {
+      x => { // catch
         let rxArr = <any[]>x;
 
         if (isArray(rxArr))  {
@@ -78,10 +78,19 @@ get namesArr() {
       }
 
       },
-      error => {
+      error => { // throw
         this.error = error; // error path;
+      },
+      () => { // finally
+          // reindex memory here
+          if ((this._rxArr) && (this._rxArr.length > 0)) {
+            this._rxArr.forEach((el, i, arr) => {
+              el.reIndexMem(0, arr); // re-index with mem align index of 16 as default (=no parameter)
+            });
+          }
       }
     );
+
     return this.rxArr();
   }
 

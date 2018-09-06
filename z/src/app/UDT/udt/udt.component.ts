@@ -46,7 +46,6 @@ export class UdtComponent implements OnInit, OnDestroy {
     private _libUDTService: LibUDTService,
   ) {
       this._title.setTitle('UDT');
-      this._rxArr = [];
 /* register to the subscription */
 
 /*       this._subscriptionGet = this._libUDTService._rx$.subscribe(
@@ -56,12 +55,13 @@ export class UdtComponent implements OnInit, OnDestroy {
 
 
       this.formGroup = this.buildForm();
+      this._rxArr = [];
     }
 
   ngOnInit() {
-    this._rxArr = [];
-    this.showAddDialog = false;
     this.rxF5(); // update / fetch and refresh all data on init..!
+
+    this.showAddDialog = false;
     /**
      * scroll to the top when page is drawn
      */
@@ -77,6 +77,7 @@ export class UdtComponent implements OnInit, OnDestroy {
 
 /**Gets all data with subscription - use this to refresh (i.e. f5) as well */
   rxF5()  {
+    this._rxArr = []; // destroy first, if existing
     this._rxArr = new Array<IUdt>(); // initialize when called.. otherwise the async data will be keep appended..!
     this._rxArr = <IUdt[]>this._libUDTService.rx(); /* The data will be automaticcally populated in the array as it is subscribed */
   }
@@ -111,7 +112,6 @@ export class UdtComponent implements OnInit, OnDestroy {
               Validators.composeAsync([]), // to be overridden in the ui form if required
         ),
         });
-      return fg;
     return (fg); /**return  a newly generated FormGroup to caller */
   }
 

@@ -1,4 +1,4 @@
-<div class="cl-ListNodeContainer" [class.cl-IsSelected] = "isControlVisible" [class.cl-IsF] = "udtNode.plcTag.isF" >
+<!-- <div class="cl-ListNodeContainer" [class.cl-IsSelected] = "isControlVisible" [class.cl-IsF] = "udtNode.plcTag.isF" >
 
         <div class="row">
                 <div
@@ -24,12 +24,6 @@
                 [class.clWidth15Perc] =  "isControlVisible"
                 [class.rightcolumn] =  "isControlVisible">
                   <div class= "cl-ControlContainer" [style.display]="isControlVisible ? 'block' : 'none'">
-<!--                         <input class="cl-trigger-round cl-trigger-round-blue mi"
-                        type="submit"
-                        routerLink = "/libMngr/udt/editUDT/+{{udtNode.ident.idx}}"
-                        routerLinkActive="active"
-                        value = "&#xe429;"> -->
-
                         <libForm-ActionTrigger
                         routerLink = "/libMngr/udt/editUDT/+{{udtNode.ident.idx}}"
                         routerLinkActive="active"
@@ -40,9 +34,59 @@
                     </div>
                 </div>
           </div>
-        </div>
+        </div> -->
+
+        <div class="cl-ListNodeContainer gr1"
+        (click)="isControlVisible = !isControlVisible"
+        [class.cl-IsSelected] = "isControlVisible"
+        [class.cl-IsF] = "udtNode.plcTag.isF" >
+
+          <div class="gr1-name">
+            <h2> {{udtNode.plcTag.name}}</h2>
+          </div>
+
+          <div class="gr1-comment">
+            <p class="cl-Comment"> {{udtNode.plcTag.comment.en}} </p>
+          </div>
+
+          <div class="gr1-hr1"></div>
+
+          <div class="gr1-revnum">
+            <p class="cl-label">Revision: </p>
+            <p class="cl-desc desc-default"> {{udtNode.rev.major}} | {{udtNode.rev.minor}} </p>
+          </div>
+          <div class="gr1-revtime">
+            <!-- <p class="cl-label">Last Modified: </p> -->
+            <p class="cl-desc desc-default"> {{udtNode.rev.on}}</p>
+          </div>
+          <div class="gr1-size">
+            <div>
+                <p class="cl-label">Block_Size: </p>
+                <p class="cl-desc desc-default">{{udtNode.vars.length}} Variables |  {{this.refreshBlockSize / 8}}  Bytes</p>
+            </div>
+          </div>
+          <div class="gr1-dep">
+              <p class="cl-label">Dependencies: </p>
+              <p class="cl-desc"
+              [class.desc-good] = "udtNode.plcTag.dataTypeHelper.depCount <= 0"
+              [class.desc-warn] = "udtNode.plcTag.dataTypeHelper.depCount > 0"
+              > {{udtNode.plcTag.dataTypeHelper.depCount}} Objects
+            </p>
+          </div>
 
 
+
+                    <div class= "cl-ControlContainer gr1-controls" [style.display]="isControlVisible ? 'inherit' : 'none'">
+                          <libForm-ActionTrigger
+                          routerLink = "/libMngr/udt/editUDT/+{{udtNode.ident.idx}}"
+                          routerLinkActive="active"
+                          [actionIcon] = "'&#xe429;'"
+                          [actionText]= "'EDIT'"
+                          [disableControl]="false"
+                          [css]="['rgb(16, 130, 236)','none','m']"></libForm-ActionTrigger>
+                      </div>
+
+          </div>
 
 
 

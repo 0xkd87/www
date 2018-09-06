@@ -6,7 +6,7 @@
 
 .cl-ListNodeContainer
 {
-  display: block;
+  /* display: block; */
   height: 100%;
   width: auto;
   margin: 5px;
@@ -46,7 +46,7 @@
   padding: 5px;
   background-color: rgba(255, 255, 255, 0.445);
 
-  display: block;
+  /* display: block; */
 
   /*
   background-color: rgba(141, 138, 138, 0.445);
@@ -61,7 +61,7 @@ h2
   margin: 0px;
   font-weight: 400;
   margin-bottom: 0px;
-  border-bottom: 1px solid rgb(160, 160, 160);
+  /* border-bottom: 1px solid rgb(160, 160, 160); */
   width: 100%;
   word-wrap: break-word;
   font-variant-caps: small-caps;
@@ -85,8 +85,7 @@ h2:hover
   font-weight: 400;
   font-size: 0.7rem;
   line-height: 15px;
-  color: rgb(105, 107, 103);
-  color: rgb(69, 138, 0);
+  color: rgb(127, 128, 129);
 
   word-wrap: break-word;
 }
@@ -94,26 +93,41 @@ h2:hover
 {
   display: inline-block;
   margin: 0px;
+  margin-right: 5px;
   font-weight: 400;
 
-  color: rgb(26, 26, 26);
-  font-size: 12px;
-  line-height: 14px;
+  color: rgb(48, 48, 48);
+  text-transform: uppercase;
+  font-variant-caps: small-caps;
+  font-size: 10px;
+  /* line-height: 1px; */
+  vertical-align: middle;
 }
 .cl-desc
 {
   font-variant: normal;
   display: inline-block;
   margin: 0px;
-  margin-left: 5px;
 
-  font-weight: 400;
-  color: rgb(105, 107, 103);
 
-  font-size: 12px;
-  line-height: 14px;
+  font-weight: 500;
+
+  font-size: 10px;
+  /* line-height: 1px; */
+  vertical-align: middle;
+  word-wrap: break-word;
+
 }
 
+.desc-default {
+  color: rgb(21, 111, 146);
+}
+.desc-good {
+  color: rgb(9, 174, 86)
+}
+.desc-warn {
+  color: rgb(255, 110, 110);
+}
 
 .text-right
 {
@@ -125,4 +139,80 @@ h2:hover
   border : none;
   display: flex;
   line-height: 12px;
+}
+
+
+/* ------------  Grid layout ---------------*/
+.gr1 {
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(75px,1fr)) 100px;
+  grid-template-rows: minmax(2px, auto);
+
+  grid-template-areas:
+
+  "gr1-name gr1-name gr1-name gr1-name gr1-name"
+  "gr1-comment gr1-comment gr1-comment gr1-size gr1-size"
+  "gr1-hr1 gr1-hr1 gr1-hr1 gr1-hr1 gr1-hr1"
+  "gr1-revnum gr1-revtime gr1-dep ..... gr1-controls"
+  ;
+
+  grid-gap: 2px;
+}
+
+.gr1-revtime      {  grid-area: gr1-revtime;    }
+.gr1-revnum      {  grid-area: gr1-revnum;    }
+.gr1-size      {  grid-area: gr1-size;    }
+.gr1-dep      {  grid-area: gr1-dep;    }
+.gr1-name      {  grid-area: gr1-name;    }
+.gr1-comment      {  grid-area: gr1-comment;    }
+.gr1-controls      {  grid-area: gr1-controls;    }
+.gr1-hr1      {  grid-area: gr1-hr1;    }
+
+.gr1-hr1
+{
+  border-bottom: 1px solid rgb(160, 160, 160);
+}
+
+.gr1-controls
+{
+  justify-content: right;
+}
+
+.gr1-size
+{
+  justify-self: end;
+}
+
+/* Responsive layout */
+@media screen and (max-width: 600px)
+{
+
+    .gr1 {
+
+      display: grid;
+      grid-template-columns: 1fr 100px;
+      grid-template-rows: minmax(2px, auto);
+
+      grid-template-areas:
+      "..... gr1-controls"
+      "gr1-name gr1-name"
+      "gr1-comment gr1-comment"
+      "gr1-hr1 gr1-hr1"
+      "gr1-revtime gr1-revnum"
+      "gr1-size gr1-size"
+      "gr1-dep gr1-dep"
+      ;
+
+      grid-gap: 2px;
+    }
+
+      .gr1-size
+      {
+        justify-self: start;
+      }
+      .gr1-revnum
+      {
+        justify-self: end;
+      }
 }
