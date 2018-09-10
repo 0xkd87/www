@@ -27,17 +27,17 @@ export class PrjCrudService implements OnDestroy {
 
 constructor(
   private _http: HttpTxRxService,
-  private _url: UrlBuilderService,
+  private _urlBuilder: UrlBuilderService,
 ) {
   this.li_Init();
 
 
   // define url calling function
-  this._urlFxn = (op: string) => {
-    return this._url.url__PRJ(op);
+  this._url = (op: string) => {
+    return this._urlBuilder.url__PRJ(op);
   };
 }
-private _urlFxn;
+private _url;
 
 private li: {  // Lists - arrays
   prj: IProject[]; // Project Objects
@@ -74,9 +74,9 @@ ngOnDestroy() {
   }
 }
 
-r() {
+_r() {
   this.li_Init();  // no null, no undefined..!
-  this._subscriptionGet = this._http.rxGET(this._urlFxn('r'))
+  this._subscriptionGet = this._http.rxGET(this._url('r'))
   .subscribe(
       rxData => { // catch
         const rxArr = <any[]>rxData;
@@ -99,6 +99,10 @@ r() {
         // something ToDo
       }
   );
+}
+
+_c(p: IProject): Observable<any> {
+  return this._http.txPOST(this._url('c'), <IProject>(p));
 }
 
 } // class end

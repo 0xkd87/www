@@ -225,6 +225,35 @@ export class _rev {
     Object.assign( this, src);
   }
 
+    /**
+   * Sets revision data
+   * @param newTimestamp - generate the new timestamp? (default = true)
+   * @param incrMajor increament Major revision count? (default = false) major++ is controlled by user on a major release
+   * @param incrMinor increament Minor revision count? (default = true) minor++ on each updates by default
+   */
+  public update(
+    newTimestamp: boolean = true,
+    incrMajor: boolean = false,
+    incrMinor: boolean = true,
+  ) {
+    if (newTimestamp) {
+      const d = new Date();
+      this.on = d.toDateString() + ' | ' + d.toLocaleTimeString();
+    }
+    if (incrMinor) {
+      this.minor = this.minor + 1;
+    }
+    if (incrMajor) {
+      this.major = this.major + 1;
+      this.minor = 0; // minor = 0 on each major revision
+    }
+
+    if ((!incrMinor) && (!incrMinor)) {
+      this.major = 0; // major = 0
+      this.minor = 0; // minor = 0
+    }
+  }
+
   public getFormGroup(): FormGroup {
     const rev = new FormGroup(
       {
@@ -603,34 +632,7 @@ export class IUdt {
     return this.plcTag.name;
   }
 
-  /**
-   * Sets revision data
-   * @param newTimestamp - generate the new timestamp? (default = true)
-   * @param incrMajor increament Major revision count? (default = false) major++ is controlled by user on a major release
-   * @param incrMinor increament Minor revision count? (default = true) minor++ on each updates by default
-   */
-  public revUpdate(
-    newTimestamp: boolean = true,
-    incrMajor: boolean = false,
-    incrMinor: boolean = true,
-  ) {
-    if (newTimestamp) {
-      const d = new Date();
-      this.rev.on = d.toDateString() + ' | ' + d.toLocaleTimeString();
-    }
-    if (incrMinor) {
-      this.rev.minor = this.rev.minor + 1;
-    }
-    if (incrMajor) {
-      this.rev.major = this.rev.major + 1;
-      this.rev.minor = 0; // minor = 0 on each major revision
-    }
 
-    if ((!incrMinor) && (!incrMinor)) {
-      this.rev.major = 0; // major = 0
-      this.rev.minor = 0; // minor = 0
-    }
-  }
 
   // set symbolicName(n: string) {
   //   if (n && n !== '') {

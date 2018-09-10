@@ -1,3 +1,4 @@
+import { _utils } from './../_utils';
 /**
  * @author [kd]
  * @email [karna.dalal@gmail.com]
@@ -21,7 +22,7 @@ class _prj {
    // methods -----
 
   constructor(src?: _prj) {
-    this.name = '';
+    this.name =  (new _utils()).getSHA1(new Date().toString());
     this.number = '';
 
     if (src) {

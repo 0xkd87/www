@@ -10,6 +10,7 @@ import { LibFormInputComboComponent } from '../libForm-InputCombo/libForm-InputC
 import { LibFormInputTextComponent } from '../libForm-InputText/libForm-InputText.component';
 import { UiNavComponent } from '../ui-nav/ui-nav.component';
 import { Routes, RouterModule } from '@angular/router';
+import { MsgBoardComponent } from '../msgBoard/msgBoard.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { Routes, RouterModule } from '@angular/router';
     LibContextMenuComponent,
     AlertDialogComponent,
     UiNavComponent,
+    MsgBoardComponent,
 
   ],
   exports: [
@@ -37,6 +39,9 @@ import { Routes, RouterModule } from '@angular/router';
 
     AlertDialogComponent,
     UiNavComponent,
+
+    MsgBoardComponent,
+
   ],
 
 })

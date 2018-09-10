@@ -297,7 +297,7 @@ createUDT(clone: boolean = false) {
     /**
      * update revision data
      */
-    this.editingObj.u.revUpdate(true, false, false);
+    this.editingObj.u.rev.update(true, false, false);
   }
   // let newUDT = new IUdt(<IUdt>this.loadFromForm());
 
@@ -339,7 +339,7 @@ createUDT(clone: boolean = false) {
     /**
      * update revision data
      */
-    this.editingObj.u.revUpdate();
+    this.editingObj.u.rev.update();
     // this.editingObj.u.rev.on = (new Date().toLocaleDateString()) + ' | ' + (new Date().toLocaleTimeString());
     // this.editingObj.u.rev.minor = this.editingObj.u.rev.minor + 1;
     /**

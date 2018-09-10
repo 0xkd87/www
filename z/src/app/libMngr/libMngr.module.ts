@@ -9,12 +9,10 @@ import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
 import { Title } from '@angular/platform-browser';
 
 import { LibMngrComponent } from './libMngr.component';
-import { MsgBoardComponent } from '../../_shared/msgBoard/msgBoard.component';
 import { UdtListComponent } from '../UDT/udt-list/udt-list.component';
 import { UdtVarComponent } from '../UDT/udt-var/udt-var.component';
 import { SharedElementsModule } from '../../_shared/sharedElements/sharedElements.module';
 import { UdtExportDialogComponent } from '../UDT/udt-ExportDialog/udt-ExportDialog.component';
-import { UiNavComponent } from '../../_shared/ui-nav/ui-nav.component';
 
 @NgModule({
   imports: [
@@ -30,7 +28,7 @@ import { UiNavComponent } from '../../_shared/ui-nav/ui-nav.component';
     UdtCreateComponent,
     UdtVarComponent,
     UdtExportDialogComponent,
-    MsgBoardComponent,
+    // MsgBoardComponent,
     // UiNavComponent,
     // LibFormInputTextComponent,
     // LibFormInputComboComponent,
