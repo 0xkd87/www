@@ -6,7 +6,6 @@
  * @desc [description]
 */
 
-import { MsgService } from '../../_shared/services/msg.service';
 import { Subscription, Observable } from 'rxjs';
 import { isArray } from 'util';
 import { HttpTxRxService } from '../../_shared/services/http-TxRx.service';
@@ -18,15 +17,20 @@ import { UrlBuilderService } from '../../_shared/services/urlBuilder.service';
   {  providedIn: 'root'}
 )
 export class LibUDTService implements OnDestroy {
+
+  private _url;
   public error: string;
   private _rxArr: IUdt[];
-  _subscriptionGet: Subscription;
-  _subscriptionPost: Subscription;
+  private _subscriptionGet: Subscription;
+  private _subscriptionPost: Subscription;
 constructor(
   private _httpServ: HttpTxRxService,
-  private _url: UrlBuilderService,
-  private _msg: MsgService
+  private _urlBuilder: UrlBuilderService,
 ) {
+    // define url calling function
+    this._url = (op: string) => {
+      return this._urlBuilder.url__UDT(op);
+    };
 }
 ngOnDestroy() {
   // prevent memory leak when component destroyed
@@ -36,7 +40,6 @@ ngOnDestroy() {
   if (this._subscriptionPost) {
   this._subscriptionPost.unsubscribe();
   }
-  console.log('distroyed');
 }
 /* initialize the rx aray */
 initRxArray() {
@@ -45,6 +48,7 @@ initRxArray() {
 rxArr() {
   return this._rxArr;
 }
+
 
 /**
  * @description:
@@ -64,7 +68,7 @@ get namesArr() {
 
   rx(): any {
     this.initRxArray();  // no null, no undefined..!
-    this._subscriptionGet = this._httpServ.getEncData(this._url.url__UDT('r'))
+    this._subscriptionGet = this._httpServ.rxGET(this._url('r'))
     .subscribe(
       x => { // catch
         let rxArr = <any[]>x;
@@ -95,11 +99,11 @@ get namesArr() {
   }
 
   addNew(newUDT: IUdt): Observable<any> {
-    return this._httpServ.postTx(this._url.url__UDT('c'), <IUdt>(newUDT));
+    return this._httpServ.txPOST(this._url('c'), <IUdt>(newUDT));
   }
 
   update(uUDT: IUdt): Observable<any> {
-    return this._httpServ.postTx(this._url.url__UDT('u'), <IUdt>(uUDT));
+    return this._httpServ.txPOST(this._url('u'), <IUdt>(uUDT));
   }
 
   /**
@@ -112,7 +116,7 @@ get namesArr() {
  * sending the complete UDT may make sense instead of just it's idx..!
  * change it later to optimize or unneccessary
  */
-  return this._httpServ.postTx(this._url.url__UDT('d'), <IUdt>(dUDT));
+  return this._httpServ.txPOST(this._url('d'), <IUdt>(dUDT));
   }
 
 }

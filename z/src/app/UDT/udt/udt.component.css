@@ -127,7 +127,7 @@ li:hover {
 
   grid-template-areas:
   "gr1-topbar gr1-topbar gr1-topbar gr1-topbar gr1-topbar"
-  "..... gr1-contentcontrol gr1-content gr1-content ....."
+  "..... gr1-content gr1-content gr1-contentcontrol ....."
 
   ;
 

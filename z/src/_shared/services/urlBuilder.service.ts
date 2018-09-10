@@ -35,4 +35,16 @@ public url__UDT(op: string) {
 
 }
 
+public url__PRJ(op: string) {
+  const _op = {
+    'c': 'c/c.prj.php',
+    'r': 'r/r.prj.list.php',
+    'u': 'u/u.prj.php',
+    'd': 'd/d.prj.php'
+  };
+
+  return (this._pathToApi + _op[op]);
+
 }
+
+} // class end

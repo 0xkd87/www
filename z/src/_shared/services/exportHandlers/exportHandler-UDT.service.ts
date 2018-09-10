@@ -134,13 +134,13 @@ buildGalileoDbSrc(u: IUdt, errorDB: boolean = false): string {
 
       // Auto generate header
       s.addLine(this._buildAutoGenCommentHeadSiemens());
-
+// console.log(s);
     // Object info, Header
      s.addLine(this._buildBlockHeaderSiemens(u, prgBlock, blkAttib));
-
+// console.log(s);
       // children
       s.addLine(this._getChildrenAsStructS7(u,  1, (errorDB === false))); // inline STRUCT = TRUE..!
-
+// console.log(s);
 
     // mark object END
     s.addLine('END_'); s.appendText(prgBlock);
@@ -174,6 +174,8 @@ private _getChildrenAsStructS7(
                 s1.appendText(v.plcTag.datatype + '; ');
                 s1.appendText('//' + v.plcTag.comment['en']);
               } else {
+                console.log(v.plcTag.dataTypeHelper.udt);
+
                 s1.addLine(this._getChildrenAsStructS7(v.plcTag.dataTypeHelper.udt,
                                                         tabIndent + 1,
                                                         inlineStruct,

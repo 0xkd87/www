@@ -38,7 +38,7 @@ constructor(
 }
 
 
-  getEncData(url: string) {
+  rxGET(url: string) {
     return this._http.get(url, /*   this.httpOptions*/ {responseType: 'json'} )
     .pipe(
       retry(3), // retry a failed request up to 3 times
@@ -46,7 +46,7 @@ constructor(
     );
   }
 
-  postTx(url: string, jsonStr: any): Observable<any> {
+  txPOST(url: string, jsonStr: any): Observable<any> {
 
     return this._http.post(url, jsonStr, httpOptions)
     .pipe(

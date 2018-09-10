@@ -30,6 +30,18 @@ class _prj {
     }
   }
 
+  /**
+   * Getters
+   */
+
+   get prjnumber(): string {
+    return this.number;
+   }
+
+   get prjname(): string {
+    return this.name;
+   }
+
   private _shallowCloneFromSrc(src: _prj) {
     Object.assign( this, src);
   }

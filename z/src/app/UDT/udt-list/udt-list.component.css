@@ -177,6 +177,8 @@ h2:hover
 .gr1-controls
 {
   justify-content: right;
+  justify-self: end;
+
 }
 
 .gr1-size

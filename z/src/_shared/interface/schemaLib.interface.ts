@@ -357,9 +357,9 @@ class _dataTypeHelper {
   }
 
 
-  constructor(src?: IUdt) {
+  constructor(src?: _dataTypeHelper) {
     if (src) {
-      this.udt = src;
+      Object.assign( this, src);
     }
   }
 }
@@ -385,14 +385,16 @@ class _plcTag {
     this.datatype = '';
     this.address = '';
     this.comment = new _multiLangText();
+    this.dataTypeHelper = new _dataTypeHelper();
+
 
 
     /// this.memOffset = -1;
     if (src) { /**shallow copy if source is provided */
       this._shallowCloneFromSrc(src);
       this.comment = new _multiLangText(src.comment);
+      this.dataTypeHelper = new _dataTypeHelper(src.dataTypeHelper);
     }
-    this.dataTypeHelper = new _dataTypeHelper();
 
     // helper construct
     this.memAddr = new _absAddrHelper();
@@ -807,14 +809,15 @@ export class IUdt {
             if (dType === u.symbolicName) {
               // found:
 
-              // dependancy ++
-              this.plcTag.dataTypeHelper.addDependency(u);
+
 
               this.vars[i].plcTag.memAddr.offset = bW; // save offset before adding up the offset
 
               const len = u.reIndexMem(bW, siblingsArr, ma);
 
+              // dependancy ++
               this.vars[i].plcTag.dataTypeHelper.udt = u; // set the  UDT after it has been re-indexed
+              this.plcTag.dataTypeHelper.addDependency(u);
 
               this.vars[i].plcTag.memAddr.length = len;
               bW += len;
