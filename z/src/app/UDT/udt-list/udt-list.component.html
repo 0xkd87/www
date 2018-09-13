@@ -42,7 +42,11 @@
         [class.cl-IsF] = "udtNode.plcTag.isF" >
 
           <div class="gr1-name">
-            <h2> {{udtNode.plcTag.name}}</h2>
+            <h2
+            routerLink = "/libMngr/udt/editUDT/+{{udtNode.ident.idx}}"
+            routerLinkActive="active">
+              {{udtNode.plcTag.name}}
+            </h2>
           </div>
 
           <div class="gr1-comment">
@@ -66,11 +70,11 @@
             </div>
           </div>
           <div class="gr1-dep">
-              <p class="cl-label">Dependencies: </p>
+              <p class="cl-label">Direct Dependencies: </p>
               <p class="cl-desc"
               [class.desc-good] = "udtNode.plcTag.dataTypeHelper.depCount <= 0"
               [class.desc-warn] = "udtNode.plcTag.dataTypeHelper.depCount > 0"
-              > {{udtNode.plcTag.dataTypeHelper.depCount}} Objects
+              > {{udtNode.plcTag.dataTypeHelper.depCount}}
             </p>
           </div>
 

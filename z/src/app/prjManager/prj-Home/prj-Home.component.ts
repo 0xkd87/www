@@ -41,6 +41,17 @@ export class PrjHomeComponent implements OnInit {
   get prjArr(): IProject[] {
     return this._crud.li_prj;
   }
+
+  // not a good idea...
+  prjArr_Filtered(): IProject[] {
+    let li_prj: IProject[] = [];
+    this._crud.li_prj.forEach((p, i, arr) => {
+      if (p.ident.idx > 20) {
+        li_prj.push(p);
+      }
+    });
+    return li_prj;
+  }
   get prjNumArr() {
     return this._crud.li_prjNum;
   }

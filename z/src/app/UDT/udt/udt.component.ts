@@ -36,6 +36,7 @@ export class UdtComponent implements OnInit, OnDestroy {
 
 
   _rxArr: IUdt[] = [];
+  _TagArr: string[];
 
   _subscriptionPost: Subscription;
   _subscriptionGet: Subscription;
@@ -56,6 +57,8 @@ export class UdtComponent implements OnInit, OnDestroy {
 
       this.formGroup = this.buildForm();
       this._rxArr = [];
+
+      this._TagArr = [];
     }
 
   ngOnInit() {
@@ -119,7 +122,12 @@ export class UdtComponent implements OnInit, OnDestroy {
   }
 
 
+addTagChip(tagText: string) {
 
+  if (tagText && tagText !== '') {
+    this._TagArr.push(tagText);
+  }
+}
 
 
 }

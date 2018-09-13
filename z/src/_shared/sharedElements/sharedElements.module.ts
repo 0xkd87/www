@@ -1,3 +1,4 @@
+import { LibTagChipComponent } from './../lib-TagChip/lib-TagChip.component';
 import { LibContextMenuComponent } from './../lib-ContextMenu/lib-ContextMenu.component';
 import { LibMngrModule } from './../../app/libMngr/libMngr.module';
 import { LibFormSwitchComponent } from './../libForm-Switch/libForm-Switch.component';
@@ -28,6 +29,7 @@ import { MsgBoardComponent } from '../msgBoard/msgBoard.component';
     AlertDialogComponent,
     UiNavComponent,
     MsgBoardComponent,
+    LibTagChipComponent,
 
   ],
   exports: [
@@ -36,6 +38,8 @@ import { MsgBoardComponent } from '../msgBoard/msgBoard.component';
     LibFormInputTextComponent,
     LibFormSwitchComponent,
     LibContextMenuComponent,
+    LibTagChipComponent,
+
 
     AlertDialogComponent,
     UiNavComponent,

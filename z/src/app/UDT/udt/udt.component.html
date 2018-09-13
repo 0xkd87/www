@@ -48,6 +48,7 @@
 
 
           <libForm-ActionTrigger
+          (execOnTrigger)="this.addTagChip(formGroup.get('name').value)"
           [actionIcon] = "'&#xe03b;'"
           [actionText]= "'ADD\nCATEGORY'"
           [disableControl]="formGroup.invalid"
@@ -57,6 +58,12 @@
           [labelText] = '"Name"'
           [formControl] = "formGroup.get('name')"> </libForm-InputText>
         </ul>
+
+        <div >
+            <TagChip *ngFor="let t of _TagArr; let i = index"
+            [tagText]="t">
+            </TagChip>
+        </div>
       </div>
         <div class="gr1-content">
                  <div> <app-udt-list *ngFor="let d of _rxArr; let i = index"  [udtIn]="d"> </app-udt-list></div>

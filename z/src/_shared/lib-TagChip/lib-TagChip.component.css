@@ -1,0 +1,91 @@
+.gr1 {
+
+  display: inline-grid;
+  grid-template-rows: 20px;
+  grid-template-columns: minmax(16px, auto);
+
+  grid-template-areas:
+  "gr1-tagtext gr1-remove";
+
+  grid-gap: 3px;
+
+  box-shadow: 3px 2px 8px 0 rgba(0, 0, 0, 0.304);
+
+  border-radius: 16px 16px;
+  background-color: rgb(32, 121, 255);
+  color: rgb(255, 255, 255);
+
+  padding: 3px;
+  margin: 2px;
+
+  vertical-align: middle;
+
+}
+
+.gr1-remove {
+  grid-area: gr1-remove;
+  justify-self: end;
+}
+
+.gr1-tagtext {
+  grid-area: gr1-tagtext;
+  align-self: center;
+  text-align: center;
+  word-wrap: normal;
+
+}
+
+.text
+{
+  font-size: 12px;
+  font-weight: 400;
+  text-shadow: 2px 2px 3px rgba(27, 27, 27, 0.897);
+
+  padding: 2px;
+}
+
+.remove-trigger
+{
+  height: 18px;
+  width: 18px;
+  font-size: 16px;
+  font-weight: 500;
+
+  vertical-align: middle;
+
+  font-family: 'Material Icons';
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+
+  text-transform: lowercase;
+  font-variant: small-caps;
+
+  cursor: pointer;
+  text-shadow: 2px 2px 3px rgba(27, 27, 27, 0.897);
+}
+
+.remove-trigger:hover
+{
+  color: rgb(110, 110, 110);
+}
+
+.gr1:hover
+{
+
+}

@@ -9,7 +9,7 @@
   List of Existing Projects
 </h1>
 
-<ul *ngFor="let p of this.prjArr; let i = index">
+<ul *ngFor="let p of this.prjArr_Filtered(); let i = index">
 <li>
  <h5> {{p.prj.prjname}} | {{p.ident.idx}}</h5>
  <h6>{{p.rev.on}}</h6>

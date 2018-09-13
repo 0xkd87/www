@@ -453,6 +453,12 @@ get bitWeight() {
 
 }
 
+get refreshBlockSize() {
+  const u = new IUdt(this.loadFromForm());
+  u.reIndexMem(0, this.udtArr);
+  return u;
+}
+
   x(_varIdx: number) {
 
   }
