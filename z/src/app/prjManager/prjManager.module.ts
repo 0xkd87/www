@@ -1,3 +1,12 @@
+import { PrjListNodeComponent } from './prj-ListNode/prj-ListNode.component';
+/**
+ * @author [kd]
+ * @email [karna.dalal@gmail.com]
+ * @create date 2018-09-17 08:59:40
+ * @modify date 2018-09-17 08:59:40
+ * @desc [description]
+*/
+import { PrjCreateEditComponent } from './prj-CreateEdit/prj-CreateEdit.component';
 import { PrjHomeComponent } from './prj-Home/prj-Home.component';
 import { Title } from '@angular/platform-browser';
 import { SharedElementsModule } from './../../_shared/sharedElements/sharedElements.module';
@@ -18,11 +27,16 @@ import { PrjManagerRoutes } from './prjManager.routing';
   declarations: [
     PrjManagerComponent,
     PrjHomeComponent,
+    PrjCreateEditComponent,
+    PrjListNodeComponent,
 
   ],
   exports: [
     PrjManagerComponent,
     PrjHomeComponent,
+    PrjCreateEditComponent,
+    PrjListNodeComponent,
+
 
   ],
   providers: [

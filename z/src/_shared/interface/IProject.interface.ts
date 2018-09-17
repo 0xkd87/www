@@ -17,6 +17,19 @@ class _prj {
    */
   private name: string; // name of the project
   private number: string; // unique identifier (number) of a project
+  private prod: {
+    type: string;
+    name: string;
+  };
+  private numID: { // unique identifier (number) of a project
+    pre: string;
+    branch: string;
+    seq: number;
+  };
+  private progress: { // unique identifier (number) of a project
+    status: string;
+    proz: number;
+  };
 
 
    // methods -----
@@ -24,6 +37,8 @@ class _prj {
   constructor(src?: _prj) {
     this.name =  (new _utils()).getSHA1(new Date().toString());
     this.number = '';
+    this.prod = {type: '', name: ''};
+
 
     if (src) {
       /**call the shallow copy builder if source is passed as an agument */
@@ -43,11 +58,44 @@ class _prj {
     return this.name;
    }
 
+   get prod_Type(): string {
+     return this.prod.type;
+   }
+
+   get prod_Name(): string {
+    return this.prod.name;
+  }
+
   private _shallowCloneFromSrc(src: _prj) {
     Object.assign( this, src);
   }
 
   public getFormGroup(): FormGroup {
+
+    const prod =  new FormGroup(
+      {
+        name: new FormControl(
+          this.prod_Name,
+          Validators.compose([
+            Validators.required,
+            Validators.minLength(1),
+            Validators.maxLength(80),
+            Validators.pattern(/^[a-zA-Z0-9.,;:><[!#$%^&*()@|+ _-]+$/)
+          ]),
+            Validators.composeAsync([]), // to be overridden in the ui form if required
+        ),
+        type: new FormControl(
+          this.prod_Type,
+          Validators.compose([
+            Validators.required,
+            Validators.minLength(1),
+            Validators.maxLength(80),
+            Validators.pattern(/^[a-zA-Z0-9.:!#()=+_-]+$/)
+          ]),
+            Validators.composeAsync([]), // to be overridden in the ui form if required
+        ),
+      });
+
     const fg = new FormGroup(
       {
         name: new FormControl(
@@ -66,11 +114,13 @@ class _prj {
             Validators.required,
             Validators.minLength(10),
             Validators.maxLength(15),
-            Validators.pattern(/^[a-zA-Z0-9.,;:><[!#$%^&*()@|+ _-]+$/)
+            Validators.pattern(/^[a-zA-Z0-9.:!#()=+_-]+$/)
           ]),
             Validators.composeAsync([]), // to be overridden in the ui form if required
         ),
       });
+
+      fg.addControl('prod', prod);
       return fg;
   }
 

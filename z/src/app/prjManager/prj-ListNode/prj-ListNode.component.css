@@ -1,0 +1,56 @@
+
+* {
+  box-sizing: border-box;
+}
+
+
+.cl-ListNodeContainer
+{
+  /* display: block; */
+  height: 100%;
+  width: auto;
+  margin: 5px;
+  padding: 15px;
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: rgb(247, 247, 247);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  cursor: pointer;
+}
+
+.cl-ListNodeContainer:hover
+{
+  transform: translateX(-5px);
+}
+
+.cl-IsSelected
+{
+  border: 1px solid rgb(4, 172, 250);
+  background-color: rgb(255, 255, 255);
+
+}
+
+/* ------------  Grid layout ---------------*/
+.gr1 {
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(75px,1fr)) 100px;
+  grid-template-rows: minmax(2px, auto);
+
+  grid-template-areas:
+
+  "gr1-name gr1-name gr1-name gr1-name gr1-name"
+  "gr1-comment gr1-comment gr1-comment gr1-size gr1-size"
+  "gr1-hr1 gr1-hr1 gr1-hr1 gr1-hr1 gr1-hr1"
+  "gr1-revnum gr1-revtime gr1-dep ..... gr1-controls"
+  ;
+
+  grid-gap: 2px;
+}
+
+/* Responsive layout */
+@media screen and (max-width: 600px)
+{
+
+}

@@ -84,6 +84,8 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
     private _asyncValidation: AsyncInputValidationService,
     private _exp: ExportHandlerUDTService,
    ) {
+    this.udtArr = []; // initialize when called.. otherwise the async data will be keep appended..!
+
 
       this.rxF5(); /** without argument = just load the array; don't GET from HTTP */
 
@@ -102,7 +104,8 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
        */
       this.editingObj.idx = -1; // initialize to default
       this.opEdit = false; // Default operation: Create new with a blank
-      /**
+
+        /**
        * check router paramenters; if the desired argument exists?
        */
       this.route.paramMap.forEach(
@@ -151,7 +154,6 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
      * scroll to the top when page is drawn
      */
     window.scrollTo(0, 0);
-
     }
 
 
@@ -215,7 +217,7 @@ validateUniqueVarName = (_c: AbstractControl, i: number): Observable<ValidationE
 
     this.udtArr = []; // initialize when called.. otherwise the async data will be keep appended..!
     if (makeNewReq) {
-      this.udtArr = this._libUDTService.rx(); /* The data will be automaticcally populated in the array as it is subscribed */
+      this.udtArr = this._libUDTService.rx(); /* The data will be automatically populated in the array as it is subscribed */
     }   else {
       this.udtArr = this._libUDTService.rxArr();
     }
@@ -539,4 +541,4 @@ get refreshBlockSize() {
     // console.log(Attr);
     return (Attr); /**return  a newly generated FormGroup to caller */
   }
-}
+} // class end

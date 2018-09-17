@@ -18,7 +18,9 @@ export class LibFormInputTextComponent implements ControlValueAccessor, OnInit, 
    * input parameter(s) to bind with parent/child
    */
   @Input()  labelText: string;
+  @Input()  placeholderText: string;
   @Input()  formControl: FormControl;
+
 /**
  * class specific variables
  */

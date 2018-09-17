@@ -9,6 +9,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { PrjHomeComponent } from './prj-Home/prj-Home.component';
 import { PrjManagerComponent } from './prjManager.component';
+import { PrjCreateEditComponent } from './prj-CreateEdit/prj-CreateEdit.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
       // canActivateChild: [AuthGuard],
       children: [
         { path: 'prjHome', component: PrjHomeComponent },
+        { path: 'prjCreate', component: PrjCreateEditComponent },
         { path: '**',  redirectTo: 'prjHome', pathMatch: 'full' }
       ]
     }

@@ -1,0 +1,54 @@
+<div>
+        <!-- router to list page -->
+        <libForm-ActionTrigger
+        [tooltipText]="'Navigate back to overview'"
+        routerLink = "prjHome"
+        routerLinkActive="active"
+        [actionIcon] = "'&#xe5c4;'"
+        [actionText]= "'BACK'"
+        [disableControl]="false"
+        [css]="['rgb(43, 120, 255)','none','l']"></libForm-ActionTrigger>
+
+        <libForm-ActionTrigger
+        [tooltipText]="'Create a new object with following data'"
+        (execOnTrigger)= "c()"
+        [actionIcon] = "'&#xe148;'"
+        [actionText]= "'NEW'"
+        [disableControl]="(!formGroup.valid) || (this.editing.opEdit)"
+        [css]="['rgb(230, 227, 3)','none','l']"></libForm-ActionTrigger>
+  </div>
+<!-- Form starts here -->
+<form
+[formGroup]="formGroup.get('prj')"
+class="cl-FormContainer form-group grid-wrapper"
+novalidate>
+
+  <div>
+      <libForm-InputText
+      [labelText] = '"Name"'
+      [formControl] = "formGroup.get('prj.name')">
+    </libForm-InputText>
+  </div>
+
+  <div>
+    <libForm-InputText
+    [labelText] = '"Number (Identifier)"'
+    [formControl] = "formGroup.get('prj.number')"
+    [placeholderText]="'e.g. 2400WK0141'">
+  </libForm-InputText>
+</div>
+
+<div >
+  <libForm-InputText
+  [labelText] = '"Product-Type"'
+  [formControl] = "formGroup.get('prj.prod.type')"
+  [placeholderText]="'Launch coaster'">
+</libForm-InputText>
+<libForm-InputText
+[labelText] = '"Product-Name"'
+[formControl] = "formGroup.get('prj.prod.name')"
+[placeholderText]="'e.g. Slinky Dog Dash'">
+</libForm-InputText>
+</div>
+
+</form> <!-- Form End -->

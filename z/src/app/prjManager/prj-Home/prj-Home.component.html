@@ -1,6 +1,7 @@
 <libForm-ActionTrigger
-(execOnTrigger)= "c()"
-[actionIcon] = "'&#xe03b;'"
+routerLink = "/prjManager/prjCreate"
+routerLinkActive="active"
+[actionIcon] = "'&#xe145;'"
 [actionText]= "'CREATE\nPROJECT'"
 [disableControl]="false"
 [css]="['rgb(88, 206, 114)','none','l']"></libForm-ActionTrigger>
@@ -9,9 +10,17 @@
   List of Existing Projects
 </h1>
 
-<ul *ngFor="let p of this.prjArr_Filtered(); let i = index">
+
+<div *ngFor="let p of this.prjArr; let i = index">
+<prj-ListNode
+[viewingObj]= "p">
+</prj-ListNode>
+
+</div>
+
+<!-- <ul *ngFor="let p of this.prjArr; let i = index">
 <li>
  <h5> {{p.prj.prjname}} | {{p.ident.idx}}</h5>
  <h6>{{p.rev.on}}</h6>
 </li>
-</ul>
+</ul> -->

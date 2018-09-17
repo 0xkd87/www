@@ -1,0 +1,48 @@
+
+/*fixed after certain scroll*/
+.posFixed-Top
+{
+  z-index: 10; /* Sit on top */
+  position: fixed; /* Set  to fixed position */
+  top: 0px; /* Position at the top of the page */
+  left: 0px;
+}
+
+.posRelative
+{
+  position: relative; /* Set  to relative position */
+}
+
+.cl-TopBarContainer
+{
+  margin: 0px;
+  margin-bottom: 10px;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: rgb(238, 238, 238);
+
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.304);
+  /* min-height: 120px; */
+  height: auto;
+  width: 100%;
+  align-content: center;
+  vertical-align: middle;
+
+}
+
+
+.cl-FormContainer
+{
+
+    display: grid;
+
+    width: auto;
+    height: auto;
+    margin: 10px;
+    padding: 20px;
+    overflow: auto;
+    box-shadow: 4px 3px 14px 0 rgba(0,0,0,0.5);
+    background: rgba(243, 243, 243, 0.692);
+
+}

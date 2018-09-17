@@ -45,12 +45,11 @@ input[type=checkbox]:disabled
   position: relative;
   display: block;
   vertical-align: middle;
-  width: 80px;
-  height: 8px;
-  padding: 0px;
+  width: 50px;
+  min-height: 19px;
+  padding: 3px;
   cursor: pointer;
   overflow: visible;
-
 }
 
 
@@ -63,21 +62,25 @@ input[type=checkbox]:disabled
   bottom: 0;
   vertical-align: middle;
 
-  background-color: rgb(168, 168, 168);
+  background-color: rgba(168, 168, 168, 0.507);
   -webkit-transition: .4s;
   transition: .4s;
   box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.22);
+
+  border-radius: 16px 18px;
+
 }
 
 .pointer{
+  margin: 3px;
   position: absolute;
-  bottom: -8px;
+  /* bottom: -6px; */
 
   cursor: pointer;
 
   background-color: rgba(255, 255, 255, 0.945);
-  min-height: 24px;
-  min-width: 24px;
+  height: 20px;
+  width: 20px;
   box-shadow: 0px 0px 11px 2px rgba(68, 68, 68, 0.42);
 
   border-radius: 100%;
@@ -97,9 +100,9 @@ input[type=checkbox]:disabled
 }
 
 .To-Checked{
-  -webkit-transform: translateX(58px);
-  -ms-transform: translateX(58px);
-  transform: translateX(58px);
+  -webkit-transform: translateX(28px);
+  -ms-transform: translateX(28px);
+  transform: translateX(28px);
 }
 
 .To-Unchecked{
@@ -111,8 +114,8 @@ input[type=checkbox]:disabled
 h6 {
   margin: 0%;
   display: inline-block;
-  line-height: 24px;
-  font-size: 12px;
+  line-height: 20px;
+  font-size: 10px;
   font-weight: 700;
   pointer-events: none;
   color: rgb(80, 80, 80);

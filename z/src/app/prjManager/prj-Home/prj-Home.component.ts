@@ -9,30 +9,45 @@ import { IProject } from './../../../_shared/interface/IProject.interface';
  * @desc [description]
 */
 import { PrjCrudService } from './../prj-crud.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'prj-Home',
   templateUrl: './prj-Home.component.html',
   styleUrls: ['./prj-Home.component.css']
 })
-export class PrjHomeComponent implements OnInit {
+export class PrjHomeComponent implements OnInit, OnDestroy {
 
   /**
    * Memebers for functional use of this component
    */
-  _subscriptionGet: Subscription;
-  _subscriptionPost: Subscription;
+  private _subscriptions: {
+    get: Subscription;
+    post: Subscription;
+  };
   constructor(
     private _crud: PrjCrudService,
     private _msg: MsgService,
 
-  ) { }
+  ) {
+    this._subscriptions = {
+      get: new Subscription,
+      post: new Subscription
+    };
+   }
 
   ngOnInit() {
     this.r();
   }
-
+  ngOnDestroy() {
+    // prevent memory leak when component destroyed
+  if (this._subscriptions.get) {
+      this._subscriptions.get.unsubscribe();
+  }
+  if (this._subscriptions.post) {
+    this._subscriptions.post.unsubscribe();
+  }
+}
 
   /**
   * Getters for lists
@@ -66,7 +81,7 @@ export class PrjHomeComponent implements OnInit {
   c() {
     const _newObj =  new IProject();
     _newObj.rev.update(true, false, false);
-    this._subscriptionPost = this._crud._c(_newObj)
+    this._subscriptions.post = this._crud._c(_newObj)
     .subscribe(
       (_obj: IProject) => {
 
