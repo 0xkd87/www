@@ -46,3 +46,96 @@
     background: rgba(243, 243, 243, 0.692);
 
 }
+
+.inputError {
+  text-shadow: 2px 2px 2px rgb(255, 0, 0);
+}
+
+/*Grid layout*/
+.gr1 {
+
+  display: grid;
+  grid-template-columns: 20px 200px repeat(2, 1fr);
+  grid-template-rows: minmax(2px, auto);
+
+  grid-template-areas:
+  "ga-prj-num ga-prj-num ga-prj-num ga-prj-num"
+  "ga-prj-descr ga-prj-descr ga-prj-descr ga-prj-descr"
+  "gr1-hr1 gr1-hr1 gr1-hr1 gr1-hr1"
+
+  "..... ga-label-prj-num ga-prj-num-pre1 ga-prj-num-branch"
+  "..... ga-label-prj-num ga-prj-num-nseq ga-prj-num-nseq"
+
+  "..... ga-label-prod ga-prod-type ga-prod-type"
+  "..... ga-label-prod ga-prod-name ga-prod-name"
+
+  ;
+
+  grid-gap: 10px;
+}
+
+
+.ga-prj-num
+{
+  grid-area: ga-prj-num;
+
+  color: rgb(7, 110, 207);
+  vertical-align: middle;
+  font-variant-caps: normal;
+  text-transform: uppercase;
+  font-size: 48px;
+  text-align: right;
+  font-weight: 700;
+}
+
+.ga-prj-descr      {  grid-area: ga-prj-descr;    }
+
+.ga-label-prj-num      {  grid-area: ga-label-prj-num;    }
+.ga-prj-num-pre1      {  grid-area: ga-prj-num-pre1;    }
+.ga-prj-num-branch      {  grid-area: ga-prj-num-branch;    }
+.ga-prj-num-nseq      {  grid-area: ga-prj-num-nseq;    }
+
+.ga-label-prod      {  grid-area: ga-label-prod;    }
+.ga-prod-type      {  grid-area: ga-prod-type;    }
+.ga-prod-name      {  grid-area: ga-prod-name;    }
+
+.gr1-hr1      {  grid-area: gr1-hr1;    }
+.gr1-hr2      {  grid-area: gr1-hr2;    }
+.gr1-hr3      {  grid-area: gr1-hr3;    }
+
+
+.gr1-hr1
+{
+  border-bottom: 2px solid rgb(160, 160, 160);
+  margin-bottom: 10px;
+}
+
+.gr1-hr2
+{
+  border-bottom: 2px solid rgb(160, 160, 160);
+}
+
+.gr1-hr3
+{
+  margin-top: 10px;
+  border-bottom: 3px solid rgb(160, 160, 160);
+}
+
+.group-lable
+{
+  color: rgb(7, 110, 207);
+  background-color: rgba(150, 150, 150, 0.048);
+  vertical-align: middle;
+  text-transform: uppercase;
+  font-size: 20px;
+  text-align: right;
+  font-weight: 500;
+  padding: 5px;
+  border-right: 2px solid rgba(139, 139, 139, 0.082);
+}
+
+/* Responsive layout */
+@media screen and (max-width: 600px)
+{
+
+}

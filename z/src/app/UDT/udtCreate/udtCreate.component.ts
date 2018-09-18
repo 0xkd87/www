@@ -193,7 +193,7 @@ validateUniqueName  = (c: AbstractControl): Observable<ValidationErrors> => {
    * pass the own name as an argument to exclude it from the existing scan list..!
    */
   const _ownName = this.opEdit ? this.editingObj.u.plcTag.name : undefined;
-  return (this._asyncValidation.isTextUnique(this._libUDTService.namesArr, c.value, false, _ownName));
+  return (this._asyncValidation.isTextUnique$(this._libUDTService.namesArr, c.value, false, _ownName));
 
 }
 

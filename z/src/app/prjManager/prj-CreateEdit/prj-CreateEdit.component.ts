@@ -36,6 +36,11 @@ export class PrjCreateEditComponent implements OnInit, OnDestroy {
     opEdit: boolean; /**which operation is called? new or edit */
     prj: IProject;  /**New or editing object to be held */
     idx: number; /**IDX of the editing object -1 as default */
+    _prjNum: {
+      identifier: string;
+      isUnique: boolean;
+    };
+    _prjDescr: string;
   };
 
   private _subscriptions: {
@@ -61,7 +66,12 @@ export class PrjCreateEditComponent implements OnInit, OnDestroy {
     this.editing = {
       opEdit: false,
       prj: new IProject(),
-      idx: -1 // initialize to default
+      idx: -1, // initialize to default
+      _prjNum: {
+        identifier: '',
+        isUnique: false
+      },
+      _prjDescr: '',
     };
 
     // Initialize Visibility controllers
@@ -69,6 +79,8 @@ export class PrjCreateEditComponent implements OnInit, OnDestroy {
       exportDialog: false,
       deleteConfirmationDialog: false
     };
+
+
 
       /**
        * check router paramenters; if the desired argument exists?
@@ -123,30 +135,22 @@ export class PrjCreateEditComponent implements OnInit, OnDestroy {
     /**
      * Add custom (task-specific) field validators
      */
-    Attr.get('prj.number').setValidators([
-        Validators.required,
-        Validators.minLength(10),
-        Validators.maxLength(15),
-        Validators.pattern(/^[a-zA-Z0-9.,;:><[!#$%^&*()@|+ _-]+$/)
-      ]); // Sync validators
+    // Attr.get('prj.number').setValidators([
+    //     Validators.required,
+    //     Validators.minLength(10),
+    //     Validators.maxLength(15),
+    //     Validators.pattern(/^[a-zA-Z0-9.,;:><[!#$%^&*()@|+ _-]+$/)
+    //   ]); // Sync validators
 
-    Attr.get('prj.number').setAsyncValidators([
-      this.validateUniqueName.bind(Attr.get('prj.number'))
-    ]); // Async validators
+    // Attr.get('prj.number').setAsyncValidators([
+    //   this.validateUniqueName.bind(Attr.get('prj.number'))
+    // ]); // Async validators
 
     // Disable some fields (readonly)
     // Attr.get('**').disable();
 
     // console.log(Attr);
     return (Attr); /**return  a newly generated FormGroup to caller */
-  }
-
-  validateUniqueName  = (c: AbstractControl): Observable<ValidationErrors> => {
-    /**
-     * pass the own name as an argument to exclude it from the existing scan list..!
-     */
-    const _ownName = this.editing.opEdit ? this.editing.prj.prj.prjnumber : undefined;
-    return (this._asyncValidation.isTextUnique(this.prjNumArr, c.value, false, _ownName));
   }
 
   /**
@@ -184,6 +188,8 @@ get prjNameArr() {
   return this._crud.li_prjName;
 }
 
+
+
  r() {
   this._crud._r();
 }
@@ -207,6 +213,22 @@ c() {
       this.navigateTo('/prjManager/prjHome');
     }
   );
+}
+
+onFormInputChanged(_: any) {
+  const x = new IProject(this.loadFromForm());
+  this.editing._prjNum.identifier = x.prj.prjnumId;
+  this.editing._prjNum.isUnique = this.validateUniquePrjNumId(this.editing._prjNum.identifier);
+
+  this.editing._prjDescr = x.prj.prod_Type + x.prj.prod_Name;
+}
+
+validateUniquePrjNumId  = (c: string): boolean => {
+  /**
+   * pass the own name as an argument to exclude it from the existing scan list..!
+   */
+  const _ownName = this.editing.opEdit ? this.editing.prj.prj.prjnumId : undefined;
+  return this._asyncValidation.isTextUnique(this.prjNumArr, c, false, _ownName);
 }
 
 } // class END

@@ -34,7 +34,7 @@ export class PrjListNodeComponent implements OnInit {
 
   get prjNumber() {
     if (this.viewingObj) {
-      return this.viewingObj.prj.prjnumber;
+      return this.viewingObj.prj.prjnumId;
     }
     return 'undefined..!';
   }

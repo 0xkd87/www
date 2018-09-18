@@ -14,41 +14,82 @@
         (execOnTrigger)= "c()"
         [actionIcon] = "'&#xe148;'"
         [actionText]= "'NEW'"
-        [disableControl]="(!formGroup.valid) || (this.editing.opEdit)"
+        [disableControl]="(!formGroup.valid) || (this.editing.opEdit) || (!this.editing._prjNum.isUnique)"
         [css]="['rgb(230, 227, 3)','none','l']"></libForm-ActionTrigger>
   </div>
 <!-- Form starts here -->
 <form
+(input)="onFormInputChanged($event)"
 [formGroup]="formGroup.get('prj')"
-class="cl-FormContainer form-group grid-wrapper"
+class="cl-FormContainer form-group gr1"
 novalidate>
 
-  <div>
-      <libForm-InputText
-      [labelText] = '"Name"'
-      [formControl] = "formGroup.get('prj.name')">
-    </libForm-InputText>
+
+
+  <div
+  class = "ga-prj-num"
+  [class.inputError]="!this.editing._prjNum.isUnique">
+    {{this.editing._prjNum.identifier}}
+  </div>
+  <div class = "ga-prj-descr">
+    {{this.editing._prjDescr}}
   </div>
 
-  <div>
-    <libForm-InputText
-    [labelText] = '"Number (Identifier)"'
-    [formControl] = "formGroup.get('prj.number')"
-    [placeholderText]="'e.g. 2400WK0141'">
-  </libForm-InputText>
+    <div class="gr1-hr1"></div>
+
+    <div class="ga-label-prj-num group-lable">
+      Numeric Identifier
+    </div>
+
+    <div class="ga-prj-num-pre1">
+        <libForm-InputText
+        [labelText] = '"Prefix"'
+        [formControl] = "formGroup.get('prj.number.pre1')"
+        [placeholderText]="'e.g. 2400'"> </libForm-InputText>
+    </div>
+    <div class="ga-prj-num-branch">
+      <libForm-InputCombo
+        [_labelText] = '"Branch Identifier"'
+        [formControl] = "formGroup.get('prj.number.branch')"
+        [_dropdownItems] = "['WK','HH','LU']"
+        (valueChangeTrigger)="onFormInputChanged($event)" > </libForm-InputCombo>
+    </div>
+    <div class="ga-prj-num-nseq">
+      <libForm-InputText
+        [labelText] = '"Number (Sequential Incrementor)"'
+        [formControl] = "formGroup.get('prj.number.nSeq')"
+        [placeholderText]="'e.g. 0141'">  </libForm-InputText>
+    </div>
+
+    <div class="ga-label-prod group-lable">
+        Product Information
+    </div>
+
+    <div class="ga-prod-type">
+        <libForm-InputText
+        [labelText] = '"Product-Type"'
+        [formControl] = "formGroup.get('prj.prod.type')"
+        [placeholderText]="'Launch coaster'"> </libForm-InputText>
+    </div>
+
+    <div class="ga-prod-name">
+        <libForm-InputText
+        [labelText] = '"Product-Name"'
+        [formControl] = "formGroup.get('prj.prod.name')"
+        [placeholderText]="'e.g. Slinky Dog Dash'"> </libForm-InputText>
+    </div>
+
+
+<!-- <div >
+
+
 </div>
 
-<div >
-  <libForm-InputText
-  [labelText] = '"Product-Type"'
-  [formControl] = "formGroup.get('prj.prod.type')"
-  [placeholderText]="'Launch coaster'">
-</libForm-InputText>
-<libForm-InputText
-[labelText] = '"Product-Name"'
-[formControl] = "formGroup.get('prj.prod.name')"
-[placeholderText]="'e.g. Slinky Dog Dash'">
-</libForm-InputText>
-</div>
+<div>
+    <libForm-InputText
+    [labelText] = '"Name"'
+    [formControl] = "formGroup.get('prj.name')">
+  </libForm-InputText>
+</div> -->
 
 </form> <!-- Form End -->

@@ -86,7 +86,7 @@ _r() {
             const p = new IProject(<IProject>JSON.parse(rx));
             this.li.prj.push(p);
             this.li.prjName.push(p.prj.prjname);
-            this.li.prjNum.push(p.prj.prjnumber);
+            this.li.prjNum.push(p.prj.prjnumId);
 
           });
       }
