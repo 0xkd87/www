@@ -24,9 +24,75 @@
 class="cl-FormContainer form-group gr1"
 novalidate>
 
+<div
+  class = "ga-prj-num"
+  [class.inputError]="!this.editing._prjNum.isUnique">
+    {{this.editing._prjNum.identifier}}
+  </div>
+  <div class = "ga-prj-descr">
+    {{this.editing._prjDescr}}
+  </div>
 
+    <div class="gr1-hr1"></div>
 
-  <div
+  <ul class="ga-ul-prj-num">Numeric Identifier
+      <li>
+          <libForm-InputText
+          [labelText] = '"Prefix"'
+          [formControl] = "formGroup.get('prj.number.pre1')"
+          [placeholderText]="'e.g. 2400'"> </libForm-InputText>
+      </li>
+
+      <li>
+          <libForm-InputCombo
+          [_labelText] = '"Branch Identifier"'
+          [formControl] = "formGroup.get('prj.number.branch')"
+          [_dropdownItems] = "['WK','HH','LU']"
+          (valueChangeTrigger)="onFormInputChanged($event)" > </libForm-InputCombo>
+      </li>
+
+      <li>
+          <libForm-InputText
+          [labelText] = '"Number (Sequential Incrementor)"'
+          [formControl] = "formGroup.get('prj.number.nSeq')"
+          [placeholderText]="'e.g. 0141'">  </libForm-InputText>
+      </li>
+  </ul>
+
+  <ul class="ga-ul-prod">Product Information
+      <li>
+          <libForm-InputText
+          [labelText] = '"Product-Type"'
+          [formControl] = "formGroup.get('prj.product.type')"
+          [placeholderText]="'Launch coaster'"> </libForm-InputText>
+      </li>
+
+      <li>
+          <libForm-InputText
+          [labelText] = '"Product-Name"'
+          [formControl] = "formGroup.get('prj.product.name')"
+          [placeholderText]="'e.g. Slinky Dog Dash'"> </libForm-InputText>
+      </li>
+      <li>
+            <ul>Buyer
+                <li>
+                    <libForm-InputText
+                    [labelText] = '"Company"'
+                    [formControl] = "formGroup.get('prj.product.name')"
+                    [placeholderText]="'e.g. Walt Disney'"> </libForm-InputText>
+                </li>
+
+                <li>
+                    <libForm-InputText
+                    [labelText] = '"Facility"'
+                    [formControl] = "formGroup.get('prj.product.name')"
+                    [placeholderText]="'Park name (e.g. Hollywood Studios)'"> </libForm-InputText>
+                </li>
+            </ul>
+          </li>
+  </ul>
+
+  <!-- <div
   class = "ga-prj-num"
   [class.inputError]="!this.editing._prjNum.isUnique">
     {{this.editing._prjNum.identifier}}
@@ -77,19 +143,9 @@ novalidate>
         [labelText] = '"Product-Name"'
         [formControl] = "formGroup.get('prj.product.name')"
         [placeholderText]="'e.g. Slinky Dog Dash'"> </libForm-InputText>
-    </div>
+    </div> -->
 
 
-<!-- <div >
 
-
-</div>
-
-<div>
-    <libForm-InputText
-    [labelText] = '"Name"'
-    [formControl] = "formGroup.get('prj.name')">
-  </libForm-InputText>
-</div> -->
 
 </form> <!-- Form End -->

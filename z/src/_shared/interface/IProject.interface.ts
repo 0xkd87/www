@@ -98,6 +98,53 @@ class __postalAddress {
   private state?: string;
   private country?: string;
 
+  constructor(src?: __postalAddress) {
+    this.adLine1 = '';
+    this.adLine2 = '';
+    this.city = '';
+    this.country = '';
+    this.zip = '';
+    this.state = '';
+    this.gLoc = '';
+
+    if (src) {
+      /**call the shallow copy builder if source is passed as an agument */
+      this._shallowCloneFromSrc(src);
+    }
+  }
+
+  private _shallowCloneFromSrc(src: __postalAddress) {
+    Object.assign( this, src);
+  }
+
+  public getFormGroup(): FormGroup {
+    const fg = new FormGroup(
+      {
+        adLine1: new FormControl(
+          this.adLine1,
+          Validators.compose([
+            Validators.required,
+            Validators.minLength(1),
+            Validators.maxLength(80),
+            Validators.pattern(/^[a-zA-Z0-9.,;:><[!#$%^&*()@|+ _-]+$/)
+          ]),
+            Validators.composeAsync([]), // to be overridden in the ui form if required
+        ),
+        adLine2: new FormControl(
+          this.adLine2,
+          Validators.compose([
+            Validators.required,
+            Validators.minLength(1),
+            Validators.maxLength(80),
+            Validators.pattern(/^[a-zA-Z0-9.,;:><[!#$%^&*()@|+ _-]+$/)
+          ]),
+            Validators.composeAsync([]), // to be overridden in the ui form if required
+        ),
+
+      });
+      return fg;
+  }
+
 }
 
 
