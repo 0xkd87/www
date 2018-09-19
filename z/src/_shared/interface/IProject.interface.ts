@@ -88,6 +88,18 @@ class __prjNumId {
   }
 }
 
+// A class representing information of a postal address of an object
+class __postalAddress {
+  private gLoc?: string; // G-maps's plus code feature e.g. 3XQ5+6M Waldkirch
+  private adLine1?: string; // Address line 1
+  private adLine2?: string; // Address line 1
+  private city?: string;
+  private zip?: string;
+  private state?: string;
+  private country?: string;
+
+}
+
 
 class _prj {
 
@@ -96,15 +108,16 @@ class _prj {
    */
   private name: string; // name of the project
   private number: __prjNumId; // unique identifier (number) of a project
-  private prod: {
+  private product: {
     type: string;
     name: string;
+    buyer: { // End client where product is going to be installed
+      company: string;
+      facility: string; // e.g. Hollywood studios: park name
+      location: __postalAddress; // installation address
+    };
   };
-  private installation: {
-    company: string;
-    facility: string; // e.g. Hollywood studios: park name
-    address: string; // installation address
-  };
+
 
   private status: { // project state
     phase: string;
@@ -117,10 +130,15 @@ class _prj {
   constructor(src?: _prj) {
     this.name =  (new _utils()).getSHA1(new Date().toString());
     this.number = new __prjNumId();
-    this.prod = {
-                  type: '',
-                  name: ''
-                };
+    this.product = {
+      type: '',
+      name: '',
+      buyer: { // End client where product is going to be installed
+        company: '',
+        facility: '',
+        location: new __postalAddress(), // installation address
+      },
+    };
 
 
     if (src) {
@@ -146,17 +164,17 @@ class _prj {
    }
 
    get prod_Type(): string {
-     return this.prod.type;
+     return this.product.type;
    }
 
    get prod_Name(): string {
-    return this.prod.name;
+    return this.product.name;
   }
 
 
   public getFormGroup(): FormGroup {
 
-    const prod =  new FormGroup(
+    const product =  new FormGroup(
       {
         name: new FormControl(
           this.prod_Name,
@@ -195,7 +213,7 @@ class _prj {
         number: this.number.getFormGroup(),
       });
 
-      fg.addControl('prod', prod);
+      fg.addControl('product', product);
       return fg;
   }
 

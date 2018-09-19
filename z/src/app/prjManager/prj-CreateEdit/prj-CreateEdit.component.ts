@@ -161,6 +161,7 @@ export class PrjCreateEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.onFormInputChanged(undefined);
   }
 
   ngOnDestroy() {
@@ -216,11 +217,13 @@ c() {
 }
 
 onFormInputChanged(_: any) {
-  const x = new IProject(this.loadFromForm());
+  let x = new IProject(this.loadFromForm());
   this.editing._prjNum.identifier = x.prj.prjnumId;
   this.editing._prjNum.isUnique = this.validateUniquePrjNumId(this.editing._prjNum.identifier);
 
   this.editing._prjDescr = x.prj.prod_Type + x.prj.prod_Name;
+
+  x = null;
 }
 
 validateUniquePrjNumId  = (c: string): boolean => {
