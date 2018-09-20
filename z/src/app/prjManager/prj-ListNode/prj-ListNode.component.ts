@@ -21,7 +21,7 @@ export class PrjListNodeComponent implements OnInit {
   /**
    * Template binding calls
    */
-  get prjName() {
+  get prjDescription() {
     if (this.viewingObj) {
       return this.viewingObj.prj.description;
     }

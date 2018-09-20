@@ -35,19 +35,42 @@
 .gr1 {
 
   display: grid;
-  grid-template-columns: repeat(4, minmax(75px,1fr)) 100px;
+  grid-template-columns: 100px repeat(2, 1fr) 100px;
   grid-template-rows: minmax(2px, auto);
 
   grid-template-areas:
 
-  "gr1-name gr1-name gr1-name gr1-name gr1-name"
-  "gr1-comment gr1-comment gr1-comment gr1-size gr1-size"
-  "gr1-hr1 gr1-hr1 gr1-hr1 gr1-hr1 gr1-hr1"
-  "gr1-revnum gr1-revtime gr1-dep ..... gr1-controls"
+  "gr1-prj-prod-type gr1-prj-prod-type  gr1-prj-prod-type  gr1-prj-prod-type "
+  "gr1-prj-num  gr1-prj-num  gr1-prj-num  gr1-prj-num"
+  "gr1-prj-descr gr1-prj-descr gr1-prj-descr gr1-prj-descr"
+  "gr1-prj-contractor gr1-prj-contractor gr1-prj-contractor gr1-prj-contractor"
+  /* "gr1-hr1 gr1-hr1 gr1-hr1 gr1-hr1 gr1-hr1" */
   ;
 
   grid-gap: 2px;
 }
+
+
+.gr1-prj-num
+{
+  grid-area: gr1-prj-num;
+}
+
+.gr1-prj-descr
+{
+  grid-area: gr1-prj-descr;
+}
+
+.gr1-prj-prod-type
+{
+  grid-area: gr1-prj-prod-type;
+}
+
+.gr1-prj-contractor
+{
+  grid-area: gr1-prj-contractor;
+}
+
 
 /* Responsive layout */
 @media screen and (max-width: 600px)
