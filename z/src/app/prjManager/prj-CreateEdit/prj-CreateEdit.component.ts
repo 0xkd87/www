@@ -204,7 +204,7 @@ c() {
 
       const p = new IProject(_obj);
       console.log(p);
-      this._msg.add('Project: ' + p.prj.prjname + ' Added Successfully..!');
+      this._msg.add('Project: ' + p.prj.description + ' Added Successfully..!');
     },
     (_err) => {
 
@@ -221,7 +221,10 @@ onFormInputChanged(_: any) {
   this.editing._prjNum.identifier = x.prj.prjnumId;
   this.editing._prjNum.isUnique = this.validateUniquePrjNumId(this.editing._prjNum.identifier);
 
-  this.editing._prjDescr = x.prj.prod_Type + x.prj.prod_Name;
+  // this.editing._prjDescr = x.prj.product_Type + x.prj.product_Nickname;
+
+  this.editing._prjDescr = x.prj.description;
+
 
   x = null;
 }

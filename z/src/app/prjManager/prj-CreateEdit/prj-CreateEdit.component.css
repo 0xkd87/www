@@ -1,4 +1,8 @@
 
+* {
+  box-sizing: border-box;
+}
+
 /*fixed after certain scroll*/
 .posFixed-Top
 {
@@ -65,7 +69,8 @@
   "ga-prj-descr ga-prj-descr ga-prj-descr ga-prj-descr"
   "gr1-hr1 gr1-hr1 gr1-hr1 gr1-hr1"
 
-  "ga-ul-prj-num ga-ul-prod ga-ul-prod ga-ul-prod"
+  "ga-ul-prj-num ga-ul-prj-num ..... ....."
+  "..... ga-ul-prod ga-ul-prod ga-ul-prod"
 
 
   ;
@@ -93,10 +98,11 @@
 
   color: rgb(53, 53, 53);
   vertical-align: middle;
-  font-variant-caps: normal;
+  text-transform: lowercase;
+  font-variant-caps: small-caps;
   font-size: 16px;
   text-align: right;
-  font-weight: 400;
+  font-weight: 450;
 }
 
 .ga-ul-prj-num      {  grid-area: ga-ul-prj-num;    }
@@ -146,18 +152,20 @@
 
 
 ul{
-  background-color: rgba(240, 238, 238, 0.774);
-  margin-top: 10px;margin-bottom: 10px;
+  background-color: rgba(240, 238, 238, 0.61);
+  margin-top: 2px;margin-bottom: 2px;
   margin-right: 2px;
   padding-left: 5px; padding-right: 8px;padding-bottom: 8px;
   font-size: 1.2rem;
   font-weight: 500;
-  color: rgb(7, 110, 207);
-  border-left: 2px solid rgba(151, 147, 147, 0.445);
+  color: rgb(5, 187, 132);
+  border-left: 2px solid rgba(39, 230, 140, 0.781);
 
   text-transform: uppercase;
   font-size: 20px;
   text-align: left;
+
+  box-shadow: 2px 4px 8px 0 rgba(0,0,0,0.2), 0px -2px 8px 0 rgba(0,0,0,0.2) ;
 }
 
 li{
@@ -172,8 +180,8 @@ li{
   font-size: 0.9rem;
   font-weight: 450;
   color: rgba(20, 20, 20, 0.651);
-  background-color: rgba(226, 226, 226, 0.137);
-  box-shadow: 2px 4px 8px 0 rgba(0,0,0,0.2), 0px -2px 8px 0 rgba(0,0,0,0.2) ;
+  /* background-color: rgba(226, 226, 226, 0.137); */
+  /* box-shadow: 2px 4px 8px 0 rgba(0,0,0,0.2), 0px -2px 8px 0 rgba(0,0,0,0.2) ; */
 }
 
 
@@ -193,3 +201,7 @@ li:hover {
 .isDetailShowing {
   border-left: 5px solid rgb(64, 218, 197);
 }
+
+/* .inliner {
+  display: inline-grid;
+} */

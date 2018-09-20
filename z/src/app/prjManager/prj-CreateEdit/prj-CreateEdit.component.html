@@ -59,34 +59,88 @@ novalidate>
       </li>
   </ul>
 
-  <ul class="ga-ul-prod">Product Information
+  <ul class="ga-ul-prod">Product
       <li>
           <libForm-InputText
-          [labelText] = '"Product-Type"'
+          [labelText] = '"Product Type"'
           [formControl] = "formGroup.get('prj.product.type')"
           [placeholderText]="'Launch coaster'"> </libForm-InputText>
       </li>
 
       <li>
           <libForm-InputText
-          [labelText] = '"Product-Name"'
-          [formControl] = "formGroup.get('prj.product.name')"
+          [labelText] = '"Commercial Name"'
+          [formControl] = "formGroup.get('prj.product.aka')"
           [placeholderText]="'e.g. Slinky Dog Dash'"> </libForm-InputText>
       </li>
       <li>
-            <ul>Buyer
-                <li>
+            <ul>Deployment
+                <li >
                     <libForm-InputText
                     [labelText] = '"Company"'
-                    [formControl] = "formGroup.get('prj.product.name')"
+                    [formControl] = "formGroup.get('prj.product.deployment.company')"
                     [placeholderText]="'e.g. Walt Disney'"> </libForm-InputText>
                 </li>
 
                 <li>
                     <libForm-InputText
                     [labelText] = '"Facility"'
-                    [formControl] = "formGroup.get('prj.product.name')"
+                    [formControl] = "formGroup.get('prj.product.deployment.facility')"
                     [placeholderText]="'Park name (e.g. Hollywood Studios)'"> </libForm-InputText>
+                </li>
+
+                <li>
+                  <ul>Location
+
+                      <li>
+                          <libForm-InputText
+                          [labelText] = '"Address Line 1"'
+                          [formControl] = "formGroup.get('prj.product.deployment.location.adLn1')"
+                          [placeholderText]="'Address Line 1'"> </libForm-InputText>
+                      </li>
+
+                      <li>
+                          <libForm-InputText
+                          [labelText] = '"Address Line 2"'
+                          [formControl] = "formGroup.get('prj.product.deployment.location.adLn2')"
+                          [placeholderText]="'Optional'"> </libForm-InputText>
+                      </li>
+
+                      <li>
+                          <libForm-InputText
+                          [labelText] = '"City / Town"'
+                          [formControl] = "formGroup.get('prj.product.deployment.location.city')"
+                          [placeholderText]="''"> </libForm-InputText>
+                      </li>
+
+                      <li>
+                          <libForm-InputText
+                          [labelText] = '"PLZ / ZIP"'
+                          [formControl] = "formGroup.get('prj.product.deployment.location.zip')"
+                          [placeholderText]="''"> </libForm-InputText>
+                      </li>
+
+                      <li>
+                          <libForm-InputText
+                          [labelText] = '"State / Province"'
+                          [formControl] = "formGroup.get('prj.product.deployment.location.state')"
+                          [placeholderText]="''"> </libForm-InputText>
+                      </li>
+
+                      <li>
+                          <libForm-InputText
+                          [labelText] = '"Country"'
+                          [formControl] = "formGroup.get('prj.product.deployment.location.country')"
+                          [placeholderText]="''"> </libForm-InputText>
+                      </li>
+
+                      <li>
+                          <libForm-InputText
+                          [labelText] = '"Geographic location"'
+                          [formControl] = "formGroup.get('prj.product.deployment.location.gLoc')"
+                          [placeholderText]="'e.g. 3XQ5+6M Waldkirch'"> </libForm-InputText>
+                      </li>
+                  </ul>
                 </li>
             </ul>
           </li>

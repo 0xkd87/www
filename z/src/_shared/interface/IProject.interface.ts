@@ -90,17 +90,19 @@ class __prjNumId {
 
 // A class representing information of a postal address of an object
 class __postalAddress {
+
+
   private gLoc?: string; // G-maps's plus code feature e.g. 3XQ5+6M Waldkirch
-  private adLine1?: string; // Address line 1
-  private adLine2?: string; // Address line 1
+  private adLn1?: string; // Address line 1
+  private adLn2?: string; // Address line 1
   private city?: string;
   private zip?: string;
   private state?: string;
   private country?: string;
 
   constructor(src?: __postalAddress) {
-    this.adLine1 = '';
-    this.adLine2 = '';
+    this.adLn1 = '';
+    this.adLn2 = '';
     this.city = '';
     this.country = '';
     this.zip = '';
@@ -120,8 +122,8 @@ class __postalAddress {
   public getFormGroup(): FormGroup {
     const fg = new FormGroup(
       {
-        adLine1: new FormControl(
-          this.adLine1,
+        adLn1: new FormControl(
+          this.adLn1,
           Validators.compose([
             Validators.required,
             Validators.minLength(1),
@@ -130,12 +132,56 @@ class __postalAddress {
           ]),
             Validators.composeAsync([]), // to be overridden in the ui form if required
         ),
-        adLine2: new FormControl(
-          this.adLine2,
+        adLn2: new FormControl(
+          this.adLn2,
+          Validators.compose([
+            Validators.maxLength(80),
+            Validators.pattern(/^[a-zA-Z0-9.,;:><[!#$%^&*()@|+ _-]+$/)
+          ]),
+            Validators.composeAsync([]), // to be overridden in the ui form if required
+        ),
+        city: new FormControl(
+          this.city,
           Validators.compose([
             Validators.required,
             Validators.minLength(1),
-            Validators.maxLength(80),
+            Validators.maxLength(40),
+            Validators.pattern(/^[a-zA-Z0-9.,;:><[!#$%^&*()@|+ _-]+$/)
+          ]),
+            Validators.composeAsync([]), // to be overridden in the ui form if required
+        ),
+        country: new FormControl(
+          this.country,
+          Validators.compose([
+            Validators.required,
+            Validators.minLength(2),
+            Validators.maxLength(40),
+            Validators.pattern(/^[a-zA-Z0-9&() _-]+$/)
+          ]),
+            Validators.composeAsync([]), // to be overridden in the ui form if required
+        ),
+        zip: new FormControl(
+          this.zip,
+          Validators.compose([
+            Validators.required,
+            Validators.minLength(1),
+            Validators.maxLength(10),
+            Validators.pattern(/^[A-Z0-9.()+ -]+$/)
+          ]),
+            Validators.composeAsync([]), // to be overridden in the ui form if required
+        ),
+        state: new FormControl(
+          this.state,
+          Validators.compose([
+            Validators.maxLength(40),
+            Validators.pattern(/^[a-zA-Z0-9.,;:><[!#$%^&*()@|+ _-]+$/)
+          ]),
+            Validators.composeAsync([]), // to be overridden in the ui form if required
+        ),
+        gLoc: new FormControl(
+          this.gLoc,
+          Validators.compose([
+            Validators.maxLength(60),
             Validators.pattern(/^[a-zA-Z0-9.,;:><[!#$%^&*()@|+ _-]+$/)
           ]),
             Validators.composeAsync([]), // to be overridden in the ui form if required
@@ -145,7 +191,22 @@ class __postalAddress {
       return fg;
   }
 
-}
+  // Getters
+
+  public get TownOrCity() {
+    return this.city;
+  }
+
+  public get Country() {
+    return this.country;
+  }
+
+  public get FullPostalAddress() {
+    let ad = '';
+
+    return ad;
+  }
+} // class END
 
 
 class _prj {
@@ -153,13 +214,13 @@ class _prj {
   /**
    * Members
    */
-  private name: string; // name of the project
+  // private name: string; // name of the project
   private number: __prjNumId; // unique identifier (number) of a project
   private product: {
-    type: string;
-    name: string;
-    buyer: { // End client where product is going to be installed
-      company: string;
+    type: string; // type of the product.. e.g. Launch coaster
+    aka: string; // commercial name of the product
+    deployment: { // installation/ commissioning details
+      company: string; // End client where product is going to be installed
       facility: string; // e.g. Hollywood studios: park name
       location: __postalAddress; // installation address
     };
@@ -175,12 +236,12 @@ class _prj {
    // methods -----
 
   constructor(src?: _prj) {
-    this.name =  (new _utils()).getSHA1(new Date().toString());
+    // this.name =  (new _utils()).getSHA1(new Date().toString());
     this.number = new __prjNumId();
     this.product = {
       type: '',
-      name: '',
-      buyer: { // End client where product is going to be installed
+      aka: '',
+      deployment: { // End client where product is going to be installed
         company: '',
         facility: '',
         location: new __postalAddress(), // installation address
@@ -197,6 +258,8 @@ class _prj {
   private _shallowCloneFromSrc(src: _prj) {
     Object.assign( this, src);
     this.number = new __prjNumId(src.number);
+
+    this.product.deployment.location = new __postalAddress(src.product.deployment.location);
   }
 
   //   Getters
@@ -206,25 +269,83 @@ class _prj {
     return this.number.identifier;
    }
 
-   get prjname(): string {
-    return this.name;
+   get description(): string {
+     let d = '';
+     if (this.product.deployment.company !== '') {
+      d = d + this.product.deployment.company;
+     }
+
+     if ((this.product.deployment.company !== '') && (this.product.aka !== '')) {
+      d = d + ' | ';
+     }
+
+     if (this.product.aka !== '') {
+      d = d + this.product.aka;
+     }
+
+     if ((this.product.deployment.location.TownOrCity !== '') && (this.product.aka !== '')) {
+      d = d + ' | ';
+     }
+
+     if (this.product.deployment.location.TownOrCity !== '') {
+      d = d + this.product.deployment.location.TownOrCity;
+     }
+
+     if ((this.product.deployment.location.TownOrCity !== '') && (this.product.deployment.location.Country !== '')) {
+      d = d + ', ';
+     }
+
+     if (this.product.deployment.location.Country !== '') {
+      d = d + this.product.deployment.location.Country;
+     }
+    return d;
    }
 
-   get prod_Type(): string {
+   get product_Type(): string {
      return this.product.type;
    }
 
-   get prod_Name(): string {
-    return this.product.name;
+   get product_Nickname(): string {
+    return this.product.aka;
+  }
+
+  get productNode()  {
+    return (this.product);
   }
 
 
   public getFormGroup(): FormGroup {
 
-    const product =  new FormGroup(
+    const _deployment =  new FormGroup(
       {
-        name: new FormControl(
-          this.prod_Name,
+        company: new FormControl(
+          this.product.deployment.company,
+          Validators.compose([
+            Validators.required,
+            Validators.minLength(1),
+            Validators.maxLength(80),
+            Validators.pattern(/^[a-zA-Z0-9.,;:><[!#$%^&*()@|+ _-]+$/)
+          ]),
+            Validators.composeAsync([]), // to be overridden in the ui form if required
+        ),
+        facility: new FormControl(
+          this.product.deployment.facility,
+          Validators.compose([
+            Validators.required,
+            Validators.minLength(1),
+            Validators.maxLength(80),
+            Validators.pattern(/^[a-zA-Z0-9.,;:><[!#$%^&*()@|+ _-]+$/)
+          ]),
+            Validators.composeAsync([]), // to be overridden in the ui form if required
+        ),
+        location: this.product.deployment.location.getFormGroup(),
+
+      });
+
+    const _product =  new FormGroup(
+      {
+        aka: new FormControl(
+          this.product_Nickname,
           Validators.compose([
             Validators.required,
             Validators.minLength(1),
@@ -234,33 +355,24 @@ class _prj {
             Validators.composeAsync([]), // to be overridden in the ui form if required
         ),
         type: new FormControl(
-          this.prod_Type,
+          this.product_Type,
           Validators.compose([
             Validators.required,
             Validators.minLength(1),
             Validators.maxLength(80),
-            Validators.pattern(/^[a-zA-Z0-9.:!#()=+_-]+$/)
+            Validators.pattern(/^[a-zA-Z0-9.:!#()=+_ -]+$/)
           ]),
             Validators.composeAsync([]), // to be overridden in the ui form if required
         ),
+        deployment: _deployment,
       });
 
     const fg = new FormGroup(
       {
-        name: new FormControl(
-          this.name,
-          Validators.compose([
-            Validators.required,
-            Validators.minLength(1),
-            Validators.maxLength(80),
-            Validators.pattern(/^[a-zA-Z0-9.,;:><[!#$%^&*()@|+ _-]+$/)
-          ]),
-            Validators.composeAsync([]), // to be overridden in the ui form if required
-        ),
         number: this.number.getFormGroup(),
       });
 
-      fg.addControl('product', product);
+      fg.addControl('product', _product);
       return fg;
   }
 

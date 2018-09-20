@@ -87,7 +87,7 @@ export class PrjHomeComponent implements OnInit, OnDestroy {
 
         const p = new IProject(_obj);
         console.log(p);
-        this._msg.add('Project: ' + p.prj.prjname + ' Added Successfully..!');
+        this._msg.add('Project: ' + p.prj.description + ' Added Successfully..!');
       },
       (_err) => {
 

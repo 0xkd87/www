@@ -23,7 +23,7 @@ export class PrjListNodeComponent implements OnInit {
    */
   get prjName() {
     if (this.viewingObj) {
-      return this.viewingObj.prj.prjname;
+      return this.viewingObj.prj.description;
     }
     return 'undefined..!';
   }
@@ -40,10 +40,10 @@ export class PrjListNodeComponent implements OnInit {
   }
 
   get prod_Name() {
-    return this.viewingObj.prj.prod_Name;
+    return this.viewingObj.prj.product_Nickname;
   }
   get prod_Type() {
-    return this.viewingObj.prj.prod_Type;
+    return this.viewingObj.prj.product_Type;
   }
 
 } // Class END

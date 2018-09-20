@@ -85,7 +85,7 @@ _r() {
           rxArr.forEach((rx) => {
             const p = new IProject(<IProject>JSON.parse(rx));
             this.li.prj.push(p);
-            this.li.prjName.push(p.prj.prjname);
+            this.li.prjName.push(p.prj.description);
             this.li.prjNum.push(p.prj.prjnumId);
 
           });
