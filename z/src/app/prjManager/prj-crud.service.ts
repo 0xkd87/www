@@ -104,5 +104,8 @@ _r() {
 _c(p: IProject): Observable<any> {
   return this._http.txPOST(this._url('c'), <IProject>(p));
 }
+_u(p: IProject): Observable<any> {
+  return this._http.txPOST(this._url('u'), <IProject>(p));
+}
 
 } // class end

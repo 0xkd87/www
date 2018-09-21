@@ -1,10 +1,12 @@
 <div class="cl-ListNodeContainer gr1">
-    <h5>{{this.index}}</h5>
+    <!-- <h5>{{this.index}}</h5> -->
   <div class="gr1-prj-prod-type">
       {{this.prod_Type}}
   </div>
-  <div class="gr1-prj-num">
-      {{this.prjNumber}}
+  <div
+  class="gr1-prj-num"
+  (click)="this.onActionTrigger(1)" >
+      {{this.prjNumber_nonSeq}}<span class="seqHighlight">{{this.prjNumber_seq}}</span>
   </div>
   <div class="gr1-prj-descr">
       {{this.prjDescription}}

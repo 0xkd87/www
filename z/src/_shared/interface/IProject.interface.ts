@@ -37,6 +37,10 @@ class __prjNumId {
     return (this.pre1 + this.branch + this.nSeq);
   }
 
+  public get prefix1(): string {
+    return this.pre1;
+  }
+
   public get branchCode(): string {
     return this.branch;
   }

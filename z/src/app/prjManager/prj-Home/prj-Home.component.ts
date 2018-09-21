@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { MsgService } from './../../../_shared/services/msg.service';
 import { Subscription } from 'rxjs';
 import { IProject } from './../../../_shared/interface/IProject.interface';
@@ -28,6 +29,8 @@ export class PrjHomeComponent implements OnInit, OnDestroy {
   constructor(
     private _crud: PrjCrudService,
     private _msg: MsgService,
+    private _goTo: Router,
+
 
   ) {
     this._subscriptions = {
@@ -47,6 +50,10 @@ export class PrjHomeComponent implements OnInit, OnDestroy {
   if (this._subscriptions.post) {
     this._subscriptions.post.unsubscribe();
   }
+}
+
+navigateTo(path: string) {
+  this._goTo.navigateByUrl(path);
 }
 
   /**
@@ -97,7 +104,25 @@ export class PrjHomeComponent implements OnInit, OnDestroy {
       }
     );
   }
+
+
+
+  evTriggerHandler(_ev: any) {
+    // console.log(_ev);
+    let i: number = _ev['i'];
+    switch (_ev['f']) {
+      case 1:
+        this.navigateTo('/prjManager/prjPropEdit/' + i);
+        break;
+
+      default:
+        break;
+    }
+  }
   x() {
 
   }
-}
+} // class END
+
+// routerLink = "/libMngr/udt/editUDT/+{{udtNode.ident.idx}}"
+// routerLinkActive="active"

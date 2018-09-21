@@ -39,7 +39,7 @@ public url__PRJ(op: string) {
   const _op = {
     'c': 'c/c.prj.php',
     'r': 'r/r.prj.list.php',
-    'u': 'u/u.prj.php',
+    'u': 'u/u.prjProp.php',
     'd': 'd/d.prj.php'
   };
 

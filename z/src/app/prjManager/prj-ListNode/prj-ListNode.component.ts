@@ -1,5 +1,12 @@
+/**
+ * @author [kd]
+ * @email [karna.dalal@gmail.com]
+ * @create date 2018-09-21 12:57:20
+ * @modify date 2018-09-21 12:57:20
+ * @desc [description]
+*/
 import { IProject } from './../../../_shared/interface/IProject.interface';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'prj-ListNode',
@@ -10,6 +17,10 @@ export class PrjListNodeComponent implements OnInit {
 
   @Input()  viewingObj: IProject;
 
+  /**
+ * @Outputs
+ */
+  @Output() evTrigger = new EventEmitter();
 
   constructor() {
 
@@ -28,15 +39,19 @@ export class PrjListNodeComponent implements OnInit {
     return 'undefined..!';
   }
 
-  get index() {
+  get index(): number {
     return this.viewingObj.ident.idx;
   }
 
-  get prjNumber() {
+  get prjNumber_nonSeq() {
     if (this.viewingObj) {
-      return this.viewingObj.prj.prjnumId;
+      return this.viewingObj.prj.prjnumId.substr(0, 6);
     }
-    return 'undefined..!';
+  }
+  get prjNumber_seq() {
+    if (this.viewingObj) {
+      return this.viewingObj.prj.prjnumId.substr(6, 4);
+    }
   }
 
   get prod_Name() {
@@ -46,4 +61,9 @@ export class PrjListNodeComponent implements OnInit {
     return this.viewingObj.prj.product_Type;
   }
 
+
+  // Event Trigger Handler
+  onActionTrigger(_actionCode: number) {
+    this.evTrigger.emit({i: this.index, f: _actionCode});
+  }
 } // Class END

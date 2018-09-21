@@ -9,14 +9,12 @@
   /* display: block; */
   height: 100%;
   width: auto;
-  margin: 5px;
-  padding: 15px;
+  margin: 2px;
+  padding: 10px;
+  /* background-color: rgb(247, 247, 247); */
+  background-color: rgb(63, 63, 63);
 
-  padding-top: 5px;
-  padding-bottom: 5px;
-  background-color: rgb(247, 247, 247);
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-  cursor: pointer;
 }
 
 .cl-ListNodeContainer:hover
@@ -39,11 +37,11 @@
   grid-template-rows: minmax(2px, auto);
 
   grid-template-areas:
-
-  "gr1-prj-prod-type gr1-prj-prod-type  gr1-prj-prod-type  gr1-prj-prod-type "
+  "gr1-prj-contractor gr1-prj-contractor  gr1-prj-prod-type  gr1-prj-prod-type"
+  /* "gr1-prj-descr gr1-prj-descr gr1-prj-descr gr1-prj-descr" */
   "gr1-prj-num  gr1-prj-num  gr1-prj-num  gr1-prj-num"
   "gr1-prj-descr gr1-prj-descr gr1-prj-descr gr1-prj-descr"
-  "gr1-prj-contractor gr1-prj-contractor gr1-prj-contractor gr1-prj-contractor"
+
   /* "gr1-hr1 gr1-hr1 gr1-hr1 gr1-hr1 gr1-hr1" */
   ;
 
@@ -54,26 +52,112 @@
 .gr1-prj-num
 {
   grid-area: gr1-prj-num;
+  cursor: pointer;
+
+  color: rgb(114, 114, 114);
+  vertical-align: middle;
+  font-variant-caps: normal;
+  text-transform: uppercase;
+  font-size: 36px;
+  text-align: left;
+  font-weight: 700;
+
+  line-height: 40px;
+
+  word-wrap: break-word;
+}
+
+.seqHighlight
+{
+  color: rgb(207, 207, 207);
+  /* vertical-align: middle; */
+  font-variant-caps: normal;
+  text-transform: uppercase;
+  font-size: 36px;
+  text-align: left;
+  font-weight: 700;
+
+  line-height: 40px;
+
+  word-wrap: break-word;
+}
+
+.gr1-prj-num:hover,
+.seqHighlight:hover
+{
+  color: rgb(3, 223, 131);
 }
 
 .gr1-prj-descr
 {
   grid-area: gr1-prj-descr;
+
+  color: rgb(137, 255, 176);
+
+  vertical-align: middle;
+  font-variant-caps: normal;
+  /* text-transform: uppercase; */
+  font-size: 15px;
+  text-align: left;
+  font-weight: 400;
+
+  line-height: 18px;
+
+  word-wrap: break-word;
 }
 
 .gr1-prj-prod-type
 {
   grid-area: gr1-prj-prod-type;
+  color: rgb(117, 188, 255);
+  vertical-align: middle;
+  font-variant-caps: normal;
+  /* text-transform: uppercase; */
+  font-size: 0.8rem;
+  text-align: right;
+  font-weight: 450;
+
+  line-height: 0.85rem;
+
+  word-wrap: break-word;
 }
 
 .gr1-prj-contractor
 {
   grid-area: gr1-prj-contractor;
+
+  color: rgb(202, 202, 202);
+  vertical-align: middle;
+  font-variant-caps: normal;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  text-align: left;
+  font-weight: 450;
+
+  line-height: 0.85rem;
+
+  word-wrap: break-word;
 }
 
 
 /* Responsive layout */
 @media screen and (max-width: 600px)
 {
+
+  .gr1 {
+
+    display: grid;
+    grid-template-columns: 100px repeat(2, 1fr) 100px;
+    grid-template-rows: minmax(2px, auto);
+
+    grid-template-areas:
+    "gr1-prj-contractor gr1-prj-contractor  gr1-prj-prod-type  gr1-prj-prod-type"
+    "gr1-prj-num  gr1-prj-num  gr1-prj-num  gr1-prj-num"
+    "gr1-prj-descr gr1-prj-descr gr1-prj-descr gr1-prj-descr"
+
+      ;
+
+    grid-gap: 2px;
+  }
 
 }

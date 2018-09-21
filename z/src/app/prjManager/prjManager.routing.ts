@@ -22,6 +22,7 @@ const routes: Routes = [
       children: [
         { path: 'prjHome', component: PrjHomeComponent },
         { path: 'prjCreate', component: PrjCreateEditComponent },
+        { path: 'prjPropEdit/:idx', component: PrjCreateEditComponent },
         { path: '**',  redirectTo: 'prjHome', pathMatch: 'full' }
       ]
     }

@@ -87,6 +87,8 @@ export class PrjCreateEditComponent implements OnInit, OnDestroy {
        */
       this.route.paramMap.forEach(
         p =>  {
+               console.log(p);
+
           if (p.has('idx'))  {
             /**found it..! This is the edit operation */
             this.editing.opEdit = true;
@@ -203,7 +205,7 @@ c() {
     (_obj: IProject) => {
 
       const p = new IProject(_obj);
-      console.log(p);
+      // console.log(p);
       this._msg.add('Project: ' + p.prj.description + ' Added Successfully..!');
     },
     (_err) => {
@@ -212,6 +214,40 @@ c() {
     () => {
       // this.r();
       this.navigateTo('/prjManager/prjHome');
+    }
+  );
+}
+
+u() {
+  this.editing.prj =  new IProject(this.loadFromForm());
+  this.editing.prj.rev.update(true, false, false);
+  this._subscriptions.post = this._crud._u(this.editing.prj)
+  .subscribe(
+    (_obj: IProject) => {
+
+      const p = new IProject(_obj);
+      // console.log(p);
+      this._msg.add('Project Properties of: ' + p.prj.prjnumId + ' updated Successfully..!');
+    },
+    (_err) => {
+
+    },
+    () => {
+        /**
+         * After the observer is finished (on complete,)
+         * + Refresh the updated data
+         * + Mark the form group (and all its children) as pristine (non Dirty) to disable the save Trigger
+         *   This has been saved and let's not give a user the ability to keep saving and not making senseless http requests
+         */
+      this.r();
+
+      this.formGroup = this.buildForm(this.editing.prj);
+
+      /**
+       *  + Mark the form group (and all its children) as pristine (non Dirty) to disable the save Trigger
+       *   This has been saved and let's not give a user the ability to keep saving and not making senseless http requests
+       */
+      this.formGroup.markAsPristine();
     }
   );
 }

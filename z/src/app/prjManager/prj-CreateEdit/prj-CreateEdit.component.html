@@ -16,6 +16,14 @@
         [actionText]= "'NEW'"
         [disableControl]="(!formGroup.valid) || (this.editing.opEdit) || (!this.editing._prjNum.isUnique)"
         [css]="['rgb(230, 227, 3)','none','l']"></libForm-ActionTrigger>
+
+        <libForm-ActionTrigger
+        [tooltipText]="'Update the modifications'"
+        (execOnTrigger)= "u()"
+        [actionIcon] = "'&#xe161;'"
+        [actionText]= "'UPDATE'"
+        [disableControl]="(!formGroup.valid) || (!this.editing.opEdit) || (!formGroup.dirty) || (!this.editing._prjNum.isUnique)"
+        [css]="['rgb(246, 232, 75)','none','l']"></libForm-ActionTrigger>
   </div>
 <!-- Form starts here -->
 <form

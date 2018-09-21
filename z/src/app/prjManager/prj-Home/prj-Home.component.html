@@ -1,21 +1,23 @@
-<libForm-ActionTrigger
-routerLink = "/prjManager/prjCreate"
-routerLinkActive="active"
-[actionIcon] = "'&#xe145;'"
-[actionText]= "'CREATE\nPROJECT'"
-[disableControl]="false"
-[css]="['rgb(88, 206, 114)','none','l']"></libForm-ActionTrigger>
-
-<h1>
-  List of Existing Projects
-</h1>
 
 
-<div *ngFor="let p of this.prjArr; let i = index">
-<prj-ListNode
-[viewingObj]= "p">
-</prj-ListNode>
+<div class="gr1">
+    <div class="ga-controls">
+      <libForm-ActionTrigger
+      routerLink = "/prjManager/prjCreate"
+      routerLinkActive="active"
+      [actionIcon] = "'&#xe145;'"
+      [actionText]= "'CREATE\nPROJECT'"
+      [disableControl]="false"
+      [css]="['rgb(88, 206, 114)','none','l']"></libForm-ActionTrigger>
+    </div>
 
+    <div class="ga-filters"></div>
+
+
+        <div
+        *ngFor="let p of this.prjArr; let i = index">
+          <prj-ListNode class="ga-li-prj" [viewingObj]= "p" (evTrigger)="this.evTriggerHandler($event)"> </prj-ListNode>
+        </div>
 </div>
 
 <!-- <ul *ngFor="let p of this.prjArr; let i = index">

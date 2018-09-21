@@ -1,0 +1,74 @@
+* {
+  box-sizing: border-box;
+}
+
+
+
+.gr1 {
+
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: minmax(2px, auto);
+
+  grid-template-areas:
+
+  "ga-controls ga-controls ga-controls ga-controls"
+  "ga-filters ga-filters ga-filters ga-filters"
+  "ga-li-prj ga-li-prj ga-li-prj ga-li-prj"
+  ;
+
+  grid-gap: 10px;
+}
+
+.ga-controls      {  grid-area: ga-controls;    }
+
+.ga-filters      {  grid-area: ga-filters;    }
+.ga-li-prj
+ {
+  grid-area: ga-li-prj;
+ }
+
+  /* Responsive layout */
+@media screen and (max-width: 900px)
+{
+
+  .gr1 {
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: minmax(2px, auto);
+
+    grid-template-areas:
+
+    "ga-controls ga-controls"
+    "ga-filters ga-filters"
+    "ga-li-prj ga-li-prj"
+    ;
+
+    grid-gap: 8px;
+  }
+
+}
+
+ /* Responsive layout */
+@media screen and (max-width: 600px)
+{
+
+  .gr1 {
+
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: minmax(2px, auto);
+
+    grid-template-areas:
+
+    "ga-controls"
+    "ga-filters"
+    "ga-li-prj"
+    ;
+
+    grid-gap: 5px;
+  }
+
+}
