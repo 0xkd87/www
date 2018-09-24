@@ -108,4 +108,22 @@ _u(p: IProject): Observable<any> {
   return this._http.txPOST(this._url('u'), <IProject>(p));
 }
 
+_d(p: IProject): Observable<any> {
+  return this._http.txPOST(this._url('d'), <IProject>(p));
+}
+
+public searchFor(idx: number): IProject {
+
+  let p = null;
+  if (idx >= 0) {
+    this.li.prj.forEach((pr, i) => {
+      if (pr.ident.idx === idx) {
+        p =  new IProject(<IProject>pr);
+      }
+    });
+  }
+
+  return p;
+}
+
 } // class end

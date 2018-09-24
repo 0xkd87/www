@@ -109,10 +109,14 @@ navigateTo(path: string) {
 
   evTriggerHandler(_ev: any) {
     // console.log(_ev);
-    let i: number = _ev['i'];
+    const i: number = _ev['i'];
     switch (_ev['f']) {
       case 1:
         this.navigateTo('/prjManager/prjPropEdit/' + i);
+        break;
+
+        case 10:
+        this.navigateTo('/prjManager/prjDashboard/' + i);
         break;
 
       default:

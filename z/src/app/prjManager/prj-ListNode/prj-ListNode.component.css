@@ -41,6 +41,7 @@
   /* "gr1-prj-descr gr1-prj-descr gr1-prj-descr gr1-prj-descr" */
   "gr1-prj-num  gr1-prj-num  gr1-prj-num  gr1-prj-num"
   "gr1-prj-descr gr1-prj-descr gr1-prj-descr gr1-prj-descr"
+  "gr1-icons gr1-icons gr1-icons gr1-icons"
 
   /* "gr1-hr1 gr1-hr1 gr1-hr1 gr1-hr1 gr1-hr1" */
   ;
@@ -52,6 +53,8 @@
 .gr1-prj-num
 {
   grid-area: gr1-prj-num;
+
+
   cursor: pointer;
 
   color: rgb(114, 114, 114);
@@ -66,6 +69,8 @@
 
   word-wrap: break-word;
 }
+
+
 
 .seqHighlight
 {
@@ -139,6 +144,40 @@
   word-wrap: break-word;
 }
 
+.gr1-icons
+{
+  grid-area: gr1-icons;
+
+  vertical-align: middle;
+  text-transform: lowercase;
+  font-size: 24px;
+  text-align: right;
+  font-weight: 500;
+
+  line-height: 28px;
+
+  word-wrap: break-word;
+
+
+}
+
+.icn
+{
+  font-family: 'Material Icons';
+  display: inline;
+  margin: 0px 2px;
+  cursor: pointer;
+  text-shadow: 2px 2px 3px rgba(27, 27, 27, 0.897);
+
+  color: rgb(133, 133, 133);
+
+}
+
+.icn:hover
+{
+  color: rgb(37, 124, 255);
+}
+
 
 /* Responsive layout */
 @media screen and (max-width: 600px)
@@ -154,6 +193,7 @@
     "gr1-prj-contractor gr1-prj-contractor  gr1-prj-prod-type  gr1-prj-prod-type"
     "gr1-prj-num  gr1-prj-num  gr1-prj-num  gr1-prj-num"
     "gr1-prj-descr gr1-prj-descr gr1-prj-descr gr1-prj-descr"
+    "gr1-icons gr1-icons gr1-icons gr1-icons"
 
       ;
 
@@ -161,3 +201,5 @@
   }
 
 }
+
+

@@ -102,13 +102,23 @@ export class PrjCreateEditComponent implements OnInit, OnDestroy {
       this.formHeaderText = 'Undefined..!'; // init to default undefined state
       if (this.editing.opEdit) {
               /* The operation is [EDIT] */
-              this.prjArr.forEach( pr => {
-                if (pr.ident.idx === this.editing.idx) {
-                  this.editing.prj = new IProject(<IProject>pr); // assign a matching udt (overwrite/shallow copy on the [new] UDT)
+              // this.prjArr.forEach( pr => {
+              //   if (pr.ident.idx === this.editing.idx) {
+              //     this.editing.prj = new IProject(<IProject>pr); // assign a matching udt (overwrite/shallow copy on the [new] UDT)
+              //     this._title.setTitle('PROJECT :: EDIT :' + this.editing.idx);
+              //     this.formHeaderText = 'Editing the Selected Object'; // new
+              //   }
+              // });
+              this.editing.prj = this._crud.searchFor(this.editing.idx);
+              console.log(this.editing.prj);
+              if (this.editing.prj) {
                   this._title.setTitle('PROJECT :: EDIT :' + this.editing.idx);
                   this.formHeaderText = 'Editing the Selected Object'; // new
-                }
-              });
+              } else {
+                this._msg.add('Error: invalid index passed: ' + this.editing.idx);
+                this.navigateTo('/prjManager/prjHome');
+              }
+
       } else {
       /* The operation is new create : this has been taken care in initialization */
       this.formHeaderText = 'Create a New Object'; // new

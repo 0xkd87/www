@@ -5,14 +5,19 @@
   </div>
   <div
   class="gr1-prj-num"
-  (click)="this.onActionTrigger(1)" >
+  (click)="this.onActionTrigger(10)" >
       {{this.prjNumber_nonSeq}}<span class="seqHighlight">{{this.prjNumber_seq}}</span>
   </div>
   <div class="gr1-prj-descr">
       {{this.prjDescription}}
   </div>
   <div class="gr1-prj-contractor">
-Mack rides
+      Mack rides
+  </div>
+
+  <div class="gr1-icons">
+      <span class= "icn" (click)="this.onActionTrigger(1)">&#xe3c9;</span>
+      <!-- <span class= "icn" (click)="this.onActionTrigger(1)">&#xe3c9;</span> -->
   </div>
 
   <!-- <h6>{{p.rev.on}}</h6> -->
@@ -22,9 +27,11 @@ Mack rides
 
 <!--
 
-            <h2
-            routerLink = "/libMngr/udt/editUDT/+{{udtNode.ident.idx}}"
-            routerLinkActive="active">
-              {{udtNode.plcTag.name}}
-            </h2>
+                          <libForm-ActionTrigger
+                          routerLink = "/libMngr/udt/editUDT/+{{udtNode.ident.idx}}"
+                          routerLinkActive="active"
+                          [actionIcon] = "'&#xe429;'"
+                          [actionText]= "'EDIT'"
+                          [disableControl]="false"
+                          [css]="['rgb(16, 130, 236)','none','m']"></libForm-ActionTrigger>
 -->

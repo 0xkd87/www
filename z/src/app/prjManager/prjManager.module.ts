@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 import { PrjManagerComponent } from './prjManager.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PrjManagerRoutes } from './prjManager.routing';
+import { PrjDashboardComponent } from './prj-Dashboard/prj-Dashboard.component';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { PrjManagerRoutes } from './prjManager.routing';
     PrjHomeComponent,
     PrjCreateEditComponent,
     PrjListNodeComponent,
+    PrjDashboardComponent,
 
   ],
   exports: [
@@ -36,6 +38,7 @@ import { PrjManagerRoutes } from './prjManager.routing';
     PrjHomeComponent,
     PrjCreateEditComponent,
     PrjListNodeComponent,
+    PrjDashboardComponent,
 
 
   ],

@@ -7,6 +7,42 @@
      &#xe5c3;
 </div>
 
+<div class= "cl-div-ModalBackground"
+[style.display]="_isVisible ? 'flex' : 'none'">
+
+  <div class= "cl-ul-NavigationTileContainer">
+      <div class="img-menu-emb mi posRelative"
+      (click)="OnClickToggleVisButton()"
+      [style.display]="_isVisible ? 'inline-block' : 'none'">
+          &#xe5d4;
+      </div>
+
+      <li class = "cl-li-LinkTileGroup">
+          <a *ngFor="let n of nav.navLinks; let i = index"
+          (click)="OnClickToggleVisButton()"
+          class = "cl-a-LinkTile"
+          routerLink = "{{n.navRoute}}"
+          routerLinkActive="active">
+            <div class = "cl-text-LinkHeading">
+              {{n.navText}}
+            </div>
+          </a>
+        </li>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- <div class="img-menu-emb posFixed-TopRight mi"
+(click)="OnClickToggleVisButton()"
+[style.display]="!_isVisible ? 'block' : 'none'">
+     &#xe5c3;
+</div>
+
 <div class= "cl-div-ModalBackground" [style.display]="_isVisible ? 'flex' : 'none'">
 
   <div class= "cl-ul-NavigationTileContainer">
@@ -24,26 +60,11 @@
               {{n.navText}}
             </div>
           </a>
-        <!-- <a class = "cl-a-LinkTile" href = "ui.LibUDTDesigner.php"><div class = "cl-text-LinkHeading" >LibUDT Manager</div><div class = "cl-text-LinkDesc" >Manage Central Library of UDTs</div></a> -->
         </li>
   </div>
 </div>
 
+        <a class = "cl-a-LinkTile" href = "ui.LibUDTDesigner.php"><div class = "cl-text-LinkHeading" >LibUDT Manager</div><div class = "cl-text-LinkDesc" >Manage Central Library of UDTs</div></a>
 
-<!-- <div class="img-menu-emb posFixed-TopRight"
-[class.posFixed-TopRight] = "_hostListner.stickyOnWindowScroll(30)"
-[class.posRelative] = "!_hostListner.stickyOnWindowScroll(30)"
-(click)="OnClickToggleVisButton()"
-[style.display]="!_isVisible ? 'block' : 'none'">
-     &#9776;
-</div> -->
+-->
 
-<!-- <a *ngFor="let n of nav.navLinks; let i = index"
-(click)="OnClickToggleVisButton()"
-class = "cl-a-LinkTile"
-routerLink = "{{n.navRoute}}"
-routerLinkActive="active">
-  <div class = "cl-text-LinkHeading">
-    {{n.navText}}
-  </div>
-</a> -->
