@@ -1,3 +1,4 @@
+import { NavigationService } from './../../../_shared/services/navigation.service';
 import { IProject } from './../../../_shared/interface/IProject.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HostListenerService } from './../../../_shared/services/hostListener.service';
@@ -32,7 +33,10 @@ export class PrjDashboardComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private _goTo: Router,
     private _crud: PrjCrudService,
+    private _nav: NavigationService,
+
   ) {
+    this._nav.clearLinks();
 
     this._subscriptions = {
       get: new Subscription,
@@ -63,6 +67,13 @@ export class PrjDashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+        // Navigation set
+        this._nav.clearLinks();
+        this._nav.addNavLink('Project Library', '/libMngr/udt', '', 'rgb(255, 251, 0)');
+
+
+        this._nav.addNavLink('Addresses', '/libMngr/udt', '', 'rgb(255, 251, 0)');
+        this._nav.addNavLink('Team', '/usrAuth/signin');
   }
 
   ngOnDestroy() {

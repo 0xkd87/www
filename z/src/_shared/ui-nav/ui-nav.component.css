@@ -70,19 +70,12 @@
   animation-duration: 0.2s;
 }
 
-.cl-a-LinkTile
-{
+a {
 
-    color: rgb(35, 124, 241);
-    font-variant-caps: normal;
-    text-transform: uppercase;
     text-decoration: none;
+    padding: 10px 10px;
+    margin: 5px 2px;
 
-    padding-left:10px;padding-right:15px;padding-top:10px;padding-bottom:10px;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    margin-right: 2px;
-    margin-left: 2px;
     background: rgba(62, 63, 63, 0.9);
 
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
@@ -92,7 +85,7 @@
 
 }
 
-.cl-li-LinkTileGroup
+.LinkTileGroup
 {
   left: 0;
   top: 0;
@@ -111,12 +104,31 @@
 
 .cl-text-LinkHeading
 {
-    font-variant-caps: petite-caps;
-    font-size: 16px;
-    font-weight:300;
+
+  font-variant-caps: normal;
+  text-transform: uppercase;
+
+  font-size: 14px;
+    font-weight:400;
 
     text-align: left;
-    width: 100%;
+    /* width: 100%; */
+
+    display: inline;
+}
+
+.icn
+{
+  text-shadow: 2px 2px 3px rgba(27, 27, 27, 0.897);
+  text-transform: lowercase;
+  font-variant: small-caps;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  font-family: 'Material Icons';
+
+    text-align: left;
 }
 
 
@@ -126,8 +138,10 @@
 a:hover
 {
   cursor:pointer;
-  color: rgb(255, 255, 255);
-  background-color: rgb(0, 136, 247);
+  /* color: rgb(128, 128, 128); */
+  /* background-color: rgb(0, 136, 247); */
+  transform: translateX(-5px);
+  border-bottom: 3px solid rgb(255, 251, 0);
 }
 
 
@@ -139,11 +153,11 @@ a:hover
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px)
 {
-    .cl-a-LinkTile .cl-li-LinkTileGroup
+    a .LinkTileGroup
     {
         width: 100%;
     }
-   .cl-li-LinkTileGroup
+   .LinkTileGroup
     {
         width: 100%;
     }

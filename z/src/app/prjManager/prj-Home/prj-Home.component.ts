@@ -1,16 +1,18 @@
-import { Router } from '@angular/router';
-import { MsgService } from './../../../_shared/services/msg.service';
-import { Subscription } from 'rxjs';
-import { IProject } from './../../../_shared/interface/IProject.interface';
+
 /**
  * @author [kd]
  * @email [karna.dalal@gmail.com]
  * @create date 2018-09-10 03:12:25
- * @modify date 2018-09-10 03:12:25
+ * @modify date 2018-09-25 12:47:57
  * @desc [description]
 */
 import { PrjCrudService } from './../prj-crud.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { NavigationService } from './../../../_shared/services/navigation.service';
+import { Router } from '@angular/router';
+import { MsgService } from './../../../_shared/services/msg.service';
+import { Subscription } from 'rxjs';
+import { IProject } from './../../../_shared/interface/IProject.interface';
 
 @Component({
   selector: 'prj-Home',
@@ -30,6 +32,7 @@ export class PrjHomeComponent implements OnInit, OnDestroy {
     private _crud: PrjCrudService,
     private _msg: MsgService,
     private _goTo: Router,
+    private _nav: NavigationService,
 
 
   ) {
@@ -40,7 +43,16 @@ export class PrjHomeComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit() {
+
+        // Navigation set
+        this._nav.clearLinks();
+        this._nav.addNavLink('Library UDT', '/libMngr/udt', '', 'rgb(255, 251, 0)');
+        this._nav.addNavLink('Log-In', '/usrAuth/signin');
+
+
     this.r();
+
+
   }
   ngOnDestroy() {
     // prevent memory leak when component destroyed

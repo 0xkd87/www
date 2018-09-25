@@ -17,8 +17,40 @@
           &#xe5d4;
       </div>
 
-      <li class = "cl-li-LinkTileGroup">
+      <div class = "LinkTileGroup" >
           <a *ngFor="let n of nav.navLinks; let i = index"
+          (click)="OnClickToggleVisButton()"
+          routerLink = "{{n.navRoute}}"
+          routerLinkActive="active">
+
+          <span class = "icn mi" [style.color]= n.navColor
+          [textContent]= n.navIcon></span>
+          <span class = "cl-text-LinkHeading" [style.color]= n.navColor> {{n.navText}}</span>
+          </a>
+        </div>
+  </div>
+</div>
+
+
+<!-- <div class="img-menu-emb posFixed-TopRight mi"
+(click)="OnClickToggleVisButton()"
+[style.display]="!_isVisible ? 'block' : 'none'">
+     &#xe5c3;
+</div>
+
+<div class= "cl-div-ModalBackground"
+[style.display]="_isVisible ? 'flex' : 'none'">
+
+  <div class= "cl-ul-NavigationTileContainer">
+      <div class="img-menu-emb mi posRelative"
+      (click)="OnClickToggleVisButton()"
+      [style.display]="_isVisible ? 'inline-block' : 'none'">
+          &#xe5d4;
+      </div>
+
+      <li class = "cl-li-LinkTileGroup" >
+          <a *ngFor="let n of nav.navLinks; let i = index"
+          [style.color]= n.navColor
           (click)="OnClickToggleVisButton()"
           class = "cl-a-LinkTile"
           routerLink = "{{n.navRoute}}"
@@ -29,7 +61,7 @@
           </a>
         </li>
   </div>
-</div>
+</div> -->
 
 
 

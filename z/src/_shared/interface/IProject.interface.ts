@@ -105,12 +105,12 @@ class __postalAddress {
   private country?: string;
 
   constructor(src?: __postalAddress) {
-    this.adLn1 = '';
-    this.adLn2 = '';
-    this.city = '';
-    this.country = '';
-    this.zip = '';
-    this.state = '';
+    this.adLn1 = 'address line 1';
+    this.adLn2 = 'Address line 2';
+    this.city = 'city';
+    this.country = 'country';
+    this.zip = '12345';
+    this.state = 'state';
     this.gLoc = '';
 
     if (src) {
@@ -243,11 +243,11 @@ class _prj {
     // this.name =  (new _utils()).getSHA1(new Date().toString());
     this.number = new __prjNumId();
     this.product = {
-      type: '',
-      aka: '',
+      type: 'product-type',
+      aka: 'commercial name',
       deployment: { // End client where product is going to be installed
-        company: '',
-        facility: '',
+        company: 'buyer comapny',
+        facility: 'park name',
         location: new __postalAddress(), // installation address
       },
     };

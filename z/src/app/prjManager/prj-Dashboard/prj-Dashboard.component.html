@@ -1,4 +1,13 @@
 <div>
+          <!-- router to list page -->
+          <libForm-ActionTrigger
+          [tooltipText]="'Navigate back to overview'"
+          routerLink = "prjHome"
+          routerLinkActive="active"
+          [actionIcon] = "'&#xe5c4;'"
+          [actionText]= "'Projects'"
+          [disableControl]="false"
+          [css]="['rgb(43, 120, 255)','none','l']"></libForm-ActionTrigger>
 
   <div>
     {{this.editing.prj.prj.prjnumId}}
