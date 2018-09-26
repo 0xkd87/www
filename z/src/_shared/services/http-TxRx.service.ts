@@ -1,3 +1,10 @@
+/**
+ * @author [kd]
+ * @email [karna.dalal@gmail.com]
+ * @create date 2018-09-26 17:08:46
+ * @modify date 2018-09-26 17:08:46
+ * @desc [description]
+*/
 import { MsgService } from './msg.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders, HttpResponse } from '@angular/common/http';
@@ -5,20 +12,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { Observable, throwError, Subscription } from 'rxjs';
 import { catchError, retry, map } from 'rxjs/operators';
-
-
-const httpOptions = ( {
-
-  headers: new HttpHeaders(
-    {
-      'Accept' : '*/*',
-     'Content-Type':  'text/plain'
-    }
-),
- params: new HttpParams().set('t',  new Date().getTime().toString() ),
- reportProgress: true
-});
-
 
 
 @Injectable(
@@ -56,19 +49,15 @@ private _reloadHttpParams(_params?: {  [param: string]: string | string[]; } ) {
   this._httpOpt.params = new HttpParams().set('_ts', new Date().getTime().toString());
 
   if (_params) {
-    console.log(Object.keys(_params));
+    // console.log(Object.keys(_params));
     Object.keys(_params).forEach( p => {
       this._httpOpt.params = this._httpOpt.params.append(p, _params[p].toString());
     });
   }
-
-
-
-
 }
 
 
-  rxGET(url: string) {
+  reqGET(url: string) {
     return this._http.get(url, /*   this.httpOptions*/ {responseType: 'json'} )
     .pipe(
       retry(3), // retry a failed request up to 3 times
@@ -76,9 +65,10 @@ private _reloadHttpParams(_params?: {  [param: string]: string | string[]; } ) {
     );
   }
 
-  txPOST(url: string,
+  reqPOST(url: string,
     jsonStr: any,
-    qPara?: {  [param: string]: string | string[]; }): Observable<any> {
+    qPara?: {  [param: string]: string | string[]; }
+    ): Observable<any> {
 
     this._reloadHttpParams(qPara);
     // return this._http.post(url, jsonStr, httpOptions)

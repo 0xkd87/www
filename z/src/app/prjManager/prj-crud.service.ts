@@ -76,7 +76,7 @@ ngOnDestroy() {
 
 _r() {
   this.li_Init();  // no null, no undefined..!
-  this._subscriptionGet = this._http.rxGET(this._url('r'))
+  this._subscriptionGet = this._http.reqGET(this._url('r'))
   .subscribe(
       rxData => { // catch
         const rxArr = <any[]>rxData;
@@ -102,14 +102,14 @@ _r() {
 }
 
 _c(p: IProject): Observable<any> {
-  return this._http.txPOST(this._url('c'), <IProject>(p));
+  return this._http.reqPOST(this._url('c'), <IProject>(p));
 }
 _u(p: IProject): Observable<any> {
-  return this._http.txPOST(this._url('u'), <IProject>(p));
+  return this._http.reqPOST(this._url('u'), <IProject>(p));
 }
 
 _d(p: IProject): Observable<any> {
-  return this._http.txPOST(this._url('d'), <IProject>(p));
+  return this._http.reqPOST(this._url('d'), <IProject>(p));
 }
 
 public searchFor(idx: number): IProject {

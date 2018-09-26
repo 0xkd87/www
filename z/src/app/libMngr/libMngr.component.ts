@@ -34,7 +34,7 @@ export class LibMngrComponent implements OnInit, OnDestroy {
     this._nav.addNavLink('UDT', 'udt');
     this._nav.addNavLink('login', '/usrAuth/signin');
 
-    console.log(this._nav);
+    // console.log(this._nav);
 
   }
   ngOnDestroy() {

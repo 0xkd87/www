@@ -84,7 +84,7 @@ private _fn_Init() {
 
   ___rx(): any {
     this._li_Init();  // no null, no undefined..!
-    this._subscriptionGet = this._httpServ.rxGET(this._url('r'))
+    this._subscriptionGet = this._httpServ.reqGET(this._url('r'))
     .subscribe(
       x => { // catch
         const rxArr = <any[]>x;
@@ -117,12 +117,13 @@ private _fn_Init() {
 
   rx(): any {
     this._li_Init();  // no null, no undefined..!
-    this._subscriptionGet = this._httpServ.txPOST(
+    this._subscriptionGet = this._httpServ.reqPOST(
       this._url('r'),
       null,
       {
         op: 'r',
-        dst: 'lib'
+        dst: 'lib',
+        drv: 'libUDT',
       }).subscribe(
       x => { // catch
         const rxArr = <any[]>x;
@@ -154,22 +155,24 @@ private _fn_Init() {
   }
 
   addNew(newUDT: IUdt): Observable<any> {
-    return this._httpServ.txPOST(
+    return this._httpServ.reqPOST(
     this._url('c'),
     <IUdt>(newUDT),
     {
-      op: 'cc',
-      dst: 'lib'
+      op: 'c',
+      dst: 'lib',
+      drv: 'libUDT',
     });
   }
 
   update(uUDT: IUdt): Observable<any> {
-    return this._httpServ.txPOST(
+    return this._httpServ.reqPOST(
       this._url('u'),
       <IUdt>(uUDT),
       {
         op: 'u',
-        dst: 'lib'
+        dst: 'lib',
+        drv: 'libUDT',
       });
   }
 
@@ -183,11 +186,12 @@ private _fn_Init() {
  * sending the complete UDT may make sense instead of just it's idx..!
  * change it later to optimize or unneccessary
  */
-  return this._httpServ.txPOST(this._url('d'),
+  return this._httpServ.reqPOST(this._url('d'),
   <IUdt>(dUDT),
   {
     op: 'd',
-    dst: 'lib'
+    dst: 'lib',
+    drv: 'libUDT',
   });
   }
 
