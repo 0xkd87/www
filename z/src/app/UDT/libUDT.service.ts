@@ -2,7 +2,7 @@
  * @author [kd]
  * @email [karna.dalal@gmail.com]
  * @create date 2018-08-08 11:28:04
- * @modify date 2018-09-04 09:45:34
+ * @modify date 2018-09-26 11:18:31
  * @desc [description]
 */
 
@@ -19,19 +19,43 @@ import { UrlBuilderService } from '../../_shared/services/urlBuilder.service';
 export class LibUDTService implements OnDestroy {
 
   private _url;
+  private _li: {  // Lists - arrays
+    obj: IUdt[]; // Objects - received
+    objName: string[]; // populated object names
+  };
+
+/*
+ Function pack
+*/
+public getArr: {
+  // Gets the received array of the objects
+  obj: () => IUdt[];
+
+  // Returns the Array of string which contains * all the "plcTag.name" strings in the rx list
+  objNames: () => string[];
+};
+
+
   public error: string;
-  private _rxArr: IUdt[];
+  // private _rxArr: IUdt[];
   private _subscriptionGet: Subscription;
   private _subscriptionPost: Subscription;
 constructor(
   private _httpServ: HttpTxRxService,
   private _urlBuilder: UrlBuilderService,
 ) {
+
+  this._li_Init();
+  this._fn_Init();
+
+
     // define url calling function
     this._url = (op: string) => {
       return this._urlBuilder.url__UDT(op);
     };
 }
+
+
 ngOnDestroy() {
   // prevent memory leak when component destroyed
   if (this._subscriptionGet) {
@@ -41,43 +65,36 @@ ngOnDestroy() {
   this._subscriptionPost.unsubscribe();
   }
 }
-/* initialize the rx aray */
-initRxArray() {
-   this._rxArr = [];  // no null, no undefined..!
-}
-rxArr() {
-  return this._rxArr;
-}
 
 
-/**
- * @description:
- * Returns the Array of string which contains
- * all the "plcTag.name" strings in the rx list
- */
-get namesArr() {
-    let nArr: string[] = []; // assign and init
-    const uArr = this.rxArr(); // fetch all the Objects
-    if (isArray(uArr))  {
-        uArr.forEach(u => {
-          nArr.push(<string>u.plcTag.name);
-        });
-      return nArr;
-    }
+
+
+/* initialize lists */
+private _li_Init() {
+  this._li = {obj: [], objName: []}; // no null, no undefined..!
 }
 
-  rx(): any {
-    this.initRxArray();  // no null, no undefined..!
+private _fn_Init() {
+  this.getArr = {
+      obj:  ()  => this._li.obj,
+      objNames: ()  => this._li.objName,
+  };
+}
+
+
+  ___rx(): any {
+    this._li_Init();  // no null, no undefined..!
     this._subscriptionGet = this._httpServ.rxGET(this._url('r'))
     .subscribe(
       x => { // catch
-        let rxArr = <any[]>x;
+        const rxArr = <any[]>x;
 
         if (isArray(rxArr))  {
           rxArr.forEach(rx => {
-            // this._rxArr.push(<IUdt>JSON.parse(rx));
-            this._rxArr.push(new IUdt(<IUdt>JSON.parse(rx)));
-
+            // this._rxArr.push(new IUdt(<IUdt>JSON.parse(rx)));
+            const u = new IUdt(<IUdt>JSON.parse(rx));
+            this._li.obj.push(u); // add the object to the rx array
+            this._li.objName.push(<string>u.plcTag.name); // add the name string
           });
       }
 
@@ -87,23 +104,73 @@ get namesArr() {
       },
       () => { // finally
           // reindex memory here
-          if ((this._rxArr) && (this._rxArr.length > 0)) {
-            this._rxArr.forEach((el, i, arr) => {
+          if ((this._li.obj) && (this._li.obj.length > 0)) {
+            this._li.obj.forEach((el, i, arr) => {
               el.reIndexMem(0, arr); // re-index with mem align index of 16 as default (=no parameter)
             });
           }
       }
     );
 
-    return this.rxArr();
+    return this._li.obj;
+  }
+
+  rx(): any {
+    this._li_Init();  // no null, no undefined..!
+    this._subscriptionGet = this._httpServ.txPOST(
+      this._url('r'),
+      null,
+      {
+        op: 'r',
+        dst: 'lib'
+      }).subscribe(
+      x => { // catch
+        const rxArr = <any[]>x;
+
+        if (isArray(rxArr))  {
+          rxArr.forEach(rx => {
+            // this._rxArr.push(new IUdt(<IUdt>JSON.parse(rx)));
+            const u = new IUdt(<IUdt>JSON.parse(rx));
+            this._li.obj.push(u); // add the object to the rx array
+            this._li.objName.push(<string>u.plcTag.name); // add the name string
+          });
+      }
+
+      },
+      error => { // throw
+        this.error = error; // error path;
+      },
+      () => { // finally
+          // reindex memory here
+          if ((this._li.obj) && (this._li.obj.length > 0)) {
+            this._li.obj.forEach((el, i, arr) => {
+              el.reIndexMem(0, arr); // re-index with mem align index of 16 as default (=no parameter)
+            });
+          }
+      }
+    );
+
+    return this._li.obj;
   }
 
   addNew(newUDT: IUdt): Observable<any> {
-    return this._httpServ.txPOST(this._url('c'), <IUdt>(newUDT));
+    return this._httpServ.txPOST(
+    this._url('c'),
+    <IUdt>(newUDT),
+    {
+      op: 'cc',
+      dst: 'lib'
+    });
   }
 
   update(uUDT: IUdt): Observable<any> {
-    return this._httpServ.txPOST(this._url('u'), <IUdt>(uUDT));
+    return this._httpServ.txPOST(
+      this._url('u'),
+      <IUdt>(uUDT),
+      {
+        op: 'u',
+        dst: 'lib'
+      });
   }
 
   /**
@@ -116,7 +183,12 @@ get namesArr() {
  * sending the complete UDT may make sense instead of just it's idx..!
  * change it later to optimize or unneccessary
  */
-  return this._httpServ.txPOST(this._url('d'), <IUdt>(dUDT));
+  return this._httpServ.txPOST(this._url('d'),
+  <IUdt>(dUDT),
+  {
+    op: 'd',
+    dst: 'lib'
+  });
   }
 
 }

@@ -15,7 +15,7 @@ const httpOptions = ( {
      'Content-Type':  'text/plain'
     }
 ),
- // params: new HttpParams().set('t',  new Date().getTime().toString() ),
+ params: new HttpParams().set('t',  new Date().getTime().toString() ),
  reportProgress: true
 });
 
@@ -28,12 +28,42 @@ const httpOptions = ( {
 )
 export class HttpTxRxService {
 
-
+private _httpOpt: {
+  headers:  HttpHeaders;
+  params:  HttpParams;
+  reportProgress: boolean;
+};
 
 constructor(
   private _http: HttpClient,
   private _msg: MsgService
 ) {
+
+  this._httpOpt = {
+    headers: new HttpHeaders({
+        'Accept' : '*/*',
+       'Content-Type':  'text/plain'
+      }),
+      params:  new HttpParams(),
+      reportProgress: true,
+  };
+
+}
+
+private _reloadHttpParams(_params?: {  [param: string]: string | string[]; } ) {
+    // assign default parameters
+
+  this._httpOpt.params = new HttpParams().set('_ts', new Date().getTime().toString());
+
+  if (_params) {
+    console.log(Object.keys(_params));
+    Object.keys(_params).forEach( p => {
+      this._httpOpt.params = this._httpOpt.params.append(p, _params[p].toString());
+    });
+  }
+
+
+
 
 }
 
@@ -46,23 +76,32 @@ constructor(
     );
   }
 
-  txPOST(url: string, jsonStr: any): Observable<any> {
+  txPOST(url: string,
+    jsonStr: any,
+    qPara?: {  [param: string]: string | string[]; }): Observable<any> {
 
-    return this._http.post(url, jsonStr, httpOptions)
+    this._reloadHttpParams(qPara);
+    // return this._http.post(url, jsonStr, httpOptions)
+    return this._http.post(url, jsonStr, this._httpOpt)
     .pipe(
-      catchError(err => this.handleError(err) ) // then handle the error
+      catchError((err: HttpErrorResponse) => this.handleError(err) ) // then handle the error
     );
   }
 
 
-  private handleError (error: Response | any) {
+  private handleError (error: HttpErrorResponse | any) {
     // In a real world app, you might use a remote logging infrastructure
     let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    if (error instanceof HttpErrorResponse) {
+
+      // const body = error.json() || '';
+      // const err = body || JSON.stringify(body);
+      // errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+      console.log(error);
+      // errMsg = `${error.error.text} - ${error.statusText || ''} ${err}`;
+      errMsg = error.error.text;
     } else {
+
       errMsg = error.message ? error.message : error.toString();
     }
     console.error(errMsg);

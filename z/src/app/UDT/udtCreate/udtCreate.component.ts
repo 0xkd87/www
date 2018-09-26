@@ -193,7 +193,7 @@ validateUniqueName  = (c: AbstractControl): Observable<ValidationErrors> => {
    * pass the own name as an argument to exclude it from the existing scan list..!
    */
   const _ownName = this.opEdit ? this.editingObj.u.plcTag.name : undefined;
-  return (this._asyncValidation.isTextUnique$(this._libUDTService.namesArr, c.value, false, _ownName));
+  return (this._asyncValidation.isTextUnique$(this._libUDTService.getArr.objNames(), c.value, false, _ownName));
 
 }
 
@@ -219,7 +219,7 @@ validateUniqueVarName = (_c: AbstractControl, i: number): Observable<ValidationE
     if (makeNewReq) {
       this.udtArr = this._libUDTService.rx(); /* The data will be automatically populated in the array as it is subscribed */
     }   else {
-      this.udtArr = this._libUDTService.rxArr();
+      this.udtArr = this._libUDTService.getArr.obj();
     }
 
      // this.dataTypes = this.updateDataTypeList();
@@ -238,7 +238,7 @@ validateUniqueVarName = (_c: AbstractControl, i: number): Observable<ValidationE
 
     let arr: string[] = [];
 
-    let p = new plc(DEV_PLATFORMS.S7_300).dataTypeNameStrings.forEach( n => {
+    const p = new plc(DEV_PLATFORMS.S7_300).dataTypeNameStrings.forEach( n => {
       arr.push(n);
     });
 

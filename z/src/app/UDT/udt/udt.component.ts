@@ -84,7 +84,10 @@ export class UdtComponent implements OnInit, OnDestroy {
     this._rxArr = new Array<IUdt>(); // initialize when called.. otherwise the async data will be keep appended..!
     // this._rxArr = <IUdt[]>this._libUDTService.rx(); /* The data will be automatically populated in the array as it is subscribed */
     this._libUDTService.rx(); /* The data will be automatically populated in the array as it is subscribed */
-    this._rxArr = <IUdt[]>this._libUDTService.rxArr(); /* The data will be automatically populated in the array as it is subscribed */
+    // this._rxArr = <IUdt[]>this._libUDTService.rxArr(); /* The data will be automatically populated in the array as it is subscribed */
+
+    /* The data will be automatically populated in the array as it is subscribed */
+    this._rxArr = <IUdt[]>this._libUDTService.getArr.obj();
 
   }
 

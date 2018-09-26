@@ -2,7 +2,7 @@
  * @author [kd]
  * @email [karna.dalal@gmail.com]
  * @create date 2018-09-10 09:37:38
- * @modify date 2018-09-10 09:37:38
+ * @modify date 2018-09-26 12:01:05
  * @desc [description]
 */
 
@@ -49,7 +49,7 @@ private li: {  // Lists - arrays
 
 
 /* initialize the rx aray */
-li_Init() {
+private li_Init() {
   this.li = {prj: [], prjName: [], prjNum: []}; // no null, no undefined..!
 }
 get li_prj() {

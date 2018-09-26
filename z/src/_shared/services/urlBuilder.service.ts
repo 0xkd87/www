@@ -25,10 +25,16 @@ private get _pathToApi(): string {
 
 public url__UDT(op: string) {
   const _op = {
-    'c': 'c/c.udt.php',
-    'r': 'r/r.udt.list.php',
-    'u': 'u/u.udt.php',
-    'd': 'd/d.udt.php'
+
+    // 'r': 'r/r.udt.list.php',
+    // 'c': 'c/c.udt.php',
+    // 'u': 'u/u.udt.php',
+    // 'd': 'd/d.udt.php'
+
+    'r': '$calls/reqHandler.udt.php',
+    'c': '$calls/reqHandler.udt.php',
+    'u': '$calls/reqHandler.udt.php',
+    'd': '$calls/reqHandler.udt.php'
   };
 
   return (this._pathToApi + _op[op]);
