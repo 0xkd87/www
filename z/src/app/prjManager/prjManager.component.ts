@@ -23,7 +23,7 @@ export class PrjManagerComponent implements OnInit {
     this._nav.addNavLink('Lib Manager', '/libMngr/udt');
     this._nav.addNavLink('login', '/usrAuth/signin');
 
-    console.log(this._nav);
+    // console.log(this._nav);
   }
 
 }

@@ -74,7 +74,7 @@ ngOnDestroy() {
   }
 }
 
-_r() {
+_rGet() {
   this.li_Init();  // no null, no undefined..!
   this._subscriptionGet = this._http.reqGET(this._url('r'))
   .subscribe(
@@ -101,15 +101,47 @@ _r() {
   );
 }
 
+_r() {
+  this.li_Init();  // no null, no undefined..!
+  this._subscriptionGet = this._http.reqPOST(
+    this._url('r'),
+    null,
+    {
+      op: 'r',
+      drv: 'prj',
+    }).subscribe(
+      rxData => { // catch
+        const rxArr = <any[]>rxData;
+
+        if (isArray(rxArr))  {
+          rxArr.forEach((rx) => {
+            const p = new IProject(<IProject>JSON.parse(rx));
+            this.li.prj.push(p);
+            this.li.prjName.push(p.prj.description);
+            this.li.prjNum.push(p.prj.prjnumId);
+          });
+      }
+
+      },
+      error => { // throw
+        this.error = error; // error path;
+      },
+      () => { // finally
+        // something ToDo
+      }
+  );
+}
+
 _c(p: IProject): Observable<any> {
-  return this._http.reqPOST(this._url('c'), <IProject>(p));
+  return this._http.reqPOST(
+    this._url('c'), <IProject>(p), { op: 'c', drv: 'prj', });
 }
 _u(p: IProject): Observable<any> {
-  return this._http.reqPOST(this._url('u'), <IProject>(p));
+  return this._http.reqPOST(this._url('u'), <IProject>(p), { op: 'u', drv: 'prj', });
 }
 
 _d(p: IProject): Observable<any> {
-  return this._http.reqPOST(this._url('d'), <IProject>(p));
+  return this._http.reqPOST(this._url('d'), <IProject>(p), { op: 'd', drv: 'prj', });
 }
 
 public searchFor(idx: number): IProject {

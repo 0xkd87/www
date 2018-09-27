@@ -122,7 +122,6 @@ private _fn_Init() {
       null,
       {
         op: 'r',
-        dst: 'lib',
         drv: 'libUDT',
       }).subscribe(
       x => { // catch
@@ -160,7 +159,6 @@ private _fn_Init() {
     <IUdt>(newUDT),
     {
       op: 'c',
-      dst: 'lib',
       drv: 'libUDT',
     });
   }
@@ -171,7 +169,6 @@ private _fn_Init() {
       <IUdt>(uUDT),
       {
         op: 'u',
-        dst: 'lib',
         drv: 'libUDT',
       });
   }
@@ -190,7 +187,6 @@ private _fn_Init() {
   <IUdt>(dUDT),
   {
     op: 'd',
-    dst: 'lib',
     drv: 'libUDT',
   });
   }

@@ -13,6 +13,20 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, Subscription } from 'rxjs';
 import { catchError, retry, map } from 'rxjs/operators';
 
+interface IhttpReqParameterSet {
+ // [param: string]: string | string[];
+
+ /** op-Code of the request - accepted values: [c]reate | [r]ead | [u]pdate | [d]elete */
+  op: 'c' | 'r' | 'u' | 'd';
+
+  /**The driver to be used for the requested operation
+    Accepted Values: libUDT | prj  */
+  drv: 'libUDT' | 'prj';
+}
+
+
+
+
 
 @Injectable(
   {
@@ -43,10 +57,13 @@ constructor(
 
 }
 
-private _reloadHttpParams(_params?: {  [param: string]: string | string[]; } ) {
+private _reloadHttpParams(_params?:
+  IhttpReqParameterSet
+  // {  [param: string]: string | string[]; }
+  ) {
     // assign default parameters
 
-  this._httpOpt.params = new HttpParams().set('_ts', new Date().getTime().toString());
+  this._httpOpt.params = new HttpParams().set('.ts', new Date().getTime().toString());
 
   if (_params) {
     // console.log(Object.keys(_params));
@@ -67,7 +84,7 @@ private _reloadHttpParams(_params?: {  [param: string]: string | string[]; } ) {
 
   reqPOST(url: string,
     jsonStr: any,
-    qPara?: {  [param: string]: string | string[]; }
+    qPara?:   IhttpReqParameterSet    // {  [param: string]: string | string[]; }
     ): Observable<any> {
 
     this._reloadHttpParams(qPara);

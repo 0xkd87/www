@@ -31,10 +31,10 @@ public url__UDT(op: string) {
     // 'u': 'u/u.udt.php',
     // 'd': 'd/d.udt.php'
 
-    'r': '$calls/reqHandler.udt.php',
-    'c': '$calls/reqHandler.udt.php',
-    'u': '$calls/reqHandler.udt.php',
-    'd': '$calls/reqHandler.udt.php'
+    'r': '$calls/reqHandler.main.php',
+    'c': '$calls/reqHandler.main.php',
+    'u': '$calls/reqHandler.main.php',
+    'd': '$calls/reqHandler.main.php'
   };
 
   return (this._pathToApi + _op[op]);
@@ -43,10 +43,15 @@ public url__UDT(op: string) {
 
 public url__PRJ(op: string) {
   const _op = {
-    'c': 'c/c.prj.php',
-    'r': 'r/r.prj.list.php',
-    'u': 'u/u.prjProp.php',
-    'd': 'd/d.prj.php'
+    // 'c': 'c/c.prj.php',
+    // 'r': 'r/r.prj.list.php',
+    // 'u': 'u/u.prjProp.php',
+    // 'd': 'd/d.prj.php'
+
+    'r': '$calls/reqHandler.main.php',
+    'c': '$calls/reqHandler.main.php',
+    'u': '$calls/reqHandler.main.php',
+    'd': '$calls/reqHandler.main.php'
   };
 
   return (this._pathToApi + _op[op]);
