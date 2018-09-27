@@ -23,6 +23,8 @@
               </div>
               <div class = "seperator"></div>
               <div class="clWidth66Perc leftcolumn">
+
+                  <!-- <a [routerLink]="[{outlets: { popup: ['x'] }}]" routerLinkActive="active">test</a> -->
                   <input
                   type="text"
                   name = "filter"
@@ -66,10 +68,18 @@
         </div>
       </div>
         <div class="gr1-content">
-                 <div> <app-udt-list *ngFor="let d of _rxArr; let i = index"  [udtIn]="d"> </app-udt-list></div>
+                 <div>
+                   <app-udt-list
+                   *ngFor="let d of _rxArr; let i = index"
+                   [udtIn]="d"
+                   (evTrigger)="this.evTriggerHandler($event)">
+
+                   </app-udt-list>
+                  </div>
         </div>
 
   </div> <!--  grid wrapper -->
+
 
 
 
@@ -88,4 +98,7 @@
             [labelText] = '"Name"'
             [formControl] = "formGroup.get('plcTag.name')">
           </libForm-InputText>
+
+          <router-outlet name="popup"></router-outlet>
+
 -->

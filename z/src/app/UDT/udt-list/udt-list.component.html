@@ -82,8 +82,7 @@
 
                     <div class= "cl-ControlContainer gr1-controls" [style.display]="isControlVisible ? 'inherit' : 'none'">
                           <libForm-ActionTrigger
-                          routerLink = "/libMngr/udt/editUDT/+{{udtNode.ident.idx}}"
-                          routerLinkActive="active"
+                          (execOnTrigger)="this.onActionTrigger(1)"
                           [actionIcon] = "'&#xe429;'"
                           [actionText]= "'EDIT'"
                           [disableControl]="false"

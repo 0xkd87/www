@@ -123,6 +123,7 @@ private _fn_Init() {
       {
         op: 'r',
         drv: 'libUDT',
+        dst: 'lib',
       }).subscribe(
       x => { // catch
         const rxArr = <any[]>x;
@@ -160,6 +161,8 @@ private _fn_Init() {
     {
       op: 'c',
       drv: 'libUDT',
+      dst: 'lib',
+
     });
   }
 
@@ -170,6 +173,8 @@ private _fn_Init() {
       {
         op: 'u',
         drv: 'libUDT',
+        dst: 'lib',
+
       });
   }
 
@@ -188,6 +193,8 @@ private _fn_Init() {
   {
     op: 'd',
     drv: 'libUDT',
+    dst: 'lib',
+
   });
   }
 

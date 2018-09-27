@@ -1,6 +1,6 @@
 import { NavigationService } from './../../../_shared/services/navigation.service';
 import { IProject } from './../../../_shared/interface/IProject.interface';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { HostListenerService } from './../../../_shared/services/hostListener.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
@@ -54,7 +54,7 @@ export class PrjDashboardComponent implements OnInit, OnDestroy {
        */
       this.route.paramMap.forEach(
         p =>  {
-               console.log(p);
+              //  console.log(p);
 
           if (p.has('idx'))  {
             /**found it..! This is the edit operation */
@@ -69,11 +69,13 @@ export class PrjDashboardComponent implements OnInit, OnDestroy {
   ngOnInit() {
         // Navigation set
         this._nav.clearLinks();
+        this._nav.navHeaderText = this.editing.prj.prj.prjnumId;
         this._nav.addNavLink('Project Library', '/libMngr/udt', '', 'rgb(255, 251, 0)');
 
 
         this._nav.addNavLink('Addresses', '/libMngr/udt', '', 'rgb(255, 251, 0)');
         this._nav.addNavLink('Team', '/usrAuth/signin');
+
   }
 
   ngOnDestroy() {
@@ -85,4 +87,15 @@ export class PrjDashboardComponent implements OnInit, OnDestroy {
   //   this._subscriptions.post.unsubscribe();
   // }
 }
+
+crossNavigate() {
+  const navigationExtras: NavigationExtras = {
+    // queryParams: {
+    //     'firstname': 'x',
+    //     'lastname': 'y'
+    // },
+};
+this._goTo.navigate(['/libMngr/prj/udt/createUDT'], navigationExtras);
+}
+
 }

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 /**
  * @author [kd]
@@ -13,7 +14,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { IUdt, CONST_OBJTYPE} from '../../../_shared/interface/schemaLib.interface';
-import { UdtCreateComponent } from '../udtCreate/udtCreate.component';
 
 
 @Component({
@@ -45,6 +45,8 @@ export class UdtComponent implements OnInit, OnDestroy {
     private _title: Title, // Page Title Serive
     public _hostListner: HostListenerService,
     private _libUDTService: LibUDTService,
+    private _goTo: Router,
+
   ) {
       this._title.setTitle('UDT');
 /* register to the subscription */
@@ -129,6 +131,22 @@ addTagChip(tagText: string) {
 
   if (tagText && tagText !== '') {
     this._TagArr.push(tagText);
+  }
+}
+
+evTriggerHandler(_ev: any) {
+  if ((!_ev['src']) || (_ev['src'] !== 'lib')) {
+    return false; // invalid source, Don't process the request
+  }
+  // console.log(_ev);
+  const i: number = _ev['i'];
+  switch (_ev['fx']) {
+    case 1:
+      this._goTo.navigateByUrl('/libMngr/udt/editUDT/' + i);
+      break;
+
+    default:
+      break;
   }
 }
 

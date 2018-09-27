@@ -24,6 +24,11 @@ const routes: Routes = [
           { path: 'udt', component: UdtComponent },
           { path: 'udt/createUDT', component: UdtCreateComponent },
           { path: 'udt/editUDT/:idx', component: UdtCreateComponent },
+
+          // calling from prj interface
+          { path: 'prj/udt/createUDT', component: UdtCreateComponent, data: {src: 'prj'} },
+
+          // default
           { path: '**',  redirectTo: 'udt', pathMatch: 'full' }
         ]
       }

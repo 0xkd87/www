@@ -1,10 +1,7 @@
-import { UsrRoutes } from './usr/usr.routing';
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-
 import { PageNotfoundComponent } from '../_shared/page-Notfound/page-Notfound.component';
-import { UsrModule } from './usr/usr.module';
 
 const _appRoutes: Routes = [
   // User login-authetication

@@ -118,6 +118,8 @@ export class UdtCreateComponent implements OnInit, OnDestroy, AfterViewInit, OnC
         }
       );
 
+      console.log(this.route);
+
 /**
  * Edit operation is detected with index
  */

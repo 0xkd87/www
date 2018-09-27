@@ -1,4 +1,4 @@
-<div>
+<div class="component">
           <!-- router to list page -->
           <libForm-ActionTrigger
           [tooltipText]="'Navigate back to overview'"
@@ -9,9 +9,17 @@
           [disableControl]="false"
           [css]="['rgb(43, 120, 255)','none','l']"></libForm-ActionTrigger>
 
-  <div>
+          <libForm-ActionTrigger
+          (execOnTrigger)="this.crossNavigate()"
+          [tooltipText]="'Navigate back to overview'"
+          [actionIcon] = "'&#xe5c4;'"
+          [actionText]= "'Create UDT'"
+          [disableControl]="false"
+          [css]="['rgb(43, 120, 255)','none','l']"></libForm-ActionTrigger>
+
+  <div class="g-prjnum">
     {{this.editing.prj.prj.prjnumId}}
   </div>
 
-
 </div>
+

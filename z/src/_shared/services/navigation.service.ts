@@ -12,7 +12,10 @@ interface InavLink {
   providedIn: 'root',
 })
 export class NavigationService {
-constructor() {}
+constructor() {
+  this.navHeaderText = 'Options';
+}
+private _navHeader: string | 'Options';
 navLinks: InavLink[] = [];
 addNavLink(
   navText: string,
@@ -34,6 +37,15 @@ addNavLink(
 
 clearLinks() {
   this.navLinks = [];
+  this.navHeaderText = 'Options';
+}
+
+set navHeaderText(Txt: string) {
+  this._navHeader = Txt;
+}
+
+get navHeaderText() {
+  return this._navHeader;
 }
 
 }

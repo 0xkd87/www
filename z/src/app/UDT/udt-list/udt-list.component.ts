@@ -1,5 +1,5 @@
 import { IUdt } from '../../../_shared/interface/schemaLib.interface';
-import { Component, OnInit, OnDestroy, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, AfterViewInit, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -17,6 +17,11 @@ export class UdtListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @Input()
   udtIn: IUdt;
+
+    /**
+ * @Outputs
+ */
+@Output() evTrigger = new EventEmitter();
 
   udtNode: IUdt;
   isControlVisible: boolean;
@@ -40,5 +45,14 @@ export class UdtListComponent implements OnInit, OnDestroy, AfterViewInit {
   get refreshBlockSize() {
     return this.udtIn.plcTag.memAddr.length;
   }
+
+    // Event Trigger Handler
+    onActionTrigger(_actionCode: number) {
+      this.evTrigger.emit({ // pass on parameters with emit
+        i: this.udtIn.ident.idx, // object index
+        fx: _actionCode, // Triggered action code
+        src: 'lib'
+      });
+    }
 
 }

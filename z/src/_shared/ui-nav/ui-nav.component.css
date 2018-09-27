@@ -91,7 +91,7 @@ a {
   top: 0;
   min-height: 100%;
   margin: 0px;
-  margin-top: 80px;
+  margin-top: 10px;
   padding-right: 2px; padding-left: 2px;
   padding-top: 2px;  padding-bottom: 2px;
 
@@ -144,7 +144,25 @@ a:hover
   border-bottom: 3px solid rgb(255, 251, 0);
 }
 
+.navHeadText
+{
+  left: 0;
+  top: 0;
+  margin: 0px;
+  margin-top: 75px;
+  padding-right: 2px; padding-left: 2px;
+  padding-top: 2px;  padding-bottom: 2px;
 
+  color: rgb(194, 194, 194);
+  vertical-align: middle;
+  font-variant-caps: normal;
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 700;
+
+  border-bottom: 3px solid rgb(194, 194, 194);
+  word-wrap: normal;
+}
 
 
 

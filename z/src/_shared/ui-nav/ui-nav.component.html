@@ -17,6 +17,10 @@
           &#xe5d4;
       </div>
 
+      <div class="navHeadText">
+        {{nav.navHeaderText}}
+      </div>
+
       <div class = "LinkTileGroup" >
           <a *ngFor="let n of nav.navLinks; let i = index"
           (click)="OnClickToggleVisButton()"

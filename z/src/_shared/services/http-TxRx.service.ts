@@ -17,11 +17,20 @@ interface IhttpReqParameterSet {
  // [param: string]: string | string[];
 
  /** op-Code of the request - accepted values: [c]reate | [r]ead | [u]pdate | [d]elete */
-  op: 'c' | 'r' | 'u' | 'd';
+  op: 'c'
+    | 'r'
+    | 'u'
+    | 'd'
+    | 'r1';
 
   /**The driver to be used for the requested operation
     Accepted Values: libUDT | prj  */
-  drv: 'libUDT' | 'prj';
+  drv: 'libUDT'
+      | 'prj';
+
+  /* Destination on a object - where (which db) it is stored*/
+  dst?: 'lib'
+      | 'prj';
 }
 
 
