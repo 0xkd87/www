@@ -9,17 +9,64 @@
           [disableControl]="false"
           [css]="['rgb(43, 120, 255)','none','l']"></libForm-ActionTrigger>
 
-          <libForm-ActionTrigger
-          (execOnTrigger)="this.crossNavigate()"
-          [tooltipText]="'Navigate back to overview'"
-          [actionIcon] = "'&#xe5c4;'"
-          [actionText]= "'Create UDT'"
-          [disableControl]="false"
-          [css]="['rgb(43, 120, 255)','none','l']"></libForm-ActionTrigger>
 
-  <div class="g-prjnum">
-    {{this.editing.prj.prj.prjnumId}}
-  </div>
+
+<!-- Grid -->
+          <div class = "g1">
+              <div class="g1-prjnum">{{this.editing.prj.prj.prjnumId}}</div>
+              <div class="g1-prjdescr">{{this.editing.prj.prj.description}}</div>
+              <div class="g1-hr1 bottomline"></div>
+
+              <div class="g1-prod card">
+                  <div class="card-title">PRODUCT</div>
+              </div>
+
+              <div class="g1-prjstatus card">
+                  <div class="card-title">STATUS</div>
+              </div>
+
+              <div class="g1-prjteam card">
+                  <div class="card-title">TEAM</div>
+              </div>
+
+              <div class="g1-support card">
+                  <div class="card-title">SUPPORT</div>
+              </div>
+
+              <div class="g1-hr2 bottomline"></div>
+
+              <div class="g1-libudt card">
+                  <div class="card-title">DATA STRUCTURES</div>
+                  <!-- <libForm-ActionTrigger
+                  (execOnTrigger)="this.crossNavigate()"
+                  [tooltipText]="'Navigate back to overview'"
+                  [actionIcon] = "'&#xe0b6;'"
+                  [actionText]= "'UDT CLONE'"
+                  [disableControl]="false"
+                  [css]="['rgb(248, 129, 114)','none','l']"></libForm-ActionTrigger> -->
+                  <div class="info-container">
+                      <div class = "info-val">111</div>
+                      <div class = "info-desc">Objects Total</div>
+                  </div>
+
+
+                  <libForm-ActionTrigger
+                  (execOnTrigger)="this.crossNavigate()"
+                  [tooltipText]="'Navigate back to overview'"
+                  [actionIcon] = "'&#xe896;'"
+                  [actionText]= "'DETAILED LIST'"
+                  [disableControl]="false"
+                  [css]="['rgb(43, 120, 255)','none','l']"></libForm-ActionTrigger>
+              </div>
+
+              <div class="g1-awm card">
+                  <div class="card-title">ALARM CONFIGURATION</div>
+
+              </div>
+
+          </div>
+
+
 
 </div>
 

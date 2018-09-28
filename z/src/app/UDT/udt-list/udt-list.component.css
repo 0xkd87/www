@@ -14,9 +14,11 @@
 
   padding-top: 5px;
   padding-bottom: 5px;
-  background-color: rgb(247, 247, 247);
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   cursor: pointer;
+
+  background-color: rgb(83, 83, 83);
+
 }
 
 .cl-ListNodeContainer:hover
@@ -27,42 +29,24 @@
 .cl-IsSelected
 {
   border: 1px solid rgb(4, 172, 250);
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 255, 255); */
 
 }
 .cl-IsF
 {
   border-left: 3px solid rgb(250, 234, 4);
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 255, 255); */
 
 }
 
-
-
-
-.cl-ControlContainer
-{
-  margin: 0px;
-  padding: 5px;
-  background-color: rgba(255, 255, 255, 0.445);
-
-  /* display: block; */
-
-  /*
-  background-color: rgba(141, 138, 138, 0.445);
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    border-top: 1px solid rgb(187, 183, 183);
-  */
-
-}
 
 h2
 {
   margin: 0px;
-  font-weight: 400;
+  font-weight: 500;
   margin-bottom: 0px;
-  /* border-bottom: 1px solid rgb(160, 160, 160); */
-  width: 100%;
+  color: rgb(187, 187, 187);
+  /* width: 100%; */
   word-wrap: break-word;
   font-variant-caps: small-caps;
   font-size: 0.9rem;
@@ -85,7 +69,7 @@ h2:hover
   font-weight: 400;
   font-size: 0.7rem;
   line-height: 15px;
-  color: rgb(127, 128, 129);
+  color: rgb(184, 141, 86);
 
   word-wrap: break-word;
 }
@@ -96,7 +80,7 @@ h2:hover
   margin-right: 5px;
   font-weight: 400;
 
-  color: rgb(99, 99, 99);
+  color: rgb(156, 156, 156);
   text-transform: uppercase;
   font-variant-caps: small-caps;
   font-size: 9px;
@@ -120,7 +104,7 @@ h2:hover
 }
 
 .desc-default {
-  color: rgb(21, 111, 146);
+  color: rgb(0, 185, 218);
 }
 .desc-good {
   color: rgb(9, 174, 86)
@@ -141,6 +125,18 @@ h2:hover
   line-height: 12px;
 }
 
+.icn
+{
+  font-family: 'Material Icons';
+  display: inline;
+  margin: 0px 2px;
+  cursor: pointer;
+  text-shadow: 2px 2px 3px rgba(27, 27, 27, 0.897);
+
+  color: rgb(133, 133, 133);
+
+}
+
 
 /* ------------  Grid layout ---------------*/
 .gr1 {
@@ -152,9 +148,10 @@ h2:hover
   grid-template-areas:
 
   "gr1-name gr1-name gr1-name gr1-name gr1-name"
-  "gr1-comment gr1-comment gr1-comment gr1-size gr1-size"
+  "gr1-comment gr1-comment gr1-comment gr1-comment gr1-comment"
   "gr1-hr1 gr1-hr1 gr1-hr1 gr1-hr1 gr1-hr1"
-  "gr1-revnum gr1-revtime gr1-dep ..... gr1-controls"
+  "gr1-revnum gr1-revtime gr1-dep gr1-size gr1-size"
+  "gr1-controls gr1-controls gr1-controls gr1-controls gr1-controls"
   ;
 
   grid-gap: 2px;
@@ -166,19 +163,31 @@ h2:hover
 .gr1-dep      {  grid-area: gr1-dep;    }
 .gr1-name      {  grid-area: gr1-name;    }
 .gr1-comment      {  grid-area: gr1-comment;    }
-.gr1-controls      {  grid-area: gr1-controls;    }
-.gr1-hr1      {  grid-area: gr1-hr1;    }
 
 .gr1-hr1
 {
-  border-bottom: 1px solid rgb(160, 160, 160);
+  grid-area: gr1-hr1;
+  border-bottom: 1px solid rgb(112, 112, 112);
 }
 
 .gr1-controls
 {
+  grid-area: gr1-controls;
   justify-content: right;
   justify-self: end;
 
+  margin: 0px;
+  padding: 5px;
+
+  vertical-align: middle;
+  text-transform: lowercase;
+  font-size: 24px;
+  text-align: right;
+  font-weight: 500;
+
+  line-height: 28px;
+
+  word-wrap: break-word;
 }
 
 .gr1-size
@@ -197,7 +206,7 @@ h2:hover
       grid-template-rows: minmax(2px, auto);
 
       grid-template-areas:
-      "..... gr1-controls"
+      "gr1-controls gr1-controls"
       "gr1-name gr1-name"
       "gr1-comment gr1-comment"
       "gr1-hr1 gr1-hr1"

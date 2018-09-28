@@ -1,40 +1,3 @@
-<!-- <div class="cl-ListNodeContainer" [class.cl-IsSelected] = "isControlVisible" [class.cl-IsF] = "udtNode.plcTag.isF" >
-
-        <div class="row">
-                <div
-                (click)="isControlVisible = !isControlVisible"
-                class = "leftcolumn"
-                [class.clWidth100Perc] =  "!isControlVisible"
-                [class.clWidth85Perc] =  "isControlVisible">
-
-                      <h2> {{udtNode.plcTag.name}}</h2>
-                      <p class="cl-desc text-right">Variables: {{udtNode.vars.length}}</p>
-                      <p class="cl-Comment"> {{udtNode.plcTag.comment.en}} </p>
-
-                      <p class="cl-label">Revision: </p>
-                      <p class="cl-desc"> {{udtNode.rev.major}} | {{udtNode.rev.minor}} </p>
-
-
-
-
-
-              </div>
-
-                <div
-                [class.clWidth15Perc] =  "isControlVisible"
-                [class.rightcolumn] =  "isControlVisible">
-                  <div class= "cl-ControlContainer" [style.display]="isControlVisible ? 'block' : 'none'">
-                        <libForm-ActionTrigger
-                        routerLink = "/libMngr/udt/editUDT/+{{udtNode.ident.idx}}"
-                        routerLinkActive="active"
-                        [actionIcon] = "'&#xe429;'"
-                        [actionText]= "'EDIT'"
-                        [disableControl]="false"
-                        [css]="['rgb(16, 130, 236)','none','l']"></libForm-ActionTrigger>
-                    </div>
-                </div>
-          </div>
-        </div> -->
 
         <div class="cl-ListNodeContainer gr1"
         (click)="isControlVisible = !isControlVisible"
@@ -42,11 +5,7 @@
         [class.cl-IsF] = "udtNode.plcTag.isF" >
 
           <div class="gr1-name">
-            <h2
-            routerLink = "/libMngr/udt/editUDT/+{{udtNode.ident.idx}}"
-            routerLinkActive="active">
-              {{udtNode.plcTag.name}}
-            </h2>
+            <h2>{{udtNode.plcTag.name}}</h2>
           </div>
 
           <div class="gr1-comment">
@@ -80,13 +39,26 @@
 
 
 
-                    <div class= "cl-ControlContainer gr1-controls" [style.display]="isControlVisible ? 'inherit' : 'none'">
+                    <div class= "gr1-controls" [style.display]="isControlVisible ? 'inline' : 'none'">
+<!--
+                      <div class="icn"
+                      (click)="this.onActionTrigger(1)">&#xe429;</div>
+
+                      <div class="icn"
+                      (click)="this.onActionTrigger(2)">&#xe335;</div> -->
                           <libForm-ActionTrigger
                           (execOnTrigger)="this.onActionTrigger(1)"
                           [actionIcon] = "'&#xe429;'"
                           [actionText]= "'EDIT'"
                           [disableControl]="false"
-                          [css]="['rgb(16, 130, 236)','none','m']"></libForm-ActionTrigger>
+                          [css]="['rgb(16, 130, 236)','light','s']"></libForm-ActionTrigger>
+
+                          <libForm-ActionTrigger
+                          (execOnTrigger)="this.onActionTrigger(2)"
+                          [actionIcon] = "'&#xe335;'"
+                          [actionText]= "'BORROW'"
+                          [disableControl]="false"
+                          [css]="['rgb(244, 244, 66)','light','s']"></libForm-ActionTrigger>
                       </div>
 
           </div>
