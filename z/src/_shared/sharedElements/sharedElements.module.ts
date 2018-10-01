@@ -1,6 +1,6 @@
+import { LibInfoBadgeComponent } from './../lib-InfoBadge/lib-InfoBadge.component';
 import { LibTagChipComponent } from './../lib-TagChip/lib-TagChip.component';
 import { LibContextMenuComponent } from './../lib-ContextMenu/lib-ContextMenu.component';
-import { LibMngrModule } from './../../app/libMngr/libMngr.module';
 import { LibFormSwitchComponent } from './../libForm-Switch/libForm-Switch.component';
 import { AlertDialogComponent } from './../alertDialog/alertDialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -30,6 +30,7 @@ import { MsgBoardComponent } from '../msgBoard/msgBoard.component';
     UiNavComponent,
     MsgBoardComponent,
     LibTagChipComponent,
+    LibInfoBadgeComponent,
 
   ],
   exports: [
@@ -39,6 +40,7 @@ import { MsgBoardComponent } from '../msgBoard/msgBoard.component';
     LibFormSwitchComponent,
     LibContextMenuComponent,
     LibTagChipComponent,
+    LibInfoBadgeComponent,
 
 
     AlertDialogComponent,

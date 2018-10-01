@@ -1,0 +1,9 @@
+<div class="info-container"
+(click)="this.onActionTrigger($event)">
+    <div class = "info-val"
+    [style]=this.Fn.sizeFactor()
+    [style.color]= this.Fn.valueColor()>
+    {{this.Fn.value()}}<span class="unit">{{this.Fn.unit()}}</span>
+    </div>
+    <div class = "info-desc">{{this.Fn.description()}}</div>
+</div>

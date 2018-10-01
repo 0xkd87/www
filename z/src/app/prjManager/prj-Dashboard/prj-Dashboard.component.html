@@ -37,30 +37,23 @@
 
               <div class="g1-libudt card">
                   <div class="card-title">DATA STRUCTURES</div>
-                  <!-- <libForm-ActionTrigger
-                  (execOnTrigger)="this.crossNavigate()"
-                  [tooltipText]="'Navigate back to overview'"
-                  [actionIcon] = "'&#xe0b6;'"
-                  [actionText]= "'UDT CLONE'"
-                  [disableControl]="false"
-                  [css]="['rgb(248, 129, 114)','none','l']"></libForm-ActionTrigger> -->
-                  <div class="info-container">
-                      <div class = "info-val">111</div>
-                      <div class = "info-desc">Objects Total</div>
-                  </div>
 
-
-                  <libForm-ActionTrigger
-                  (execOnTrigger)="this.crossNavigate()"
-                  [tooltipText]="'Navigate back to overview'"
-                  [actionIcon] = "'&#xe896;'"
-                  [actionText]= "'DETAILED LIST'"
-                  [disableControl]="false"
-                  [css]="['rgb(43, 120, 255)','none','l']"></libForm-ActionTrigger>
+                  <lib-InfoBadge
+                  [value]="'1234'"
+                  [descr]="'STRUCTURES'"
+                  [unit]="''"
+                  (evTrigger)="this.crossNavigate()"
+                  [css]="['rgb(150, 185, 36)']" > </lib-InfoBadge>
               </div>
 
               <div class="g1-awm card">
                   <div class="card-title">ALARM CONFIGURATION</div>
+
+                  <lib-InfoBadge
+                  [value]="'1234'"
+                  [descr]="'ALARMS'"
+                  [unit]="''"
+                  [css]="['rgb(255, 89, 89)']" > </lib-InfoBadge>
 
               </div>
 

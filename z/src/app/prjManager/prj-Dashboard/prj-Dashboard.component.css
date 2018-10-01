@@ -140,31 +140,7 @@
 }
 
 
-.info-container
-{
-  margin: 5px 5px;
-  padding: 5px 5px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-  background-color: rgb(240, 240, 240);
-  height: 100px;
-  width: 100px;
 
-  border-radius: 100%;
-  display: inline-block;
-  align-content: center;
-  vertical-align: middle;
-}
 
-.info-val{
-  text-align: center;
-  font-size: 36px;
-  font-weight: 400;
-  color: rgb(206, 206, 206);
-  text-shadow: -1px 1px 3px rgb(73, 73, 73);
-}
-.info-desc{
-  text-align: center;
-  color: rgb(153, 153, 153);
-  font-size: 14px;
-  font-weight: 300;
-}
+
+

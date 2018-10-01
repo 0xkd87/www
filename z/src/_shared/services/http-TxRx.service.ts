@@ -31,6 +31,9 @@ interface IhttpReqParameterSet {
   /* Destination on a object - where (which db) it is stored*/
   dst?: 'lib'
       | 'prj';
+
+  /* object index - if requested*/
+  idx?: number;
 }
 
 

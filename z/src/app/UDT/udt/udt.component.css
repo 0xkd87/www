@@ -41,22 +41,6 @@
 }
 
 
-.info-container {
-  display: inline-block;
-  margin: 2px;
-  padding: 1px;
-}
-.info-val{
-  font-size: 64px;
-  font-weight: 400;
-  color: rgb(206, 206, 206);
-  text-shadow: -1px 1px 3px rgb(73, 73, 73);
-}
-.info-desc{
-  color: rgb(153, 153, 153);
-  font-size: 16px;
-  font-weight: 300;
-}
 
 
 h3{

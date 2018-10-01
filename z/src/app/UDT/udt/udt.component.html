@@ -33,10 +33,11 @@
               <div class = "seperator"></div>
               <div class="clWidth15Perc rightcolumn">
 
-                  <div class = "info-container">
-                      <div class = "info-val">{{_rxArr.length}}</div>
-                      <div class = "info-desc">Objects Total</div>
-                    </div>
+                    <lib-InfoBadge
+                      [value]="_rxArr.length"
+                      [descr]="'STRUCTURES'">
+                    </lib-InfoBadge>
+
               </div>
         </div>
 
