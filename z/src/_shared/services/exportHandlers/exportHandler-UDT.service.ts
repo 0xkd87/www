@@ -183,7 +183,7 @@ private _getChildrenAsStructS7(
               }
              s.addLine(s1);
           });
-      s.addLine('END_STRUCT;', tabIndent);
+      s.addLine('END_STRUCT; //', tabIndent);
 
       return s; // textbuffer (class object)
 }
